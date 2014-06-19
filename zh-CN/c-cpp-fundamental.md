@@ -247,7 +247,7 @@ ISO C++ 引入 *ODR(One Definition Rule)* [C++11 Clause 3] 而特别指定了*�
 
 - entity 一词被不经正式定义地使用，也没有和 ISO C 类似的含义（考虑 **ISO C 没有 ODR** ）。似乎作者认为是不言自明的。
 
-- name 一次被不经正式地使用。 ISO C 没有 ISO C++ 那样带记号 :: 的 *qualified-id* [C++11 5.1.1] 和 *operator-function-id* [C++11 13.5] 等语法构造，“标识符”和“名称”基本一致。
+- name 一词被不经正式定义地使用。 ISO C 没有 ISO C++ 那样带记号 :: 的 *qualified-id* [C++11 5.1.1] 和 *operator-function-id* [C++11 13.5] 等语法构造，“标识符”和“名称”基本一致。
 
 ## 3.2 声明和定义
 
