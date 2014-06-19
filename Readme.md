@@ -20,7 +20,7 @@ All text files should be encoded as UTF-8 with [BOM](http://en.wikipedia.org/wik
 
 Newlines shall be consistent. Default use of newline is [CR+LF](http://en.wikipedia.org/wiki/CRLF).
 
-Two subsequent newlines indicates an [EOF](http://en.wikipedia.org/wiki/End-of-file) logically. Subsequenct newlines should only be used at EOF.
+Two subsequent newlines indicates an [EOF](http://en.wikipedia.org/wiki/End-of-file) logically. Subsequent newlines should only be used at EOF.
 
 Except at the first of line, each word which consists of [alphanumeric](http://en.wikipedia.org/wiki/Alphanumeric) characters should be seperated by a single space character(U+0020) with other words.
 
