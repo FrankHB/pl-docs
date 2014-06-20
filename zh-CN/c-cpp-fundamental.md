@@ -203,9 +203,13 @@ ISO C 没有规定“合式”，而使用以下机制：
 
 **[WG21/N3797]**
 
-**TBD**
+> ## 1.8 The C++ object model [intro.object]
+
+> 1 The constructs in a C++ program create, destroy, refer to, access, and manipulate objects. An *object* is a region of storage. [ *Note:* A function is not an object, regardless of whether or not it occupies storage in the way that objects do. *—end note* ] An object is created by a *definition* (3.1), by a *new-expression* (5.3.4) or by the implementation (12.2) when needed. The properties of an object are determined when the object is created. An object can have a *name* (Clause 3). An object has a *storage duration* (3.7) which influences its *lifetime* (3.8). An object has a *type* (3.9). The term *object type* refers to the type with which the object is created. Some objects are *polymorphic* (10.3); the implementation generates information associated with each such object that makes it possible to determine that object’s type during program execution. For other objects, the interpretation of the values found therein is determined by the type of the *expressions* (Clause 5) used to access them.
 
 在 Java[JLS8] 以及传统的*基于类风格的面向对象(class-based style object-orientation)* 的上下文中，对象则是指“类的实例”，和 ISO C 以及 ISO C++ 都不同。（另外，“实例”的意义在 ISO C++ 中也不一样。）
+
+**TBD**
 
 ## 1.6 程序执行
 
