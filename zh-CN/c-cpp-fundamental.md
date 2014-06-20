@@ -259,7 +259,7 @@ ISO C++ 引入 *ODR(One Definition Rule)* [C++11 Clause 3] 而特别指定了*�
 
 > ## 3.1 Declarations and definitions [basic.def]
 
-> 2 A declaration is a *definition* unless it declares a function without specifying the function’s body (8.4), it contains the `extern` specifier (7.1.1) or a linkage-specification 25 (7.5) and neither an initializer nor a functionbody , it declares a static data member in a class definition (9.2, 9.4), it is a class name declaration (9.1), it is an *opaque-enum-declaration* (7.2), it is a *template-parameter* (14.1), it is a *parameter-declaration* (8.3.5) in a function declarator that is not the declarator of a *function-definition* , or it is a typedef declaration (7.1.3),
+> 2 A declaration is a *definition* unless it declares a function without specifying the function’s body (8.4), it contains the `extern` specifier (7.1.1) or a *linkage-specification* 25 (7.5) and neither an *initializer* nor a *function-body* , it declares a static data member in a class definition (9.2, 9.4), it is a class name declaration (9.1), it is an *opaque-enum-declaration* (7.2), it is a *template-parameter* (14.1), it is a *parameter-declaration* (8.3.5) in a function declarator that is not the declarator of a *function-definition* , or it is a `typedef` declaration (7.1.3),
 an *alias-declaration* (7.1.3), a using-declaration (7.3.3), a *static_assert-declaration* (Clause 7), an *attribute-declaration* (Clause 7), an *empty-declaration* (Clause 7), or a *using-directive* (7.3.4).
 
 > 25) Appearing inside the braced-enclosed *declaration-seq* in a *linkage-specification* does not affect whether a declaration is a definition.
