@@ -10,3 +10,5 @@
 
 [面向对象和所谓的“面向过程”](OO-and-procedual-oriented-mist.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/1912906851)）
 
+[关于 main 函数的原型和返回值](main-function.md) （另见 [C 语言吧主题](http://tieba.baidu.com/p/1969958655)）
+
