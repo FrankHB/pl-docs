@@ -26,9 +26,13 @@ Except at the first of line, each word which consists of [alphanumeric](http://e
 
 No [space characters](http://en.wikipedia.org/wiki/Space_characters#Spaces_in_Unicode) should be at [EOL](http://en.wikipedia.org/wiki/End-of-line).
 
+To keep the semantics rules clear, use \<TAB\> rather than \<SPACE\>s to indent, unless the text is verbatim quoted.
+
 ### [Markdown](http://en.wikipedia.org/wiki/Markdown)
 
 Names of markdown files should be with .md extension.
 
 Unless explicitly specified elsewhere, only common dialects are to be used. Currently this should be [GFM](https://help.github.com/articles/github-flavored-markdown).
+
+Note: Use \<TAB\> instead of \<SPACE\>s to indent in markdown for list items to avoid some compatibility issues, e.g. [this](https://bitbucket.org/site/master/issue/7748/markdown-nested-lists-not-working-bb-8925).
 
