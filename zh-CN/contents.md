@@ -22,3 +22,7 @@
 * [关于异常处理的一些话题](cpp-exceptions.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2201116330)）
 * [《高质量C++/C编程指南》陷阱 2](high-quality-c-cpp-programing-guide-trap-2.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2262386913) 和回复；原文暂不在此全文引用）
 
+## 特性和设计
+
+* [C & C++广义类型系统缺陷](c-cpp-generic-type-system-defect.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2272468675)）
+
