@@ -16,3 +16,10 @@
 
 [C11 & C++11 的赋值相关表达式求值](c11-cpp11-assignment.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2091426198)）
 
+[_[科普]_&#8203;变量、全局变量及其它](variables.md) （另见《[[Terminology]建议慎用“变量”一词](http://tieba.baidu.com/p/1316351174)》 和 [C++ 吧主题](http://tieba.baidu.com/p/2126721044)）
+
+相关问题：
+
+* [[菜鸟求教]C语言的范畴里根本就无所谓“全局”“变量”](http://tieba.baidu.com/p/2111194416)
+* [请问什么是全局变量，结构体也算？？？？？？？？？？？](http://tieba.baidu.com/p/3884720952)
+
