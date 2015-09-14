@@ -15,12 +15,13 @@
 * [C11 & C++11 的赋值相关表达式求值](c11-cpp11-assignment.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2091426198)）
 * [_[科普]_&#8203;变量、全局变量及其它](variables.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2126721044)）
 	* 早期论述：
-		* 《[[Terminology]建议慎用“变量”一词](http://tieba.baidu.com/p/1316351174)》
+		* [[Terminology]建议慎用“变量”一词](http://tieba.baidu.com/p/1316351174)
 	* 相关问题：
 		* [[菜鸟求教]C语言的范畴里根本就无所谓“全局”“变量”](http://tieba.baidu.com/p/2111194416)
 		* [请问什么是全局变量，结构体也算？？？？？？？？？？？](http://tieba.baidu.com/p/3884720952)
 * [关于异常处理的一些话题](cpp-exceptions.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2201116330)）
 * [《高质量C++/C编程指南》陷阱 2](high-quality-c-cpp-programing-guide-trap-2.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2262386913) 和回复；原文暂不在此全文引用）
+* [何勤《轻松学习C程序设计》简评](learning-c-programing-note.md)（另见 [C语言吧背景主题](http://tieba.baidu.com/p/2621752149)）
 
 ## 特性和设计
 
