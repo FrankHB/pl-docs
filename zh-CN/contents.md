@@ -4,22 +4,19 @@
 
 ## 大纲和基础
 
-[ISO C/C++ 基础总结](c-cpp-fundamental.md)
+* [ISO C/C++ 基础总结](c-cpp-fundamental.md)
 
 ## 概念和纠错
 
-[面向对象和所谓的“面向过程”](OO-and-procedural-oriented-mist.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/1912906851)）
-
-[关于 main 函数的原型和返回值](main-function.md) （另见 [C 语言吧主题](http://tieba.baidu.com/p/1969958655)）
-
-[《与 C++ 相关的一些术语的翻译和问题》评注](cpp-term-translation-comment.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2070464220)）
-
-[C11 & C++11 的赋值相关表达式求值](c11-cpp11-assignment.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2091426198)）
-
-[_[科普]_&#8203;变量、全局变量及其它](variables.md) （另见《[[Terminology]建议慎用“变量”一词](http://tieba.baidu.com/p/1316351174)》 和 [C++ 吧主题](http://tieba.baidu.com/p/2126721044)）
-
-相关问题：
-
-* [[菜鸟求教]C语言的范畴里根本就无所谓“全局”“变量”](http://tieba.baidu.com/p/2111194416)
-* [请问什么是全局变量，结构体也算？？？？？？？？？？？](http://tieba.baidu.com/p/3884720952)
+* [面向对象和所谓的“面向过程”](OO-and-procedural-oriented-mist.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/1912906851)）
+* [关于 main 函数的原型和返回值](main-function.md) （另见 [C 语言吧主题](http://tieba.baidu.com/p/1969958655)）
+* [《与 C++ 相关的一些术语的翻译和问题》评注](cpp-term-translation-comment.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2070464220)）
+* [C11 & C++11 的赋值相关表达式求值](c11-cpp11-assignment.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2091426198)）
+* [_[科普]_&#8203;变量、全局变量及其它](variables.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2126721044)）
+	* 早期论述：
+		* 《[[Terminology]建议慎用“变量”一词](http://tieba.baidu.com/p/1316351174)》
+	* 相关问题：
+		* [[菜鸟求教]C语言的范畴里根本就无所谓“全局”“变量”](http://tieba.baidu.com/p/2111194416)
+		* [请问什么是全局变量，结构体也算？？？？？？？？？？？](http://tieba.baidu.com/p/3884720952)
+* [关于异常处理的一些话题](cpp-exceptions.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2201116330)）
 
