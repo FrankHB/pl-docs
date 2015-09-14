@@ -25,4 +25,5 @@
 ## 特性和设计
 
 * [C & C++广义类型系统缺陷](c-cpp-generic-type-system-defect.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2272468675)）
+* [转移 vs 复制](move-vs-copy.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2403773958)）
 
