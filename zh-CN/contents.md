@@ -20,4 +20,5 @@
 		* [[菜鸟求教]C语言的范畴里根本就无所谓“全局”“变量”](http://tieba.baidu.com/p/2111194416)
 		* [请问什么是全局变量，结构体也算？？？？？？？？？？？](http://tieba.baidu.com/p/3884720952)
 * [关于异常处理的一些话题](cpp-exceptions.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2201116330)）
+* [《高质量C++/C编程指南》陷阱 2](high-quality-c-cpp-programing-guide-trap-2.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2262386913) 和回复；原文暂不在此全文引用）
 
