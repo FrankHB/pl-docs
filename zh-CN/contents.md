@@ -22,6 +22,8 @@
 * [关于异常处理的一些话题](cpp-exceptions.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2201116330)）
 * [《高质量C++/C编程指南》陷阱 2](high-quality-c-cpp-programing-guide-trap-2.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2262386913) 和回复；原文暂不在此全文引用）
 * [何勤《轻松学习C程序设计》简评](learning-c-programing-note.md)（另见 [C语言吧背景主题](http://tieba.baidu.com/p/2621752149)）
+* [_[高级点的技术交流]_&#8203;什么叫语法(syntax)](what-is-syntax.md)（另见 [C语言吧主题](http://tieba.baidu.com/p/3863321148)）
+	* 虽然是即兴写给[看起来不那么懂语法](http://tieba.baidu.com/p/3835122876)而想要[技术交流](http://tieba.baidu.com/p/3829012515)的，不过实际上先例很多，也算是填了个好几年的坑
 
 ## 特性和设计
 
