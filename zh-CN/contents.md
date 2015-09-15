@@ -9,6 +9,7 @@
 ## 概念和纠错
 
 * [《高质量C++/C编程指南》陷阱](high-quality-c-cpp-programing-guide-trap.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/1051426693)；原贴引用内容地址已失效）
+* [_[科普]_&#8203;字符串和字符串的长度](string-and-string-length.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/1758580031)）
 * [面向对象和所谓的“面向过程”](OO-and-procedural-oriented-mist.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/1912906851)）
 * [关于 main 函数的原型和返回值](main-function.md) （另见 [C 语言吧主题](http://tieba.baidu.com/p/1969958655)）
 * [《与 C++ 相关的一些术语的翻译和问题》评注](cpp-term-translation-comment.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2070464220)）
