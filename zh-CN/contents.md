@@ -28,3 +28,7 @@
 * [C & C++广义类型系统缺陷](c-cpp-generic-type-system-defect.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2272468675)）
 * [转移 vs 复制](move-vs-copy.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2403773958)）
 
+## 语用和科普
+
+* [_[科普]_&#8203;_[FAQ]_&#8203;MinGW vs MinGW-W64及其它](mingw-vs-mingw-v64.md) （另见 [mingw 吧主题](http://tieba.baidu.com/p/3186232510) 和 [C++ 吧主题](http://tieba.baidu.com/p/3186234212)）
+
