@@ -27,6 +27,8 @@
 
 * [C & C++广义类型系统缺陷](c-cpp-generic-type-system-defect.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2272468675)）
 * [转移 vs 复制](move-vs-copy.md) （另见 [C++ 吧主题](http://tieba.baidu.com/p/2403773958)）
+* [正确地黑 C](c-wrongs.md)（另见 [C++ 吧主题](http://tieba.baidu.com/p/3190068223)）
+	* 增补 2 的回复[原贴](http://tieba.baidu.com/p/3221787295)
 
 ## 语用和科普
 
