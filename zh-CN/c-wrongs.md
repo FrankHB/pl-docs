@@ -68,7 +68,7 @@ Created @ 2014-07-29 09:01, rev v5 2015-04-12, markdown @ 2015-09-14.
 
 　　而 ISO C 新引入的东西，很多也不是自身的设计。
 
-　　ISO C11 引入的 sequenced before 的 wording ，是 [WG21/N2239](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2239.html) 提出来的。注意，是 C++ 的 paper ， [C 后来照搬](http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1276.htm) 过去了。
+　　ISO C11 引入的 sequenced before 的 wording ，是 [WG21/N2239](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2239.html) 提出来的。注意，是 C++ 的 paper ， [C 后来照搬](http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1252.htm) 过去了（与之相关的还有[并发模型](http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1276.htm) ）。
 
 　　（嘛， C++ 比较激进删除了之前ISO C引进的sequence point，不过这里有个bug，漏了 sequenced after 这个定义，我邮件过去了，处理情况见[这里](https://github.com/cplusplus/draft/issues/61) 。）
 
