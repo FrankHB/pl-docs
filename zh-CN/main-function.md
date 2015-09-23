@@ -1,6 +1,6 @@
 ﻿# 关于 main 函数的原型和返回值
 
-Created @ 2012-11-07, v3 rev 2012-11-22, markdown @ 2014-11-07.
+Created @ 2012-11-07.
 
 发现以前说的太零碎，不太好引用……整理一下。
 
@@ -13,38 +13,24 @@ http://tieba.baidu.com/p/626323902
 
 这里再解释一下ISO C/C++中对main的要求。
 
-## 0 标准版本说明：
+## 0 标准版本说明
 
-ANSI C89 指 ANSI X3.159-1989 ，后来被采纳为 ISO/IEC 9899:1990 ，通称 C90 。两者正文仅有格式变化（另外 C90 不包含 Rationale ）。
+基本内容参照[术语和文献列表](terms-and-bibliography.md)。
 
-C99 指 ISO/IEC 9899:1999 ，被ANSI于 2000 年 5 月采纳。
-
-C11 指 ISO/IEC 9899:2011 ，是现行正式C语言国际语言标准。
-
-ISO C++98 指 ISO/IEC 14882:1998 ，是第一个 C++ 语言国际标准。
-
-ISO C++03 指 ISO/IEC 14882:2003 ，是第二版 C++ 语言国际标准，对上一版只有小的修正。
-
-ISO C++11 指 ISO/IEC 14882:2011 ，是现行 C++ 语言国际标准，有较大改动。
-
-</br>
-ANSI C 一般即 ANSI C89 。实际上也只有这版标准是先 ANSI 后 ISO 。
-
-</br>
 在本文问题上， ANSI C89 和 C90 、 C99 和 C11 、 C++ 标准各个版本这三组标准之间分别没有实质变化（或根本一模一样），所以只引用最早的标准文本。
 
-## 1 首先是几个背景知识。
+## 1 首先是几个背景知识
 
 本文所讲的实现即语言实现，可以是编译器+链接器等等，可以是解释环境。一般是前者。
 关于 implementation-defined 等确切含义可以 Google 。
 
-### 1.1.ANSI C89支持函数声明省略返回值，隐含为int。
+### 1.1.ANSI C89支持函数声明省略返回值，隐含为 `int`
 
 也就是说 `main()` 其实是`int main()` ， `foo();`其实是 `int foo();` 。尤其注意 `main()` **绝不是** `void main()` 。
 
 这在 ISO C99 开始以及 ISO C++ 中是**不允许**的。
 
-### 1.2 关于参数列表。
+### 1.2 关于参数列表
 
 C语言的 `(void)` 或函数定义中的 `()` 表示不接受任何参数，相当于 C++ 的 `()` ，也和 C++ 的 `(void)` 等价。
 
@@ -59,7 +45,7 @@ C 语言的 `()` 在函数定义外表示接受任何参数，相当于 C++ 的 
 </br>
 相关依据：
 
-ISO C11(N1570)
+**ISO C11(N1570)**
 
 > **6.7.6.3**/14 An identifier list declares only the identifiers of the parameters of the function. An empty list in a function declarator that is part of a definition of that function specifies that the function has no parameters. The empty list in a function declarator that is not part of a definition of that function specifies that no information about the number or types of the parameters is supplied.145)
 
@@ -69,7 +55,7 @@ ISO C11(N1570)
 
 > 1 The use of function declarators with empty parentheses (not prototype-format parameter type declarators) is an obsolescent feature.
 
-### 1.3 实现环境分类。
+### 1.3 实现环境分类
 
 ISO C/C++ 中，根据对环境的要求，分为两类，一类是*独立实现(freestanding implementation)* ，另一类是*宿主实现(hosted implementation)* 。
 
@@ -77,7 +63,7 @@ ISO C/C++ 中，根据对环境的要求，分为两类，一类是*独立实现
 
 当然 C 和 C++ 之间对两者的要求有所不同。为简化问题，除了 `main` 相关的部分在下文讨论以外，不再提及。
 
-### 1.4 ISO标准文档中的情态动词的含义。
+### 1.4 ISO 标准文档中的情态动词的含义
 
 以下全部节录（供参考，只想看结论的可以跳过）。
 
@@ -163,13 +149,13 @@ ISO C++98/03 在表格的 note 里要求 “should” O(1) ，因此 libstdc++ �
  
 应该注意 can 表示可能性，而不是要求。和表示准许的may也应该有清楚的区别。
 
-## 2.正题。
+## 2 正题
 
 附一个参考链接： http://stackoverflow.com/questions/1765686/correctly-declaring-the-main-function-in-ansi-c
 
-### 2.1 ANSI C/ISO C对独立环境的规定：
+### 2.1 ANSI C/ISO C 对独立环境的规定
 
-ANSI C89是这样的：
+ANSI C89 是这样的：
 
 > #### 2.1.2.1 Freestanding environment
 
@@ -179,7 +165,7 @@ ANSI C89是这样的：
 
 可见独立环境中不要求有 `main` 函数存在作为入口函数，更不限定 `main` 的原型。
 
-> ISO C99是这样的：
+ISO C99 是这样的：
 
 > #### 5.1.2.1 Freestanding environment
 
@@ -189,7 +175,7 @@ ANSI C89是这样的：
 
 没什么变化。
 
- ISO C++98 是这样的：
+ISO C++98 是这样的：
  
 > ### 3.6.1 Main function [basic.start.main]
 
@@ -202,7 +188,7 @@ startup
 contains the execution of constructors for objects of namespace scope with static storage duration; termination
 contains the execution of destructors for objects with static storage duration. ]
 
-### 2.2 ANSI C89 对宿主环境的规定：
+### 2.2 ANSI C89 对宿主环境的规定
 
 > #### 2.1.2.2 Hosted environment
 
@@ -240,7 +226,7 @@ contains the execution of destructors for objects with static storage duration. 
 
 但这种说法显然太隐晦了。
 
-### 2.3 ISO C99对宿主环境的规定：
+### 2.3 ISO C99 对宿主环境的规定
 
 > #### 5.1.2.2 Hosted environment
 
@@ -273,7 +259,7 @@ program name is not available from the host environment. If the value of `argc` 
 
 这里实质的变化是明确要求 ANSI C 中的两种原型必须被宿主实现接受。而 or in some other implementation-defined manner 的妥协可以看成是对 can 的兼容。
 
-### 2.4 ISO C++98的规定：
+### 2.4 ISO C++98 的规定
 
 > ## 3.6 Start and termination [basic.start]
 
@@ -300,9 +286,9 @@ ISO C++ 的规定和 ISO C 类似，但有几点重要的不同：
 - c)main必须返回 `int` 。
 - d)全局 `main` 禁止被使用。因此不像 C ， C++ 中 `main` 无法递归调用。 `&::main` 也是错误的。
 
-## 3 结论。
+## 3 结论
 
-### 3.1 main的兼容性：
+### 3.1 `main` 的兼容性
 
 别盲目认为哪个是对的哪个是错的，标准没这么简单。
 
@@ -310,7 +296,7 @@ ISO C++ 的规定和 ISO C 类似，但有几点重要的不同：
 
 在 C++ 中不返回 `int` 的 `main` 直接不符合标准。
 
-### 3.2 基于保证可移植性的入口函数使用的建议策略：
+### 3.2 基于保证可移植性的入口函数使用的建议策略
 
 以下不适用于自己实现语言或者写操作系统之类。
 
@@ -318,7 +304,7 @@ ISO C++ 的规定和 ISO C 类似，但有几点重要的不同：
 - b)如无特殊必要，尽量使用标准明文规定的两种形式；
 - c)使用其它形式应能找到文档，并且确保当前需求能容忍由此导致的可移植性缺陷。
 
-## 附：
+## 附
 
 ISO C99 起，及 ISO C++98 起，全局 `main` 若没有 `return` ，相当于末尾隐含 `return 0;` 。对于一般实现，返回 0 表示程序执行成功。 C/C++ 标准库宏 `EXIT_SUCCESS` 表示由实现定义的成功返回状态。 `EXIT_SUCCESS` 可用于 `exit` 函数，而 `main` 终止和 `exit` 语义上等价，所以也可以 `return EXIT_SUCCESS;` 代替。
 
