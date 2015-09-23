@@ -1,6 +1,6 @@
 ﻿# [高级点的技术交流]什么叫语法(syntax)
 
-Created @ 2015-07-01 08:50, rev1 2015-07-01 10:47, rev2 2015-09-15, markdown @ 2015-09-15.
+Created @ 2015-07-01 08:50.
 
 似乎以前发的主题都搜不到几个，所以窃点精。
 
@@ -202,9 +202,13 @@ C# 大体上抄的 Java ，以及C艹的部分糟烂（又是关于<>的疼货�
 **[ECMA-334 3 2005](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf)**
 
 > 9.1 Programs
+
 > 9.2 Grammars
+
 > 9.2.1 Lexical grammar
+
 > 9.2.2 Syntactic grammar
+
 > 9.2.3 Grammar ambiguities
 
 ECMAScript 总体上也是一路货（否则干嘛叫 JavaScript ……）
