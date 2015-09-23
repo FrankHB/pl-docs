@@ -2,6 +2,10 @@
 
 现时包括以下文档。
 
+## 术语和文献
+
+* [术语和文献列表](terms-and-bibliography.md)
+
 ## 大纲和基础
 
 * [ISO C/C++ 基础总结](c-cpp-fundamental.md)
