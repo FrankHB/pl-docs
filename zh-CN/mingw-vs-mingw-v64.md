@@ -124,23 +124,21 @@ Created @ 2014-07-25, r2 rev 2015-09-15, markdown @ 2015-09-15.
 
 ## 什么是MSYS，和MinGW有什么区别？
 
-　　MSYS 是提供一套“系统”，三元组是 \*-pc-msys 。
+　　MSYS(minimal system) 原本是 MinGW.org 项目的一个组件，旨在 Windows 上提供一套类 UNIX shell 为基础的“系统”。它本身不提供编译器或者大小写敏感的文件系统支持（其实 [NTFS 倒是支持这里的“ POSIX 语义”](http://superuser.com/questions/364057/why-is-ntfs-case-sensitive)，但基本没看见有谁用……）。
 
-　　和 MinGW 相比， MSYS 更接近 Cygwin （强调 POSIX 兼容性），提供了一个 sysroot （下面有 `/bin` 啊 `/etc` 什么的），因此移植 POSIX 环境的程序一般更方便。
+　　和作为原生 Win32 程序的 MinGW 不同， MSYS 环境下编译的本机程序依赖于额外的特定的 MSYS 运行时，更接近 Cygwin （强调 POSIX 兼容性），会有性能损失（但一般意义上比 Cygwin 轻量）。对应的[三元组](http://sourceforge.net/p/mingw-w64/wiki2/TypeTriplets/)是 \*-pc-msys （通常其中的 pc 可以省略即缩写为 \*-msys ）。 MSYS 提供了一个 sysroot 环境（下面有 `/bin` 和 `/etc` 等），因此移植 POSIX 环境的程序一般更方便。
 
-　　代价也是有的。 MSYS 环境下原生编译的程序一般需要多依赖 MSYS 运行时库（当然比 Cygwin 要轻量多了）。
-
-　　所以常规的实践是，如果只是开发Windows程序，能用MinGW就不要用MSYS原生的编译器来构建。当然，使用MSYS上的sh等工具还是没问题，跟GNU工具配套怎么说比cmd总好用。（虽然也有不少琐碎坑爹bug。）
+　　所以常规的实践是，如果只是开发 Windows 程序，能用 MinGW 就不要用 MSYS 原生的编译器来构建。当然，使用 MSYS 上的 `sh` 等工具还是没问题，跟 GNU 工具配套怎么说比 `cmd` 好用。（虽然也有不少琐碎的兼容性问题。）
 
 ## 什么是MSYS2，MSYS2上的MinGW发行版是怎么回事？
 
-　　字面意思，MSYS 2.0。比起 1.0 来说更加像 `Cygwin` （例如/etc/fstab配置）。项目[在 sf.net 上托管](http://sourceforge.net/projects/msys2/)。
+　　字面意思，MSYS 2.0 。比起 1.0 来说更加像 Cygwin （例如 `/etc/fstab` 配置）。项目[在 sf.net 上托管](http://sourceforge.net/projects/msys2/)。
 
-　　其中的一个特色是基础系统附带 [ArchLinux](https://www.archlinux.org/) 移植的包管理器pacman，可以同时独立部署/mingw32（i686-w64-mingw32）和/mingw64（x86-w64-mingw32）下的开发和运行环境。
+　　其中的一个特色是基础系统附带 [ArchLinux](https://www.archlinux.org/) 移植的包管理器pacman，可以同时独立部署 `/mingw32` (i686-w64-mingw32) 和 `/mingw64`(x86_64-w64-mingw32) 下的开发和运行环境。注意和 mingw64 并列时 mingw32 自然指的不只是三元组的最后一项了。
 
-　　下载依赖相当方便（就是没有靠谱的镜像时网速可能非常拙计）。具体使用参考 [ArchLinux Wiki](https://wiki.archlinux.org/index.php/Pacman)。
+　　下载依赖相当方便（就是没有靠谱的镜像时网速可能非常拙计）。具体使用参考 [Arch Linux Wiki](https://wiki.archlinux.org/index.php/Pacman)。对应的交叉编译环境在 Arch Linux 上也有[官方的包](https://www.archlinux.org/groups/x86_64/mingw-w64/)支持。
 
-　　虽然主要的编译器不直接支持交叉编译，不过可以同时装不同的目标平台的编译器（现在也有交叉编译器的包，没测试）所以不是什么问题，一定程度上比 mingw-builds 的 `-m32` 和 `-m64` 来说更加稳定靠谱。
+　　虽然 MSYS2 提供的 MinGW 上主要的编译器不直接支持交叉编译，不过可以同时装不同的目标平台的编译器（现在也有交叉编译器的包，没测试）所以不是什么问题，一定程度上比 mingw-builds 的 `-m32` 和 `-m64` 来说更加稳定靠谱。（现在也另外提供支持交叉编译的包。）
 
 　　只提供 Dwarf2 异常模型和 POSIX 线程模型对于成套系统也不是什么大问题。包虽然比不上 ArchLinux 那么丰富不过常用的很多都有，免去自己编译的麻烦。打算长期使用 MinGW 和相关工具的，推荐使用。
 　
