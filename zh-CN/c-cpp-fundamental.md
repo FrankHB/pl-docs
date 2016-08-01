@@ -257,7 +257,7 @@ ISO C++ 引入 *ODR(One Definition Rule)* [C++11 Clause 3] 而特别指定了*�
 
 首先，预处理 *阶段(phase)* 的 *宏定义(macro definition)* 不属于本章讨论的“定义”的外延。
 
-在 ISO C++ 中，**声明总是定义，反过来不成立**：
+在 ISO C++ 中，**定义总是声明，反过来不成立**：
 
 **[WG21/N3936]**
 
