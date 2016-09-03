@@ -1,7 +1,5 @@
 ﻿# [科普][FAQ]MinGW vs MinGW-W64及其它
 
-Created @ 2014-07-25, r2 rev 2015-09-15, markdown @ 2015-09-15.
-
 　　部分参照[备忘录原文](https://bitbucket.org/FrankHB/yslib/src/50c3e6344a5a24b2382ce3398065f2197c2bd57e/doc/Workflow.Annual2014.txt?at=master&fileviewer=file-view-default#Workflow.Annual2014.txt-452)。
 
 　　试试问答体。首先得绕个远路，从 Win32 开始说起，否则之后容易乱……
@@ -48,7 +46,7 @@ Created @ 2014-07-25, r2 rev 2015-09-15, markdown @ 2015-09-15.
 
 　　显然， W64 和支持的架构无关。上面 i686 就不是 64 位的平台（而且可以看出这里的 32 也和架构没关系）。支持 64 为的对应三元组是x86_64-w64-mingw32。（另外 w32 是 GNU 惯用的对 Win32 的略称，也沿用到包括 MinGW 在内的一些项目中——如 [w32api](http://sourceforge.net/projects/mingw/files/MinGW/Base/w32api/) ，可能造成一些额外的混乱。）
 
-　　……容易让人头疼的是，这两个项目现在都没死，偏偏还很容易因为这些字面上的原因搞错。为了下文描述方便，原版 MinGW 称为 MinGW.org 。
+　　……容易让人头疼的是，这两个项目现在都没死，偏偏还很容易因为这些字面上的原因搞错。为了下文描述方便，原版 MinGW 称为 [MinGW.org](http://mingw.org/) 。
 
 　　这里有一点非常重要：只有 MinGW-W64 是 GCC 官方支持的（尽管 [mingw32 平台是二等公民](https://gcc.gnu.org/gcc-4.9/criteria.html)）。 Kai Tietz 拥有 GCC 官方 repo 的提交权限。
 
@@ -76,15 +74,34 @@ Created @ 2014-07-25, r2 rev 2015-09-15, markdown @ 2015-09-15.
 
 　　还有 MSYS2 项目的 MinGW 发行版（这里可能有新的混乱，下文再说），也是 mingw-builds 一伙人搞的， 4.9.1 比 mingw-builds 更新还快几个小时。
 
-　　其它发行版可以参照 mingw-w64.sourceforge.net ，更新相对没那么快。
+　　详细的发行版列表可以参照下文。
 
 　　最后，不嫌闲着蛋疼也可以自己编译。不过迫不得已外最好别这样做（ GCC 的编译过程和 hacking 实在无力吐槽）。重复一遍，非常不推荐。
+
+## 有哪些发行版可以选择？
+
+* 本机环境（直接在 Windows 下运行）
+	* [MinGW-w64](https://sourceforge.net/projects/mingw-w64) 提供若干工具链的下载
+		* [mingw-builds](https://sourceforge.net/projects/mingwbuilds/) 旧站点
+	* [MSYS2](http://sourceforge.net/projects/msys2) （使用包管理器 `pacman` 安装 `mingw-w64-i686-toolchain` 或 `mingw-w64-x86_64-toolchain`）
+	* [TDM-GCC](http://tdm-gcc.tdragon.net/)
+	* [nuwen.net MinGW distro](https://nuwen.net/mingw.html) 仅提供 Win32 线程模型
+	* [GCC-MCF](http://lhmouse.com/gcc-mcf/) 仅提供 MCF 实现
+* 交叉构建环境
+	* [Arch Linux MinGW-w64 GCC](https://www.archlinux.org/packages/community/x86_64/mingw-w64-gcc/)
+	* [MSYS2](http://sourceforge.net/projects/msys2) （使用包管理器 `pacman` 安装 `mingw-w64-cross-toolchain`）
+
+## MinGW 发行版支持什么本机语言编译器？
+
+　　对于 C/C++ ，主要是 GCC 。 GCC 也提供 FORTRAN 和 Ada 等语言的编译器。
+
+　　除此之外，某些发行版（如 MSYS2 的 MinGW 环境）也带有兼容的 LLVM/Clang 工具链，但可用性差强人意；其中标准库实现仍然依赖 GCC 的 libstdc++ ，而不是 libc++ 。但一些可能提供的 Clang 附带的工具（如 `clang-format` ）可用性基本不受限制。
 
 ## 上面为什么要强调更新呢？
 
 　　如果不想使用新的特性生成更高质量的代码，其实也没必要盯着上面这么多版本混乱的 MinGW 了。即便要兼容性，也可以用古董嘛（逃……
 
-　　对于 C++ 前端来说 MinGW 尤为重要，现阶段根本没有能顶替的。作为系统默认 ABI 新锐代表的 MSVC2015 ——前端还是残的……各种 bug 。
+　　对于 C++ 前端来说 MinGW 尤为重要，现阶段根本没有能顶替的。作为系统默认 ABI 新锐代表的 MSVC2015 Update n ——前端还是残的……各种 bug 。
 
 　　GCC 也有各种傻缺 bug ，不过至少在前端来说，程度上绝逼打不过 `cl` （ Microsoft C&C++ Optimizing Compiler ）。
 
@@ -120,9 +137,11 @@ Created @ 2014-07-25, r2 rev 2015-09-15, markdown @ 2015-09-15.
 
 　　所以取决于具体需要。要兼容性好点的一般还是 POSIX 。
 
-　　另外还有单线程的 single 模型…… Windows 上应该没啥必要用。
+　　最近有新的基于 [mcfgthread](https://github.com/lhmouse/mcfgthread) 实现的 MCF 线程模型可以替代 POSIX 线程模型，在 Windows 7 和更新的系统有较好的性能。
 
-## 什么是MSYS，和MinGW有什么区别？
+　　最后，还有单线程的 single 模型…… Windows 上应该没啥必要用。
+
+## 什么是 MSYS ，和 MinGW 有什么区别？
 
 　　MSYS(minimal system) 原本是 MinGW.org 项目的一个组件，旨在 Windows 上提供一套类 UNIX shell 为基础的“系统”。它本身不提供编译器或者大小写敏感的文件系统支持（其实 [NTFS 倒是支持这里的“ POSIX 语义”](http://superuser.com/questions/364057/why-is-ntfs-case-sensitive)，但基本没看见有谁用……）。
 
@@ -130,7 +149,7 @@ Created @ 2014-07-25, r2 rev 2015-09-15, markdown @ 2015-09-15.
 
 　　所以常规的实践是，如果只是开发 Windows 程序，能用 MinGW 就不要用 MSYS 原生的编译器来构建。当然，使用 MSYS 上的 `sh` 等工具还是没问题，跟 GNU 工具配套怎么说比 `cmd` 好用。（虽然也有不少琐碎的兼容性问题。）
 
-## 什么是MSYS2，MSYS2上的MinGW发行版是怎么回事？
+## 什么是 MSYS2 ， MSYS2 上的 MinGW 发行版是怎么回事？
 
 　　字面意思，MSYS 2.0 。比起 1.0 来说更加像 Cygwin （例如 `/etc/fstab` 配置）。项目[在 sf.net 上托管](http://sourceforge.net/projects/msys2/)。
 
@@ -156,12 +175,18 @@ Created @ 2014-07-25, r2 rev 2015-09-15, markdown @ 2015-09-15.
 
 　　对于 C++ 程序，除非不用 POSIX thread 可以省掉 libwinpthread ，一般至少得确保上面异常模型和线程模型讨论中提到的三个 DLL （注意就算不显式使用标准库，编译器生成的代码也可能用到——典型的如默认 `::operator new` ，所以得带上 libstdc++ ）。
 
-## 现在还有什么新坑？
+　　使用 MCF 线程模型需要部署对应的 mcfgthread 动态库（如 `mcfgthread-9.dll` ）。
 
-　　就提一个GCC 4.9的问题。
+## 还有什么其它问题？
+
+### LTO
 
 　　GCC 4.9的 LTO （链接时优化）默认使用新的目标文件格式，生成的文件不包含冗余的二进制代码。
 但是 LTO 有特定的 phase （[内部会调用 `make` 多编译几个 pass](https://gcc.gnu.org/onlinedocs/gccint/LTO-Overview.html#LTO-Overview) ），传统的静态链接器(`ar`) 不知道这里的约定，所以原来好好的东西，升级 4.9 以后开了 `-flto` 就可能找不到符号链接失败。
 
 　　许多 MinGW 发行版仍然没实现 `gcc-ar` （运行会提示没支持 linker plugin ）。兼容旧版本的行为还得加上 `-ffat-lto-objects` 编译选项。
+
+　　较新版本可能解决了这个问题。
+
+　　此外，内联 vtable 开启 LTO 导致链接失败。此时应保证非内联的虚函数，使 vtable 在特定翻译单元内生成；这样也有利于编译性能。
 
