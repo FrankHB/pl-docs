@@ -1,15 +1,13 @@
 ﻿# [科普]变量、全局变量及其它
 
-Created @ 2013-01-28, v2 rev 2013-01-29, markdown @ 2015-09-14.
-
 对最近各种蛋疼的所谓“全局”“变量”问题的解释做个小结。
 
 
-## 1.变量(variable) 的一般含义
+## 1 变量(variable) 的一般含义
 
 　　“变量”来源于代数学，是数学中最伟大的发明之一。变量是表示可变数学对象的符号(symbol) 。它具有两重含义，一是指在某个上下文中的符号本身；二是这个符号表示的可变的值(value) 。
 
-## 2.程序设计语言中的变量、变量名(variable name) 和作用域(scope)
+## 2 程序设计语言中的变量、变量名(variable name) 和作用域(scope)
 
 　　在程序设计语言中也有类似的概念。不同的是，一般需要更加明确地指出一个变量有效的上下文。这个上下文通常是代码中的一段（连续的）区域(region) ，称为作用域(scope) 。只有在作用域中使用的变量是有效的。
 
@@ -19,7 +17,29 @@ Created @ 2013-01-28, v2 rev 2013-01-29, markdown @ 2015-09-14.
 
 　　另外，在明确了名称的概念之后，作用域也不只限于变量，对于任何其它具有名称的抽象也适用。作用域能避免相同的名称的冲突，也就是说允许相同的名称在不同的上下文中指称(denotes) 不同的内容。
 
-## 3.限定名称(qualified name)
+　　对 ISO/IEC JTC1/SC22 标准化的语言，通常会把 ISO/IEC 2382 作为正式引用(normative reference) 。这是术语定义的集合，其中就有“变量”(variable) 。 [ISO/IEC 2382:2015](https://www.iso.org/obp/ui/#iso:std:iso-iec:2382:ed-1:v1:en) 给出的 variable 的一般定义如下：
+
+> **variable**
+
+> quadruple, established by a declaration or an implicit declaration, that consists of an identifier, a set of data attributes, one or more addresses, and data values, where the relationship between the addresses and the data values may vary
+
+其中引用的其它相关术语的定义如下：
+
+> **address**
+
+> value that identifies a location
+
+> **declaration**
+
+> explicit language construct that introduces one or more identifiers into a program and specifies how these identifiers are to be interpreted
+
+> **implicit declaration**
+
+> declaration caused by the occurrence of an identifier that designates an object, whose characteristics are determined by default
+
+可见和上面的一般说法是基本一致的。
+
+## 3 限定名称(qualified name)
 
 　　上面提到过使用作用域的一个原因是防止相同名称的冲突。有时作用域限制不太方便，因为需要在整个程序范围内访问的名称都得放在全局作用域中。所以还需要其它的机制。
 
@@ -27,7 +47,7 @@ Created @ 2013-01-28, v2 rev 2013-01-29, markdown @ 2015-09-14.
 
 　　这种机制可以有不同的表现形式，如C++和C#的命名空间(namespace) ，Ada 和 Java 的包(pakage) 等（ Java 首先把变量放在类中，然后以类作为包的成员）。
 
-## 4.C语言的变量
+## 4 C 语言的变量
 
 　　应该指出， K&R 提到了变量，而 ISO C 中没有正式定义这个概念，甚至 ISO C 正式文本中用到的 variable 一词也都不是变量的意思，而是如 variable length array 等。
 
@@ -35,7 +55,7 @@ Created @ 2013-01-28, v2 rev 2013-01-29, markdown @ 2015-09-14.
 
 　　也就是说，对变量的概念存在两种理解，不见得哪种就是对的，而且都没有必要。这种二义性已经使得一些基本问题的讨论变得没有意义，如“变量是不是表达式”。由于讨论语言问题时“变量”可以被更清晰的术语取代，因此，可以回避这个模糊的说法。
 
-## 5.C++语言的变量
+## 5 C++ 语言的变量
 
 　　C++ 中的变量通过对象或不是作为类的非静态成员的引用的声明引入。变量名指称被声明的引用或对象：
 
@@ -45,7 +65,7 @@ Created @ 2013-01-28, v2 rev 2013-01-29, markdown @ 2015-09-14.
 
 　　由于引用的存在，这里变量的概念并没有被对象等直接取代。
 
-## 6.全局(global)
+## 6 全局(global)
 
 　　全局是指整个程序的范围。例如，对于运行时来说，全局状态是程序的各个部分都能访问的状态。
 
@@ -53,7 +73,7 @@ Created @ 2013-01-28, v2 rev 2013-01-29, markdown @ 2015-09-14.
 
 　　与全局对立的是局部(local) 。与全局变量对立的是局部变量(local variable) 。但是，C/C++程序中，局部变量往往指块作用域(block scope) 中的变量，并不严格对立。因此下文不使用这些概念。
 
-## 7.C语言的作用域和名称空间
+## 7 C 语言的作用域和名称空间
 
 　　C语言有且仅有函数作用域(function scope) 、文件作用域(file scope) 、块作用域和函数原型作用域(function prototype scope) 这些作用域：
 
@@ -90,7 +110,7 @@ ISO C11(N1570)
 
 　　C语言没有限定名称，所有的名称都是标识符。ISO C也没有直接说明“名称”的含义，但这里应该是清楚的。（实际上，C语言语法中的identifier在其前身B语言中的对应物就叫 name 。）
 
-## 8.C++语言的作用域：
+## 8 C++ 语言的作用域：
 　　C++的作用域比较多，以下以标准文本的标题排列：
 
 **ISO C++11**
@@ -135,7 +155,7 @@ ISO C11(N1570)
 
 　　这样，可以确定，外部变量和“全局变量”不是一回事。这方面的误解看来还是不少，不知道拜谁所赐了。
 
-## 10.结论：C/C++中“全局变量”的确切含义
+## 10 结论：C/C++ 中“全局变量”的确切含义
 
 　　可见，无论是“全局”还是“变量”，在 C 和 C++ 之间都有一些差距。
 
