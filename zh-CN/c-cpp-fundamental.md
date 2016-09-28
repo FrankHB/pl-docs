@@ -247,7 +247,7 @@ ISO C++ 引入 *ODR(One Definition Rule)* [C++11 Clause 3] 而特别指定了*�
 
 **但是， ISO C 没有这些概念。** 在 ISO C 中：
 
-- vairable 一词并没有被正式使用为名词表示“变量”的含义。在 *VLA(varialbe-length array)* 中出现的是形容词，意为“变量的”，指不在翻译时确定大小，和这里的概念无关。
+- vairable 一词并没有被正式使用为名词表示“变量”的含义。在 *VLA(variable length array)* 中出现的是形容词，意为“变量的”，指不在翻译时确定大小，和这里的概念无关。
 
 - entity 一词被不经正式定义地使用，也没有和 ISO C 类似的含义（考虑 **ISO C 没有 ODR** ）。似乎作者认为是不言自明的。
 
