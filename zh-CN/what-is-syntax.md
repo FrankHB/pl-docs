@@ -247,3 +247,5 @@ C++/CLI 是直接照搬 ISO C++ 偷懒了。
 
 （剩下的懒得写了自行脑补。）
 
+附注： C++ 标准中一处和本文不符的提法[已被修正](https://github.com/cplusplus/draft/pull/790)。
+
