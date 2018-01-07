@@ -10,7 +10,7 @@
 
 ## II.编程范型(programing paradigm)
 
-　　是计算机编程中的一种基本方式[[en.wiki:programming paradigm]](http://en.wikipedia.org/wiki/Programming_paradigm) 。 OOP 和*命令式编程(imperative programing)* 、*函数式编程(functional programing)* 、 *逻辑编程(logical programing)* 并列，是当前主流的编程范型[[Kurt Nørmarks]](http://people.cs.aau.dk/~normark/prog3-03/html/notes/paradigms_themes-paradigm-overview-section.html)。此外还有*结构化(structured)* 、*声明式(deriective)* 、*面向方面(aspect-oriented)* 、*数据驱动(data-driven)* 、*泛型(generic)* 、*并行(parallel)* 、*元编程(metaprograming)* 等各种范型。
+　　是计算机编程中的一种基本方式[[en.wiki:programming paradigm]](http://en.wikipedia.org/wiki/Programming_paradigm) 。 OOP 和*命令式编程(imperative programing)* 、*函数式编程(functional programing)* 、 *逻辑编程(logical programing)* 并列，是当前主流的编程范型[[Kurt Nørmarks]](http://people.cs.aau.dk/~normark/prog3-03/html/notes/paradigms_themes-paradigm-overview-section.html)。此外还有*结构化(structured)* 、*声明式(declarative)* 、*面向方面(aspect-oriented)* 、*数据驱动(data-driven)* 、*泛型(generic)* 、*并行(parallel)* 、*元编程(metaprograming)* 等各种范型。
 
 　　应该注意的是，这些范型并不都是同一层次上的风格，且由于分类方法的不同，不都是互斥的。当然也有些范型是对立的：结构化与*非结构化(non-structured)* ，但这是少数。因此通常在同一段程序中使用了一种以上的编程范型，只强调其中的一部分。
 
