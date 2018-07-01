@@ -48,7 +48,7 @@
 
 　　……容易让人头疼的是，这两个项目现在都没死，偏偏还很容易因为这些字面上的原因搞错。为了下文描述方便，原版 MinGW 称为 [MinGW.org](http://mingw.org/) 。
 
-　　这里有一点非常重要：只有 MinGW-W64 是 GCC 官方支持的（尽管 [mingw32 平台是二等公民](https://gcc.gnu.org/gcc-4.9/criteria.html)）。 Kai Tietz 拥有 GCC 官方 repo 的提交权限。
+　　这里有一点非常重要：只有 MinGW-W64 是 GCC 官方支持的（尽管 [mingw32 平台是二等公民](https://gcc.gnu.org/gcc-4.9/criteria.html)）。在很长一段时间内 Kai Tietz 拥有 GCC 官方 repo 的提交权限（虽然当前[已不再活跃而被移除](https://github.com/gcc-mirror/gcc/commit/e7d04cdd5ec5527790a278fb2a8bf8142d552f61#diff-bb5907b965b501e1856ccd79d2c4f642L145)）。
 
 　　所以，使用 MinGW-W64 的 GCC 一般比 MinGW.org 有更新更全面的支持，所以现在一般推荐 MinGW-W64 发行版。
 
