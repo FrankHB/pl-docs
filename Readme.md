@@ -1,10 +1,10 @@
-# Programing Language Documentations
+﻿# Programing Language Documentations
 
 This is a formal repository about some programing languages and something about their theory.
 
 ## Copyright
 
-© 2014 [FrankHB](mailto:frankhb1989@gmail.com).
+© 2014-2018 [FrankHB](mailto:frankhb1989@gmail.com).
 
 Except where otherwise specified explicitly, materials in this repository are licensed under following terms:
 
