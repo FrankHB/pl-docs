@@ -46,4 +46,5 @@
 ## 语用和科普
 
 * [_[科普]_&#8203;_[FAQ]_&#8203;MinGW vs MinGW-W64及其它](mingw-vs-mingw-v64.md) （另见 [mingw 吧主题](http://tieba.baidu.com/p/3186232510) 和 [C++ 吧主题](http://tieba.baidu.com/p/3186234212)）
+* [《基本笔记》系列](elementary-notes/contents.md)
 
