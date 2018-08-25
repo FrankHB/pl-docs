@@ -11,7 +11,7 @@ http://tieba.baidu.com/p/626323902
 
 ↑而这里的说法是有问题的。
 
-这里再解释一下ISO C/C++中对main的要求。
+这里再解释一下ISO C/C++中对 `main` 的要求。
 
 ## 标准版本说明
 
@@ -26,7 +26,7 @@ http://tieba.baidu.com/p/626323902
 
 ### ANSI C89支持函数声明省略返回值，隐含为 `int`
 
-也就是说 `main()` 其实是`int main()` ， `foo();`其实是 `int foo();` 。尤其注意 `main()` **绝不是** `void main()` 。
+也就是说 `main()` 其实是`int main()` ， `foo();` 其实是 `int foo();` 。尤其注意 `main()` **绝不是** `void main()` 。
 
 这在 ISO C99 开始以及 ISO C++ 中是**不允许**的。
 
@@ -304,7 +304,31 @@ ISO C++ 的规定和 ISO C 类似，但有几点重要的不同：
 - b)如无特殊必要，尽量使用标准明文规定的两种形式；
 - c)使用其它形式应能找到文档，并且确保当前需求能容忍由此导致的可移植性缺陷。
 
-## 附
+## 附录
+
+### 标准返回值
 
 ISO C99 起，及 ISO C++98 起，全局 `main` 若没有 `return` ，相当于末尾隐含 `return 0;` 。对于一般实现，返回 0 表示程序执行成功。 C/C++ 标准库宏 `EXIT_SUCCESS` 表示由实现定义的成功返回状态。 `EXIT_SUCCESS` 可用于 `exit` 函数，而 `main` 终止和 `exit` 语义上等价，所以也可以 `return EXIT_SUCCESS;` 代替。
+
+### 关于 Bjarne Stroupstrup 的说法
+
+在个人主页中 Bjarne Stroustrup 明确解答了[关于 `void main` 的问题](http://www.stroustrup.com/bs_faq2.html#void-main) ，表示不赞同使用 `void main` 。其中提到， `void main`
+
+> ... is not and never has been C++, nor has it even been C.
+
+注意下文：
+
+> See the ISO C++ standard 3.6.1[2] or the ISO C standard 5.1.2.2.1.
+
+显然这里的依据是 ISO C 和 ISO C++ 。
+
+不过之后的
+
+> A conforming implementation may provide more versions of main(), but they must all have return type int.
+
+实际上指的仅仅是 ISO C++ ，而不适用于 ISO C 。而之后的
+
+> The int returned by main() is a way for a program to return a value to "the system" that invokes it. On systems that doesn't provide such a facility the return value is ignored, but that doesn't make "void main()" legal C++ or legal C. Even if your compiler accepts "void main()" avoid it, or risk being considered ignorant by C and C++ programmers.
+
+则明确存在一些允许 `void main` 的实现。使用这类实现的 `void main` 的程序是不可移植的，一定不是符合 ISO C 意义下的严格一致(strict conforming) 的程序，但并不像 ISO C++ 被禁止而使语言实现直接违反一致性(conformance) 。上文中 never has been 也应在这个基础上理解。
 
