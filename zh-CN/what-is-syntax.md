@@ -94,9 +94,13 @@ Created @ 2015-07-01 08:50.
 
 按[维基](https://en.wikipedia.org/wiki/Grammar)给的定义：
 
+[[
+
 > In linguistics, grammar is the set of structural rules governing the composition of clauses, phrases, and words in any given natural language. The term refers also to the study of such rules, and this field includes morphology, syntax, and phonology, often complemented by phonetics, semantics, and pragmatics.
 
 在语言学中，文法是指任意一个自然语言中控制组合分句、词组和词结构性规则的集合。这个术语（译注：语法学）也指对这些规则的研究，这个领域包括（词语）形态学、语法学和音韵学（译注：不要和后面讲的 phonetics 混淆），经常也涉及语音学、语义学和语用学。
+
+]]
 
 可见，至少在自然语言中，文法学的研究范围涵盖了语法学；作为研究对象，语法现象是文法现象的真子集。
 
