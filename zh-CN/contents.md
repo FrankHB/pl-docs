@@ -42,6 +42,7 @@
 * [C++ 设计缺陷](cpp-design-defect.md)（另见 [C++ 吧主题](http://tieba.baidu.com/p/3202116449)中的回复）
 * [_[科普]_&#8203;为什么指针是个糟糕的语言特性](why-is-pointer-awful.md)（另见 [C++ 吧主题](http://tieba.baidu.com/p/3993456389)）
 	* 早期论述： [[1]](http://tieba.baidu.com/f?ct=335675392&tn=baiduPostBrowser&z=3605563618&sc=64936372503#64936372503) [[2]](http://tieba.baidu.com/f?ct=335675392&tn=baiduPostBrowser&z=3605563618&sc=64963805240#64963805240) [[3]](http://tieba.baidu.com/p/3615289496?pn=2)
+* [关于 GC 的意见](about-garbage-collection.md)（另见 [幻の上帝吧主题](https://tieba.baidu.com/p/3171730339)）
 	
 ## 语用和科普
 
