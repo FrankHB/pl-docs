@@ -1,8 +1,8 @@
 ﻿# 关于GC的意见
 
-Created @ 2014-07-18, rev2 @ 2014-07-20.
-
 ## 原始论述（“盖棺定论”）
+
+Created @ 2014-07-18, rev2 @ 2014-07-20.
 
 ### 0
 
@@ -2003,7 +2003,9 @@ lambda capture有类似的问题，可能更清楚点。很少语言提供captur
 
 所以合理的设计中capture by value中是不能被单独取代的。
 
-## 补充注记 2016-10-03 ：[默认 GC 的危害](https://gist.github.com/FrankHB/00731fedf07b4ea271afa70a5cdc8d9d/ba53cf12c21e31307cfeb96c3dd720b07d512c4f#%E9%BB%98%E8%AE%A4-gc-%E7%9A%84%E5%8D%B1%E5%AE%B3)
+## 补充注记 2016-10
+
+Created @ 2016-10-03, titiled "[默认 GC 的危害](https://gist.github.com/FrankHB/00731fedf07b4ea271afa70a5cdc8d9d/ba53cf12c21e31307cfeb96c3dd720b07d512c4f#%E9%BB%98%E8%AE%A4-gc-%E7%9A%84%E5%8D%B1%E5%AE%B3)".
 
 GC = garbage collection/garbage collector ，垃圾回收/垃圾回收器。
 
@@ -2051,6 +2053,8 @@ GC 造成的问题很多（也正因为如此在一般意义上只能作为谨�
 * 什么是开发者本应做到的，什么是适合让机器自动完成的。
 
 反面教材例： http://yinwang.org/blog-cn/2016/09/18/rust 。
+
+这个反面教材还体现了对资源管理问题的外行。根据教育背景和历史，按理说，该作者对[这篇论文](https://www.cs.indiana.edu/~dyb/pubs/call1cc.pdf)应该不至于没有听说过才对，如此还理解不了表达式中的值的转移相对复制（或者更一般地，确保资源的单一实例相对资源的复制）是更基础普遍的操作（而不是反之），就很费解了。可能这和类似所谓的 [有类型 λ 演算被作为无类型 λ 演算更基础的理论(en-US) ](https://en.wikipedia.org/wiki/Typed_lambda_calculus) 这样的反工程常识（因为 multirooted ，没有单一理论选取的基准，无法管理依赖）的主观认识相关？
 
 ## 补充注记 2018-09
 
