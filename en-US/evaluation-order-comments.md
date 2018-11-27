@@ -141,7 +141,7 @@ So a careless writer is still easy to make it a mess. In order to figure out wha
 
 It seems that "the value computation and the associates side effects of E1 are sequenced before those of E2" are repeated too many times.
 
-## 7 Implmentation Experience and report
+## 7 Implmentation Experience and Report
 
 > **It is worth noting that these results are for the worst case scenario where the op timizers have not yet been updated to be aware of, and take advantage of the new evaluation rules and they are blindly forced to evaluate function calls from left to right.**
 
