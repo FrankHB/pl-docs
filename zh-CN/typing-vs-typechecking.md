@@ -28,7 +28,7 @@
 
 　　当然不是。
 
-　　在说为什么不是之前，首先需要正视这是一个有些年头了的笑话，并且可能具有名人效应而带坏一些不明真相的小碰友，典型地如[这篇](https://commandcenter.blogspot.com/2012/06/less-is-exponentially-more.html)。在一口一个类型系统(type system) 如何如何时，不觉犯了基本的没搞清概念的内涵的低级错误，以至于把名义类型系统([nominal type system](https://en.wikipedia.org/wiki/Nominal_type_system)) 和类型系统混为一谈。鉴于[LtU 上的评论已经足够一针见血](http://lambda-the-ultimate.org/node/4554)，不在此多科普细节。
+　　在说为什么不是之前，首先需要正视这是一个有些年头了的笑话，并且可能具有名人效应而带坏一些不明真相的小碰友，典型地如[这篇](https://commandcenter.blogspot.com/2012/06/less-is-exponentially-more.html)。在一口一个类型系统(type system) 如何如何时，不觉犯了基本的没搞清概念的内涵的低级错误，以至于把名义类型系统([nominal type system](https://en.wikipedia.org/wiki/Nominal_type_system)) 和类型系统混为一谈。鉴于[LtU 上的评论已经足够一针见血](http://lambda-the-ultimate.org/node/4554#comment-71474)，不在此多科普细节。
 
 　　讽刺的是，造成这种误会的原因，恐怕就是原文批判的：类型系统烂设计过于有存在感——而影响了作者本应具有的视野。这样，应予以重视的教训除了“不要在不懂的领域跑火车”外，更要紧的是得先搞清楚要批判的东西到底是什么玩意儿，而不是一上来就想造个大煋闻，批判一番了事——不仅削弱本来可能性以微粒子程度存在的观点的合理性还误导群众，而且容易贻笑大方。
 
