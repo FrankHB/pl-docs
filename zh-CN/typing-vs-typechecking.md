@@ -211,9 +211,11 @@
 
 　　按逻辑学的传统，类型论或形式化的类型系统的设计常用[相继式演算](https://zh.wikipedia.org/zh-cn/相继式演算)表达。其中逻辑公式断言了符合类型系统要求的合式(well-formed) 的项。一个语言中的 typing 或 tyechecking 的实现可以对应为找到符合公式指定的类型约束的项，或证明这样的合式公式(well-formed formula) 。
 
-　　因为相似性，[自动定理证明](https://zh.wikipedia.org/wiki/定理机器证明)和[形式验证](https://zh.wikipedia.org/wiki/形式验证)等特别适合这样的方法。这些领域使用的[领域特定语言](领域特定语言)具有特定的、较丰富特性的具体类型论，如 [Coq](https://zh.wikipedia.org/zh-cn/Coq) 使用[归纳构造演算](https://zh.wikipedia.org/zh-cn/构造演算) 。一些与此相关的基于特定类型论的语言也被提出：
+　　因为相似性，[自动定理证明](https://zh.wikipedia.org/wiki/定理机器证明)和[形式验证](https://zh.wikipedia.org/wiki/形式验证)等特别适合这样的方法。这些领域使用的[领域特定语言](领域特定语言)具有特定的、较丰富特性的具体类型论。一些与此相关的基于特定类型论的语言也被提出：
 
 * [LCF](https://en.wikipedia.org/wiki/Logic_for_Computable_Functions) 引入 [ML语言](https://zh.wikipedia.org/wiki/ML语言) 作为定理证明系统的元语言，使用其中的 [Hindley-Milner 类型系统](https://en.wikipedia.org/wiki/Hindley–Milner_type_system)。后继的 [HOL](https://en.wikipedia.org/wiki/HOL_%28proof_assistant%29) 系统也使用 ML 。
+* [Nuprl](https://en.wikipedia.org/wiki/Nuprl) 使用[直觉类型论](https://zh.wikipedia.org/zh-cn/直觉类型论)。
+* [Coq](https://zh.wikipedia.org/zh-cn/Coq) 使用[归纳构造演算](https://zh.wikipedia.org/zh-cn/构造演算) 。
 * [Haskell](https://zh.wikipedia.org/zh-cn/Haskell) 也使用 H-M 类型系统。
 * 一些 ML 和 Haskell 扩展使用[依赖类型](https://zh.wikipedia.org/wiki/依赖类型)。
 * [Adga](https://zh.wikipedia.org/zh-cn/Agda) 和 [Idris](https://zh.wikipedia.org/zh-cn/Idris) 使用的类型系统基于 [UTT](https://www.researchgate.net/profile/Zhaohui_Luo/publication/225233240_A_unifying_theory_of_dependent_types_the_schematic_approach/links/0deec52a1025ec6518000000/A-unifying-theory-of-dependent-types-the-schematic-approach.pdf?origin=publication_detail) 。
