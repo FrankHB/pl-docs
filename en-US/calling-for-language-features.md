@@ -83,13 +83,15 @@ See also [fexpr](https://en.wikipedia.org/wiki/Fexpr) for historical insights an
 
 Ensuring basic consistency and general availability of expressive language features.
 
-[The paper of the vau calculi](https://web.wpi.edu/Pubs/ETD/Available/etd-090110-124904/unrestricted/jshutt.pdf) also talks about first-class objects. This is considered first-class entities here, as it does not enforce identities of objects (see below).
+[The dissertation introducing the vau calculi](https://web.wpi.edu/Pubs/ETD/Available/etd-090110-124904/unrestricted/jshutt.pdf) also talks about first-class objects. An instance of such objects is considered a *first-class entity* (or shorten as *entity* ) here, as it does not enforce its identity (see below). In particular, the *smooth conjecture* (in the section 1.1.2 of the dissertation) is interested in the design required for a general-purposed language, because a language can only become general-purposed by providing sufficient ability of adaption in different problem domains with effective and suited ways of abstraction, and the latter is mainly embodied by using of first-class entites as one of the fundamental methods.
 
 ### First-class objects
 
 Allowing distinction of object identities.
 
-An object is an entitiy which preserve its identity. Unless otherwise specified, any two objects can be differentiated by the identity.
+An *object* is an entity which preserve its identity. Unless otherwise specified, any two objects can be differentiated by the identity. This definition has more restriction of identity compared to the one in the dissertation introducing the vau calculi (which is called as a first class entity, see above).
+
+The identity is needed for [ontology](https://en.wikipedia.org/wiki/Ontology) purpose. Although when not built-in, it can still be expressed by derived languages from the base specification, the essense of generality makes this approach unnecessarily *indirect* in the whole design. This is the very same reason compared to the reason about keeping expresiveness of [*side effects*](https://en.wikipedia.org/wiki/Side_effect) in the base specification (rather than providing them through the derived languages), as well as the reason of allowing the programs being *stateful* (see also first-class states below): if a language is lacking of these essential features by design, it is more suited to be a target language [being transformed to](https://en.wikipedia.org/wiki/Program_transformation) (e.g. by a [compiler](https://en.wikipedia.org/wiki/Compiler) during translation of a source program, or within a [proof assistant](https://en.wikipedia.org/wiki/Proof_assistant) during verifying some properties of a source program), but not a language used by human users directly.
 
 ### First-class states
 
