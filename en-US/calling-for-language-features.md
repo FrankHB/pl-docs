@@ -224,9 +224,29 @@ The Kernel language does not rely on sequential control effects in its primitive
 
 Scheme does not have loops in primitive features. It encourages recursion (with mandatory proper tail recursion) instead. Kernel does the exactly same.
 
-## GC
+## [GC](https://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29)
 
-See discussions in the subclause about necessity of deterministc deallocation above.
+See discussions in the subclause about necessity of deterministc deallocation above. This directly disallows relying on [tracing GC](https://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29#Tracing).
+
+GC also effectively encorages blur on object *ownership* and *access rights*, and further avoids using first-class objects as abstraction of resources whose relations of ownership can be natually expressed as [DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph)s by succinct use of [RAII](https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization) idiom. Note in such cases, [cyclic references with equal ownership](https://en.wikipedia.org/wiki/Memory_leak#Reference_counting_and_cyclic_references) should be in general avoided by external owners or [weak references](https://en.wikipedia.org/wiki/Weak_reference). Someone may argue [this descipline harms idiomatic recursion use of closures](http://lambda-the-ultimate.org/node/5007#comment-81721), but the right of ignorance of ownership actually does not exist in nature: either it has to be managed by external owners implicitly (like a GC), or it has to be done explicitly. GC has indeed nothing to do with [closures](https://en.wikipedia.org/wiki/Closure_%28computer_programming%29) for historical reasons without the concrete background of some specific languages (which may sometimes imply the GC is always used). The so-called [funarg problem](https://en.wikipedia.org/wiki/Funarg_problem) can be resolved without aid of GC after the clarification of object ownership. (Actually GC is the special case that uses the external owner.)
+
+There are other implementation concerns to avoid general-purposed GC by default.
+
+* Notably, GC often incurs memory consumption problem, that is, requiring [a lot more backing memory than the amount being needed](https://sealedabstract.com/rants/why-mobile-web-apps-are-slow/index.html).
+	* Note this is actually the instance identified by "leak" as per the definition of [[Clinger98]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.8567&rep=rep1&type=pdf), being stricter worse than deterministic release of memory in block scope variables of ALGOL-like languages.
+	* This increases the risk of [page faults](https://en.wikipedia.org/wiki/Page_fault) in modern systems, which is even worse for performance.
+* Many GC incurs the [STW (stop-the-world)](https://en.wikipedia.org/wiki/Tracing_garbage_collection#Stop-the-world_vs._incremental_vs._concurrent) problem. This can seriously degenerates responsibility of applications by poor latency and causes bad user experience in cases of interactive applications.
+	* Generational or incremental GC may relieve the problem, but not totally avoid. And the complexity of GC implementation can increase a lot.
+	* Most concurrent GC implementations have no better situations except that the stop time would be less. But the complexity can be even more.
+	* The [C4](https://www.azul.com/files/c4_paper_acm2.pdf) claims it can totally avoid the stop. However, it is only meaningfully available on a system equipped with huge amount of memory (say, several TBs in one instance).
+* These performance problems make it not suited for most real-time or low-latency applications. Although in theory GC is not necessarily inconsistent with these requirements, it is already quite hard to implement. With limited memory resources, this is even harder.
+* Some languages with need of "system programming" like C, C++ and Rust avoid GC by default. In particular, (general-purposed) GC violates [zero overhead](https://webstore.iec.ch/preview/info_isoiec18015{ed1.0}en.pdf) principle in C++, and similarly, [zero overhead abstraction](https://blog.rust-lang.org/2015/05/11/traits.html) in Rust.
+
+Note the discouragement of GC does not cover the following facilities.
+
+* Specific resource management schemes sharing some properties with GC, like eesource pools (esp. [memory pools](https://en.wikipedia.org/wiki/Memory_pool)), are recommended as the replacement of GC for specific resource usage patterns.
+* Transformations based on analysis of resouces usage include [escape analysis](https://en.wikipedia.org/wiki/Escape_analysis) and [region inference](https://en.wikipedia.org/wiki/Region-based_memory_management#Region_inference) (sometimes referred as the _static GC_).
+* Deterministic local collectors can be used to suppress leaks futher than ALGOL-like block structures (see [[Clinger98]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.8567&rep=rep1&type=pdf)), including the case of implementation of TCO without GC. 
 
 ## [ABI](https://en.wikipedia.org/wiki/Application_binary_interface) dependency
 
