@@ -24,6 +24,10 @@ Users can rely on documentation other than specifications, but judgement of the 
 
 Allowing distinction of *undefined behavior* (different than unspecified one).
 
+The term "falsity" means the ability to allow [logical false](https://en.wikipedia.org/wiki/False_%28logic%29) (often expressed as symbol กอ)  formally occurs in [well-formed formulae](https://en.wikipedia.org/wiki/Well-formed_formula) in the model of the language, representing the cases can be assumed never happening. Any programs reduce to กอ in the model has unpredicatable (or at least, non-portable) behavior due to missing guarantees of any predicatable behavior by design. Such design provides a model-level axiom to reduce program semantics in an easier way because it (again by design) does not require  any uninterested information logically as the premise to be expressed elsewhere, and it provides larger equivalent classes on program behavior compared to those provided by unspecified behavior. Thus it effectively makes some eqational reasoning easier, which may be benifical for [program transformation](https://en.wikipedia.org/wiki/Program_transformation) (notably, some [program optimization](https://en.wikipedia.org/wiki/Program_optimization)).
+
+This is also significant to allow *derived* languages from a base specification to adapt to new domains which require more refined constraints as the viral property, while keeping the base specification essentially (formally) simple without unnecessary overhead. By specifing the more concrete behavioral requirements complementing the undefined behavior, a derived language (sometimes called as a *dialect*) can have more strictly constrained requirements to provide more guarantees specifically to the target domain. Such methodology of drafting specifications of a *family* of languages (or dialects) would only cost a few resources compared to drafting them separatedly, due to its nature of reusing of rules in the base specification by default.
+
 [ISO C](http://www.open-std.org/jtc1/sc22/wg14/) and [ISO C++](http://www.open-std.org/jtc1/sc22/wg21/) fall in this category. Most others are not.
 
 ## Calculi based
