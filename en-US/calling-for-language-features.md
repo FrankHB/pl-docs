@@ -40,7 +40,9 @@ A notable exception is [Standard ML](http://sml-family.org/). A recent version o
 
 A secondary kind of such category is an informal model (usually expressed in natural language) in the specification, which can be formalized later. This is considered compromised to the purpose of formal specification. Nevertheless, a few languages can have the work together in their specifications. For example, the Scheme langauge have more than one models in various [RnRS](http://community.schemewiki.org/?RnRS) specifications in their appendix, but they are not normative. For Scheme, there are also standalone detailed documents like [this](http://users.eecs.northwestern.edu/~robby/pubs/papers/jfp2008-mf.pdf).
 
-Some non-specification for existed language dialect also can fall in this category, like [[Muller92]](http://www.cs.bc.edu/~muller/research/postscript/toplas92.ps).
+Some non-specification for existed language dialect also can fall in this category, like [[Muller92]](http://www.cs.bc.edu/~muller/research/postscript/toplas92.ps) and [[Ellison12]](http://fsl.cs.illinois.edu/pubs/ellison-2012-thesis.pdf).
+
+There exist works of formal models to improve current language specifications, like [this](http://fsl.cs.illinois.edu/pubs/ellison-2012-thesis.pdf). Similar work can identify the issue on some existed specification that is normative (but not based on formal models), like [this](https://github.com/cplusplus/draft/issues/2541).
 
 ### Named calculi based
 
