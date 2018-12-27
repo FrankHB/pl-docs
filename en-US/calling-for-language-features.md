@@ -123,7 +123,7 @@ There are vaious of control operators for building delimited continuation. About
 
 ### Case studies
 
-C and C++ are lacking of first class-objects as the objects can have decayble types like arrays. Despite that, they have also other non-first-class entities: functions, and references in C++. It is particularly interested that what will happen when they are turned into first-class entities. For entities other than references, the main reason is compatibility of decaying - several kinds of implicit conversions (in C++, `LvalueTransformation` category of several kinds of standard conversion) on specific non-first-class entities, and C++ has provided replacements based on class types (e.g. `std::array`, *closure types* of *lambda-expression*). Except for `void` (treated as an object type in C, and another special kind in C++, while the essense of the type is exactly same), the remaining kind is references in C++ - it is treated specially by the core language rules. Without mandatory of rules on types (see also the discussions about type systems in related sections below), there is room to make it also first-class, without interfering the conceptional differences between "objects" and "entities" (see above).
+C and C++ are lacking of first class-objects as the objects can have decayble types like arrays. Despite that, they have also other non-first-class entities: functions, and references in C++. It is particularly interested that what will happen when they are turned into first-class entities. For entities other than references, the main reason is compatibility of decaying - several kinds of implicit conversions (in C++, `LvalueTransformation` category of several kinds of standard conversion) on specific non-first-class entities, and C++ has provided replacements based on class types (e.g. `std::array`, *closure types* of *lambda-expression*). Except for `void` (treated as an object type in C, and another special kind in C++, while the essense of the type is exactly same), the remaining kind is references in C++ - it is treated specially by the core language rules. Without mandatory of rules on types (see also the discussions about type systems in related subclauses below), there is room to make it also first-class, without interfering the conceptional differences between "objects" and "entities" (see above).
 
 ## Proper tail calls
 
@@ -165,7 +165,19 @@ A language lacking of deterministic deallocation may require [GC (garbage collec
 
 # Avoidance of mandatory
 
-Mandatory of some features may be problematic in general, although they can be opt-in. They are listed here.
+Mandatory of some features may be problematic in general, although they can be opt-in. They are listed in following subclauses.
+
+In general, making some features to be *derivative* (as *derivations*) in libraries (rather than being *primitives* specified by the core language rules) is beneficial for various reasons.
+
+* There are more than one styles of primitives for a specific but not precisely-defined functionality. Each has pros and cons up to the specific target domains. Fixed design of primitives can be easily harm to the general-purposed property of the language.
+* Fixed primitives design may rely on other language features (like complex type systems) too eagarly. The dependencies are not easy to eliminate in practice, and it is particularly annoying when different pieces of the specification clash due to the premature complexity in developing a language.
+* On the other hand, derivations in libraries can be tested with different designs for experience on differnt domains, leaving the freedom of choices to the users.
+* Derivations are immune to the overhead and complexity (both in the language specification and use cases of userland) when they are not used.
+* Derivations may be developed and verfied separatedly without interfere compatibility issues among language specification updates. This enables the ability of parallelism in development of the language design.
+
+So better avoid a feature being ruled as primitives; otherwise, evaluate the gain vs. cost before introducing primitives to ensure such choice is indeed preferred.
+
+Some other features are considered harmful because of introducing the unwanted assumptions and such assumptions are often unneeded restrictions. It is at least suspicious to consider them as "features" for a general-purposed language.
 
 ## Phases and stages
 
@@ -411,12 +423,9 @@ ISO C++ merges *type-specifier* name separation by default, but allowing excepti
 
 Modula systems are useful in organizing modular code components consistently. However, they can be derived from primitive constructs as libraries.
 
-The way of derivation is considered superior than built-in primitive features for various reasons.
+The way of derivation is considered superior than built-in primitive features for various reasons. The general reasons of primitives vs. derivations are all suited here.
 
-* There are more than one styles of module primitives. Each has pros and cons up to the target domain. Derivations can test different design for differnt domains, leaving the freedom of choices to the users.
-* Fixed design of modular system may rely on other language features (like complex type systems) too eagarly.
-* Derivations may be developed and verfied separatedly without interfere compatibility issues among language specification updates.
-* Derivations are allowed to be used as basic building blocks of more abstracted high-level facilities for engineering puporse (e.g. [building systems](https://en.wikipedia.org/wiki/Build_automation) and [CI (continuous integration)](https://en.wikipedia.org/wiki/Continuous_integration). A single fixed design of modulues without multi-level reflective derivation in mind is hardly convincingly support the ideas well in general.
+For the case specific to the module systems, derivations are also allowed to be used as basic building blocks of more abstracted high-level facilities for engineering puporse (e.g. [building systems](https://en.wikipedia.org/wiki/Build_automation) and [CI (continuous integration)](https://en.wikipedia.org/wiki/Continuous_integration). A single fixed design of modulues without multi-level reflective derivation in mind is hardly convincingly support the ideas well in general.
 
 (Rationale and examples TBD.)
 
