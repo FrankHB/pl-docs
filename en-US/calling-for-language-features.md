@@ -34,7 +34,7 @@ This is also significant to allow *derived* languages from a base specification 
 
 No need of extra semantic model. The basic semantic rules are provable in a manner without ambiguity.
 
-This is so-called the [formalism](https://en.wikipedia.org/wiki/Formalism) flavor. Most industrial languages do not meet this point.
+This falls in the sort of the so-called [formalism](https://en.wikipedia.org/wiki/Formalism) flavor. Most industrial languages do not meet this point.
 
 A notable exception is [Standard ML](http://sml-family.org/). A recent version of its specification is [here](http://sml-family.org/sml97-defn.pdf).
 
@@ -43,6 +43,12 @@ A secondary kind of such category is an informal model (usually expressed in nat
 Some non-specification for existed language dialect also can fall in this category, like [[Muller92]](http://www.cs.bc.edu/~muller/research/postscript/toplas92.ps) and [[Ellison12]](http://fsl.cs.illinois.edu/pubs/ellison-2012-thesis.pdf).
 
 There exist works of formal models to improve current language specifications, like [this](http://fsl.cs.illinois.edu/pubs/ellison-2012-thesis.pdf). Similar work can identify the issue on some existed specification that is normative (but not based on formal models), like [this](https://github.com/cplusplus/draft/issues/2541).
+
+A more specific requirement is the model should be *computational*, as a general language is always implemented with *conputational effects*, rather than by *(equational) reasoning*. The latter is centric in the models for some DSL (e.g. languages used in proof assistants) and some implementation methodologies (e.g. program transformation), but it is not necessarily in the designs of general-purposed languages. This is the main reason why "calculi" rather than more generic (arbitrary) "models" are focused here.
+
+Although historically there are languages designed based on [*formal logical systems*](https://en.wikipedia.org/wiki/Formal_system#Logical_system) or targeting the use of proofs (notably, [ML](https://en.wikipedia.org/wiki/ML_%28programming_language%29), and they may have better designs (in the sense of formalism) than other ordinary languages in nature, they are not considered "real" general-purposed here, because the models are heaviliy tuned for specific use by *some specific type systems*. This is not acceptable because computational system does not implying type systems. Although the neutrality of the methodology used in formalism does not rule out such designs directly, relying on type systems (even in the meta language) is now allowed by other policies. See discussions related to type systems below.
+
+Calculi are refinement of [*rewrite systems*](https://en.wikipedia.org/wiki/Rewriting). They may share other properties (e.g. [*Church-Rosser properties*](https://en.wikipedia.org/wiki/Rewriting#The_Church¨CRosser_property_and_confluence)) with a broader sort of models ([*deductive systems*](https://en.wikipedia.org/wiki/Formal_system#Deductive_inference)). However, they are also required to be with computational meanings. For simplification, in an object language the rewrites are modeled of *evaluations* on expressions, while in the meta language they are modeled of *reductions* on *terms*. The meta level transitions may hide some *administrative* information away from the object language when they are not the same (by evaluating corresponding object-language level *redexes* - reducible expressions).
 
 ### Named calculi based
 
@@ -115,6 +121,10 @@ Scheme's continuations [do not compose](http://okmij.org/ftp/continuations/undel
 
 There are vaious of control operators for building delimited continuation. About their expressiveness, see [here](http://okmij.org/ftp/continuations/#impromptu-shift).
 
+### Case studies
+
+C and C++ are lacking of first class-objects as the objects can have decayble types like arrays. Despite that, they have also other non-first-class entities: functions, and references in C++. It is particularly interested that what will happen when they are turned into first-class entities. For entities other than references, the main reason is compatibility of decaying - several kinds of implicit conversions (in C++, `LvalueTransformation` category of several kinds of standard conversion) on specific non-first-class entities, and C++ has provided replacements based on class types (e.g. `std::array`, *closure types* of *lambda-expression*). Except for `void` (treated as an object type in C, and another special kind in C++, while the essense of the type is exactly same), the remaining kind is references in C++ - it is treated specially by the core language rules. Without mandatory of rules on types (see also the discussions about type systems in related sections below), there is room to make it also first-class, without interfering the conceptional differences between "objects" and "entities" (see above).
+
 ## Proper tail calls
 
 Mandatory of space complexity boundary of most language constructs. No need to abstract loops specifically. If needed, users can extend the mechanism.
@@ -159,7 +169,7 @@ Mandatory of some features may be problematic in general, although they can be o
 
 ## Phases and stages
 
-*Phases of translation* and *stages of execution* are concerned with language implementations, most defined in specification with styles of [program transformation](https://en.wikipedia.org/wiki/Program_transformation). They are not desired to be fixed in the specification in the very general sence.
+*Phases of translation* and *stages of execution* are concerned with language implementations, most defined in specification with styles of program transformation). They are not desired to be fixed in the specification in the very general sence.
 
 Such rules distingish static and dynamic properties of program execution. This is not always desired, as it more or less prevents mixed static-dynamic features like [gradual typing](https://en.wikipedia.org/wiki/Gradual_typing) and advanced general implementation architecture like [supercompilation](https://en.wikipedia.org/wiki/Metacompilation).
 
