@@ -139,9 +139,9 @@ Known most efficient way in space being compatible to pass-by-value semantics.
 
 See [[Clinger98]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.8567&rep=rep1&type=pdf) and [this page](https://www.akalin.com/evlis-tail-recursion) for introduction.
 
-## Free stored activation records
+## Free store'd activation records
 
-No need of control stack. No need to worry unportable bahavior on activation records exaustion. Allowing nested calls are bound by single species of system resource.
+No need of [the control stack](https://en.wikipedia.org/wiki/Call_stack). No need to worry unportable bahavior on activation records exaustion. No need to expose internal data struct of activation records. Allowing nested calls are bound by single species of system resource. Allowing resource usage being configured uniformly through interface of the [free store](https://en.wikipedia.org/wiki/Memory_management#Dynamic_memory_allocation).
 
 This approach does not use "native" control stack provided by traditional [ISA (instruction set architecture)](https://en.wikipedia.org/wiki/Instruction_set_architecture). Losing direct support from hardware seems inefficient, but not much. Practical implementations can use such strategy as well. For example, [SML/NJ](https://www.smlnj.org/) uses heap-allocated stack frames.
 
