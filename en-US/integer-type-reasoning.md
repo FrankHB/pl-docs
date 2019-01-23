@@ -1,8 +1,8 @@
 # The question
 
-The original question: https://stackoverflow.com/questions/54310982/int-vs-stdsize-t-which-one-should-be-the-default-integer-type-for-c.
+The [original question](https://stackoverflow.com/questions/54310982/int-vs-stdsize-t-which-one-should-be-the-default-integer-type-for-c) has once voted on hold to be closed due to "primarily opinion-based", but (surprisingly) it is now removed under moderation. It is archived at [here](https://htmlpreview.github.io/?https://github.com/euloanty/stackoverflowbackup/blob/master/int%20vs%20std__size_t.%20Which%20one%20should%20be%20the%20default%20integer%20type%20for%20C++_%20-%20Stack%20Overflow.html).
 
-The question has once voted on hold to be closed due to "primarily opinion-based", but (surprisingly) it is now removed under moderation. As said in the URL, basically it is about to preferring `std::size_t` or `int` "by default", and the OP's opinion is to always use `std::size_t` as possible, which is the opposite of the view from current committee (WG21) mentioned [here](https://www.reddit.com/r/cpp/comments/7y0o6r/is_it_a_good_practice_to_use_unsigned_values/ductv0f) and the rules presented [here](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#Res-nonnegative).
+As said in the URL, basically it is about to preferring `std::size_t` or `int` "by default", and the OP's opinion is to always use `std::size_t` as possible, which is the opposite of the view from current committee (WG21) mentioned [here](https://www.reddit.com/r/cpp/comments/7y0o6r/is_it_a_good_practice_to_use_unsigned_values/ductv0f) and the rules presented [here](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#Res-nonnegative).
 
 Although the decision is debatable, there are facts that not sufficiently discussed. Here is a try to answer the question without too many subjective opinions.
 
