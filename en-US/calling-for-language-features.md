@@ -443,6 +443,54 @@ For the case specific to the module systems, derivations are also allowed to be 
 
 (Rationale and examples TBD.)
 
+# Why not ...
+
+Here are some example to illustrate how existing languages is not satisfiying for the requirments. Each one should have one or more pros to be endorsed.
+
+## A brief requirements list
+
+The following list are properties a needed language shall meet. Some languages superseded by them are also explicitly listed.
+
+* (A) The language has a specification independently to the implementations. This makes it supersedes many toy languages.
+	* (A.1) Further, the specification is normative. This makes it supersedes many "scripting languages".
+	* (A.2) Further, the language has a formal grammer.
+		* (A.2.1) Further, the language allows free form grammar, which makes the leading whitespaces insignificant in the lexical form. This makes it supersedes languages like Python and Haskell.
+		* (A.2.2) Further, the language allows identification of a well-defined context-free set from the rules, as the syntaic grammar. This makes it supersedes ISO C (for context-sensitive *declarator* syntaxes) and ISO C++ (like ISO C and more on vexing parse).
+	* (A.3) Further, the specification has a formal model to specify its semantics. This makes it supersedes most languages other than some Lisp dialects.
+	* (A.4) Further, the specification of the program in the language is free from concrete translation forms. This makes it supersedes languages like Java (explicitly mandatory of bytecode "compiled to" the input of JVM) and PicoLisp. 
+* (B) The language allows variables and procedural abstraction. This makes it supersedes languages like Brainfuck and Unlambda.
+	* (B.1) Further, the language uses lexical scoping by default. This makes it supersedes to languages using dynamic scoping like PicoLisp and Emacs Lisp.
+	* (B.2) Further, the language guarantees proper tail calls. This makes it supersedes to some languages impossible to implement it practically (like Java). This also makes it supersedes most other languages which do not mandate it (most languages other than R<sup>n</sup>RS Scheme, Kernel and a few more).
+		* (B.2.1) Further, such tail recursive forms do not need specifically syntactic notation used in the source code. This makes it supersedes languages like PicoLisp and Clojure.
+	* (B.3) Further, the language support first-class environments. This makes it supersedes most languages other than Kernel and PicoLisp.
+* (C) The language can support various computational effects with first-class objects.
+	* (C.1) The language is not free of side effects. This makes it superseded any "purely" functional languages like ML family (Standard ML, OCaml, F#, ...) and Haskell.
+	* (C.2) Further, the language allows first-class side effects appertaining the use of first-class objects. This makes it supersedes most languages other than ISO C++, which allows side effects along with lifetime of objects in the language.
+* (D) The language is homoiconic. This makes it supersedes most languages other than Lisp or Forth dialects.
+	* (D.1) The language does not have phases limitations. This makes it supersedes recent Scheme dialects since R<sup>5</sup>RS Scheme.
+	* (D.2) Further, it does not separate namespaces. This makes it supersedes Lisp-2 dialects like Common Lisp.
+* (E) The language allows a clear DAG of ownership in resource management, which means it does not have features to necessity a GC in the conforming implementation. This makes it supersedes most languages other than ISO C, ISO C++, Rust and a few more.
+
+## Kernel
+
+It meets most requirements above but C.2 and E.
+
+Comparaitvely, some laguages fail strictly more:
+
+* Scheme fails additionally at B.3 and D.1.
+* PicoLisp fails additionally at A.1, A.3, A.4, B.1 and B.2.1.
+
+## ISO C++
+
+It meets many requirements above but A.2.2, A.3, B.2, B.3, D and D.1 (when D.2 is worked around by omission of *class-key* in some type names).
+
+Comparaitvely, some laguages fail strictly more with exception of A.2.2:
+
+* ISO C fails additionally at C.2 and D.2 (on type names).
+* Rust fails additionally at A.1.
+* Java fails additionally at A.4, C.2, D.2 (on type names) and E, but not A.2.2.
+* C# fails additionally at C.2 and E, but not A.2.2.
+
 # Conclusions
 
 While there are languages and implementations following criteria of one or more of the desired fatures above, no one have all of them. So a new language is required.
