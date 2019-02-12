@@ -492,8 +492,8 @@ The following list are properties a needed language shall meet. Some languages s
 * (A) The language has a specification independently to the implementations. This makes it supersedes many toy languages.
 	* (A.1) Further, the specification is normative. This makes it supersedes many "scripting languages".
 	* (A.2) Further, the language has a formal grammer.
-		* (A.2.1) Further, the language allows free form grammar, which makes the leading whitespaces insignificant in the lexical form. This makes it supersedes languages like Python and Haskell.
-		* (A.2.2) Further, the language allows identification of a well-defined context-free set from the rules, as the syntaic grammar. This makes it supersedes ISO C (for context-sensitive *declarator* syntaxes) and ISO C++ (like ISO C and more on vexing parse).
+		* (A.2.1) Further, the language allows a free form grammar which makes the leading whitespaces insignificant in its lexical (source) form. This makes it supersedes languages like Python and Haskell.
+		* (A.2.2) Further, the language allows identification of a well-defined context-free set from the rules, namely the syntactic grammar. This makes it supersedes ISO C (for context-sensitive *declarator* syntaxes) and ISO C++ (like ISO C and more on vexing parse).
 	* (A.3) Further, the specification has a formal model to specify its semantics. This makes it supersedes most languages other than some Lisp dialects.
 	* (A.4) Further, the specification of the program in the language is free from concrete translation forms. This makes it supersedes languages like Java (explicitly mandatory of bytecode "compiled to" the input of JVM) and PicoLisp. 
 * (B) The language allows variables and procedural abstraction. This makes it supersedes languages like Brainfuck and Unlambda.
@@ -513,7 +513,7 @@ The following list are properties a needed language shall meet. Some languages s
 
 It meets most requirements above but C.2 and E.
 
-Comparaitvely, some laguages fail strictly more:
+Comparatively, some laguages fail strictly more:
 
 * Scheme fails additionally at B.3 and D.1.
 * PicoLisp fails additionally at A.1, A.3, A.4, B.1 and B.2.1.
@@ -522,7 +522,7 @@ Comparaitvely, some laguages fail strictly more:
 
 It meets many requirements above but A.2.2, A.3, B.2, B.3, D and D.1 (when D.2 is worked around by omission of *class-key* in some type names).
 
-Comparaitvely, some laguages fail strictly more with exception of A.2.2:
+Comparatively, some laguages fail strictly more with exception of A.2.2:
 
 * ISO C fails additionally at C.2 and D.2 (on type names).
 * Rust fails additionally at A.1.
