@@ -1,14 +1,24 @@
 # Introduction
 
-This is mainly a list of features wanted but not found (in a satisfied flavor) in existed contemporary programming languages (with some discussions and external resources presented together).
+This document lists features wanted but not found (in a satisfied flavor) in existing contemporary programming languages (with some discussions and external resources presented together). It is also used as a collection of descriptions about the reasons (and the reasoning) for a new language. Moreover, it implies the contents in a [requirement document](https://en.wikipedia.org/wiki/Product_requirements_document) of the language.
 
-A feature can be quite "large" in the sense of specification; so listed alone by subclauses.
+## Disclaimers on neutraility
 
-For the purpose of feasibility, concrete languages may be illustrated. They are also used as proof-of-concept resouces about technical difficulties and reasonability of the design, which would not be exaustive here.
+This document tries to describe objective views on the aspects being interested by arbitrary but unspecified skateholders of the language. Most significant aspects including generality and simplicity. However, the judgement of interests otherwise can be largely subjective. It may also be authored (and authorized) with some subjective concrete points (e.g. on the set of features) occasionally. Such points are not defects iff. there is sufficient reasoning specifically.
+
+That said, any biased points without sufficient reasoning are not intended, albeit the judgement of "sufficient reasoning" is also somewhat subjective.
+
+## Styles and layouts
+
+Some features can be quite "large" in the sense of specification, so they are listed alone by subclauses.
+
+For the purpose of feasibility, concrete languages may be illustrated. They are also used as proof-of-concept resources about technical difficulties and reasonability of the design, which would not be exaustive here.
 
 The features are about the design of languages which. Nothing beyond specifications are assumed here except illustrations to prove implementation feasibility.
 
-The general-purpose property is emphsized here, as a [DSL (domain-specific language)](https://en.wikipedia.org/wiki/Domain-specific_language) can be *derived* from a properly designed general-purposed language. (A DSL may not requires most of the features, though.) Some listed features are difficult to be derived, so they deserved to be *primitive*.
+# Outlines
+
+Only the general-purposed properties are emphsized here, as a [DSL (domain-specific language)](https://en.wikipedia.org/wiki/Domain-specific_language) can be *derived* from a properly designed general-purposed language. (A DSL may not requires most of the features, though.) Some listed features are difficult to be derived, so they deserved to be *primitive*.
 
 ## Specified
 
