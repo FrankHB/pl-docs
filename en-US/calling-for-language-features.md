@@ -179,6 +179,14 @@ Known most efficient way in space being compatible to pass-by-value semantics.
 
 See [[Clinger98]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.8567&rep=rep1&type=pdf) and [this page](https://www.akalin.com/evlis-tail-recursion) for introduction.
 
+### Reasonable performance hit
+
+For availability in practice.
+
+PTC may have performance penalty. The cost is generally unavoidable when there is no "native" PTC (provided by the underlying implementation language) available, so more effort should be taken for maintainance work of the additional data structure serving to bookkeeping. Only in limited cases when it can be proved that no such work is needed, the cost can be eliminated, but (depending on the feature set of the language) the proof itself can also be costly. The performance penalty should still be reasonably insignificant at least with the configurations for end-users in practice, so the cost does not defeat the general availablity of the feature.
+
+There exist misnormers that PTC or TCO will be harmful to diagnositics and/or availablity of debugging information. This is red herring in general. It is true that by implementation experience, PTC implemented by languages without native capability of PTC (which usually requires TCO) needs more complicated machanism to save the history of the activation record frames avoided by PTC in the call trace compared to naive implementations of ALGOL-like languages based on the "native" ([ISA](https://en.wikipedia.org/wiki/Instruction_set_architecture)-level) [call stack](https://en.wikipedia.org/wiki/Call_stack), but the extra effort (e.g. a [CHICKEN](https://en.wikipedia.org/wiki/CHICKEN_%28Scheme_implementation%29)-style [shadow stack](https://en.wikipedia.org/wiki/Shadow_stack) specifically for debug implementations like [in JSC of Webkit](https://bugs.webkit.org/show_bug.cgi?id=155598)) is not unreasonably. 
+
 ## Free store'd activation records
 
 No need of [the control stack](https://en.wikipedia.org/wiki/Call_stack). No need to worry unportable bahavior on activation records exaustion. No need to expose internal data struct of activation records. Allowing nested calls are bound by single species of system resource. Allowing resource usage being configured uniformly through interface of the [free store](https://en.wikipedia.org/wiki/Memory_management#Dynamic_memory_allocation).
