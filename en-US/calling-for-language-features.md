@@ -370,7 +370,11 @@ Metaprogramming is the programming mechanism and technique to manipulate a progr
 
 * Program transformers: in the general sense, this includes translators as the most implementations of programming language.
 * [Generative programming](https://en.wikipedia.org/wiki/Automatic_programming#Generative_programming): automatically generation of the program code.
-* Metaprogramming can programming amone phases with more or less shared (or even the same) forms language constructs, rendering the features need and *would* be support by the same language. This is hardly feasible to be supported by other means.
+* Metaprogramming allows similar programming techniques used among different phases with more or less shared (or even the exactly same) forms of the language constructs, rendering that only a quite small set of core features is need and *would* be supported by the same language.
+	* This approach benefits greatly both generality and simplicity at the same time.
+	* It makes learning the language features easier by promoting the coherence of the relationship between general purposes and general features. It also improves the utility of the efforts of learning, because the features can be heavily reused in a natural and uniform way.
+	* With given benefits above, it is hardly feasible to be replaced by other means.
+	* Nevertheless, not all styles of metaprogramming share these properties. Namely, it *can*, but not *must*, have the benefits. The fact suggests that such benefits are from some more basic elements of the language design, but not by the allowence of metaprogramming itself.
 
 While the purpose is plausible, it is not the feature that a general language to support directly. The various implentation techniques (see below) can be broken down into more fundamental feature sets. They are hereby basically superseded by explicit `eval` style code of vau abstractions with more consistent rules for several reasons.
 
