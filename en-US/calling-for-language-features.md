@@ -157,6 +157,22 @@ This is an important property exposed by the language design with mandatory rule
 
 Note *PTC (proper tail call)* is NOT same to *TCO (tail call optimization)*. See [here](https://groups.google.com/d/msg/comp.lang.lisp/AezzhxTliME/2Zsq7HUn_ssJ) for clarification.
 
+### Implicit tail call notations
+
+The default style of proper tail calls.
+
+This is what mandated in most "truely" PTC languages. Besides, some alternatives of "conditional" forms of PTC are also proposed by introducing syntactically explicit forms to designate the places of PTC needed, like [Syntactic Tail Calls proposed for ECMAScript](https://github.com/tc39/proposal-ptc-syntax/). Such approach is considered compromized, because:
+
+* The opt-in nature directly voids the space complexity guarantee of PTC.
+* The syntactic nature limits the contexts to a strict subset of the syntactic contexts in the formal model.
+* The explicit nature is against the simplicity of the code "just work".
+
+All of the consequences mean users will have strictly less chances to leverage this feature in practice, thus it will essentially undermine the original purpose.
+
+The preference to the implicit style *by default* does not mean that explicit style is always bad. It is still true that users may need to designate the place of contexts explicitly, but this should be usually rare. Namely, such explicit syntactic notation should be used to *opt-out* PTC. Such explicit notation is specifically for the cases when PTC is inconsistent in high-level of the code logic, i.e. to express some non-ignorable but (syntactically) implicit side effects *at the end of activation record frames deterministically*. (Such cases in exsiting languages include non-trivial destuctor calls in C++ and some contract checks in Racket.) Alternatives of implicit PTC in such contexts will at least result in better diagnostics to users, providing better chances to avoid the inconsistency.
+
+Nevertheless, syntactic forms at the call sites are still far from correct, because such cases are exposed by the essential properties of *activation record frames* or *activated instances of the calls* (perhaps in some context-sensitively ways, e.g. effected by the states of previous "parent" frames), but not the expressions forming the entries of the calls.
+
 ### Evlis tail calls
 
 Known most efficient way in space being compatible to pass-by-value semantics.
