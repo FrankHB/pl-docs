@@ -235,7 +235,28 @@ Some other features are considered harmful because of introducing the unwanted a
 
 *Phases of translation* and *stages of execution* are concerned with language implementations, most defined in specification with styles of program transformation). They are not desired to be fixed in the specification in the very general sence.
 
-Such rules distingish static and dynamic properties of program execution. This is not always desired, as it more or less prevents mixed static-dynamic features like [gradual typing](https://en.wikipedia.org/wiki/Gradual_typing) and advanced general implementation architecture like [supercompilation](https://en.wikipedia.org/wiki/Metacompilation).
+Such rules distingish different kind (most time, so-called "static" and "dynamic") of properties of program execution. This is not always desired, as it more or less prevents mixed static-dynamic features like [gradual typing](https://en.wikipedia.org/wiki/Gradual_typing) and advanced general implementation architecture like [supercompilation](https://en.wikipedia.org/wiki/Metacompilation).
+
+A multi-phased design is always more complicated to a uni-phased design for a general-purposed language, whatever set of programming techniques it targeting (or even when not for programming).
+
+Moreover, separation of phases cause confusions. Informally, there [exists people](https://webcache.googleusercontent.com/search?q=cache:A-bM1xSkqUsJ:https://plus.google.com/+FrankAtanassow/posts/HB7tkcHgBxC+&cd=1&hl=en&ct=clnk&gl=us) who relies on separation of phases to express [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns). To be specific, the related original text is quoted here:
+
+> If anything, I would like to see an even clearer distinction between these phases so that I can 1) automatically obtain or verify interesting information (like invariants) about a program without having to run (deploy) it, and 2) express interesting information (like invariants) about a program before I have to express details about what specifically it computes. In other words, I want to be able to read and write blueprints before I start building something (separation of concerns).
+
+Both points do not work in general, because:
+
+* 1) "To run" means *a priori* separation, as an explicit emphasized form of "runtime" phase in the lifetime the product.
+	* Although this is not in the phases of *translation* in strictly sense, it is still largely redundant for similar reasons proposed here.
+	* It is possible to eliminate this separated "run" phase by some real-time analysis which "runs" simultanously *before deployment*. This *unified* approach should provide same (if not more) benefits for automatic verfication.
+	* The situation of separation vs. unified phases here is a bit like [AOT](https://en.wikipedia.org/wiki/Ahead-of-time_compilation) vs. [JIT](https://en.wikipedia.org/wiki/Just-in-time_compilation) compliation. Both cases require some trading off to determine how much dynamic properties to be resolved later. However, while JIT does have some obvious weakness about the cost and quality of the result, it is not yet clearly known how unified approach is more deficient in practice.
+* 2) Separation of concerns has essentially nothing to do with separation of phases in nature.
+	* Separation of concerns is a principle towards better interface design *all around*, rather than something buried in subtle language-specific details to implement the principle. The required "distinction" approach will either leak abstraction based on assumptions not always available in the interface design, or make it simply not feasible and implementable.
+	* The original text is in a response to criticize the Kernel language, so it actually not only requires the *distinction* literally, but also requires it being more aggressively *built-in* in the language. Even distinction between different phases can convey the idea well enough, *separation* them with *globally* ordered subset of rules in the language is overspecified. In contrast, avoiding assumptions on phases *ruled explicitly by the language* still does not prevent *users* to introduce required distinctions *locally*.
+	* Arbitrary distinction of phases is directly broken when a solution needs to express similar things across different phases, so any predefined phases will undermine the separation and/or code bloat (as similar code duplicated across phases).
+
+Besides, bisection of static and dynamic phases are never gurananteed enough. For generative programming, particluarly with multiple explicit stages, there is no absolute "static" or "dynamic" phases in exact one place of the pipeline. So there can be more confusion. Ironically, [the one who wants seperation of phases also declines the necessity of "dynamic" in a funny way](http://lambda-the-ultimate.org/node/1562#comment-18623). Such hostile attitude still cannot defeat the fact that something (e.g. user input) will not obey any "static" dicisplines in some general problem domains, though.
+
+On the other hand, to make the language "static" does have effect on the specialization, but it does not stop users to *use* it dynamically to eliminate the static restrictions. As said above, avoiding repeating same things across phases can be the motive of users in such cases (if they still stay with the language). Ultimately, all dynamic phases can be equal to no phases at all, or at least phases provided by users in DSLs. There is even no magic to prevent users doing so, before rendering the host language poor of features and largely useless.
 
 ### Examples
 
