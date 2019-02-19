@@ -352,7 +352,7 @@ D [assumes flat memory spaces with specified machine width](https://dlang.org/ov
 
 ### Counterexamples
 
-Both ISO C and ISO C++ lack of specified ABI specification within the language rules. Only limited *linkage* support is mandated by C++. However, users may believe the false illusion that "C has defined ABI" and "C++ does not". This is perhaps caused by various reasons.
+Both ISO C and ISO C++ lack specified ABI specification within the language rules. Only limited *linkage* support is mandated by C++. However, users may believe the false illusion that "C has defined ABI" and "C++ does not". This is perhaps caused by various reasons.
 
 * Implementations of C are often treated as the *de-facto standard*.
 	* Historically, C was targetting ISA-level "native" platforms. This is still true in most modern implementations.
