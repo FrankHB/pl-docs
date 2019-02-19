@@ -237,9 +237,17 @@ Some other features are considered harmful because of introducing the unwanted a
 
 Such rules distingish static and dynamic properties of program execution. This is not always desired, as it more or less prevents mixed static-dynamic features like [gradual typing](https://en.wikipedia.org/wiki/Gradual_typing) and advanced general implementation architecture like [supercompilation](https://en.wikipedia.org/wiki/Metacompilation).
 
+### Examples
+
 Both ISO C and ISO C++ specify phases of translation.
 
 [Racket](https://racket-lang.org) has [compile and run-time phases](https://docs.racket-lang.org/guide/stx-phases.html).
+
+[MetaOCaml](http://okmij.org/ftp/ML/MetaOCaml.html) facilitates multi-staging programming as the prominent feature, which assumes seperation handling of staged code.
+
+### Counterexamples
+
+Kernel and [PicoLisp](https://picolisp.com) do not mandate explicit phases.
 
 ## Forms of translation
 
