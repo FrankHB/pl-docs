@@ -12,6 +12,8 @@ That said, any biased points without sufficient reasoning are not intended, albe
 
 Some features can be quite "large" in the sense of specification, so they are listed alone by subclauses.
 
+Approved and proposed design choices are organized as the following "Outline" clause. Main highlights (pros) of a design choice as short phrases may be listed in lists, following the subclause title or the introduction paragraph.
+
 For the purpose of feasibility, concrete languages may be illustrated. They are also used as proof-of-concept resources about technical difficulties and reasonability of the design, which would not be exaustive here.
 
 The features are about the design of languages which. Nothing beyond specifications are assumed here except illustrations to prove implementation feasibility.
@@ -32,7 +34,7 @@ Users can rely on documentation other than specifications, but judgement of the 
 
 ## First-class falsity
 
-Allowing distinction of *undefined behavior* (different than unspecified one).
+* Allowing distinction of *undefined behavior* (but not *unspecified* one)
 
 The term "falsity" means the ability to allow [logical false](https://en.wikipedia.org/wiki/False_%28logic%29) (often expressed as symbol ¡Í)  formally occurs in [well-formed formulae](https://en.wikipedia.org/wiki/Well-formed_formula) in the model of the language, representing the cases can be assumed never happening. Any programs reduce to ¡Í in the model has unpredicatable (or at least, non-portable) behavior due to missing guarantees of any predicatable behavior by design. Such design provides a model-level axiom to reduce program semantics in an easier way because it (again by design) does not require any uninterested information logically as the premise to be expressed elsewhere, and it provides larger equivalent classes on program behavior compared to those provided by unspecified behavior. Thus it effectively makes some eqational reasoning easier, which may be benifical for [program transformation](https://en.wikipedia.org/wiki/Program_transformation) (notably, some [program optimization](https://en.wikipedia.org/wiki/Program_optimization)).
 
@@ -56,7 +58,8 @@ This reqiures embodies a philosophy requirment deeply: do abstract and express, 
 
 ## Calculi based
 
-No need of extra semantic model. The basic semantic rules are provable in a manner without ambiguity.
+* No need of extra semantic model
+* Provable of basic semantic rules in a manner without ambiguity
 
 This falls in the sort of the so-called [formalism](https://en.wikipedia.org/wiki/Formalism) flavor. Most industrial languages do not meet this point.
 
@@ -91,7 +94,12 @@ On the contrast, more low-level systems like [combinatory logic](https://en.wiki
 
 A notable example NOT in the category is [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck), whose "parent" model is [P''](https://en.wikipedia.org/wiki/P¡ä¡ä). Another is [the Unlambda programming language](http://www.madore.org/~david/programs/unlambda/), which implements a dialect of combinatory logic. Different to name-based calculi, the tokens or characters in such languages does not represent *names*. Thus, variable bindings cannot be introduced directly. As a result (and the example of the major difficulty to use them in practice), to figure out how to encode program logic as native mappings (in implicit style, like "functions" in Unlambda) usually requires users first to know the counterpart of the devices of the abstraction in explicit style, like [in lambda abstractions](http://www.madore.org/~david/programs/unlambda/#howto).
 
-The (untyped) [lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculus) is the typical baseline model for its historical significance. It allows anonymous procedures. No special declaration grammar needed. Allowing implementing reflection features quite easily (but not needed in essential, see below.)
+The (untyped) [lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculus) is the typical baseline model for its historical significance.
+
+* Allowing anonymous procedures
+* No special declaration grammar needed
+* Allowing implementing reflection features quite easily
+	* Not needed in essential, see below
 
 Strictly speaking, the lambda calculus has binding construct (the lambda notation) in its built-in syntax. However, this can be easily replaced by an identifier when the derivation support names. This is the traditional way in [Lisp](https://en.wikipedia.org/wiki/Lisp) dialects.
 
@@ -99,15 +107,16 @@ See subclauses below for other details.
 
 #### Impure lambda calculi based
 
-Allowing side effects, namely, "impure".
-
-No need to compile manually to get the states transformed.
+* Allowing side effects, namely, "impure"
+* Allowing native (mutable) states natively
+	* No need to "compile" manually to get the states transformed
 
 The formal model of impure variant of lambda calculi are relatively recent compared to the practical languages with the feature. See [[Plo75]](http://homepages.inf.ed.ac.uk/gdp/publications/cbn_cbv_lambda.pdf) and [[Fe91]](https://www2.ccs.neu.edu/racket/pubs/scp91-felleisen.ps.gz).
 
 ##### Lexical scoped impure lambda calculi based
 
-Allowing scope-based encapsulation. Only require one kind of scope.
+* Allowing scope-based encapsulation
+* Only requiring one kind of scope
 
 [ALGOL-like](https://en.wikipedia.org/wiki/ALGOL) languages, albeit usually without formal specifications, do NOT following in the category because they specified the block scopes as a special built-in language feature. Block scopes (i.e. local scope in modern variants like ISO C and ISO C++) enables information hiding from outer regions of code and avoids name pollution from outer (enclosing) regions. However, the feature itself does not need to be special. The rules of special scoping rules work because of [lexicial scope](https://en.wikipedia.org/wiki/Scope_%28computer_science%29#Lexical_scope_vs._dynamic_scope), rather than special properties in specific regions of code. With the lexical scoping core rules, block scopes can be implemented in primitives. Actually this is what the Scheme language's `let` family does (see also [this Wikipedia page](https://en.wikipedia.org/wiki/ALGOL#History)). More complicated scoping rules can be simluated similarly once the core rules expose sufficient expressiveness. Keeping different scoping rules out of the core language makes the design simple and succinct.
 
@@ -115,10 +124,11 @@ Allowing scope-based encapsulation. Only require one kind of scope.
 
 See [the vau calculi](https://web.wpi.edu/Pubs/ETD/Available/etd-090110-124904/unrestricted/jshutt.pdf) for the base theory.
 
-* No need to specify phash in the language specailization.
-* Reflection and macros are now redundant in the design.
-* Allowing writing compilers directly based on an existed interpreter.
-* Ensuring most features have no effect on core language features, thus they can be implemented by libraries provided by users.
+* No need to specify phash in the language specailization
+* Reflection and macros now redundant in the design
+* Allowing writing compilers directly based on an existed interpreter
+* Ensuring most features have no effect on core language features
+	* Allowing them to be implemented by libraries provided by users
 
 [The Kernel programming language](https://web.cs.wpi.edu/~jshutt/kernel.html) is designed following this model.
 
@@ -126,13 +136,13 @@ See also [fexpr](https://en.wikipedia.org/wiki/Fexpr) for historical insights an
 
 ## First-class entities
 
-Ensuring basic consistency and general availability of expressive language features.
+* Ensuring basic consistency and general availability of expressive language features
 
 [The dissertation introducing the vau calculi](https://web.wpi.edu/Pubs/ETD/Available/etd-090110-124904/unrestricted/jshutt.pdf) also talks about first-class objects. An instance of such objects is considered a *first-class entity* (or shorten as *entity* ) here, as it does not enforce its identity (see below). In particular, the *smooth conjecture* (in the section 1.1.2 of the dissertation) is interested in the design required for a general-purposed language, because a language can only become general-purposed by providing sufficient ability of adaption in different problem domains with effective and suited ways of abstraction, and the latter is mainly embodied by using of first-class entites as one of the fundamental methods.
 
 ### First-class objects
 
-Allowing distinction of object identities.
+* Allowing distinction of object identities
 
 An *object* is an entity which preserve its identity. Unless otherwise specified, any two objects can be differentiated by the identity. This definition has more restriction of identity compared to the one in the dissertation introducing the vau calculi (which is called as a first class entity, see above).
 
@@ -140,19 +150,23 @@ The identity is needed for [ontology](https://en.wikipedia.org/wiki/Ontology) pu
 
 ### First-class states
 
-Allowing a normative way of distinction of different side effects. Allowing customized effects, e.g. volatile.
+* Allowing a normative way of distinction of different side effects
+* Enabling possibilities to specific kinds of customized effects (e.g. ISO C style `volatile`)
 
 By specifiying identity on objects, side effects can be bound on objects with restricted amount of instances. The restriction ensure the effects on the object are not duplicated or eliminated unexpectedly.
 
 ### First-class continuations
 
-Allowing promammable control effects. No need to fixed special control syntaxes.
+* Allowing promammable control effects
+* Minimal control primitives
+	* No need to provide and stick on various special control syntaxes
 
 The refied continuation is first known as the result of [`call/cc` operator](https://en.wikipedia.org/wiki/Call-with-current-continuation) in the Scheme programming language.
 
 #### Composable first-class continuations
 
-Allowing more reasonably implementable features on continuations, as well as simplification on user programs using first-class continuations.
+* Allowing more reasonably implementable features on continuations
+* Simplification on user programs using first-class continuations
 
 Scheme's continuations [do not compose](http://okmij.org/ftp/continuations/undelimited.html#introduction). This limit its practical use. It can be resolved by introducing control delimiters. The resulted continuations are *delimited continuations*. It is also considered [superior to undelimited one [in any reasonable practical case](http://okmij.org/ftp/continuations/against-callcc.html).
 
@@ -164,7 +178,9 @@ C and C++ are lacking of first class-objects as the objects can have decayble ty
 
 ## Proper tail calls
 
-Mandatory of space complexity boundary of most language constructs. No need to abstract loops specifically. If needed, users can extend the mechanism.
+* Providing mandatory guarantee of space complexity boundary of most language constructs
+	* No need to abstract loops specifically
+* Allowing users to extend the mechanism when needed, with minimal compact to existing syntax
 
 This is an important property exposed by the language design with mandatory rules. See [[Clinger98]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.8567&rep=rep1&type=pdf) for formalization on a dialect of the Scheme language. This property is generally language-neutral and it can be adopted in new language designs.
 
@@ -172,7 +188,7 @@ Note *PTC (proper tail call)* is NOT same to *TCO (tail call optimization)*. See
 
 ### Implicit tail call notations
 
-The default style of proper tail calls.
+* The default style of proper tail calls
 
 This is what mandated in most "truely" PTC languages. Besides, some alternatives of "conditional" forms of PTC are also proposed by introducing syntactically explicit forms to designate the places of PTC needed, like [Syntactic Tail Calls proposed for ECMAScript](https://github.com/tc39/proposal-ptc-syntax/). Such approach is considered compromized, because:
 
@@ -188,13 +204,13 @@ Nevertheless, syntactic forms at the call sites are still far from correct, beca
 
 ### Evlis tail calls
 
-Known most efficient way in space being compatible to pass-by-value semantics.
+* Known most efficient way in space being compatible to pass-by-value semantics
 
 See [[Clinger98]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.8567&rep=rep1&type=pdf) and [this page](https://www.akalin.com/evlis-tail-recursion) for introduction.
 
 ### Reasonable performance hit
 
-For availability in practice.
+* For availability in practice
 
 PTC may have performance penalty. The cost is generally unavoidable when there is no "native" PTC (provided by the underlying implementation language) available, so more effort should be taken for maintainance work of the additional data structure serving to bookkeeping. Only in limited cases when it can be proved that no such work is needed, the cost can be eliminated, but (depending on the feature set of the language) the proof itself can also be costly. The performance penalty should still be reasonably insignificant at least with the configurations for end-users in practice, so the cost does not defeat the general availablity of the feature.
 
@@ -202,13 +218,18 @@ There exist misnormers that PTC or TCO will be harmful to diagnositics and/or av
 
 ## Free store'd activation records
 
-No need of [the control stack](https://en.wikipedia.org/wiki/Call_stack). No need to worry unportable bahavior on activation records exaustion. No need to expose internal data struct of activation records. Allowing nested calls are bound by single species of system resource. Allowing resource usage being configured uniformly through interface of the [free store](https://en.wikipedia.org/wiki/Memory_management#Dynamic_memory_allocation).
+* No need of [the control stack](https://en.wikipedia.org/wiki/Call_stack), which may be easily overspecified
+* No need to worry unportable bahavior on activation records exaustion
+* No need to expose internal data struct of activation records
+* Allowing nested calls are bound by single species of system resource
+* Allowing resource usage being configured uniformly through interface of the [free store](https://en.wikipedia.org/wiki/Memory_management#Dynamic_memory_allocation)
 
 This approach does not use "native" control stack provided by traditional [ISA (instruction set architecture)](https://en.wikipedia.org/wiki/Instruction_set_architecture). Losing direct support from hardware seems inefficient, but not much. Practical implementations can use such strategy as well. For example, [SML/NJ](https://www.smlnj.org/) uses heap-allocated stack frames.
 
 ## Deterministic deallocation
 
-Allowing programmable boundary of effects. Allowing reusing of effects as first-class objects.
+* Allowing programmable boundary of effects
+* Allowing reusing of effects as first-class objects
 
 This is somewhat conflict to PTC because side-effectful deallocation may break the assumptions of tail contexts, but users can still have chances to specify which one is needed when they are both supported.
 
