@@ -324,6 +324,18 @@ Although the concrete judgement of qualification is subjective, but clearly, the
 
 In this sence, it should be noted [the bottom type](https://en.wikipedia.org/wiki/Bottom_type) has special meaning on the purpose of the specification. It standards for "unpredictable (by design)" but not necessarily the "crashed" state (like [this](http://okmij.org/ftp/continuations/undelimited.html#introduction)).
 
+## Restrictive computability
+
+Properties like [totality](https://en.wikipedia.org/wiki/Total_functional_programming) shall not be mandated in the language directly, because:
+
+* It directly restricts the computability of the language (the possible computability of any well-formed programs in the language) strictly less than the [most powerful computational models](https://en.wikipedia.org/wiki/Computability#Formal_models_of_computation) whose equivalences are known implementable in reality (namely, only less powerful than [hypercomputation](https://en.wikipedia.org/wiki/Hypercomputation)).
+* There is no simple practical way to extend computability of a programming language without redesigning most parts of it.
+* Providing both sublanguages to different choices of restrictions is redundant, because a general-purposed language shall already be able to allow users derive some features implementing the idea of enforcement (e.g. totality checking) with various computational effects.
+
+Such properties may be beneficial or even vital in some problem domains like [automated theorem proving](https://en.wikipedia.org/wiki/Automated_theorem_proving) and the typechecking implementation of languages. This certainly does not cover the general cases where computation and programmability are needed. It should be possible to make some DSLs servering to such domains, with some derivation of language features to allow users enforce such properties, if needed.
+
+Note mandatory of such properties usually needs to introduce some sorts of concrete type systems. This is also disallowed by related subclauses above.
+
 ## Various control primitives
 
 Control effect shall be reified, not by providing more build-in control primitives.
