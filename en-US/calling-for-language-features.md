@@ -326,7 +326,7 @@ In this sence, it should be noted [the bottom type](https://en.wikipedia.org/wik
 
 ## Various control primitives
 
-Control effect should be reified, not by providing more build-in control primitives.
+Control effect shall be reified, not by providing more build-in control primitives.
 
 ### Sequential control
 
