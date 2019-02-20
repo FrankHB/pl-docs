@@ -1,8 +1,8 @@
 # Introduction
 
-This document lists features wanted but not found (in a satisfied flavor) in existing contemporary programming languages (with some discussions and external resources presented together). It is also used as a collection of descriptions about the reasons (and the reasoning) for a new language. Moreover, it implies the contents in a [requirement document](https://en.wikipedia.org/wiki/Product_requirements_document) of the language.
+This document lists features wanted but not found (in a satisfied flavor) in existing contemporary programming languages (with some discussions and external resources presented together). It is also used as a collection of descriptions about the reasons (and the reasoning) for a new **general-purposed** language. Moreover, it implies the contents in a [requirement document](https://en.wikipedia.org/wiki/Product_requirements_document) of the language.
 
-## Disclaimers on neutraility
+## Disclaimers on neutrality
 
 This document tries to describe objective views on the aspects being interested by arbitrary but unspecified skateholders of the language. Most significant aspects including generality and simplicity. However, the judgement of interests otherwise can be largely subjective. It may also be authored (and authorized) with some subjective concrete points (e.g. on the set of features) occasionally. Such points are not defects iff. there is sufficient reasoning specifically.
 
