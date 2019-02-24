@@ -8,6 +8,22 @@ This document tries to describe objective views on the aspects being interested 
 
 That said, any biased points without sufficient reasoning are not intended, albeit the judgement of "sufficient reasoning" is also somewhat subjective.
 
+### Judgement on the general-purposed language
+
+A significant judgement to generality and simplicity is based on the how much ability the language has to solve problems in various [problem domains](https://en.wikipedia.org/wiki/Problem_domain). When the features of the language expose enough of these properties, it is considered a general-purposed language. Otherwise, it is only enough to serve to some specific problem domains well, hence a [DSL (domain-specific language)](https://en.wikipedia.org/wiki/Domain-specific_language).
+
+By leaving any specific domains out at first, the language needed here has to be general; it is also simple to avoid any unexpected dependencies meaningful only for a few specific domains. Such approach can still serve to the resolution for different domains by *derivation* (see the Outlines clause below for details) instead of a set of various DSLs, which is not considered simple here. Again, the boundary of being general-purpose is somewhat but not wholly subjective. It should be quite restrictive because many existing language features are eventually excluded as they are considered only serving well enough to specific domains. Such justification of subjective reasoning as well as the feasibility (the point of "well enough") is covered by the extents of the disclaimer here.
+
+In particular, the *smoothness conjecture* (in the section 1.1.2 of [the dissertation introducing the vau calculi](https://web.wpi.edu/Pubs/ETD/Available/etd-090110-124904/unrestricted/jshutt.pdf)) is interested in the design in this document, because a language can only become enough general-purposed by providing sufficient ability of adaption in different problem domains with effective and suited ways of abstraction in both the language to be derived and the languages being derived.
+
+### Conservative adoption on proposed features
+
+This document tries to follow the first sentence of the INTRODUCTION chapter in [R<sup>n</sup>RS](http://community.schemewiki.org/?RnRS) specifications and takes it more seriously (despite that the rule is not strictly obeyed by versions of R<sup>n</sup>RS themselves as this document):
+
+> Programming languages should be designed not by piling feature on top of feature, but by removing the weaknesses and restrictions that make additional features appear necessary.
+
+The judgement of "necessary" however largely falls in the extents of the disclaimer here, except for the points explicitly specified in this document.
+
 ## Styles and layouts
 
 Some features can be quite "large" in the sense of specification, so they are listed alone by subclauses.
@@ -20,7 +36,7 @@ The features are about the design of languages which. Nothing beyond specificati
 
 # Outlines
 
-Only the general-purposed properties are emphasized here, as a [DSL (domain-specific language)](https://en.wikipedia.org/wiki/Domain-specific_language) can be *derived* from a properly designed general-purposed language. (A DSL may not require most of the features, though.) Some listed features are difficult to be derived, so they deserved to be *primitive*.
+For generality, only the general-purposed properties are emphasized here, as a DSL can be *derived* from a properly designed general-purposed language. (A DSL may not require most of the features, though.) Some listed features are difficult to be derived, so they deserved to be *primitive*.
 
 ## Specified
 
@@ -67,7 +83,7 @@ As a minor concern, lack of designated models may introduce controversial views 
 
 A notable exception is [Standard ML](http://sml-family.org/). A recent version of its specification is [here](http://sml-family.org/sml97-defn.pdf).
 
-A secondary kind of such category is an informal model (usually expressed in natural language) in the specification, which can be formalized later. This is considered compromised to the purpose of formal specification. Nevertheless, a few languages can have the work together in their specifications. For example, the Scheme language have more than one models in various [R<sup>n</sup>RS](http://community.schemewiki.org/?RnRS) specifications in their appendix, but they are not normative. For Scheme, there are also standalone detailed documents like [this](http://users.eecs.northwestern.edu/~robby/pubs/papers/jfp2008-mf.pdf).
+A secondary kind of such category is an informal model (usually expressed in natural language) in the specification, which can be formalized later. This is considered compromised to the purpose of formal specification. Nevertheless, a few languages can have the work together in their specifications. For example, the Scheme language have more than one models in various R<sup>n</sup>RS specifications in their appendix, but they are not normative. For Scheme, there are also standalone detailed documents like [this](http://users.eecs.northwestern.edu/~robby/pubs/papers/jfp2008-mf.pdf).
 
 Some non-specifications for existing language dialects also fall in this category, like [[Muller92]](http://www.cs.bc.edu/~muller/research/postscript/toplas92.ps) and [[Ellison12]](http://fsl.cs.illinois.edu/pubs/ellison-2012-thesis.pdf).
 
@@ -138,7 +154,9 @@ See also [fexpr](https://en.wikipedia.org/wiki/Fexpr) for historical insights an
 
 * Ensuring basic consistency and general availability of expressive language features
 
-[The dissertation introducing the vau calculi](https://web.wpi.edu/Pubs/ETD/Available/etd-090110-124904/unrestricted/jshutt.pdf) also talks about first-class objects. An instance of such objects is considered a *first-class entity* (or shorten as *entity*) here, as it does not enforce its identity (see below). In particular, the *smooth conjecture* (in the section 1.1.2 of the dissertation) is interested in the design required for a general-purposed language, because a language can only become general-purposed by providing sufficient ability of adaption in different problem domains with effective and suited ways of abstraction, and the latter is mainly embodied by using of first-class entities as one of the fundamental methods.
+The dissertation introducing the vau calculi also talks about first-class objects. An instance of such objects is considered a *first-class entity* (or shorten as *entity*) here, as it does not enforce its identity (see below).
+
+First-class entities are also important for abstraction, because abstraction is mainly embodied by using of first-class entities as one of the fundamental methods.
 
 ### First-class objects
 
