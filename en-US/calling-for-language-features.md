@@ -344,7 +344,7 @@ In this sense, it should be noted [the bottom type](https://en.wikipedia.org/wik
 
 ## Restrictive computability
 
-Properties like [totality](https://en.wikipedia.org/wiki/Total_functional_programming) shall not be mandated in the language directly, because:
+Even despite the requirement of first-class falsity, properties like [totality](https://en.wikipedia.org/wiki/Total_functional_programming) shall not be mandated in the language directly, because:
 
 * It directly restricts the computability of the language (the possible computability of any well-formed programs in the language) strictly less than the [most powerful computational models](https://en.wikipedia.org/wiki/Computability#Formal_models_of_computation) whose equivalences are known implementable in reality (namely, only less powerful than [hypercomputation](https://en.wikipedia.org/wiki/Hypercomputation)).
 * There is no simple practical way to extend computability of a programming language without redesigning most parts of it.
