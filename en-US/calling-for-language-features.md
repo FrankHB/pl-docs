@@ -576,6 +576,31 @@ For the case specific to the module systems, derivations are also allowed to be 
 
 (Rationale and examples TBD.)
 
+## Concrete arithmetic systems
+
+[Arithmetic systems](https://en.wikipedia.org/wiki/Arithmetic) provide abstraction of numbers. They are useful for plenty of problem domains, but the necessity varies. Any such system shall be replaceable in some forms in a general-purposed language. While providing the default options may be justified, they *should* not be mandated normatively in the most fundamental piece of the language (the *core language*), including:
+
+* Formal systems used to reason about the properties of a program in the language should not be mandated in the core language.
+	* System of numbers are generally not needed to make the reasoning work.
+	* System of some basic forms of arithmetic (like first-order [Peano arithmetic](https://en.wikipedia.org/wiki/Peano_axioms) and [Heyting arithmetic](https://en.wikipedia.org/wiki/Heyting_arithmetic)) renders unnecessary restrictions on the model without significant benefits.
+		* Notably, [G?del's first incompleteness theorem](https://en.wikipedia.org/wiki/G?del's_incompleteness_theorems#First_incompleteness_theorem) shows that any [consistent](https://en.wikipedia.org/wiki/Consistency) formal systems containing elementary arithmetic are incomplete.
+		* Further, [G?del's second incompleteness theorem](https://en.wikipedia.org/wiki/G?del's_incompleteness_theorems#Second_incompleteness_theorem) shows that such formal systems cannot formalize a consistency proof to themselves on the meta level.
+* The system providing arithmetic operations should not be mandated primitively in the core language.
+	* Despite the logical problems above, arithmetic systems have different difficulties on computation. No one is the choice fit to all problem domains, particularly when efficiency is taken into account.
+	* Explicit encoding based on the calculi (e.g. [Church numerals](https://en.wikipedia.org/wiki/Church_encoding) encoded in lambda calculi) are general in inefficient. The [computational complexity], both in time, space and determinism, are poor for most practical use cases. So, such encodings are never enough. Although there can be mapping between the entities in such model and external entities of numbers, it is still suspicious to be worthy for a general-purposed language.
+	* All other existing methods to implement them involve independent disciplines of internal encoding schemes (e.g. [floating-point arithmetic](https://en.wikipedia.org/wiki/Floating-point_arithmetic)).
+		* Such disciplines expose many different concrete properties not needed by the problem domains (e.g. hard-coded representable numerical boundary and precision limitations) , which needs to be worked around further.
+		* An improper model of numbers may introduce too many unnecessary dependencies difficult to correctly abstract away.
+			* Notably, fixed-width machine integers enforce [explicit range limitations due to its representation methods](https://en.wikipedia.org/wiki/Integer_%28computer_science%29#Value_and_representation). Such imprecise to the mathematical numbers forces users to make assumptions on the values being processed in the programs unless treated extremely careful, which is error-prone.
+			* Signedness of integers can [interfere typing](integer-type-reasoning.md). The choice of use may be far from idiomatic, depending on design choices of the language being used and communities of users.
+		* An improper model of numbers makes it difficult to work portably.
+			* For example, it is known that floating-point arithmetic systems may behave differently in different floating-point environments even within a single program.
+			* Fixed-with machine integers have different representations of values. Though rarely occurred, mixture of them makes problems.
+			* Dependencies on the assumption of [endianness](https://en.wikipedia.org/wiki/Endianness) is also problematic in general. Although this is essentially not specific to arithmetic systems, it is quite common in reality for representation of numbers.
+		* Extensibility (of the extents) of most machine-oriented representative models is usually poor compared to the corresponding [mathematical notion](https://en.wikipedia.org/wiki/Number#Main_classification).
+
+For arithmetic systems not in the core language, some points above are still suited. The [numerical tower](https://en.wikipedia.org/wiki/Numerical_tower) is suggested here to be the prototype for general-purposed practical use, as it avoids most shortcomings of the computational concerns.
+
 # Why not ...
 
 Here are some examples to illustrate how existing languages is not satisfying for the requirements. Each one should have one or more pros to be endorsed.
