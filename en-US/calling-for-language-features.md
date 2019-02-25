@@ -368,7 +368,7 @@ Exception handling, at least synchronous ones, can [be formed with delimited con
 
 See [here](http://lambda-the-ultimate.org/node/2966) and [this paper](https://www.cs.bham.ac.uk/~hxt/research/exn-and-cont.ps) concerned with expressiveness of exception handling and undelimited continuations.
 
-Native implementations of built-in exception handling may have ABI compatibility problems, e.g. [C++'s SjLj/Dwarf2/SEH models in MinGW](https://sourceforge.net/p/mingw-w64/wiki2/Exception Handling/).
+Native implementations of built-in exception handling may have ABI compatibility problems, e.g. [C++'s SjLj/Dwarf2/SEH models in MinGW](https://sourceforge.net/p/mingw-w64/wiki2/Exception%20Handling/).
 
 ### Examples
 
