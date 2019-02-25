@@ -375,7 +375,7 @@ Native implementations of built-in exception handling may have ABI compatibility
 ALGOL-like languages have explicit semicolons (`;`) to provide the sequential control. It can be implicit in some languages (like [ECMAScript](https://www.ecma-international.org/publications/standards/Ecma-262.htm) dialects). 
 There can be other syntactic contexts for `;` with different meanings, so different replacements are needed (e.g. the `for` statement in C uses `;` for different meanings, and `,` operator is used for sequential effects in the condition clauses). The latter design is inconsistent in nature. C++, Java, C# and more C-like languages share the same design here.
 
-Scheme's `lambda` expression has built-in sequential control implied by evaluation order among subexpressions in its body. The `begin` expression expanded from `lambda` uses this to express the exact control effect.
+Scheme's [`lambda`](https://schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_sec_4.1.4) expression has built-in sequential control implied by evaluation order among subexpressions in its body. The [`begin` expression expanded from `lambda`](view-source:https://schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-10.html#%_sec_7.3) uses this to express the exact control effect.
 
 Many languages including ALGOL-like ones have iterative statement to express [loops](https://en.wikipedia.org/wiki/Control_flow#Loops), although they can be simulated by mutable variables and `goto` (if any).
 
@@ -383,7 +383,7 @@ Synchronous exception handling is built-in in Ada, C++, Java and so on.
 
 ### Counterexamples
 
-The Kernel language does not rely on sequential control effects in its primitives. On the other hand, it has `$sequence` derived from `$vau` and various other primitives for the purpose. The `$vau` operator are then derived again based on the `$sequence` operator, giving the result has similar implicit   control effects in the body of Scheme's [`lambda`](https://schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_sec_4.1.4) expression. The derivation of `$lambda`, `$let` and similar constructs also keep the property.
+The Kernel language does not rely on sequential control effects in its primitives. On the other hand, it has `$sequence` derived from `$vau` and various other primitives for the purpose. The `$vau` operator are then derived again based on the `$sequence` operator, giving the result has similar implicit   control effects in the body of Scheme's `lambda` expression. The derivation of `$lambda`, `$let` and similar constructs also keep the property.
 
 [Haskell](https://www.haskell.org/) does not have built-in support of sequential control. On the contrary, the overall design is pure, and it is against control with specified order by default. Nevertheless, it still provides the [`do`-notation](https://en.wikibooks.org/wiki/Haskell/do_notation) [syntactic sugar](https://en.wikipedia.org/wiki/Syntactic_sugar) based on [monads](https://en.wikibooks.org/wiki/Haskell/Understanding_monads) to model sequential effects interested in side-effectful programming. [Agda](https://wiki.portal.chalmers.se/agda/pmwiki.php) has `do`-notation and [desugaring](https://agda.readthedocs.io/en/v2.5.4.1/language/syntactic-sugar.html#do-desugaring) in a similar flavor.
 
