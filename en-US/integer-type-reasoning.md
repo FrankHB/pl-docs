@@ -116,7 +116,7 @@ This is also not true. The indices can be already checked by narrow contracts in
 
 This is another topic. And in reality, it is relatively easy to resolve, e.g. with some `-Werror` flags in G++/Clang++ (though such use is not conforming by put more constraints on the code; anyway, it does not cost much to be configured away).
 
-> "INT_MAX might less than vec.size()" That is the problem of mixing convention. Both have their pro and cons. 每 Jarod42
+> "`INT_MAX` might less than `vec.size()`" That is the problem of mixing convention. Both have their pro and cons. 每 Jarod42
 
 Use `UINT_MAX` (if you think `std::numeric_limit` is too lengthy or you have to use it in the preprocessing phases) at first, then there is no this particular problem.
 
@@ -132,7 +132,7 @@ It may be good to know the roles they have played historically (and some contemp
 
 BTW, also note the initial adoption of the notion "register" in the (C) language is only significant historically for implementations. Today the keyword `register` is even ignored, and [it even may have some other meanings some day](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0577r1.pdf) (*disclaimer: no endorsement or championship is implied here*), as every C++ programmers had better know.
 
-> @Jarod42 Why do you use static_assert when you can solve your problems easily by replacing int without std::int32_t. Longer code without a meaning to write is probably a new bug as well. 每 cqwrteur
+> @Jarod42 Why do you use `static_assert` when you can solve your problems easily by replacing int without `std::int32_t`. Longer code without a meaning to write is probably a new bug as well. 每 cqwrteur
 
 Additionally, `static_assert` is also a disaster in some SFINAE contexts :)
 
