@@ -286,7 +286,7 @@
 
 　　如果说清楚地了解原因，那么应该容易地认识到， checked exception 在这里体现了冗余信息的反面教材，并不能作为体现动态类型信息的价值。不过为什么会遗漏这个考虑，是只有不清楚异常中立的作用的原因吗？
 
-　　也许还真不是。回想上面 BCP 的 talk ，可能真陷入 Types good ⇒ More types better 的怪圈里去了……即便实际上表达控制作用可以全然不关心类型。
+　　也许还真不是。回想上面 BCP 的 talk ，可能真陷入 Types good ⇒ More types better 的怪圈里去了……即便实际上表达控制作用可以全然不关心类型（比如[这个](https://dl.acm.org/citation.cfm?id=39443)）。
 
 ### 关于等价性的设计
 
