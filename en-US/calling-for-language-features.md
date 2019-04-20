@@ -162,7 +162,7 @@ First-class entities are also important for abstraction, because abstraction is 
 
 * Allowing distinction of object identities
 
-An *object* is an entity which preserve its identity. Unless otherwise specified, any two objects can be differentiated by the identity. This definition has more restriction of identity compared to the one in the dissertation introducing the vau calculi (which is called as a first-class entity, see above).
+An *object* is an entity which preserve its identity. Unless otherwise specified, any two objects can be differentiated by the identity. This definition has more restrictions of the identity compared to the one in the dissertation introducing the vau calculi (which is called as a first-class entity, see above).
 
 The identity is needed for [ontology](https://en.wikipedia.org/wiki/Ontology) purpose. Although when not built-in, it can still be expressed by derived languages from the base specification, the essence of generality makes this approach unnecessarily *indirect* in the whole design. This is the very same reason compared to the reason about keeping expressiveness of [*side effects*](https://en.wikipedia.org/wiki/Side_effect) in the base specification (rather than providing them through the derived languages), as well as the reason of allowing the programs being *stateful* (see also first-class states below): if a language is lacking of these essential features by design, it is more suited to be a target language [being transformed to](https://en.wikipedia.org/wiki/Program_transformation) (e.g. by a [compiler](https://en.wikipedia.org/wiki/Compiler) during translation of a source program, or within a [proof assistant](https://en.wikipedia.org/wiki/Proof_assistant) during verifying some properties of a source program), but not a language used by human users directly.
 
@@ -526,7 +526,7 @@ Macros without hygiene are not safe nor efficient to be used by default.
 
 The namespace separation of values is the design to distinguish a term denotes callable entities (*functions*, or *combiners* in vau-calculi parlance) from others.
 
-This perhaps first well-known by Lisp communities with [the article about *function cells* and *value cells*](http://www.nhplace.com/kent/Papers/Technical-Issues.html). It is interested because functions used as a first-class entity is concerned particularly by Lisp dialects and it involves very different looks in resulted idiomatic code. The separation is called "Lisp-2" for the purpose, and the remained dialects are instances of "Lisp-1".
+This perhaps first well-known by Lisp communities with [the article about *function cells* and *value cells*](http://www.nhplace.com/kent/Papers/Technical-Issues.html). It is interested because functions used as a significant kind of first-class entities are concerned particularly by Lisp dialects and they involve very different looks in resulted idiomatic code. The separation is called "Lisp-2" for the purpose, and the remained dialects are instances of "Lisp-1".
 
 Note the term "namespace" is not a language-supported entity here, but a mechanism in *name resolution*. The etymology is still plausible, though. See discussion about terminology below.
 
