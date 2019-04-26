@@ -1,4 +1,4 @@
-# Introduction
+Ôªø# Introduction
 
 This document lists features wanted but not found (in a satisfied flavor) in existing contemporary programming languages (with some discussions and external resources presented together). It is also used as a collection of descriptions about the reasons (and the reasoning) for a new **general-purposed** language. Moreover, it implies the contents in a [requirement document](https://en.wikipedia.org/wiki/Product_requirements_document) of the language.
 
@@ -52,7 +52,7 @@ Users can rely on documentation other than specifications, but judgement of the 
 
 * Allowing distinction of *undefined behavior* (but not *unspecified* one)
 
-The term "falsity" means the ability to allow [logical false](https://en.wikipedia.org/wiki/False_%28logic%29) (often expressed as symbol °Õ)  formally occurs in [well-formed formulae](https://en.wikipedia.org/wiki/Well-formed_formula) in the model of the language, representing the cases can be assumed never happening. Any programs reduce to °Õ in the model has unpredictable (or at least, non-portable) behavior due to missing guarantees of any predictable behavior by design. Such design provides a model-level axiom to reduce program semantics in an easier way because it (again by design) does not require any uninterested information logically as the premise to be expressed elsewhere, and it provides larger equivalent classes on program behavior compared to those provided by unspecified behavior. Thus, it effectively makes some equational reasoning easier, which may be beneficial for [program transformation](https://en.wikipedia.org/wiki/Program_transformation) (notably, some [program optimization](https://en.wikipedia.org/wiki/Program_optimization)).
+The term "falsity" means the ability to allow [logical false](https://en.wikipedia.org/wiki/False_%28logic%29) (often expressed as symbol ‚ä•)  formally occurs in [well-formed formulae](https://en.wikipedia.org/wiki/Well-formed_formula) in the model of the language, representing the cases can be assumed never happening. Any programs reduce to ‚ä• in the model has unpredictable (or at least, non-portable) behavior due to missing guarantees of any predictable behavior by design. Such design provides a model-level axiom to reduce program semantics in an easier way because it (again by design) does not require any uninterested information logically as the premise to be expressed elsewhere, and it provides larger equivalent classes on program behavior compared to those provided by unspecified behavior. Thus, it effectively makes some equational reasoning easier, which may be beneficial for [program transformation](https://en.wikipedia.org/wiki/Program_transformation) (notably, some [program optimization](https://en.wikipedia.org/wiki/Program_optimization)).
 
 This is also significant to allow *derived* languages from a base specification to adapt to new domains which require more refined constraints as the viral property, while keeping the base specification essentially (formally) simple without unnecessary overhead. By specifying the more concrete behavioral requirements complementing the undefined behavior, a derived language (sometimes called as a *dialect*) can have more strictly constrained requirements to provide more guarantees specifically to the target domain. Such methodology of drafting specifications of a *family* of languages (or dialects) would only cost a few resources compared to drafting them separately, due to its nature of reusing of rules in the base specification by default.
 
@@ -93,7 +93,7 @@ A more specific requirement is the model should be *computational*, as a general
 
 Although historically there are languages designed based on [*formal logical systems*](https://en.wikipedia.org/wiki/Formal_system#Logical_system) or targeting the use of proofs (notably, [ML](https://en.wikipedia.org/wiki/ML_%28programming_language%29), and they may have better designs (in the sense of formalism) than other ordinary languages in nature, they are not considered "really" general-purposed here, because the models are heavily tuned for specific use by *some specific type systems*. This is not acceptable because computational system does not imply type systems. Although the neutrality of the methodology used in formalism does not rule out such designs directly, relying on type systems (even in the meta language) is now allowed by other policies. See discussions related to type systems below.
 
-Calculi are refinement of [*rewrite systems*](https://en.wikipedia.org/wiki/Rewriting). They may share other properties (e.g. [*Church-Rosser properties*](https://en.wikipedia.org/wiki/Rewriting#The_Church®CRosser_property_and_confluence)) with a broader sort of models ([*deductive systems*](https://en.wikipedia.org/wiki/Formal_system#Deductive_inference)). However, they are also required to be with computational meanings. For simplification, in an object language the rewrites are modeled of *evaluations* on expressions, while in the meta language they are modeled of *reductions* on *terms*. The meta level transitions may hide some *administrative* information away from the object language when they are not the same (by evaluating corresponding object-language level *redexes* - reducible expressions).
+Calculi are refinement of [*rewrite systems*](https://en.wikipedia.org/wiki/Rewriting). They may share other properties (e.g. [*Church-Rosser properties*](https://en.wikipedia.org/wiki/Rewriting#The_Church‚ÄìRosser_property_and_confluence)) with a broader sort of models ([*deductive systems*](https://en.wikipedia.org/wiki/Formal_system#Deductive_inference)). However, they are also required to be with computational meanings. For simplification, in an object language the rewrites are modeled of *evaluations* on expressions, while in the meta language they are modeled of *reductions* on *terms*. The meta level transitions may hide some *administrative* information away from the object language when they are not the same (by evaluating corresponding object-language level *redexes* - reducible expressions).
 
 (Note the view of formalization in [the article above](http://www.atalon.cz/om/what-is-a-metaclass) dispenses the model of calculi, because it does not focus on programming but a more high-level view on OO as the foundation of OOP. This is not fit for the purpose to design a specific language, so it is not adopted here.)
 
@@ -108,7 +108,7 @@ On the contrast, more low-level systems like [combinatory logic](https://en.wiki
 * A convenient mean to express the semantic definitions of such mappings is to use lambda abstractions instead. This is even *canonical* [in the most foundational level in such a system](https://en.wikipedia.org/wiki/SKI_combinator_calculus#Recursive_parameter_passing_and_quoting).
 * During programming using such systems, users have to introduce devices of abstraction in explicit style to figure the mappings out (see examples below).
 
-A notable example NOT in the category is [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck), whose "parent" model is [P''](https://en.wikipedia.org/wiki/P°‰°‰). Another is [the Unlambda programming language](http://www.madore.org/~david/programs/unlambda/), which implements a dialect of combinatory logic. Different to name-based calculi, the tokens or characters in such languages does not represent *names*. Thus, variable bindings cannot be introduced directly. As a result (and the example of the major difficulty to use them in practice), to figure out how to encode program logic as native mappings (in implicit style, like "functions" in Unlambda) usually requires users first to know the counterpart of the devices of the abstraction in explicit style, like [in lambda abstractions](http://www.madore.org/~david/programs/unlambda/#howto).
+A notable example NOT in the category is [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck), whose "parent" model is [P''](https://en.wikipedia.org/wiki/P‚Ä≤‚Ä≤). Another is [the Unlambda programming language](http://www.madore.org/~david/programs/unlambda/), which implements a dialect of combinatory logic. Different to name-based calculi, the tokens or characters in such languages does not represent *names*. Thus, variable bindings cannot be introduced directly. As a result (and the example of the major difficulty to use them in practice), to figure out how to encode program logic as native mappings (in implicit style, like "functions" in Unlambda) usually requires users first to know the counterpart of the devices of the abstraction in explicit style, like [in lambda abstractions](http://www.madore.org/~david/programs/unlambda/#howto).
 
 The (untyped) [lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculus) is the typical baseline model for its historical significance.
 
@@ -200,7 +200,7 @@ C and C++ lack first-class objects as the objects can have decayable types like 
 	* No need to abstract loops specifically
 * Allowing users to extend the mechanism when needed, with minimal compact to existing syntax
 
-This is an important property exposed by the language design with mandatory rules. See [[Clinger98]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.8567&rep=rep1&type=pdf) for formalization on a dialect of the Scheme language. This property is generally language-neutral, and it can be adopted in new language designs.
+This is an important property exposed by the language design with mandatory rules. See [[Cl98]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.8567&rep=rep1&type=pdf) for formalization on a dialect of the Scheme language. This property is generally language-neutral, and it can be adopted in new language designs.
 
 Note *PTC (proper tail call)* is NOT same to *TCO (tail call optimization)*. See [here](https://groups.google.com/d/msg/comp.lang.lisp/AezzhxTliME/2Zsq7HUn_ssJ) for clarification.
 
@@ -224,7 +224,7 @@ Nevertheless, syntactic forms at the call sites are still far from correct, beca
 
 * Known most efficient way in space being compatible to pass-by-value semantics
 
-See [[Clinger98]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.8567&rep=rep1&type=pdf) and [this page](https://www.akalin.com/evlis-tail-recursion) for introduction.
+See [[Cl98]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.8567&rep=rep1&type=pdf) and [this page](https://www.akalin.com/evlis-tail-recursion) for introduction.
 
 ### Reasonable performance hit
 
@@ -267,13 +267,13 @@ A language lacking deterministic deallocation may require [GC (garbage collectio
 
 Mandatory of some features may be problematic in general, although they can be opt-in. They are listed in following subclauses.
 
-In general, making some features to be *derivative* (as *derivations*) in libraries (rather than being *primitives* specified by the core language rules) is beneficial for various reasons.
+In general, making some features to be *derivative* (as *derivations*) in libraries (rather than to be *primitives* specified by the core language rules) is beneficial for various reasons.
 
-* There are more than one styles of primitives for a specific but not precisely-defined functionality. Each has pros and cons up to the specific target domains. Fixed design of primitives can be easily harm to the general-purposed property of the language.
+* There are more than one styles of primitives for a specific but not precisely-defined functionality. Each has pros and cons up to the specific target domains. Fixed the design of primitives can easily undermine the general-purposed properties of the language, thus [considered harmful](https://en.wikipedia.org/wiki/Considered_harmful).
 * Fixed primitives design may rely on other language features (like complex type systems) too eagerly. The dependencies are not easy to eliminate in practice, and it is particularly annoying when different pieces of the specification clash due to the premature complexity in developing a language.
 * On the other hand, derivations in libraries can be tested with different designs for experience on different domains, leaving the freedom of choices to the users.
 * Derivations are immune to the overhead and complexity (both in the language specification and use cases of userland) when they are not used.
-* Derivations may be developed and verified separately without interfere compatibility issues among language specification updates. This enables the ability of parallelism in development of the language design.
+* Derivations may be developed and verified separately without interfering compatibility issues among language specification updates. This enables the ability of parallelism in development of the language design.
 
 So better avoid a feature being ruled as primitives; otherwise, evaluate the gain vs. cost before introducing primitives to ensure such choice is indeed preferred.
 
@@ -320,7 +320,7 @@ Kernel and [PicoLisp](https://picolisp.com) do not mandate explicit phases.
 
 ## Forms of translation
 
-Some language like [Java](https://docs.oracle.com/javase/specs/jls/se11/html/index.html) specifies the translation as compilation (even now it has a [REPL (read-eval-print loop)](https://en.wikipedia.org/wiki/Read®Ceval®Cprint_loop)-style interface named [jshell](https://openjdk.java.net/jeps/222)). This is not desired in general.
+Some language like [Java](https://docs.oracle.com/javase/specs/jls/se11/html/index.html) specifies the translation as compilation (even now it has a [REPL (read-eval-print loop)](https://en.wikipedia.org/wiki/Read‚Äìeval‚Äìprint_loop)-style interface named [jshell](https://openjdk.java.net/jeps/222)). This is not desired in general.
 
 ## Concrete type systems
 
@@ -398,7 +398,7 @@ GC also effectively encourages blur on object *ownership* and *access rights*, a
 There are other implementation concerns to avoid general-purposed GC by default.
 
 * Notably, GC often incurs memory consumption problem, that is, requiring [a lot more backing memory than the amount being needed](https://sealedabstract.com/rants/why-mobile-web-apps-are-slow/index.html).
-	* Note this is actually the instance identified by "leak" as per the definition of [[Clinger98]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.8567&rep=rep1&type=pdf), being stricter worse than deterministic release of memory in block scope variables of ALGOL-like languages.
+	* Note this is actually the instance identified by "leak" as per the definition of [[Cl98]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.8567&rep=rep1&type=pdf), being stricter worse than deterministic release of memory in block scope variables of ALGOL-like languages.
 	* This increases the risk of [page faults](https://en.wikipedia.org/wiki/Page_fault) in modern systems, which is even worse for performance.
 * Many GC incurs the [STW (stop-the-world)](https://en.wikipedia.org/wiki/Tracing_garbage_collection#Stop-the-world_vs._incremental_vs._concurrent) problem. This can seriously degenerate responsibility of applications by poor latency and causes bad user experience in cases of interactive applications.
 	* Generational or incremental GC may relieve the problem, but not totally avoid. And the complexity of GC implementation can increase a lot.
@@ -411,14 +411,14 @@ Note the discouragement of GC does not cover the following facilities.
 
 * Specific resource management schemes sharing some properties with GC, like resource pools (esp. [memory pools](https://en.wikipedia.org/wiki/Memory_pool)), are recommended as the replacement of GC for specific resource usage patterns.
 * Transformations based on analysis of resources usage include [escape analysis](https://en.wikipedia.org/wiki/Escape_analysis) and [region inference](https://en.wikipedia.org/wiki/Region-based_memory_management#Region_inference) (sometimes referred as the _static GC_).
-* Deterministic local collectors can be used to suppress leaks further than ALGOL-like block structures (see [[Clinger98]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.8567&rep=rep1&type=pdf)), including the case of implementation of TCO without GC. 
+* Deterministic local collectors can be used to suppress leaks further than ALGOL-like block structures (see [[Cl98]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.8567&rep=rep1&type=pdf)), including the case of implementation of TCO without GC. 
 
 ## [ABI](https://en.wikipedia.org/wiki/Application_binary_interface) dependency
 
 Dependency on ABI in the language level may benefit developers in various ways.
 
 * It provides simpler mental models of the implementation.
-* It often grants users the direct access underlying implementations of the language.
+* It often grants users the direct access of underlying implementations of the language.
 * It can lead to easier interoperability with underlying environment.
 
 However, it does not work in general without [leaks abstraction](https://en.wikipedia.org/wiki/Leaky_abstraction) of concrete details of underlying implementations which implies:
@@ -536,9 +536,9 @@ Separation of namespaces is better avoided for the general-purposed language des
 
 It is argued that ["Lisp-1" and "Lisp-2" are bad jargons](http://ergoemacs.org/emacs/lisp1_vs_lisp2.html). This is sometimes inappropriate.
 
-> °∞lisp-2°± should be called multi-value-namespace languages.
+> ‚Äúlisp-2‚Äù should be called multi-value-namespace languages.
 
-> °∞lisp-1°± should be called single-value-namespace languages.
+> ‚Äúlisp-1‚Äù should be called single-value-namespace languages.
 
 This is good and even better for non-Lisp languages... but lengthy. The "value" is also a source of imprecision when it is defined differently in the object languages.
 
@@ -552,11 +552,11 @@ There seem no better choices in general, see below.
 
 Despite the value judgement of the opinion, the original text is based on the misconception about various distinguishing properties of the design strategy. Because the resulted code is quite different, it should not be easily ignored by users. The example used to neglect the significance (PHP) works because it is lacking first-class functions used as either Scheme or Common Lisp's ways.
 
-> "The terms °∞Lisp-1°± and °∞Lisp-2°± were invented to expressly AVOID mentioning Common Lisp or Scheme, therefore we shouldn't use the terms such as Common Lisp model or Scheme model to describe it."
+> "The terms ‚ÄúLisp-1‚Äù and ‚ÄúLisp-2‚Äù were invented to expressly AVOID mentioning Common Lisp or Scheme, therefore we shouldn't use the terms such as Common Lisp model or Scheme model to describe it."
 
 This is technically wrong because there are Lisp derivations neither dialects of Scheme nor of Common Lisp (see the fexpr discussed above for example), but they still share properties either with Lisp-1 or Lisp-2.
 
-> Lisp does not use the term °∞namespace°± differently from other languages. The meaning is the same, only the implementation details are different.
+> Lisp does not use the term ‚Äúnamespace‚Äù differently from other languages. The meaning is the same, only the implementation details are different.
 
 This is true. However, there seems no better replacements in general, besides the Lisp-specific "cells", which is technically not even in the language specifications but left as implementation details. The variant of term "namespace" is also used out of Lisp dialects, see subclause of ISO C below. (Also note [Racket uses its namespaces to implement environments](https://docs.racket-lang.org/inside/im_env.html), which may be more proper usage of the original meaning.)
 
@@ -583,9 +583,9 @@ For the case specific to the module systems, derivations are also allowed to be 
 * Formal systems used to reason about the properties of a program in the language should not be mandated in the core language.
 	* System of numbers are generally not needed to make the reasoning work.
 	* System of some basic forms of arithmetic (like first-order [Peano arithmetic](https://en.wikipedia.org/wiki/Peano_axioms) and [Heyting arithmetic](https://en.wikipedia.org/wiki/Heyting_arithmetic)) renders unnecessary restrictions on the model without significant benefits.
-		* Notably, [G?del's first incompleteness theorem](https://en.wikipedia.org/wiki/G?del's_incompleteness_theorems#First_incompleteness_theorem) shows that any [consistent](https://en.wikipedia.org/wiki/Consistency) formal systems containing elementary arithmetic are incomplete.
-		* Further, [G?del's second incompleteness theorem](https://en.wikipedia.org/wiki/G?del's_incompleteness_theorems#Second_incompleteness_theorem) shows that such formal systems cannot formalize a consistency proof to themselves on the meta level.
-* The system providing arithmetic operations should not be mandated primitively in the core language.
+		* Notably, [G√∂del's first incompleteness theorem](https://en.wikipedia.org/wiki/G%C3%B6del's_incompleteness_theorems#First_incompleteness_theorem) shows that any [consistent](https://en.wikipedia.org/wiki/Consistency) formal systems containing elementary arithmetic are incomplete.
+		* Further, [G√∂del's second incompleteness theorem](https://en.wikipedia.org/wiki/G%C3%B6del's_incompleteness_theorems#Second_incompleteness_theorem) shows that such formal systems cannot formalize a consistency proof to themselves on the meta level.
+* The system providing arithmetic operations should not be mandated as primitives in the core language.
 	* Despite the logical problems above, arithmetic systems have different difficulties on computation. No one is the choice fit to all problem domains, particularly when efficiency is taken into account.
 	* Explicit encoding based on the calculi (e.g. [Church numerals](https://en.wikipedia.org/wiki/Church_encoding) encoded in lambda calculi) are general in inefficient. The [computational complexity], both in time, space and determinism, are poor for most practical use cases. So, such encodings are never enough. Although there can be mapping between the entities in such model and external entities of numbers, it is still suspicious to be worthy for a general-purposed language.
 	* All other existing methods to implement them involve independent disciplines of internal encoding schemes (e.g. [floating-point arithmetic](https://en.wikipedia.org/wiki/Floating-point_arithmetic)).
