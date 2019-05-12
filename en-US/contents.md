@@ -2,7 +2,7 @@
 
 Here is the list of the documents hosted in this repository
 
-## General-purposed languages Design
+## General-purposed languages design
 
 * [Calling for language features](calling-for-language-features.md) - Feature lists of a desired programming language
 
