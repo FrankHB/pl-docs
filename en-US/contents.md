@@ -14,3 +14,7 @@ Here is the list of the documents hosted in this repository
 
 * [Some comments on refining expression evaluation order of C++](evaluation-order-comments.md)
 
+## Background topics
+
+* [Licensing](licensing.md)
+
