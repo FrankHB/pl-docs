@@ -4,21 +4,41 @@ This is a memo about licensing affairs met in various works of the author.
 
 **Disclaimer from the author to readers: [INANL](https://en.wikipedia.org/wiki/IANAL). Ask your lawers before you make decisions.**
 
-# The laws
+# License and licensing
 
-Licensing is a process to specify the license on some works to ensure that the licensee will have the legal rights to interact with such licensed works when the related laws are capable to grant such rights. These laws include copyright laws, patent laws and so  on. When the lecense is missing, these laws apply and the intended users of the license may not have some of legal rights accroding to the fallback clauses in these laws. For example, with the jurisdiction in most areas in the world, users may not copy unlicensed software without a license or extra permissions by default. So, licensing should be substantial for the purpose of legitimation.
+A [license](https://en.wikipedia.org/wiki/License) is an agreement on the licensed works for specific granted permissions. It is used to transfer the rights from the owner (the licensor) to the reciever (the licensee).
 
-Licensing works with copyright and other laws which defines the involved rights. When it is unavailable, it may be also be used as a contract. This fact makes it as a generally available instrument to grant such rights.
+Licensing is a legal process to specify the license on some works to ensure that the licensee will have the legal rights to interact with such licensed works when the related laws are capable to grant such rights. The laws defining such rights include copyright laws, patent laws, and so on.
+
+## How it work
+
+Although laws may differ in various jurisdictions, many rights are protected similarly. This is implemented by widely adopted international conventions like [Berne Convention](https://en.wikipedia.org/wiki/Berne_Convention). Such laws often reserve the rights to limited owners exclusively by default.
+
+Technically, a license is intended to be enforceable as a contract. Contract laws make the license clauses be legally effective and the limitation of exclusive rights can be bypassed. This fact makes it as a generally available instrument to grant such rights.
+
+When the license is unavailable, infringement can easily occur. For example, with the jurisdiction in most areas in the world, users may not copy unlicensed software without a license or extra permissions by default. So, licensing should be substantial for the purpose of legitimation.
+
+## Licensee
+
+The licensee of a license can be specific or uncertain individuals or organizations whichever supported by the laws.
+
+Both [EULA](https://en.wikipedia.org/wiki/EULA) and public licenses should be similar legal effects.
+
+It is reported that [one of the mostly used free public license is an enforceable contract in US](https://www.theregister.co.uk/2017/05/13/gnu_gpl_enforceable_contract/).
 
 # The rights
 
-Sometimes the rights involved in licencing are collectively named as "intellectual property". However, there are [critisms](https://en.wikipedia.org/wiki/Intellectual_property#Criticisms) against the term of use. To avoid ambiguity, this article will avoid the use unless necessary.
+Widely adopted licensable targets include copyrights, patents and trademarks.
+
+Sometimes the rights involved are collectively named as "intellectual property". However, there are [critisms](https://en.wikipedia.org/wiki/Intellectual_property#Criticisms) against the term of use. To avoid ambiguity, this article will avoid the use unless necessary.
 
 ## Copyrights
 
-Copyrights are the main targets to be covered by a license.
+Copyrights are often the main targets to be covered by a license.
 
-### Copyrightable conditionals
+Historically, there are different views of emphasis on the concerned rights involved in modern copyright laws. The traditional Anglo-Saxon concept of "copyright" only deals with economic concerns, contrasting to the French "right of the author" (droit d'auteur). As one of the most important international framework of copyright laws, Berne Convention are influenced by both aspects.
+
+### Copyrightable works
 
 Not all works can be copyrightable. For example, mathematical formulae are usually not the objects and excluded from the copyright laws explicitly. In essense, the theory of programming languages and the spirit of the designs are also not copyrightable. However, documents about such designs are definitely copyrightable.
 
@@ -26,9 +46,11 @@ Not all rights are qualified to be the legal targets in the license. Licensable 
 
 ### Copyright holders
 
-Except as otherwise specified by the laws, only copyright holders can ultimately decide  which sets of the rights are included in the license.
+[Copyright holders](https://www.csusa.org/page/Definitions#copyrightholder) are owners of copyrights. Note the ownership of the copyrights are separate from the ownership of the copyrighted works, so they can be different at the same time.
 
-There are some exceptional cases qualified as the "otherwise specified" above. Under some conditions, the copyright laws may provide sections to explicitly grant a relatively narrow set of the rights without permission from the copyright holder.
+Except as otherwise specified by the laws, only copyright holders can ultimately decide which sets of the rights are included in the license.
+
+There are some exceptional cases qualified as the "otherwise specified" above. Under some conditions, the copyright laws may provide sections to explicitly grant a relatively narrow set of the rights without permission from the copyright holder, like [fair use](https://en.wikipedia.org/wiki/Fair_use).
 
 ### Derivation works
 
