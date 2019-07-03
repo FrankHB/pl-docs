@@ -1,6 +1,8 @@
 ﻿# Programing Language Documentations
 
-This is a formal repository about some programing languages and something about their theory.
+This is a repository about some programing languages and something about their theories (either formal or informal).
+
+Some documents may contain subjective viewpoints. Some of them may change due to the new discoveries on the related topics. There should be rationales to explain why the author keep these points in the meantime. Missing of the discussion around them is not intended, unless explicitly specified.
 
 ## Copyright
 
@@ -12,5 +14,5 @@ Except as otherwise specified explicitly, materials in this repository are licen
 
 ## Rules
 
-Contents in this repository shall obey the [YSLib wiki editing rules](http://bitbucket.org/FrankHB/yslib/wiki/WikiRules.en-US.md).
+Contents in this repository conforms to the [YSLib wiki editing rules](http://bitbucket.org/FrankHB/yslib/wiki/WikiRules.en-US.md).
 
