@@ -34,13 +34,31 @@ http://tieba.baidu.com/p/626323902
 
 C语言的 `(void)` 或函数定义中的 `()` 表示不接受任何参数，相当于 C++ 的 `()` ，也和 C++ 的 `(void)` 等价。
 
-C 语言的 `()` 在函数定义外表示接受任何参数，相当于 C++ 的 `(...)` 。
+C 语言的 `()` 在函数定义外表示接受任何参数，作用近似 C++ 的 `(...)` 但含义不同（在 C++ 中函数参数列表中的 `...` 对接受参数的类型仍然有限制）。
 
-但是，声明中的空参数列表（非原型声明）“ `()` ”的使用是过时用法（容易造成误会），不建议使用。
+使用 C 的 `()` 的函数声明主要特殊性在于，此种形式的声明不是原型(prototype) ，若没有其它兼容(compatible) 的原型，则缺少原型声明引入的形式参数和实际参数匹配的检查：
 
-所以在 C 语言中，声明时最好不要省略 `(void)` 中的 `void` ，要是省略就不是预期想要的函数原型了。在定义中可以使用 `()` ，如 `int main(){}` ，同 `int main(void){}` 。但若要保证声明和定义通用，只用 `(void)` 表示函数没有参数。
+**ISO C11(N1570)**
 
-而 C++ 中，不接受任何参数的参数列表写成 `(void)` 是不必要的（虽然也没错，但正式写法都没有这种无谓的罗嗦）。
+> **6.5.2.2**/2 If the expression that denotes the called function has a type that includes a prototype, the number of arguments shall agree with the  number of parameters. Each argument shall have a type such that its value may be assigned to an object with the unqualified version of the type of its corresponding parameter.
+
+注意以上检查是属于 **Constraints** 节标题后。这意味着实现在检查失败时给出诊断消息（如警告）：
+
+**ISO C11(N1570)**
+
+> **5.1.1.3**/1 A conforming implementation shall produce at least one diagnostic message (identified in an implementation-defined manner) if a preprocessing translation unit or translation unit contains a violation of any syntax rule or constraint, even if the behavior is also explicitly specified  as  undefined  or  implementation-defined. Diagnostic messages need not be produced in other circumstances.
+
+但是，空参数列表（不是原型中的明确指定参数类型的 `(void)` ）“ `()` ”的使用是过时用法：
+
+**ISO C11(N1570)**
+
+> **6.11.6**/1 The use of function declarators with empty parentheses (not prototype-format parameter type declarators) is an obsolescent feature.
+
+考虑到过时用法容易造成误会，也没有原型声明引入的检查，建议避免使用。
+
+所以在 C 语言中，声明时避免不要省略 `(void)` 中的 `void` ，要是省略就不是预期想要的函数原型了。在定义中可以使用 `()` ，如 `int main(){}` ，同 `int main(void){}` ，但在没有另外的声明中给出原型的情形下仍不建议（尽管把 `()` 看作 `(void)` 在实现上毫无压力，有的实现如 GCC 的确如标准允许地完全无视实际参数不匹配的情形）。若要保证声明和定义通用且/或完全避免过时用法，则应只用 `(void)` 表示函数没有参数。
+
+而 C++ 中，并不存在 C 允许省略原型而不检查函数调用时参数匹配的（过时）特性，不接受任何参数的参数列表写成 `(void)` 是不必要的（虽然也没错，但习惯上的正式写法都没有这种无谓的罗嗦）。
 
 </br>
 相关依据：
@@ -330,5 +348,5 @@ ISO C99 起，及 ISO C++98 起，全局 `main` 若没有 `return` ，相当于�
 
 > The int returned by main() is a way for a program to return a value to "the system" that invokes it. On systems that doesn't provide such a facility the return value is ignored, but that doesn't make "void main()" legal C++ or legal C. Even if your compiler accepts "void main()" avoid it, or risk being considered ignorant by C and C++ programmers.
 
-则明确存在一些允许 `void main` 的实现。使用这类实现的 `void main` 的程序是不可移植的，一定不是符合 ISO C 意义下的严格一致(strict conforming) 的程序，但并不像 ISO C++ 被禁止而使语言实现直接违反一致性(conformance) 。上文中 never has been 也应在这个基础上理解。
+则明确存在一些允许 `void main` 的实现。使用这类实现的 `void main` 的程序是不可移植的，一定不是符合 ISO C 意义下的严格一致(strictly conforming) 的程序，但并不像 ISO C++ 被禁止而使语言实现直接违反一致性(conformance) 。上文中 never has been 也应在这个基础上理解。
 
