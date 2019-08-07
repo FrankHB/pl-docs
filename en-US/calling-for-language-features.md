@@ -4,15 +4,19 @@ This document lists features wanted but not found (in a satisfied flavor) in exi
 
 ## Disclaimers on neutrality
 
-This document tries to describe objective views on the aspects being interested by arbitrary but unspecified stakeholders of the language. Most significant aspects including generality and simplicity. However, the judgement of interests otherwise can be largely subjective. It may also be authored (and authorized) with some subjective concrete points (e.g. on the set of features) occasionally. Such points are not defects iff. there is sufficient reasoning specifically.
+This document tries to describe objective views on the aspects being interested by arbitrary but unspecified stakeholders of the language. Most significant aspects including generality and simplicity. However, the judgment of interests otherwise can be largely subjective. It may also be authored (and authorized) with some subjective concrete points (e.g. on the set of features) occasionally. Such points are not defects iff. there is sufficient reasoning specifically.
 
-That said, any biased points without sufficient reasoning are not intended, albeit the judgement of "sufficient reasoning" is also somewhat subjective.
+That said, any biased points without sufficient reasoning are not intended, albeit the judgment of "sufficient reasoning" is also somewhat subjective.
 
-### Judgement on the general-purposed language
+### Judgment on the general-purposed language
 
-A significant judgement to generality and simplicity is based on the how much ability the language has to solve problems in various [problem domains](https://en.wikipedia.org/wiki/Problem_domain). When the features of the language expose enough of these properties, it is considered a general-purposed language. Otherwise, it is only enough to serve to some specific problem domains well, hence a [DSL (domain-specific language)](https://en.wikipedia.org/wiki/Domain-specific_language).
+A general-purposed language implying the generality and explicitly unspecified [problem domains](https://en.wikipedia.org/wiki/Problem_domain) (in some degrees) in the language design. Since the document is not only about some *general-purpose* products *by design*, but also *ensuring* the outcome being actually general-purpose for certain user-defined criteria. Thus, the past participle form "general-purposed" is used instead of the normal compound adjective "general-purpose". Simplicity is also respected similarly, particularly by the emphasis on the (relatively) low cost of adaption among different domains.
 
-By leaving any specific domains out at first, the language needed here has to be general; it is also simple to avoid any unexpected dependencies meaningful only for a few specific domains. Such approach can still serve to the resolution for different domains by *derivation* (see the Outlines clause below for details) instead of a set of various DSLs, which is not considered simple here. Again, the boundary of being general-purpose is somewhat but not wholly subjective. It should be quite restrictive because many existing language features are eventually excluded as they are considered only serving well enough to specific domains. Such justification of subjective reasoning as well as the feasibility (the point of "well enough") is covered by the extents of the disclaimer here.
+A significant judgment to generality and simplicity is based on the how many abilities the language has to solve problems in various problem domains. When the design of the language exposes enough features having these properties to meet users' requirements in general, it is considered a general-purposed language. Otherwise, it is only enough to serve to some specific problem domains well, hence a [DSL (domain-specific language)](https://en.wikipedia.org/wiki/Domain-specific_language).
+
+Although how much about "enough" is somewhat subjective, there are still feasible ways by comparing the design with contemporarily well-known and/or historically significant language features. So, this is not a big problem in practice. How to make the (yet unknown) sets of users' requirements work is more difficult. There is still at least one methodology available: avoid specific assumptions from any concrete domains until users request them.
+
+By leaving any specific domains out at first, the language needed here has to be general automatically; it is also simple to avoid any unexpected dependencies meaningful only for a few specific domains. Such approach can still serve to the resolution for different domains by *derivation* (see the Outlines clause below for details) instead of a set of various DSLs, which is not considered simple here. Again, the boundary of being general-purpose is somewhat but not wholly subjective. It should be quite restrictive because many existing language features are eventually excluded as they are considered only serving well enough to specific domains. Such justification of subjective reasoning as well as the feasibility (the point of "well enough") is covered by the extents of the disclaimer here.
 
 In particular, the *smoothness conjecture* (in the section 1.1.2 of [the dissertation introducing the vau calculi](https://web.wpi.edu/Pubs/ETD/Available/etd-090110-124904/unrestricted/jshutt.pdf)) is interested in the design in this document, because a language can only become enough general-purposed by providing sufficient ability of adaption in different problem domains with effective and suited ways of abstraction in both the language to be derived and the languages being derived.
 
@@ -22,7 +26,7 @@ This document tries to follow the first sentence of the INTRODUCTION chapter in 
 
 > Programming languages should be designed not by piling feature on top of feature, but by removing the weaknesses and restrictions that make additional features appear necessary.
 
-The judgement of "necessary" however largely falls in the extents of the disclaimer here, except for the points explicitly specified in this document.
+The judgment of "necessary" however largely falls in the extents of the disclaimer here, except for the points explicitly specified in this document.
 
 ## Styles and layouts
 
@@ -46,7 +50,7 @@ Otherwise, the design is incomplete *on purpose*. This is often true for a langu
 
 An example is [the Rust programming language](https://www.rust-lang.org/en-US/). As of writing, it does not have an official specification, although it seems the specification is to be done in near future.
 
-Users can rely on documentation other than specifications, but judgement of the language design from user documentation may be improper.
+Users can rely on documentation other than specifications, but judgment of the language design from user documentation may be improper.
 
 ## First-class falsity
 
@@ -338,7 +342,7 @@ See also discussion [here](http://lambda-the-ultimate.org/node/2828).
 
 The typechecking is not allowed overall. It is users' freedom to derive the invariance kept by the type systems except the rules necessary to make the semantic model sufficiently meaningful.
 
-Although the concrete judgement of qualification is subjective, but clearly, the requirement type system shall at least allow undefined behavior in the most general cases.
+Although the concrete judgment of qualification is subjective, but clearly, the requirement type system shall at least allow undefined behavior in the most general cases.
 
 In this sense, it should be noted [the bottom type](https://en.wikipedia.org/wiki/Bottom_type) has special meaning on the purpose of the specification. It stands for "unpredictable (by design)" but not necessarily the "crashed" state (like [this](http://okmij.org/ftp/continuations/undelimited.html#introduction)).
 
@@ -550,7 +554,7 @@ There seem no better choices in general, see below.
 
 *(Editorial note: The title is kept to the original text.)*
 
-Despite the value judgement of the opinion, the original text is based on the misconception about various distinguishing properties of the design strategy. Because the resulted code is quite different, it should not be easily ignored by users. The example used to neglect the significance (PHP) works because it is lacking first-class functions used as either Scheme or Common Lisp's ways.
+Despite the value judgment of the opinion, the original text is based on the misconception about various distinguishing properties of the design strategy. Because the resulted code is quite different, it should not be easily ignored by users. The example used to neglect the significance (PHP) works because it is lacking first-class functions used as either Scheme or Common Lisp's ways.
 
 > "The terms “Lisp-1” and “Lisp-2” were invented to expressly AVOID mentioning Common Lisp or Scheme, therefore we shouldn't use the terms such as Common Lisp model or Scheme model to describe it."
 
