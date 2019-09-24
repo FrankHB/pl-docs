@@ -8,12 +8,11 @@ ANSI C89 指 ANSI X3.159-1989 ，后来被采纳为 ISO/IEC 9899:1990 ，通称 
 
 C99 或 ISO C99 指 ISO/IEC 9899:1999 ，被 ANSI 于 2000 年 5 月采纳。
 
-[C11](https://zh.wikipedia.org/zh-cn/C11) 或 ISO C11 指 ISO/IEC 9899:2011 ，是第三版正式C语言国际语言标准，也被称为 C1X 。
+[C11](https://zh.wikipedia.org/zh-cn/C11) 或 ISO C11 指 ISO/IEC 9899:2011 ，是第三版正式 C 语言国际语言标准，也被称为 C1X 。
 
-</br>
+C17 、C18 或 ISO C18 指 ISO/IEC 9899:2018 ，是第四版正式 C 语言国际语言标准。草案定稿于 2017 年，出版于 2018 年。其中 `__STDC_VERSION__` 定义为 `201711L` 。
+
 [ANSI C](https://zh.wikipedia.org/zh-cn/ANSI_C) 一般即 ANSI C89 。实际上也只有这版标准是先 ANSI 后 ISO 。
-
-</br>
 
 ## C++ 标准
 
