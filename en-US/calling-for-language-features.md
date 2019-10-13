@@ -10,9 +10,11 @@ That said, any biased points without sufficient reasoning are not intended, albe
 
 ### Judgment on the general-purposed language
 
-A general-purposed language implying the generality and explicitly unspecified [problem domains](https://en.wikipedia.org/wiki/Problem_domain) (in some degrees) in the language design. Since the document is not only about some *general-purpose* products *by design*, but also *ensuring* the outcome being actually general-purpose for certain user-defined criteria. Thus, the past participle form "general-purposed" is used instead of the normal compound adjective "general-purpose". Simplicity is also respected similarly, particularly by the emphasis on the (relatively) low cost of adaption among different domains.
+A general-purposed language implying the generality and explicitly unspecified [problem domains](https://en.wikipedia.org/wiki/Problem_domain) (in some degrees) in the language design. This document is about not only some *general-purpose* products *by design*, but also *ensuring* the outcome being actually general-purpose for certain user-defined criteria. Thus, the past participle form "general-purposed" is used instead of the normal compound adjective "general-purpose".
 
-A significant judgment to generality and simplicity is based on the how many abilities the language has to solve problems in various problem domains. When the design of the language exposes enough features having these properties to meet users' requirements in general, it is considered a general-purposed language. Otherwise, it is only enough to serve to some specific problem domains well, hence a [DSL (domain-specific language)](https://en.wikipedia.org/wiki/Domain-specific_language).
+Simplicity of the language is also respected similarly, particularly by the emphasis on the (relatively) low cost of adaption among different domains.
+
+Since generality and simplicity are not always consistent in a same language design, there are trade-offs between them. A significant judgment to resolve the inconsistency is based on the number of abilities the language has to provide in solving problems from various domains. When the design of the language exposes enough features having these properties to meet users' requirements in general, it is considered a general-purposed language. Otherwise, it is only enough to serve to some specific problem domains well, hence a [DSL (domain-specific language)](https://en.wikipedia.org/wiki/Domain-specific_language).
 
 Although how much about "enough" is somewhat subjective, there are still feasible ways by comparing the design with contemporarily well-known and/or historically significant language features. So, this is not a big problem in practice. How to make the (yet unknown) sets of users' requirements work is more difficult. There is still at least one methodology available: avoid specific assumptions from any concrete domains until users request them.
 
@@ -36,7 +38,7 @@ Approved and proposed design choices are organized as the following "Outline" cl
 
 For the purpose of feasibility, concrete languages may be illustrated. They are also used as proof-of-concept resources about technical difficulties and reasonability of the design, which would not be exhaustive here.
 
-The features are about the design of languages which. Nothing beyond specifications are assumed here except illustrations to prove implementation feasibility.
+The features are about the design of languages which can be *implementable*. This does not mean that such languages should already have actual implemenations. Nothing beyond specifications are assumed here except illustrations to prove implementation feasibility.
 
 # Outlines
 
@@ -44,7 +46,12 @@ For generality, only the general-purposed properties are emphasized here, as a D
 
 ## Specified
 
+* Providing a solid and reliable knowledge base to be referenced and derived
+* Maintaining a single authoritative resource with (hopefully) less cost to update features and to fix potential defects in the relevant designs
+
 The language shall have a *normative* specification.
+
+A normative specification can also be the base of *derived* languages to adapt to new domains with some modifications. By specifying more requirements parallel of those in the base language, a derived language (sometimes called as a *dialect*) can have more altered requirements to provide more features and guarantees specifically to the target domains. Such methodology of drafting specifications of a *family* of languages (or dialects) would only cost a few resources compared to drafting them separately, due to its nature of reusing rules in the base specification by default.
 
 Otherwise, the design is incomplete *on purpose*. This is often true for a language being evoluted.
 
@@ -56,11 +63,11 @@ Users can rely on documentation other than specifications, but judgment of the l
 
 * Allowing distinction of *undefined behavior* (but not *unspecified* one)
 
-The term "falsity" means the ability to allow [logical false](https://en.wikipedia.org/wiki/False_%28logic%29) (often expressed as symbol ⊥)  formally occurs in [well-formed formulae](https://en.wikipedia.org/wiki/Well-formed_formula) in the model of the language, representing the cases can be assumed never happening. Any programs reduce to ⊥ in the model has unpredictable (or at least, non-portable) behavior due to missing guarantees of any predictable behavior by design. Such design provides a model-level axiom to reduce program semantics in an easier way because it (again by design) does not require any uninterested information logically as the premise to be expressed elsewhere, and it provides larger equivalent classes on program behavior compared to those provided by unspecified behavior. Thus, it effectively makes some equational reasoning easier, which may be beneficial for [program transformation](https://en.wikipedia.org/wiki/Program_transformation) (notably, some [program optimization](https://en.wikipedia.org/wiki/Program_optimization)).
+The term "falsity" means the ability to allow [logical false](https://en.wikipedia.org/wiki/False_%28logic%29) (often expressed as symbol ⊥)  formally occurs in [well-formed formulae](https://en.wikipedia.org/wiki/Well-formed_formula) in the model of the language, representing the cases can be assumed never happening. Any programs reduce to ⊥ in the model has unpredictable (or at least, non-portable) behavior due to missing guarantees of any predictable behavior by design. Such design provides a model-level axiom to reduce program semantics in an easier way because it (again by design) does not require any uninterested information logically as the premise to be expressed elsewhere, and it provides larger equivalent classes on program behavior compared to those provided by unspecified behavior. Thus, it effectively makes some equational reasoning easier, which may be beneficial for the [program transformation](https://en.wikipedia.org/wiki/Program_transformation) (notably, some kinds of [program optimization](https://en.wikipedia.org/wiki/Program_optimization)).
 
-This is also significant to allow *derived* languages from a base specification to adapt to new domains which require more refined constraints as the viral property, while keeping the base specification essentially (formally) simple without unnecessary overhead. By specifying the more concrete behavioral requirements complementing the undefined behavior, a derived language (sometimes called as a *dialect*) can have more strictly constrained requirements to provide more guarantees specifically to the target domain. Such methodology of drafting specifications of a *family* of languages (or dialects) would only cost a few resources compared to drafting them separately, due to its nature of reusing of rules in the base specification by default.
+This is also significant to allow derived languages which require more refined constraints as the viral property. The specified rules in the derived languages here are the more concrete behavioral requirements complementing the undefined behaviors already defined in the base specification. Such undefined behaviors may be then defined in the derived languages, supported by the additional guarantees provided in the derived specifications via some more strictly constrained requirements.
 
-This requires embodies a philosophy requirement deeply: do abstract and express, rather than do reason instead. By burying the ease of the implementation under the requirement, it prioritize specific properties of interface at first. As the extent is indeed quite broad, some counterexamples are given to illustrate the intent:
+This embodies a philosophy requirement deeply: do abstract and express, rather than do reason instead. By burying the ease of the implementation under the requirement, it prioritize specific properties of interface at first. As the extent is indeed quite broad, some counterexamples are given to illustrate the intent:
 
 * Someone may conclude [a type represents falsity indicates the "crashed" state of the abstract machine](http://okmij.org/ftp/continuations/undelimited.html#introduction).
 	* This is not conforming because it has introduced an implicit equivalence between "crashed state" and the [negation](https://en.wikipedia.org/wiki/Negation) of predictable states (*well-behaveness*), which is an implementation detail rather than the interface property.
@@ -78,10 +85,16 @@ This requires embodies a philosophy requirement deeply: do abstract and express,
 
 ## Calculi based
 
-* No need of extra semantic model
+* No need of extra operational semantic models to be develop later
 * Provable of basic semantic rules in a manner without ambiguity
+* Lower risks of improper designs of semantic rules
+* Providing a method to ensure simplicity of certain kinds is preserved in derived designs
 
 This falls in the sort of the so-called [formalism](https://en.wikipedia.org/wiki/Formalism) flavor. Most industrial languages do not meet this point.
+
+A formalism style of specification can make it easier to find defects in some degrees, because formalized rules in a uniform syntax sometimes visually exposes the unintentionally structures more naturally than informal ones. These unusual structures may imply defects like duplications or contradictions in the semantic rules.
+
+It can also keep the specification essentially (formally) simple without certain kinds of unnecessary overhead in the derived designs, by deriving the calculus in the base specification to the derived calculi and then proving the transformations between these models preserve the property which prevents the overhead.
 
 As a minor concern, lack of designated models may introduce controversial views between existing languages and the models, which seriously undermines the value of any other candidates in practice. For example, the case about so-called [OO languages](http://www.atalon.cz/om/what-is-a-metaclass) reveals that almost all industrial OO languages are not well-formalized for years. Introducing a model specifically for the design of a language can avoid such embarrassment for that language, although there is still room of divergence on the topic of common properties among different languages.
 
@@ -512,19 +525,19 @@ Some reflective Lisp dialects (see fexprs discussed above for example) have the 
 
 ## [Macros](https://en.wikipedia.org/wiki/Macro_%28computer_science%29)
 
-Macros are general facilities to map from patterned input to output. In programming languages, they are features effective via *expansion*. As such, it is an important approach to implement macro metaprogramming.
+Macros are general facilities to map certain objects from patterned input to output. In programming languages, they are features effective via *expansion*. As such, it is an important approach to implement macro metaprogramming.
 
-Based on the reasons discussed in the metaprogramming subclauses above, macros should be not required by design because it introduce the necessity of phases of translation. If necessary indeed, they should be able to be derived by user code. See discussions below.
+Based on the reasons discussed in the metaprogramming subclauses above, macros should be not required by design because it introduces the necessity of phases of translation. If necessary indeed, they should be able to be derived by user code. See discussions below.
 
 ### [Hygienic macros](https://en.wikipedia.org/wiki/Hygienic_macro)
 
-The Scheme language first introduced hygienic macros to overcome the interfered lexical environment problem by traditional macro expansion. There are more than one macro systems, see [SRFI-46](https://srfi.schemers.org/srfi-46/srfi-46.html) and [SRFI-72](https://srfi.schemers.org/srfi-72/srfi-72.html) for example.
+The Scheme language first introduced hygienic macros to overcome the interfered lexical environment problem by the traditional (typically based on text substitution) macro expansion. There are more than one macro systems, see [SRFI-46](https://srfi.schemers.org/srfi-46/srfi-46.html) and [SRFI-72](https://srfi.schemers.org/srfi-72/srfi-72.html) for example.
 
 Scheme-style hygienic macros has problems on phases, as well as problems like special treatments on the top-level environment. (Links TBD.)
 
 Hygienic macros and other reflective features can be replaced by explicit `eval` style code of vau abstractions.
 
-Macros without hygiene are not safe nor efficient to be used by default.
+Macros without hygiene are not safe nor efficient to be used by default. It should be allowed (i.e. implementable) by derivation in the user code, though.
 
 ## Namespace separation
 
@@ -534,7 +547,11 @@ This perhaps first well-known by Lisp communities with [the article about *funct
 
 Note the term "namespace" is not a language-supported entity here, but a mechanism in *name resolution*. The etymology is still plausible, though. See discussion about terminology below.
 
-Separation of namespaces is better avoided for the general-purposed language design at least for 3 different reasons: simplification of the language rules in the specification about name resolution, simplification of interactions with first-class functions used in the code, and avoidance of confusion about duplicate name in same scope.
+Separation of namespaces is better avoided for the general-purposed language design at least for 3 different reasons:
+
+* It simplifies the language rules in the specification about name resolution.
+* It simplifies interactions with first-class functions used in the code.
+* It avoids needlessly confusion between duplicate names in same scope.
 
 ### Terminology
 
