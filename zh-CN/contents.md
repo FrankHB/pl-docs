@@ -44,6 +44,7 @@
 	* 早期论述： [[1]](http://tieba.baidu.com/f?ct=335675392&tn=baiduPostBrowser&z=3605563618&sc=64936372503#64936372503) [[2]](http://tieba.baidu.com/f?ct=335675392&tn=baiduPostBrowser&z=3605563618&sc=64963805240#64963805240) [[3]](http://tieba.baidu.com/p/3615289496?pn=2)
 * [关于 GC 的意见](about-garbage-collection.md)（另见 [幻の上帝吧主题](https://tieba.baidu.com/p/3171730339)）
 * [关于语法](about-syntax.md)
+* [关于操作系统](about-operating-systems.md)
 	
 ## 语用和科普
 
