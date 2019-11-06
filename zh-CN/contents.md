@@ -54,3 +54,7 @@
 
 * [计算与物理](computation-and-physics.md)
 
+## 观点和杂项
+
+* [《UTF-8 遍地开花宣言》批判](criticisms-on-UTF-8-everywhere-manifesto.md)
+
