@@ -14,5 +14,5 @@ Except as otherwise specified explicitly, materials in this repository are licen
 
 ## Rules
 
-Contents in this repository conforms to the [YSLib wiki editing rules](http://bitbucket.org/FrankHB/yslib/wiki/WikiRules.en-US.md).
+Contents in this repository conform to the [YSLib wiki editing rules](http://bitbucket.org/FrankHB/yslib/wiki/WikiRules.en-US.md).
 
