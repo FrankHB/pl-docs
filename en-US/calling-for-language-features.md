@@ -16,9 +16,9 @@ Simplicity of the language is also respected similarly, particularly by the emph
 
 Since generality and simplicity are not always consistent in a same language design, there are trade-offs between them. A significant judgment to resolve the inconsistency is based on the number of abilities the language has to provide in solving problems from various domains. When the design of the language exposes enough features having these properties to meet users' requirements in general, it is considered a general-purposed language. Otherwise, it is only enough to serve to some specific problem domains well, hence a [DSL (domain-specific language)](https://en.wikipedia.org/wiki/Domain-specific_language).
 
-Although how much about "enough" is somewhat subjective, there are still feasible ways by comparing the design with contemporarily well-known and/or historically significant language features. So, this is not a big problem in practice. How to make the (yet unknown) sets of users' requirements work is more difficult. There is still at least one methodology available: avoid specific assumptions from any concrete domains until users request them.
+Although how much about "enough" is somewhat subjective, there are still feasible ways by comparing the design with contemporarily well-known and/or historically significant language features. So, this is not a big problem in practice. How to make the (yet unknown) sets of users' requirements work is more difficult. There is still at least one methodology available: preventing specific assumptions from any concrete domains before users explicitly request them.
 
-By leaving any specific domains out at first, the language needed here has to be general automatically; it is also simple to avoid any unexpected dependencies meaningful only for a few specific domains. Such approach can still serve to the resolution for different domains by *derivation* (see the Outlines clause below for details) instead of a set of various DSLs, which is not considered simple here. Again, the boundary of being general-purpose is somewhat but not wholly subjective. It should be quite restrictive because many existing language features are eventually excluded as they are considered only serving well enough to specific domains. Such justification of subjective reasoning as well as the feasibility (the point of "well enough") is covered by the extents of the disclaimer here.
+By leaving any specific domains out at first, the language needed here must be general automatically by preventing any unexpected dependencies meaningful only for a few specific domains. This approach can still serve to the resolution for different domains by *derivation* (see the Outlines clause below for details) instead of designing a set of various DSLs, which is not considered simple. Again, the boundary of being general-purpose is somewhat but not wholly subjective. It should be quite restrictive because many existing language features are eventually excluded as they are considered only serving well enough to specific domains. Such justification of subjective reasoning as well as the feasibility (the point of "well enough") is covered by the extents of the disclaimer here.
 
 In particular, the *smoothness conjecture* (in the section 1.1.2 of [the dissertation introducing the vau calculi](https://web.wpi.edu/Pubs/ETD/Available/etd-090110-124904/unrestricted/jshutt.pdf)) is interested in the design in this document, because a language can only become enough general-purposed by providing sufficient ability of adaption in different problem domains with effective and suited ways of abstraction in both the language to be derived and the languages being derived.
 
@@ -79,7 +79,7 @@ This embodies a philosophy requirement deeply: do abstract and express, rather t
 	* Because nothing is otherwise required to restrict the extended meanings of "lexical" closures (used other than the simplest cases above) being well-behaved in the general sense in other directions, the contextual meaning ultimately depends on the language rules which define the term "closure". As of in general, the distinction should be still insignificant. (This approach of general terminology is also consistent to the spirit of "variables do not necessarily imply mutable states" whether the context is the so-called "functional languages" or not.)
 	* It is actually insignificant in some contemporarily designs. At least ISO C++ uses the terms [*closure object*](http://eel.is/c++draft/expr.prim.lambda#2) and [*closure type*](http://eel.is/c++draft/expr.prim.lambda#closure-1) satisfying both notions here.
 
-## Examples
+### Examples
 
 [ISO C](http://www.open-std.org/jtc1/sc22/wg14/) and [ISO C++](http://www.open-std.org/jtc1/sc22/wg21/) fall in this category. Most others (like [Java](https://docs.oracle.com/javase/specs/jls/se11/html/index.html)) are not. Some languages only have undefined behavior in contexts which need to interact with the languages having this feature, e.g. `unsafe` in [C#](https://en.wikipedia.org/wiki/C_Sharp_%28programming_language%29) (specified by [ECMA-334](https://www.ecma-international.org/publications/standards/Ecma-334.htm)).
 
@@ -561,7 +561,7 @@ It is argued that ["Lisp-1" and "Lisp-2" are bad jargons](http://ergoemacs.org/e
 
 > “lisp-1” should be called single-value-namespace languages.
 
-This is good and even better for non-Lisp languages... but lengthy. The "value" is also a source of imprecision when it is defined differently in the object languages.
+This is good and even better for non-Lisp languages, but lengthy. The "value" is also a source of imprecision when it is defined differently in the object languages.
 
 > lisp-1 lisp-2 are Opaque Jargon
 
@@ -579,21 +579,23 @@ This is technically wrong because there are Lisp derivations neither dialects of
 
 > Lisp does not use the term “namespace” differently from other languages. The meaning is the same, only the implementation details are different.
 
-This is true. However, there seems no better replacements in general, besides the Lisp-specific "cells", which is technically not even in the language specifications but left as implementation details. The variant of term "namespace" is also used out of Lisp dialects, see subclause of ISO C below. (Also note [Racket uses its namespaces to implement environments](https://docs.racket-lang.org/inside/im_env.html), which may be more proper usage of the original meaning.)
+This is true. However, there seems no better replacements in general, besides the Lisp-specific "cells", which is technically not even in the language specifications but left as implementation details. The variant of term "namespace" is also used out of Lisp dialects, see the subclause about ISO C below. (Also note [Racket uses its namespaces to implement environments](https://docs.racket-lang.org/inside/im_env.html), which may be more proper usage of the original meaning.)
 
 ### Examples
 
-ISO C has different *name spaces* (be careful, there is a space in the term) for *identifiers*. This does not cause Lisp-1 vs. Lisp-2 concerns because C does not have first-class functions. However, the complexity of rules is still existed, and the duplication of names may still likely introduce confusion if not carefully used. Declarations like `typedef struct name {...} name;` are often used to render the omission of `struct` allowed, but it is hard to tell readers whether or which is intentional by the code (depending on the attitude to [TIMTOWTDI](https://en.wikipedia.org/wiki/There's_more_than_one_way_to_do_it)), undermining the consistency of the code style.
+ISO C has different *name spaces* (be careful, there is a space in the term) for *identifiers*. This does not cause Lisp-1 vs. Lisp-2 concerns because C does not have first-class functions. However, the complexity of rules is still existed, and the duplication of names may still likely introduce confusion if not carefully used. Declarations like `typedef struct name {...} name;` are often used to render the omission of `struct` allowed, but it is hard to tell readers whether or which is intentional by the code (depending on the attitude to [TIMTOWTDI](https://en.wikipedia.org/wiki/There's_more_than_one_way_to_do_it)), undermining the consistency of codeing styles.
 
 ISO C++ merges *type-specifier* name separation by default but allowing exceptional cases via *elaborated-type-specifier* syntactic elements in a semi-compatible way to C, albeit with more complicated rules. This makes some code simpler (without need of `typedef`s) and reduces possible metaprogramming issues on type specifiers, although the complicated rules may lead to defects like [this](https://wg21.cmeerw.net/cwg/issue95). In all, the language itself is equipped with separation rules, but intentionally pretended to be a single-namespace one.
 
 ## Module systems
 
-Modula systems are useful in organizing modular code components consistently. However, they can be derived from primitive constructs as libraries.
+Module systems are useful in organizing modular code components consistently. However, they can be derived from primitive constructs as libraries.
 
 The way of derivation is considered superior than built-in primitive features for various reasons. The general reasons of primitives vs. derivations are all suited here.
 
-For the case specific to the module systems, derivations are also allowed to be used as basic building blocks of more abstracted high-level facilities for engineering purpose (e.g. [building systems](https://en.wikipedia.org/wiki/Build_automation) and [CI (continuous integration)](https://en.wikipedia.org/wiki/Continuous_integration). A single fixed design of modules without multi-level reflective derivation in mind is hardly convincingly support the ideas well in general.
+Avoiding module systems out of the language rules also prevents some confusions about the concept itself. As the result of *modularized* designs, modules can have different granularity. For example, a translation unit can be a module, as well as a function in it. Typically, modules with different granularity coexist in a program. There is no good reason to only name one of them as the language feature and reject others. (This point is also true for avoiding the name of "interface" as a language feature as it is in Java and C#.)
+
+For the case specific to the module systems, derivations are also allowed to be used as basic building blocks of more abstracted high-level facilities for engineering purpose (e.g. [building systems](https://en.wikipedia.org/wiki/Build_automation) and [CI (continuous integration)](https://en.wikipedia.org/wiki/Continuous_integration). A single fixed design of modules without multi-level reflective derivations in mind is hardly convincingly support the ideas well in general.
 
 (Rationale and examples TBD.)
 
