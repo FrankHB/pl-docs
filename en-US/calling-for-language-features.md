@@ -1,10 +1,16 @@
 ﻿# Introduction
 
-This document lists features wanted but not found (in a satisfied flavor) in existing contemporary programming languages (with some discussions and external resources presented together). It is also used as a collection of descriptions about the reasons (and the reasoning) for a new **general-purposed** language. Moreover, it implies the contents in a [requirement document](https://en.wikipedia.org/wiki/Product_requirements_document) of the language.
+This document lists wanted properties of a programming language to serve different programming environments. Most properties are provided through the *features* of a language. Some other required properties are guaranteed by deliberately lacking of specific set of features (i.e. *misfeatures*).
+
+This document shows the required properties are not found (in a satisfying flavor) coexisting in contemporary programming languages. Further, it is technically difficult to modify existing language designs to accomadate the required properties. As a result, a new language design is required. This document is therefore used as a collection of descriptions about the reasons (and the reasoning) for this new **general-purposed** language. Moreover, it implies the contents in a [requirement document](https://en.wikipedia.org/wiki/Product_requirements_document) of the language.
+
+Besides the brief requirements, some detailed discussions and external resources are presented in this document for technical interests.
+
+Not all existing programming languages are equally far away from the requirements here. Some of the languages actually have quite a lot of the desired properties, albeit still not enough. Examples of such languages are also discussed in this document.
 
 ## Disclaimers on neutrality
 
-This document tries to describe objective views on the aspects being interested by arbitrary but unspecified stakeholders of the language. Most significant aspects including generality and simplicity. However, the judgment of interests otherwise can be largely subjective. It may also be authored (and authorized) with some subjective concrete points (e.g. on the set of features) occasionally. Such points are not defects iff. there is sufficient reasoning specifically.
+This document tries to describe objective views on the aspects being interested by arbitrary but unspecified stakeholders of the language. Most significant aspects including generality and simplicity. However, the judgment of interests otherwise (including the trade-offs dealing with the conflicts between generality and simplicity) can be largely subjective. It may also be authored (and authorized) with some subjective concrete points (e.g. on the set of accepted features) occasionally. Such points are not defects iff. there is sufficient reasoning specifically.
 
 That said, any biased points without sufficient reasoning are not intended, albeit the judgment of "sufficient reasoning" is also somewhat subjective.
 
@@ -36,7 +42,7 @@ Some features can be quite "large" in the sense of specification, so they are li
 
 Approved and proposed design choices are organized as the following "Outline" clause. Main highlights (pros) of a design choice as short phrases may be listed in lists, following the subclause title or the introduction paragraph.
 
-For the purpose of feasibility, concrete languages may be illustrated. They are also used as proof-of-concept resources about technical difficulties and reasonability of the design, which would not be exhaustive here.
+For the purpose of feasibility, concrete languages may be illustrated. They are also used as proof-of-concept resources about technical difficulties and reasonability of the design, which might not be exhaustive.
 
 The features are about the design of languages which can be *implementable*. This does not mean that such languages should already have actual implemenations. Nothing beyond specifications are assumed here except illustrations to prove implementation feasibility.
 
@@ -282,19 +288,26 @@ A language lacking deterministic deallocation may require [GC (garbage collectio
 
 # Avoidance of mandatory
 
-Mandatory of some features may be problematic in general, although they can be opt-in. They are listed in following subclauses.
+Mandatory of some features may be problematic in general.
 
-In general, making some features to be *derivative* (as *derivations*) in libraries (rather than to be *primitives* specified by the core language rules) is beneficial for various reasons.
+* Some of these features are misfeatures and [considered harmful](https://en.wikipedia.org/wiki/Considered_harmful). Inclusion of them oftn has predicatable problems not worth tweaking the remaining design of the language.
+	* They may introduce unwanted assumptions and such assumptions are often unneeded restrictions. It is at least suspicious to consider them as genuine "features" for a general-purposed language.
+	* They may logically conflict with other features.
+	* They may break or undermine the guarantees provided by the remaining design.
+	* They may lead to significant difficulties on the consistency of the design, e.g. the methods to maintain the compatibility.
+* Other features may be desired without frustrations like misfeatures, but they are considered too specific.
+	* With respect to the property about being general-purposed of a language, they are the exact targets to be opt-in, rather than to be built-in.
+	* Being built-in as *primitives* specified by the core language rules may have predicatable cons, hence premature optimizations.
+		* Fixed primitives design may rely on other language features (like complex type systems) too eagerly. The dependencies are not easy to eliminate in practice, and it is particularly annoying when different pieces of the specification clash due to the premature complexity in developing a language.
+		* There are more than one styles of primitives for a specific but not precisely-defined functionality. Each has pros and cons up to the specific target domains. Fixed the design of primitives can easily undermine the general-purposed properties of the language, thus considered harmful.
+	* On the other hand, being opt-in by user programs as *derivations* (e.g. in the libraries) instead is beneficial for various practical reasons.
+		* Derivations in libraries can be tested with different designs for experience on different domains, leaving the freedom of choices to the users.
+		* Derivations are immune to the overhead and complexity (both in the language specification and use cases of userland) when they are not used.
+		* Derivations may be developed and verified separately without interfering compatibility issues among language specification updates. This enables the ability of parallelism in development of the language design.
 
-* There are more than one styles of primitives for a specific but not precisely-defined functionality. Each has pros and cons up to the specific target domains. Fixed the design of primitives can easily undermine the general-purposed properties of the language, thus [considered harmful](https://en.wikipedia.org/wiki/Considered_harmful).
-* Fixed primitives design may rely on other language features (like complex type systems) too eagerly. The dependencies are not easy to eliminate in practice, and it is particularly annoying when different pieces of the specification clash due to the premature complexity in developing a language.
-* On the other hand, derivations in libraries can be tested with different designs for experience on different domains, leaving the freedom of choices to the users.
-* Derivations are immune to the overhead and complexity (both in the language specification and use cases of userland) when they are not used.
-* Derivations may be developed and verified separately without interfering compatibility issues among language specification updates. This enables the ability of parallelism in development of the language design.
+Some features may consist of both kinds at the first look. They may or may not be decomposed into different kinds. Nevertheless, the mixture often suggests it is over-complicated to be a core language feature. In general, better avoid a feature being ruled as primitives. Otherwise, evaluate the gain vs. cost before introducing primitives to ensure such choice is indeed preferred.
 
-So better avoid a feature being ruled as primitives; otherwise, evaluate the gain vs. cost before introducing primitives to ensure such choice is indeed preferred.
-
-Some other features are considered harmful because of introducing the unwanted assumptions and such assumptions are often unneeded restrictions. It is at least suspicious to consider them as "features" for a general-purposed language.
+The features fail to fall in the category of primitives according to the method above are listed in following subclauses.
 
 ## Phases and stages
 
@@ -377,7 +390,7 @@ Control effect shall be reified, not by providing more build-in control primitiv
 
 ### Sequential control
 
-Sequential control forms, or *statements*, consist the imperative style of the control of programs. Nevertheless, it is not the fundamental one and it can be derived from primitives in existed calculi with (lambda or vau) *abstraction* constructs. The sequential semantics are essentially buried in the rules about order of applicative function calls, and there is no need to introduce a new special rule specific for this purpose.
+Sequential control forms, or *statements*, consist the imperative style of the control of programs. Nevertheless, it is not the fundamental one and it can be derived from primitives in existed calculi with (lambda or vau) *abstraction* constructs. The sequential semantics is essentially buried in the rules about order of applicative function calls (i.e. *function applications*), and there is no need to introduce a new special rule specific for this purpose.
 
 ### [Exception handling](https://en.wikipedia.org/wiki/Exception_handling)
 
@@ -626,11 +639,11 @@ For arithmetic systems not in the core language, some points above are still sui
 
 # Why not ...
 
-Here are some examples to illustrate how existing languages is not satisfying for the requirements. Each one should have one or more pros to be endorsed.
+Here are some examples to illustrate how existing languages fail to satisfy the requirements. Each one should have one or more pros to be endorsed.
 
 ## A brief list of requirements
 
-The following list are properties a needed language shall meet. Some languages superseded by them are also explicitly listed.
+The following list contains a (non-exhaustive) list of properties a language conforming to this document shall meet. Some languages excluded ("superseded") by them are also explicitly listed.
 
 * (A) The language has a specification independently to the implementations. This makes it supersedes many toy languages.
 	* (A.1) Further, the specification is normative. This makes it supersedes many "scripting languages".
