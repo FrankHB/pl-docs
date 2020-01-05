@@ -54,6 +54,7 @@ For generality, only the general-purposed properties are emphasized here, as a D
 
 * Providing a solid and reliable knowledge base to be referenced and derived
 * Maintaining a single authoritative resource with (hopefully) less cost to update features and to fix potential defects in the relevant designs
+* Giving a clear and deterministic way to evaluate the properties about implementability
 
 The language shall have a *normative* specification.
 
@@ -267,6 +268,8 @@ There exist misnomers that PTC or TCO will be harmful to diagnostics and/or avai
 
 This approach does not use "native" control stack provided by traditional [ISA (instruction set architecture)](https://en.wikipedia.org/wiki/Instruction_set_architecture). Losing direct support from hardware seems inefficient, but not much. Practical implementations can use such strategy as well. For example, [SML/NJ](https://www.smlnj.org/) uses heap-allocated stack frames.
 
+Note that this approach does not implicitly mandate a general-purpose glabal store. Whether a global store used for activation records, or the number of instances of the stores provieded by the design, are all details not concerned here. See the "avoidence of mandatory" subcluases below.
+
 ## Deterministic deallocation
 
 * Allowing programmable boundary of effects
@@ -419,6 +422,21 @@ The Kernel language does not rely on sequential control effects in its primitive
 
 Scheme does not have loops in primitive features. It encourages recursion (with mandatory proper tail recursion) instead. Kernel does the exact same.
 
+## Global store
+
+For the purpose of flexibility of a general-purposed language, a single global configuration of memory space (the global store) shall not be mandated. This effectively allows the implementations to provide no global allocation facilities when they are not supposed to be useful, e.g. for devices designed to run programs with fixed memory footprints. Note this does not prevent implementations to provide such interface for compatilibity. Implemantations can also provide opt-in global allocation which always fail.
+
+Moreover, it ensures the remaining design of the language does not relies on the global properties of allocation. This means it can be less problematic to adapt to implementation schemes with constraints about the memory locality, such as [distributing systems](https://en.wikipedia.org/wiki/Distributed_computing), because:
+
+* No global sharing is implied.
+* No global memory consistency is implied.
+
+The constraints in practice are often very coarse and there usually still need to have computing nodes sharing the resources in various concrete designs. Nevertheless, a genuine general-purposed top-level design shall principally avoid the embarassment of overly strong assumptions on the underlying computation model. Ultimately, fighting with [physical laws](https://en.wikipedia.org/wiki/Principle_of_locality) is also far from wise.
+
+### Examples
+
+ISO C has the notion reflecting the status of objects being allocated in the global free store as *allocated storage duration*, whose availablity is provided by specific standard library functions like `malloc`. ISO C allows conforming implementations without such library functions. Thus, the allocated storage duration is not mandated.
+
 ## [GC](https://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29)
 
 See discussions in the subclause about necessity of deterministic deallocation above. This directly disallows relying on [tracing GC](https://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29#Tracing).
@@ -427,15 +445,20 @@ GC also effectively encourages blur on object *ownership* and *access rights*, a
 
 There are other implementation concerns to avoid general-purposed GC by default.
 
-* Notably, GC often incurs memory consumption problem, that is, requiring [a lot more backing memory than the amount being needed](https://sealedabstract.com/rants/why-mobile-web-apps-are-slow/index.html).
-	* Note this is actually the instance identified by "leak" as per the definition of [[Cl98]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.8567&rep=rep1&type=pdf), being stricter worse than deterministic release of memory in block scope variables of ALGOL-like languages.
-	* This increases the risk of [page faults](https://en.wikipedia.org/wiki/Page_fault) in modern systems, which is even worse for performance.
+* Most typical GC implementations have allocators directly relying on a single global store.
+	* This already conflicts with the requirements of avoiding mandatory of the global store described in the related subclause.
+	* Consequently, deriving a language without GC in user programs is generally impossible. This conflicts with the requirements of general-purposed property (at least to the configurations which cannot afford the overhead of the global store).
+* Notably, GC often incurs memory consumption problem even with a robust global store. That is, requiring [a lot more backing memory than the amount being needed](https://sealedabstract.com/rants/why-mobile-web-apps-are-slow/index.html).
+	* Note this is actually a kind of "leak" as per the definition of [[Cl98]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.8567&rep=rep1&type=pdf), being stricter worse than deterministic release of memory in block scope variables of ALGOL-like languages.
+	* This increases the risks of [page faults](https://en.wikipedia.org/wiki/Page_fault) in modern systems, which is even worse for performance.
 * Many GC incurs the [STW (stop-the-world)](https://en.wikipedia.org/wiki/Tracing_garbage_collection#Stop-the-world_vs._incremental_vs._concurrent) problem. This can seriously degenerate responsibility of applications by poor latency and causes bad user experience in cases of interactive applications.
 	* Generational or incremental GC may relieve the problem, but not totally avoid. And the complexity of GC implementation can increase a lot.
 	* Most concurrent GC implementations have no better situations except that the stop time would be less. But the complexity can be even more.
 	* The [C4](https://www.azul.com/files/c4_paper_acm2.pdf) claims it can totally avoid the stop. However, it is only meaningfully available on a system equipped with huge amount of memory (say, several TBs in one instance).
-* These performance problems make it not suited for most real-time or low-latency applications. Although in theory GC is not necessarily inconsistent with these requirements, it is already quite hard to implement. With limited memory resources, this is even harder.
-* Some languages with need of "system programming" like C, C++ and Rust avoid GC by default. In particular, (general-purposed) GC violates [zero overhead](https://webstore.iec.ch/preview/info_isoiec18015{ed1.0}en.pdf) principle in C++, and similarly, [zero overhead abstraction](https://blog.rust-lang.org/2015/05/11/traits.html) in Rust.
+* These performance problems make it not suited for most real-time or low-latency applications.
+	* Although in theory GC is not necessarily inconsistent with these requirements, it is already quite hard to implement. With limited memory resources, this is even harder.
+* Some languages with need of "system programming" like C, C++ and Rust avoid GC by default.
+	* In particular, (general-purposed) GC violates [zero overhead](https://webstore.iec.ch/preview/info_isoiec18015{ed1.0}en.pdf) principle in C++, and similarly, [zero overhead abstraction](https://blog.rust-lang.org/2015/05/11/traits.html) in Rust.
 
 Note the discouragement of GC does not cover the following facilities.
 
