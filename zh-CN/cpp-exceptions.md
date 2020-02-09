@@ -2,28 +2,30 @@
 
 Created @ 2013-03-09, v4 rev 2013-03-27, markdown @ 2015-09-14.
 
-## 摘要
+This is also arranged as a dissertation @ ZJU.
+
+# 摘要
 
 　　本文对C++语言提供的异常处理机制和异常安全问题进行简要的介绍，并明确关于异常机制在应用中遇到的若干问题及其解决方法，最后讨论异常规范以及C++11对此的改动。
 
-### 关键字
+## 关键字
 
 异常处理，异常安全，RAII，异常中立，异常规范。
 
-## Abstract
+# Abstract
 
 This article briefly talked about exception handling mechanism provided by C++ and exception safety, and clarifies some problems and solution dealing with error handling. It also concerns exception specification and its evolution in C++11.
 
-### Keywords: C++, exception handling, exception safety, RAII, exception neutrality, exception specification
+**Keywords**: C++, exception handling, exception safety, RAII, exception neutrality, exception specification
 
 
-## I.绪论：问题边界
+# I.绪论：问题边界
 
 　　若无其它说明，本文讨论的异常处理特指C++的一项重要的特性。本文关注它适合的应用范围，但不讨论具体语言实现细节。
 
 　　关于异常处理的基本语法和相关语言特性的使用细节，参见参考资料和其它相关教材。
 
-## II.背景：异常和异常处理
+# II.背景：异常和异常处理
 
 　　异常在计算机系统中被认为是非正常状态的抽象。异常能够干预程序的正常控制流，它很大程度地影响程序在某种预期条件以外的表现[1]。
 
@@ -37,7 +39,7 @@ This article briefly talked about exception handling mechanism provided by C++ a
 
 　　这样，不同层次上的异常处理机制处理不同的异常。例如，在安装Windows上的PC运行（带有运行时异常支持的）标准C++程序，浮点数异常被硬件处理、影响环境的某些状态后可继续执行；整数除以零或内存访问越界由Windows包装为结构化异常并抛出；通过new操作符分配失败时默认抛出std::bad_alloc异常。被抛出的异常若不被用户显式处理，默认情况下导致程序最终非正常退出。
 
-## III.C++异常
+# III.C++异常
 
 　　可见不是所有的程序逻辑的异常都被C++处理。标准C++只处理同步异常。
 
@@ -49,7 +51,7 @@ This article briefly talked about exception handling mechanism provided by C++ a
 
 　　此外，C++可以使用异常规范(exception specification)来约束一个函数（函数模版）是否接受异常，或接受特定类型的异常，这在本文最后讨论。
 
-## IV.异常安全
+# IV.异常安全
 
 　　异常安全是指在抛出异常后保持可预期的状态。通过Abrahams异常安全保证描述异常安全性[4-6]：
 
@@ -71,7 +73,7 @@ This article briefly talked about exception handling mechanism provided by C++ a
 
 　　注意，一些关键函数，如析构函数和去配(deallocation)函数，必须是无抛出保证的操作，否则在某些条件（具体来说，抛出异常时的栈回退）下无法避免未定义行为，导致程序行为无法预测[3]。
 
-## V.异常、失败(failure)和错误(error)
+# V.异常、失败(failure)和错误(error)
 
 　　异常表示非正常，它蕴含了失败——确定在不能完成接口约定的功能且无法在程序中恢复的情形。异常不一定是失败，而失败是异常（虽然有时候为了强调非失败的异常而单独提取出来）。
 
@@ -81,7 +83,7 @@ This article briefly talked about exception handling mechanism provided by C++ a
 
 　　对于某些可恢复的异常，C++标准库提供了一些错误恢复例程，如对于默认new失败时[7]首先会调用new handler，无法恢复时才抛出异常。用std::set_new_hanlder等标准库函数来设置这样的例程[3]。
 
-## VI.错误处理的方式
+# VI.错误处理的方式
 
 　　错误处理是C++异常处理最典型的应用领域。虽然语言并不阻止没有错误的流程中使用异常，但这样可能会导致代码不易读或导致调试时过于容易中断，往往被视为滥用。
 
@@ -133,7 +135,7 @@ This article briefly talked about exception handling mechanism provided by C++ a
 
 　　造成性能问题——通常是不恰当地使用（例如把频繁出现的状况作为错误）导致的。
 
-## VII.使用异常进行错误处理的策略
+# VII.使用异常进行错误处理的策略
 
 　　这里需要解决的问题是：什么时候抛出/捕获/不抛出也不捕获（使异常隐式地向上层调用者传递，即异常中立）异常？
 
@@ -147,7 +149,7 @@ This article briefly talked about exception handling mechanism provided by C++ a
 
 　　其它情况下无需特定处理，保持异常中立。
 
-## VIII.异常规范
+# VIII.异常规范
 
 　　异常规范指定能从函数被抛出的异常类型，在函数声明（包括定义）中指定。C++11把旧有的异常规范称为动态异常规范，使用throw引导。违反动态异常规范会导致std::unexcepted的调用[3]。
 
@@ -165,7 +167,7 @@ This article briefly talked about exception handling mechanism provided by C++ a
 
 　　应该停用动态异常规范。适当使用`noexcept`异常规范，以使代码得到更多的优化机会。
 
-## IX.结论
+# IX.结论
 
 　　异常是一项C++中的重要特性。使用异常需要注意异常安全，可以通过RAII惯用法实现。
 
@@ -173,7 +175,7 @@ This article briefly talked about exception handling mechanism provided by C++ a
 
 　　异常规范是C++提供的语言特性，用于检查可以抛出的异常的类型。现在应使用noexcept异常规范而不是过时的动态异常规范。
 
-## 参考文献
+# 参考文献
 
 * [1] Exception handling [G/OL]. 2013-03-09, 2013-03-10. http://en.wikipedia.org/wiki/Exception_handling
 * [2] Double fault [G/OL]. 2012-05-02, 2013-03-10. http://en.wikipedia.org/wiki/Double_fault

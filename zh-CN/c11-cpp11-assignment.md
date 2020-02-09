@@ -4,7 +4,7 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 
 　　**警告：本文需要有入门级的语言常识和一定的语言理论基础。**
 
-## 1.关于求值(evaluation)
+# 1.关于求值(evaluation)
 
 　　C99/C++03 虽然正式地使用到这个词，但没有明确具体的外延。
 
@@ -12,17 +12,17 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 
 **ISO C11(N1570)**
 
-> #### 5.1.2.3
+> ### 5.1.2.3
 > 2 Accessing a volatile object, modifying an object, modifying a file, or calling a function that does any of those operations are all side effects,12) which are changes in the state of the execution environment. Evaluation of an expression in general includes both value computations and initiation of side effects. Value computation for an lvalue expression includes determining the identity of the designated object.
 
 **ISO C++11**
 
-> ## 1.9
+> # 1.9
 > 12 Accessing an object designated by a volatile glvalue (3.10), modifying an object, calling a library I/O function, or calling a function that does any of those operations are all side effects, which are changes in the state of the execution environment. Evaluation of an expression (or a sub-expression) in general includes both value computations (including determining the identity of an object for glvalue evaluation and fetching a value previously assigned to an object for prvalue evaluation) and initiation of side effects. When a call to a library I/O function returns or an access to a volatile object is evaluated the side effect is considered complete, even though some external actions implied by the call (such as the I/O itself) or by the volatile access may not have completed yet.
 
 　　即求值在一般意义上包括值的计算(value computations)和副作用的产生(initiation of side effects)。其中左值（C++中glvalue同之前的左值lvalue）的求值包含确定左值所指示的对象的同一性。
 
-## 2.可观察行为(observable behavior)
+# 2.可观察行为(observable behavior)
 
 　　上面有一点需要特别注意： `volatile` 对象的读取也是副作用。 `volatile` 的根本含义根本体现在对可观察行为的影响，而可观察行为则约定抽象语义和现实实现中的程序语义的联系（这事实上决定了一个符合标准的实现最多能通过修改程序语义优化到的界限）：
 
@@ -41,7 +41,7 @@ appear as soon as possible, to ensure that prompting messages actually appear pr
 
 **ISO C++11**
 
-> ## 1.9
+> # 1.9
 
 > 1 The semantic descriptions in this International Standard define a parameterized nondeterministic abstract machine. This International Standard places no requirement on the structure of conforming implementations. In particular, they need not copy or emulate the structure of the abstract machine. Rather, conforming implementations are required to emulate (only) the observable behavior of the abstract machine as explained below.5
 
@@ -57,7 +57,7 @@ appear as soon as possible, to ensure that prompting messages actually appear pr
 
 > These collectively are referred to as the observable behavior of the program. [ Note: More stringent correspondences between abstract and actual semantics may be defined by each implementation. —end note ]
 
-## 3.求值的顺序
+# 3.求值的顺序
 
 　　和 Java 、 C# 等不同，对 C 和 C++ 来说，表达式的求值顺序和字面上（从左到右）没有一致对应关系，也就是说优先级、结合性等纯粹是语法上的现象，只决定了哪些表达式是哪个操作符的操作数，不决定求值顺序的语义。
 
@@ -69,11 +69,11 @@ appear as soon as possible, to ensure that prompting messages actually appear pr
 
 **ISO C99**
 
-> #### 5.1.2.3
+> ### 5.1.2.3
 
 > 2 Accessing a volatile object, modifying an object, modifying a file, or calling a function that does any of those operations are all side effects,11) which are changes in the state of the execution environment. Evaluation of an expression may produce side effects. At certain specified points in the execution sequence called sequence points, all side effects of previous evaluations shall be complete and no side effects of subsequent evaluations shall have taken place. (A summary of the sequence points is given in annex C.)
 
-> ## 6.5
+> # 6.5
 
 > 2 Between the previous and next sequence point an object shall have its stored value modified at most once by the evaluation of an expression. Furthermore, the prior value shall be read only to determine the value to be stored.70)
 
@@ -91,7 +91,7 @@ while allowing
 
 **ISO C++03**
 
-> ## 1.9
+> # 1.9
 
 > 7 Accessing an object designated by a volatile lvalue (3.10), modifying an object, calling a library I/O function, or calling a function that does any of those operations are all side effects, which are changes in the state of the execution environment. Evaluation of an expression might produce side effects. At certain specified points in the execution sequence called sequence points, all side effects of previous evaluations shall be complete and no side effects of subsequent evaluations shall have taken place.7)
 
@@ -110,7 +110,7 @@ while allowing
 
 **ISO C11(N1570)**
 
-> #### 5.1.2.3
+> ### 5.1.2.3
 
 > 3 Sequenced before is an asymmetric, transitive, pair-wise relation between evaluations executed by a single thread, which induces a partial order among those evaluations. Given any two evaluations A and B, if A is sequenced before B, then the execution of A shall precede the execution of B. (Conversely, if A is sequenced before B, then B is sequenced after A.) If A is not sequenced before or after B, then A and B are unsequenced. Evaluations A and B are indeterminately sequenced when A is sequenced either before or after B, but it is unspecified which.13) The presence of a sequence point between the evaluation of expressions A and B implies that every value computation and side effect associated with A is sequenced before every value computation and side effect associated with B. (A summary of the sequence points is given in annex C.)
 
@@ -124,7 +124,7 @@ while allowing
 
 **ISO C11(N1570)**
 
-> ## 6.5
+> # 6.5
 
 > 1 An expression is a sequence of operators and operands that specifies computation of a value, or that designates an object or a function, or that generates side effects, or that performs a combination thereof. The value computations of the operands of an operator are sequenced before the value computation of the result of the operator.
 
@@ -170,15 +170,15 @@ f(i = -1, i = -1); // the behavior is undefined
 
 　　这里的修改最大的整体差异是对于求值中各个过程的粒度的细化。序列点的描述把值的计算和副作用之间的顺序捆绑在一起，而先序关系可以更清晰地分别描述这两类需要明确顺序的过程之间的逻辑上保持的顺序关系（至于对于整个执行环境来说的顺序，由于要考虑并发，由 *happens before* 二元关系等精确描述，这里从略）。
 
-## 4.ISO C11/ISO C++11的修正
+# 4.ISO C11/ISO C++11的修正
 
 　　接下来需要了解的就是各个具体的表达式的求值顺序，这里从略。
 
 　　重点是 ISO C11/ISO C++11 对 ISO C99/ISO C++03 做了语义上的修订，在明确求值顺序规则的依赖的基础定义（先序关系）的同时，放宽了部分条件，导致原来存在未定义行为的表达式现在可以是正确的。
 　　首先的例子是 WG21 Core Defect Report 637 ，关于上面ISO C++11最终使用的例子。
 
-> ### 637. Sequencing rules and example disagree
-> #### Section: 1.9  [intro.execution]     Status: CD1     Submitter: Ofer Porat     Date: 2 June 2007
+> ## 637. Sequencing rules and example disagree
+> ### Section: 1.9  [intro.execution]     Status: CD1     Submitter: Ofer Porat     Date: 2 June 2007
 
 > [Voted into the WP at the September, 2008 meeting.]
 
@@ -229,8 +229,8 @@ f(i = -1, i = -1); // the behavior is undefined
 
 　　这个修改的理由同样由 Core Defect Report 提出：
 
-> ### 222. Sequence points and lvalue-returning operators
-> #### Section: 5  [expr]     Status: CD1     Submitter: Andrew Koenig     Date: 20 Dec 1999
+> ## 222. Sequence points and lvalue-returning operators
+> ### Section: 5  [expr]     Status: CD1     Submitter: Andrew Koenig     Date: 20 Dec 1999
 
 > [Voted into the WP at the September, 2008 meeting.]
 
@@ -405,13 +405,13 @@ f(i = -1, i = -1); // the behavior is undefined
 
 　　最大的问题出在赋值上。
 
-## 5.赋值中的求值顺序
+# 5.赋值中的求值顺序
 
 　　对于赋值的修订的要义可以直接通过对照简单赋值的标准条款的差异看出来。复合赋值的等价展开形式和求值一次的规则并没有变化。
 
 **ISO C99**
 
-> ### 6.5.16
+> ## 6.5.16
 
 > 3 An assignment operator stores a value in the object designated by the left operand. An assignment expression has the value of the left operand after the assignment, but is not an lvalue. The type of an assignment expression is the type of the left operand unless the left operand has qualified type, in which case it is the unqualified version of the type of the left operand. The side effect of updating the stored value of the left operand shall occur between the previous and the next sequence point.
 
@@ -419,13 +419,13 @@ f(i = -1, i = -1); // the behavior is undefined
 
 **ISO C++03**
 
-> ## 5.17
+> # 5.17
 
 > 1 There are several assignment operators, all of which group right-to-left. All require a modifiable lvalue as their left operand, and the type of an assignment expression is that of its left operand. The result of the assignment operation is the value stored in the left operand after the assignment has taken place; the result is an lvalue.
 
 **ISO C11(N1570)**
 
-> ### 6.5.16
+> ## 6.5.16
 
 > 3 An assignment operator stores a value in the object designated by the left operand. An assignment expression has the value of the left operand after the assignment,111) but is not an lvalue. The type of an assignment expression is the type the left operand would have after lvalue conversion. The side effect of updating the stored value of the left operand is sequenced after the value computations of the left and right operands. The evaluations of the operands are unsequenced.
 
@@ -433,7 +433,7 @@ f(i = -1, i = -1); // the behavior is undefined
 
 **ISO C++11**
 
-> ## 5.17
+> # 5.17
 
 > 1 The assignment operator (`=`) and the compound assignment operators all group right-to-left. All require a modifiable lvalue as their left operand and return an lvalue referring to the left operand. The result in all cases is a bit-field if the left operand is a bit-field. In all cases, the assignment is sequenced after the value computation of the right and left operands, and before the value computation of the assignment expression. With respect to an indeterminately-sequenced function call, the operation of a compound assignment is a single evaluation. [ Note: Therefore, a function call shall not intervene between the lvalue-to-rvalue conversion and the side effect associated with any single compound assignment operator. —end note ]
 
@@ -443,7 +443,7 @@ f(i = -1, i = -1); // the behavior is undefined
 
 　　这个修改的可行性在于是放宽而不是加强限制，且现有的实现基本无需做出修正就可以直接符合新的标准要求。
 
-## 5. C 和 C++ 在内建赋值上的差异
+# 5. C 和 C++ 在内建赋值上的差异
 
 　　无关上面的修正，有一个根本差异都没有变化： C 的赋值表达式不是左值， C++ 的赋值表达式是左值。
 
@@ -474,8 +474,9 @@ void f()
 　　若坚持这一点，上面的代码就存在未定义行为，因为读取未初始化的对象——即便读出来的值实际并没有被用到。
 　　这看起来不太合理。 Core Defect Report 举出了类似的例子（虽然没涉及未定义行为，从中也可以看出 C 和 C++ 在这个问题上的差异）：
 
-> ### 1054. Lvalue-to-rvalue conversions in expression statements
-> #### Section: 6.2  [stmt.expr]     Status: FDIS     Submitter: Hans Boehm     Date: 2010-03-16
+> ## 1054. Lvalue-to-rvalue conversions in expression statements
+
+> ### Section: 6.2  [stmt.expr]     Status: FDIS     Submitter: Hans Boehm     Date: 2010-03-16
 
 > [Voted into the WP at the March, 2011 meeting.]
 

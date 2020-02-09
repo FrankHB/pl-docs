@@ -10,9 +10,9 @@
 
 未完成部分以 TBD(to be determined) 标记。正在修订部分以 WIP(work in progress) 标记。
 
-## 0 体例说明
+# 0 体例说明
 
-### 0.1 引用文献
+## 0.1 引用文献
 
 仅在此标注权威文献。
 
@@ -32,21 +32,21 @@
 
 不额外特别标识其它引用。
 
-### 0.2 记法
+## 0.2 记法
 
 和 ISO C 以及 ISO C++ 类似，斜体用于表示首次引入的需要读者注意的局部概念 [C++11 1.3/3] 或*语法记法(syntax notation)* [C++11 1.6] 。这些概念或语法标注在引用的参考文献或本文档内可以找到释义。
 
 粗体用于强调。
 
-### 0.3 本文的结构
+## 0.3 本文的结构
 
 一级目录基本和 ISO C++ 保持一致。
 
 考虑系统性和内容涵盖，在此以 ISO C++ 而不是 ISO C 作为范本。
 
-## 1 概论
+# 1 概论
 
-### 1.1 语法和语义
+## 1.1 语法和语义
 
 什么称为语法或语义不是 ISO C 或 ISO C++ 的内容。但是，尽管没有明确定义， ISO C和 ISO C++ 都明确地用到了这个概念。作为背景知识，在这里有必要澄清通常的含义。
 
@@ -64,27 +64,27 @@ ISO C 和 ISO C++ 使用相似的文法标记。关于体例说明，分别参�
 
 对于实用来说，这里语法和语义的区别重要性，在于**它指定了什么程序是应该正确被接受的**。
 
-### 1.2 程序正确性
+## 1.2 程序正确性
 
 ISO C++ 定义了*合式的(well-formed)* 程序以及一些其它重要的术语定义：
 
 **[WG21/N3936]**
 
-> ## 1.3 Terms and definitions
+> # 1.3 Terms and definitions
 
-> ### 1.3.10 [defns.impl.defined]
+> ## 1.3.10 [defns.impl.defined]
 
 > **implementation-defined behavior**
 
 > behavior, for a well-formed program construct and correct data, that depends on the implementation and that each implementation documents
 
-> ### 1.3.12 [defns.locale.specific]
+> ## 1.3.12 [defns.locale.specific]
 
 > **locale-specific behavior**
 
 > behavior that depends on local conventions of nationality, culture, and language that each implementation documents
 
-> ### 1.3.24 [defns.undefined]
+> ## 1.3.24 [defns.undefined]
 
 > **undefined behavior**
 
@@ -92,7 +92,7 @@ ISO C++ 定义了*合式的(well-formed)* 程序以及一些其它重要的术�
 
 > [ Note: Undefined behavior may be expected when this International Standard omits any explicit definition of behavior or when a program uses an erroneous construct or erroneous data. Permissible undefined behavior ranges from ignoring the situation completely with unpredictable results, to behaving during translation or program execution in a documented manner characteristic of the environment (with or without the issuance of a diagnostic message), to terminating a translation or execution (with the issuance of a diagnostic message). Many erroneous program constructs do not engender undefined behavior; they are required to be diagnosed. —end note ]
 
-> ### 1.3.25 [defns.unspecified]
+> ## 1.3.25 [defns.unspecified]
 
 > **unspecified behavior**
 
@@ -100,7 +100,7 @@ ISO C++ 定义了*合式的(well-formed)* 程序以及一些其它重要的术�
 
 > [ Note: The implementation is not required to document which behavior occurs. The range of possible behaviors is usually delineated by this International Standard. —end note ]
 
-> ### 1.3.26 [defns.well.formed]
+> ## 1.3.26 [defns.well.formed]
 
 > **well-formed program**
 
@@ -123,13 +123,13 @@ ISO C++ 定义了*合式的(well-formed)* 程序以及一些其它重要的术�
 
 > # 3.  Terms, definitions, and symbols
 
-> ## 3.4
+> # 3.4
 
 > 1 **behavior**
 
 > external appearance or action
 
-> ### 3.4.1
+> ## 3.4.1
 
 > 1 **implementation-defined behavior**
 
@@ -137,7 +137,7 @@ ISO C++ 定义了*合式的(well-formed)* 程序以及一些其它重要的术�
 
 > 2 EXAMPLE  An example of implementation-defined behavior is the propagation of the high-order bit when a signed integer is shifted right.
 
-> ### 3.4.2
+> ## 3.4.2
 
 > 1 **locale-specific behavior**
 
@@ -145,7 +145,7 @@ ISO C++ 定义了*合式的(well-formed)* 程序以及一些其它重要的术�
 
 > 2 EXAMPLE  An example of locale-specific behavior is whether theislowerfunction returns true for characters other than the 26 lowercase Latin letters.
 
-> ### 3.4.3
+> ## 3.4.3
 
 > 1 **undefined behavior**
 
@@ -155,7 +155,7 @@ ISO C++ 定义了*合式的(well-formed)* 程序以及一些其它重要的术�
 
 > 3 <tt>EXAMPLE</tt>  An example of undefined behavior is the behavior on integer overflow.
 
-> ### 3.4.4
+> ## 3.4.4
 
 > 1 **unspecified behavior**
 
@@ -177,21 +177,21 @@ ISO C 没有规定“合式”，而使用以下机制：
 
 > 4 The implementation shall not successfully translate a preprocessing translation unit containing a#errorpreprocessing directive unless it is part of a group skipped by conditional inclusion.
 
-### 1.3 诊断消息
+## 1.3 诊断消息
 
 最典型的诊断消息是编译错误和警告。
 
 一个实现应当正确的程序。对于错误的程序，为了避免实现复杂， ISO C 和 ISO C++ 允许实现不完全进行语义检查。这里略有差异： ISO C 把这种情况统一为未定义行为，而 ISO C++ 特地增加了 no diagnostics required 条款。因此对于 C++ ，**编译通过的程序，即便排除未定义行为，在语言规则下仍然可能是错的**。
 
-### 1.4 存储模型
+## 1.4 存储模型
 
-### 1.5 对象模型
+## 1.5 对象模型
 
-### 1.5.1 “对象”的正式定义
+## 1.5.1 “对象”的正式定义
 
 **[WG14/N1570]**
 
-> ## 3.15
+> # 3.15
 
 > 1 **object**
 
@@ -203,7 +203,7 @@ ISO C 没有规定“合式”，而使用以下机制：
 
 **[WG21/N3936]**
 
-> ## 1.8 The C++ object model [intro.object]
+> # 1.8 The C++ object model [intro.object]
 
 > 1 The constructs in a C++ program create, destroy, refer to, access, and manipulate objects. An *object* is a region of storage. [ *Note:* A function is not an object, regardless of whether or not it occupies storage in the way that objects do. *—end note* ] An object is created by a *definition* (3.1), by a *new-expression* (5.3.4) or by the implementation (12.2) when needed. The properties of an object are determined when the object is created. An object can have a *name* (Clause 3). An object has a *storage duration* (3.7) which influences its *lifetime* (3.8). An object has a *type* (3.9). The term *object type* refers to the type with which the object is created. Some objects are *polymorphic* (10.3); the implementation generates information associated with each such object that makes it possible to determine that object’s type during program execution. For other objects, the interpretation of the values found therein is determined by the type of the *expressions* (Clause 5) used to access them.
 
@@ -211,19 +211,19 @@ ISO C 没有规定“合式”，而使用以下机制：
 
 **TBD**
 
-### 1.6 程序执行
+## 1.6 程序执行
 
-### 1.7 多线程环境
+## 1.7 多线程环境
 
-## 2 词法转换
+# 2 词法转换
 
 **TBD**
 
-## 3 基本概念
+# 3 基本概念
 
 以下“基本概念”指 [C++11 Clause 3] 中讨论的内容。
 
-### 3.1 名称和实体
+## 3.1 名称和实体
 
 ISO C++ 引入 *ODR(One Definition Rule)* [C++11 Clause 3] 而特别指定了*实体(entity)* 的概念。
 
@@ -253,7 +253,7 @@ ISO C++ 引入 *ODR(One Definition Rule)* [C++11 Clause 3] 而特别指定了*�
 
 - name 一词被不经正式定义地使用。 ISO C 没有 ISO C++ 那样带记号 :: 的 *qualified-id* [C++11 5.1.1] 和 *operator-function-id* [C++11 13.5] 等语法构造，“标识符”和“名称”基本一致。
 
-### 3.2 声明和定义
+## 3.2 声明和定义
 
 首先，预处理 *阶段(phase)* 的 *宏定义(macro definition)* 不属于本章讨论的“定义”的外延。
 
@@ -261,7 +261,7 @@ ISO C++ 引入 *ODR(One Definition Rule)* [C++11 Clause 3] 而特别指定了*�
 
 **[WG21/N3936]**
 
-> ## 3.1 Declarations and definitions [basic.def]
+> # 3.1 Declarations and definitions [basic.def]
 
 > 2 A declaration is a *definition* unless it declares a function without specifying the function’s body (8.4), it contains the `extern` specifier (7.1.1) or a *linkage-specification* 25 (7.5) and neither an *initializer* nor a *function-body* , it declares a static data member in a class definition (9.2, 9.4), it is a class name declaration (9.1), it is an *opaque-enum-declaration* (7.2), it is a *template-parameter* (14.1), it is a *parameter-declaration* (8.3.5) in a function declarator that is not the declarator of a *function-definition* , or it is a `typedef` declaration (7.1.3),
 an *alias-declaration* (7.1.3), a using-declaration (7.3.3), a *static_assert-declaration* (Clause 7), an *attribute-declaration* (Clause 7), an *empty-declaration* (Clause 7), or a *using-directive* (7.3.4).
@@ -272,9 +272,9 @@ ISO C 也有类似的结论，但略有不同：
 
 **[WG14/N1570]**
 
-> ## 6.7 Declarations
+> # 6.7 Declarations
 
-> ### Semantics
+> ## Semantics
 
 > 5 A declaration specifies the interpretation and attributes of a set of identifiers. A *definition* of an identifier is a declaration for that identifier that:
 
@@ -296,9 +296,9 @@ ISO C 也有类似的结论，但略有不同：
 
 - `typedef` 声明是可以定义而不总只是声明。
 
-### 3.3 ODR
+## 3.3 ODR
 
-### 3.4 关于变量
+## 3.4 关于变量
 
 上文已经提及 ISO C++ 中的“变量”的定义，且明确了对应术语在 ISO C 中不存在。
 
@@ -308,7 +308,7 @@ ISO C 避免使用“变量”的原因可能在于含义的不够明确。
 
 与此类似的是，术语“对象”在不同程序语言的规则下也有不同的含义。但是**在 ISO C 和 ISO C++ 中*对象(object)* 的内涵和外延都是清楚的**。
 
-#### 3.4.1 “变量”的一般意义
+### 3.4.1 “变量”的一般意义
 
 **TBD**
 
@@ -320,7 +320,7 @@ ISO C 避免使用“变量”的原因可能在于含义的不够明确。
 
 不管使用什么定义，可以确定的是，变量总有*变量名(variable's name)* 。并且和数学的传统不同，在程序设计语言中，一般不能把两者任意互相替代。
 
-#### 3.4.2 变量和常量
+### 3.4.2 变量和常量
 
 和直觉上不同，在 ISO C++ 的上下文中，变量和常量并不相对：
 
@@ -336,21 +336,21 @@ ISO C 避免使用“变量”的原因可能在于含义的不够明确。
 
 **WIP**
 
-### 3.5 作用域
+## 3.5 作用域
 
-### 3.6 名称查找
+## 3.6 名称查找
 
-### 3.7 程序和连接
+## 3.7 程序和连接
 
-### 3.8 启动与终止
+## 3.8 启动与终止
 
-### 3.9 存储期
+## 3.9 存储期
 
-### 3.10 对象生存期
+## 3.10 对象生存期
 
-### 3.11 类型
+## 3.11 类型
 
-#### 3.11.1 基本类型
+### 3.11.1 基本类型
 
 ISO C 的基本类型和 ISO C++ 的基本类型不同。
 
@@ -358,9 +358,9 @@ Java 中类似的基本类型称为*原始类型(primitive type)* 。
 
 **TBD**
 
-#### 3.11.2 组合类型
+### 3.11.2 组合类型
 
-#### 3.11.3 数组和指针
+### 3.11.3 数组和指针
 
 **WIP**
 
@@ -370,13 +370,13 @@ Java 中类似的基本类型称为*原始类型(primitive type)* 。
 
 无论何种上下文上面讨论的都是实体。根据名称和实体的推论，**数组名不是数组，指针名不是指针。**
 
-### 3.11.4 函数类型
+## 3.11.4 函数类型
 
-### 3.11.5 类类型
+## 3.11.5 类类型
 
-### 3.11.6 限定符
+## 3.11.6 限定符
 
-### 3.12 值类别
+## 3.12 值类别
 
 B 语言指定了*左值(l-value)* 作为语法上的分类。相对地，非左值为*右值(r-value)* 。
 
@@ -397,37 +397,37 @@ C++11 在引入右值引用类型后引入了新的分类，称为*值类别(val
  
 **WIP**
 
-## 4 标准转换
+# 4 标准转换
 
-### 4.1 左值到右值转换
+## 4.1 左值到右值转换
 
-### 4.2 数组到指针转换
+## 4.2 数组到指针转换
 
 数组类型的左值可以转换为指针类型的右值。
 
-### 4.3 函数到指针转换
+## 4.3 函数到指针转换
 
-### 4.4 限定符转换
+## 4.4 限定符转换
 
-### 4.5 浮点转换
+## 4.5 浮点转换
 
-### 4.6 整数提升
+## 4.6 整数提升
 
-### 4.7 通常算术转换
+## 4.7 通常算术转换
 
-### 4.8 bool 相关转换
+## 4.8 bool 相关转换
 
-### 4.9 转换的阶
+## 4.9 转换的阶
 
-## 5 表达式
+# 5 表达式
 
-## 6 语句
+# 6 语句
 
-## 7 声明
+# 7 声明
 
-## 8 声明符
+# 8 声明符
 
-## 9 类
+# 9 类
 
-## 14 模板
+# 14 模板
 

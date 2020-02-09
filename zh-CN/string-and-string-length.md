@@ -10,7 +10,7 @@ NTCTS <span style="font-variant: small-caps">ntcts</span>
 NTMBS <span style="font-variant: small-caps">ntmbs</span>
 ```
 
-## 首先明确几个概念
+# 首先明确几个概念
 
 　　字符串：形式语言理论研究的基本对象之一，是字符的有限序列。
 
@@ -25,13 +25,13 @@ NTMBS <span style="font-variant: small-caps">ntmbs</span>
 
 　　以下引用中文喂鸡“[字符串->字符串数据类型](https://zh.wikipedia.org/zh-cn/字符串#.E5.AD.97.E7.AC.A6.E4.B8.B2.E6.95.B0.E6.8D.AE.E7.B1.BB.E5.9E.8B)”：
 
-> ## 字符串长度
+> # 字符串长度
 
 > 尽管形式字符串可以有任意（但有限）的长度，实际语言的字符串的长度经常被限制到一个人工极大值。一般的说，有两种类型的字符串数据类型:“定长字符串”，它有固定的极大长度并且不管是否达到了这个极大值都使用同样数量的内存；和“变长字符串”，它的长度不是专断固定的并且依赖于实际的大小使用可变数量的内存。在现代编程语言中的多数字符串是变长字符串。尽管叫这个名字，所有变长字符串还是在长度上有个极限，一般的说这个极限只依赖于可获得的内存的数量。
 
 > ……
 
-## 表示法
+# 表示法
 
 　　一种常用的表示法是使用一个字符代码的数组，每个字符通常占用一个字节（如在 ASCII 代码中）或两个字节（如在 UCS-2 这样的 Unicode 表示中）。它的长度可以使用一个结束符（一般是 [NUL](https://zh.wikipedia.org/zh-cn/空字符) ， ASCII 代码是 0 ，在C编程语言中使用这种方法）。或者在前面加入一个整数值来表示它的长度（在 Pascal 语言中使用这种方法）。
 
@@ -43,7 +43,7 @@ NTMBS <span style="font-variant: small-caps">ntmbs</span>
 
 **ISO C++11**
 
-> ### 17.3.17 [defns.ntcts]
+> ## 17.3.17 [defns.ntcts]
 
 > **NTCTS**
 
@@ -57,7 +57,7 @@ NTMBS <span style="font-variant: small-caps">ntmbs</span>
 
 **ISO C++11**
 
-> ### 1.3.13 [defns.multibyte]
+> ## 1.3.13 [defns.multibyte]
 
 > **multibyte character**
 
@@ -69,7 +69,7 @@ NTMBS <span style="font-variant: small-caps">ntmbs</span>
 
 **ISO C++11**
 
-##### 17.5.2.1.4 Character sequences [character.seq]
+#### 17.5.2.1.4 Character sequences [character.seq]
 
 > 1 The C standard library makes widespread use of characters and character sequences that follow a few uniform conventions:
 
@@ -87,7 +87,7 @@ NTMBS <span style="font-variant: small-caps">ntmbs</span>
 
 **ISO C++11**
 
-> ###### 17.5.2.1.4.1 Byte strings [byte.strings]
+> ##### 17.5.2.1.4.1 Byte strings [byte.strings]
 
 > 1 A _null-terminated byte string_, or NTBS, is a character sequence whose highest-addressed element with defined content has the value zero (the _terminating null_ character); no other element in the sequence has the value zero.169
 
@@ -109,7 +109,7 @@ NTMBS <span style="font-variant: small-caps">ntmbs</span>
 
 **ISO C++11**
 
-> ###### 17.5.2.1.4.2 Multibyte strings [multibyte.strings]
+> ##### 17.5.2.1.4.2 Multibyte strings [multibyte.strings]
 
 > 1 A _null-terminated multibyte string_, or NTMBS, is an NTBS that constitutes a sequence of valid multibyte characters, beginning and ending in the initial shift state.171
 
@@ -131,7 +131,7 @@ NTMBS <span style="font-variant: small-caps">ntmbs</span>
 
 **ISO C99/C11(N1570)**
 
-> ### 7.1.1 Definitions of terms
+> ## 7.1.1 Definitions of terms
 
 > 4 A _wide string_ is a contiguous sequence of wide characters terminated by and including the first null wide character. A _pointer to a wide string_ is a pointer to its initial (lowest addressed) wide character. The _length of a wide string_ is the number of wide characters preceding the null wide character and the _value of a wide string_ is the sequence of code values of the contained wide characters, in order.
 
@@ -141,31 +141,31 @@ NTMBS <span style="font-variant: small-caps">ntmbs</span>
 
 　　大概是因为习惯和历史原因， ISO C/C++ 在这里的一致性上做得不太雅观。不过，在未强调编码/字符集前只考虑空字符前的字节数也是可以理解的。
 
-## 字符串字面量
+# 字符串字面量
 
 　　在 C/C++ 中，还有一个非常被错误理解的特性：字符串字面量(string literal) 。
 
 　　重点/易错点择要：
 
-### 1.词法形式
+## 1.词法形式
 
 　　`"xxx"` 、 `L"xxx"` 、 `u"xxx"` 等。另外 raw string literal/user defined literal 以及后者造成的 C++03/C++11 关于一个string literal是否是一个 _token_ 的不兼容性等等，这里关系不大，先略过。
 
-### 2.具有静态存储期。
+## 2.具有静态存储期。
 
-### 3.除了 `u` 等起始的 Unicode 字面量，使用的字符集由实现定义（通常由源文件的编码决定）。
+## 3.除了 `u` 等起始的 Unicode 字面量，使用的字符集由实现定义（通常由源文件的编码决定）。
 
 　　因此事实上除了仅包含基本执行字符集中的元素的字符串字面量，相同的输入并不一定导致相同的结果，长度也是由实现定义的。
 
-### 4.末尾隐含空字符。
+## 4.末尾隐含空字符。
 
-### 5.类型。
+## 5.类型。
 
 　　对于 C ，类型是对应字符类型的数组类型；对于 C++ ，类型是对应字符类型的 `const` 数组类型。
 
-### 6.修改引起未定义行为。
+## 6.修改引起未定义行为。
 
-### 7.**不等同于字符串**。
+## 7.**不等同于字符串**。
 
 　　一个字符串字面量不一定表示一个字符串。
 
@@ -173,7 +173,7 @@ NTMBS <span style="font-variant: small-caps">ntmbs</span>
 
 **ISO C11(N1570)**
 
-> ### 6.4.5 String literals
+> ## 6.4.5 String literals
 
 > 6 In translation phase 7, a byte or code of value zero is appended to each multibyte character sequence that results from a string literal or literals.78) ...
 
@@ -191,7 +191,7 @@ NTMBS <span style="font-variant: small-caps">ntmbs</span>
 
 　　也就是字符串字面量用来初始化数组约定隐式数组的长，和C风格字符串都没什么直接关系。
 
-## 新手指引：
+# 新手指引：
 
 Appended @ 2012-7-30 01:32.
 
@@ -203,7 +203,7 @@ Appended @ 2012-7-30 01:32.
 
 　　剩下基本问题不大了。
 
-## 非标准库字符串进阶参考：
+# 非标准库字符串进阶参考：
 
 Appended @ 2012-7-30 01:39.
 

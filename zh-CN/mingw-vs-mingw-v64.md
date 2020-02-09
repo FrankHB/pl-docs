@@ -4,7 +4,7 @@
 
 　　试试问答体。首先得绕个远路，从 Win32 开始说起，否则之后容易乱……
 
-## 什么是 Win32 ？
+# 什么是 Win32 ？
 
 　　嘛，32 自然是指 32 位了？不一定。
 
@@ -12,7 +12,7 @@
 
 　　尽管 32 的语源的确来自于“32 位”。
 
-## 那么为什么还有 Win64 ？
+# 那么为什么还有 Win64 ？
 
 　　这倒可以肯定，这里的 64 是指 64 位目标平台，因为没有上面的那种歧义。
 
@@ -24,7 +24,7 @@
 
 　　对于 MinGW 来说，这里也有类似的坑：预定义宏得先优先检查 64 位的。实际情况更加复杂，另说。
 
-## MinGW 和 MinGW-W64 有什么区别？
+# MinGW 和 MinGW-W64 有什么区别？
 
 　　这是个关键问题，但是……是个很长的故事。没有铺垫不好回答。
 
@@ -56,7 +56,7 @@
 
 　　当然，也不是说 MinGW.org 就一无是处了。 \*-w64-mingw32 原则上向后兼容 \*-pc-mingw32 ，不过也有一些接口上的差别。 BSD 流的 `DT_*` 在 MinGW.org 上能用，在 MinGW-W64 的就没有。（虽然 `DT_*` 也不怎么推荐用就是了……）
 
-## 什么是 MinGW 发行版(distribution) ？
+# 什么是 MinGW 发行版(distribution) ？
 
 　　这个说法习惯上可以说是从 Linux 等软件中借用过来的。
 
@@ -78,7 +78,7 @@
 
 　　最后，不嫌闲着蛋疼也可以自己编译。不过迫不得已外最好别这样做（ GCC 的编译过程和 hacking 实在无力吐槽）。重复一遍，非常不推荐。
 
-## 有哪些发行版可以选择？
+# 有哪些发行版可以选择？
 
 * 本机环境（直接在 Windows 下运行）
 	* [MinGW-w64](https://sourceforge.net/projects/mingw-w64) 提供若干工具链的下载
@@ -91,13 +91,13 @@
 	* [Arch Linux MinGW-w64 GCC](https://www.archlinux.org/packages/community/x86_64/mingw-w64-gcc/)
 	* [MSYS2](http://sourceforge.net/projects/msys2) （使用包管理器 `pacman` 安装 `mingw-w64-cross-toolchain`）
 
-## MinGW 发行版支持什么本机语言编译器？
+# MinGW 发行版支持什么本机语言编译器？
 
 　　对于 C/C++ ，主要是 GCC 。 GCC 也提供 FORTRAN 和 Ada 等语言的编译器。
 
 　　除此之外，某些发行版（如 MSYS2 的 MinGW 环境）也带有兼容的 LLVM/Clang 工具链，但可用性差强人意；其中标准库实现仍然依赖 GCC 的 libstdc++ ，而不是 libc++ 。但一些可能提供的 Clang 附带的工具（如 `clang-format` ）可用性基本不受限制。
 
-## 上面为什么要强调更新呢？
+# 上面为什么要强调更新呢？
 
 　　如果不想使用新的特性生成更高质量的代码，其实也没必要盯着上面这么多版本混乱的 MinGW 了。即便要兼容性，也可以用古董嘛（逃……
 
@@ -109,7 +109,7 @@
 
 　　嘛， Clang++ ？ libc++ 什么时候能在 Windows 上跑顺再说——即便这样 MinGW 兼容的还是得依赖 MinGW 的 libgcc 。至于和 VC++ 兼容的 `clang-cl` ，看起来还在折腾微软的坑爹ABI黑箱（这没像大部分平台上 GCC 用的 [Itanium ABI](https://mentorembedded.github.io/cxx-abi/abi.html) 公开文档），一年半载别指望了。
 
-## 什么是异常模型和线程模型，用哪种比较好？
+# 什么是异常模型和线程模型，用哪种比较好？
 
 　　这两个都是对于 C++ 实现（ G++ 、 libgcc 、 libsup++ 等等）而言的。
 
@@ -141,7 +141,7 @@
 
 　　最后，还有单线程的 single 模型…… Windows 上应该没啥必要用。
 
-## 什么是 MSYS ，和 MinGW 有什么区别？
+# 什么是 MSYS ，和 MinGW 有什么区别？
 
 　　MSYS(minimal system) 原本是 MinGW.org 项目的一个组件，旨在 Windows 上提供一套类 UNIX shell 为基础的“系统”。它本身不提供编译器或者大小写敏感的文件系统支持（其实 [NTFS 倒是支持这里的“ POSIX 语义”](http://superuser.com/questions/364057/why-is-ntfs-case-sensitive)，但基本没看见有谁用……）。
 
@@ -149,7 +149,7 @@
 
 　　所以常规的实践是，如果只是开发 Windows 程序，能用 MinGW 就不要用 MSYS 原生的编译器来构建。当然，使用 MSYS 上的 `sh` 等工具还是没问题，跟 GNU 工具配套怎么说比 `cmd` 好用。（虽然也有不少琐碎的兼容性问题。）
 
-## 什么是 MSYS2 ， MSYS2 上的 MinGW 发行版是怎么回事？
+# 什么是 MSYS2 ， MSYS2 上的 MinGW 发行版是怎么回事？
 
 　　字面意思，MSYS 2.0 。比起 1.0 来说更加像 Cygwin （例如 `/etc/fstab` 配置）。项目[在 sf.net 上托管](http://sourceforge.net/projects/msys2/)。
 
@@ -165,7 +165,7 @@
 
 　　相关配置（包括 `pacman` 的一些中国大陆镜像）可以看[这里](https://bitbucket.org/FrankHB/yslib/wiki/Prerequisitions.zh-CN.md]) 。
 
-## 部署程序需要提供哪些文件？
+# 部署程序需要提供哪些文件？
 
 　　Windows 默认安装自然不带 MinGW 运行时环境，所以除了编译出来的程序和可能附带的数据，一些dll是要准备好的——除非有耐心折腾全部静态链接。
 
@@ -177,9 +177,9 @@
 
 　　使用 MCF 线程模型需要部署对应的 mcfgthread 动态库（如 `mcfgthread-9.dll` ）。
 
-## 还有什么其它问题？
+# 还有什么其它问题？
 
-### LTO
+## LTO
 
 　　GCC 4.9的 LTO （链接时优化）默认使用新的目标文件格式，生成的文件不包含冗余的二进制代码。
 但是 LTO 有特定的 phase （[内部会调用 `make` 多编译几个 pass](https://gcc.gnu.org/onlinedocs/gccint/LTO-Overview.html#LTO-Overview) ），传统的静态链接器(`ar`) 不知道这里的约定，所以原来好好的东西，升级 4.9 以后开了 `-flto` 就可能找不到符号链接失败。

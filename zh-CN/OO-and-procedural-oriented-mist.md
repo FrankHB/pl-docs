@@ -1,20 +1,22 @@
 ﻿# 面向对象和所谓的“面向过程”
 
-## 摘要
+This is also arranged as a dissertation @ ZJU.
+
+# 摘要
 
 　　本文综述面向对象，尤其是面向对象编程的基本概念和一些其它编程范型的比较，并指出了现有初学者的一些常见误区。
 
-## I.面向对象(Object-Oriented, OO)综述
+# I.面向对象(Object-Oriented, OO)综述
 
 　　公认的面向对象是一种“思想”，更精确地说是一种*方法学(methodology)* 。*面向对象编程(OOP)* 、*面向对象分析(OOA)* 、*面向对象设计(OOD)* 等范畴是对此的衍生。容易理解， OOP 指使用 OO 的方法进行编程； OOA 和 OOD 分别指使用 OO 的方法进行系统分析与设计（可以合称 OOAD ），是 OO 方法学在软件工程上的应用。对于使用 OO 方法学的软件开发， OOP 是基础也是具有更强的普遍性（即便使用 OO 方法，也并非所有的软件都有必要使用系统化的 OOA 和 OOD 进行开发），通过 OOP 可以反映 OO 在编程实践中的重要应用，因此本文着重论述 OOP 的有关内容。关于 OOAD ，读者可以在了解OOP的基础上自行学习。
 
-## II.编程范型(programing paradigm)
+# II.编程范型(programing paradigm)
 
 　　是计算机编程中的一种基本方式[[en.wiki:programming paradigm]](http://en.wikipedia.org/wiki/Programming_paradigm) 。 OOP 和*命令式编程(imperative programing)* 、*函数式编程(functional programing)* 、 *逻辑编程(logical programing)* 并列，是当前主流的编程范型[[Kurt Nørmarks]](http://people.cs.aau.dk/~normark/prog3-03/html/notes/paradigms_themes-paradigm-overview-section.html)。此外还有*结构化(structured)* 、*声明式(declarative)* 、*面向方面(aspect-oriented)* 、*数据驱动(data-driven)* 、*泛型(generic)* 、*并行(parallel)* 、*元编程(metaprograming)* 等各种范型。
 
 　　应该注意的是，这些范型并不都是同一层次上的风格，且由于分类方法的不同，不都是互斥的。当然也有些范型是对立的：结构化与*非结构化(non-structured)* ，但这是少数。因此通常在同一段程序中使用了一种以上的编程范型，只强调其中的一部分。
 
-## III.结构化编程(structued programing) 、命令式编程(imperative programing) 和过程式编程(procedural programing)
+# III.结构化编程(structued programing) 、命令式编程(imperative programing) 和过程式编程(procedural programing)
 
 　　早期的程序没有强调任何范型，是非结构化的。结构化程序由子程序的（顺序）执行、选择、迭代构成，无需跳转。
 
@@ -26,7 +28,7 @@
 
 　　无论是命令式还是过程式的编程范型都被许多编程语言广泛支持。对于 Pascal 、 C 、 C++ 、 Java 等语言，两者都是最基本的（使用时几乎无法避免的）范型，而“结构化”通过这两个范型的上层被体现。
 
-## IV.作为编程范型(programing paradigm)的OOP
+# IV.作为编程范型(programing paradigm)的OOP
 
 　　OO 程序可以看成一系列对象的交互，而不是如传统的过程式编程那样执行一系列任务（*过程* ）。
 
@@ -46,7 +48,7 @@
 
 　　应该指出的是，即便不使用直接的 OOP 特性，也可以进行 OOP 。例如 C 可以使用结构体模拟类。
 
-## V.语言相关的实例：Java和C++的OOP和其它范型的支持策略的比较
+# V.语言相关的实例：Java和C++的OOP和其它范型的支持策略的比较
 
 　　有些语言为特定的范型设计，鼓励用户使用特定的范型。如 Java 鼓吹的“简单”的“纯” OOP 。但是通过上文可以知道， Java 支持的面向对象只是一种基于类的风格的 OOP ，并且血统远非纯净。另外， Java 不支持多重（实现）继承而只支持接口继承，即便仅从基于类风格的 OOP 上来说也有缺陷（由于这点，加上 Java 缺乏其它一些有用的特性，这给*混入(mixin)* 等带来麻烦，也容易造成代码冗长）。语言构造也决定 Java 无法摆脱命令式和过程式编程，在这个意义上并不“纯”。（尽管 Java 支持泛型，但功能过于薄弱，在此忽略。）使用好 Java 需要用户对 OOP 的较清晰全面的理解，事实上一点都不“简单”。
 
@@ -54,13 +56,13 @@
 
 　　关于 OOP 两者还有一些整体上重要的、原则性的不同。 Java 的 OOP 特性支持的设计试图减少 OOP 和 OOAD 的差距，使 OOAD 的结果尽量能直接 OOP 对应。初衷可以理解，但效果不见得好（取决于用户设计的合理性），反而几乎肯定增大了语义上的复杂性——这点的一个例子是“继承”不考虑 private 成员。而 C++ 的设计事实上无视这一点。 C++ 的 class type 并不见得就是 OOAD 意义上的 class ，它可以是类似 Java 里的 interface 或者和 OOP 无关的东西——如元编程用到的 traits 。这点可能导致学习上的困难，但增大了灵活性。
 
-## VI.结论：一些需要避免的误区
+# VI.结论：一些需要避免的误区
 
 　　首先，所谓“面向过程”并不是公认的编程范型的名称，无法和过程式、 OOP 等相提并论。提出这个生造的术语可能只是效仿“面向对象”的构词，却忽略了其中的内涵。通常使用这个术语通常似乎是想表达“过程式编程”。在已有更精确和广泛接受的术语的情形下，不应该使用这种模糊的称谓。
 
 　　其次，关于语言和范型。尽管语言可以直接通过语言特性支持范型，但范型实质上是跟语言无关的。尤其对于 C++ 而言，强调“支持面向对象”作为和其它语言的主要区别，是没有根据的。
 
-## 参考文献
+# 参考文献
 
 [en.wiki:*] 英文喂鸡，喂度娘，略。
 

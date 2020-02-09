@@ -2,6 +2,8 @@
 
 Created @ 2012-11-07.
 
+# 引言
+
 发现以前说的太零碎，不太好引用……整理一下。
 
 目前我看到的比较靠谱的说法（有正确的引用出处，并指出了实现扩展）：
@@ -13,24 +15,24 @@ http://tieba.baidu.com/p/626323902
 
 这里再解释一下ISO C/C++中对 `main` 的要求。
 
-## 标准版本说明
+# 标准版本说明
 
 基本内容参照[术语和文献列表](terms-and-bibliography.md)。
 
 在本文问题上， ANSI C89 和 C90 、 C99 和 C11 、 C++ 标准各个版本这三组标准之间分别没有实质变化（或根本一模一样），所以只引用最早的标准文本。
 
-## 首先是几个背景知识
+# 首先是几个背景知识
 
 本文所讲的实现即语言实现，可以是编译器+链接器等等，可以是解释环境。一般是前者。
 关于 implementation-defined 等确切含义可以 Google 。
 
-### ANSI C89支持函数声明省略返回值，隐含为 `int`
+## ANSI C89支持函数声明省略返回值，隐含为 `int`
 
 也就是说 `main()` 其实是`int main()` ， `foo();` 其实是 `int foo();` 。尤其注意 `main()` **绝不是** `void main()` 。
 
 这在 ISO C99 开始以及 ISO C++ 中是**不允许**的。
 
-### 关于参数列表
+## 关于参数列表
 
 C语言的 `(void)` 或函数定义中的 `()` 表示不接受任何参数，相当于 C++ 的 `()` ，也和 C++ 的 `(void)` 等价。
 
@@ -69,11 +71,11 @@ C 语言的 `()` 在函数定义外表示接受任何参数，作用近似 C++ �
 
 > 145) See "future language directions" (6.11.6).
 
-> ## 6.11.6 Function declarators
+> # 6.11.6 Function declarators
 
 > 1 The use of function declarators with empty parentheses (not prototype-format parameter type declarators) is an obsolescent feature.
 
-### 实现环境分类
+## 实现环境分类
 
 ISO C/C++ 中，根据对环境的要求，分为两类，一类是*独立实现(freestanding implementation)* ，另一类是*宿主实现(hosted implementation)* 。
 
@@ -81,7 +83,7 @@ ISO C/C++ 中，根据对环境的要求，分为两类，一类是*独立实现
 
 当然 C 和 C++ 之间对两者的要求有所不同。为简化问题，除了 `main` 相关的部分在下文讨论以外，不再提及。
 
-### ISO 标准文档中的情态动词的含义
+## ISO 标准文档中的情态动词的含义
 
 以下全部节录（供参考，只想看结论的可以跳过）。
 
@@ -89,13 +91,13 @@ ISO C/C++ 中，根据对环境的要求，分为两类，一类是*独立实现
 
 > # ISO/IEC Directives, Part 3 Annex E(normative)
 
-> ## Verbal forms for the expression of provisions
+> # Verbal forms for the expression of provisions
 
 > <tt>NOTE</tt> Only singular forms are shown.
 
 > The verbal forms shown in Table E.1 shall be used to indicate requirements strictly to be followed in order to conform to the standard and from which no deviation is permitted.
 
-> ### Table E.1 — Requirement
+> ## Table E.1 — Requirement
 
 > Verbal form Equivalent expressions for use in exceptional cases(see 6.6.1.3)
 
@@ -112,7 +114,7 @@ To express a direct instruction, for example referring to steps to be taken in a
 
 > The verbal forms shown in Table E.2 shall be used to indicate that among several possibilities one is recommended as particularly suitable, without mentioning or excluding others, or that a certain course of action is preferred but not necessarily required, or that (in the negative form) a certain possibility or course of action is deprecated but not prohibited.
 
-> ### Table E.2 — Recommendation
+> ## Table E.2 — Recommendation
 
 > Verbal form Equivalent expressions for use in exceptional cases(see 6.6.1.3)
 
@@ -124,7 +126,7 @@ To express a direct instruction, for example referring to steps to be taken in a
 
 > The verbal forms shown in Table E.3 are used to indicate a course of action permissible within the limits of the standard.
 
-> ### Table E.3 — Permission
+> ## Table E.3 — Permission
 
 > Verbal form Equivalent expressions for use in exceptional cases(see 6.6.1.3)
 
@@ -143,7 +145,7 @@ the ability of a user of the standard or to a possibility open to him.
 
 > The verbal forms shown in Table E.4 are used for statements of possibility and capability, whether material, physical or causal.
 
-> ### Table E.4 — Possibility and capability
+> ## Table E.4 — Possibility and capability
 
 > Verbal form Equivalent expressions for use in exceptional cases(see 6.6.1.3)
 
@@ -167,15 +169,15 @@ ISO C++98/03 在表格的 note 里要求 “should” O(1) ，因此 libstdc++ �
  
 应该注意 can 表示可能性，而不是要求。和表示准许的may也应该有清楚的区别。
 
-## 正题
+# 正题
 
 附一个参考链接： http://stackoverflow.com/questions/1765686/correctly-declaring-the-main-function-in-ansi-c
 
-### ANSI C/ISO C 对独立环境的规定
+## ANSI C/ISO C 对独立环境的规定
 
 ANSI C89 是这样的：
 
-> #### 2.1.2.1 Freestanding environment
+> ### 2.1.2.1 Freestanding environment
 
 > In a freestanding environment (in which C program execution may take place without any benefit of an operating system), the name and type of the function called at program startup are implementation-defined. There are otherwise no reserved external identifiers. Any library facilities available to a freestanding program are implementation-defined.
 
@@ -185,7 +187,7 @@ ANSI C89 是这样的：
 
 ISO C99 是这样的：
 
-> #### 5.1.2.1 Freestanding environment
+> ### 5.1.2.1 Freestanding environment
 
 > 1 In a freestanding environment (in which C program execution may take place without any benefit of an operating system), the name and type of the function called at program startup are implementation-defined. Any library facilities available to a freestanding program, other than the minimal set required by clause 4, are implementation-defined.
 
@@ -195,7 +197,7 @@ ISO C99 是这样的：
 
 ISO C++98 是这样的：
  
-> ### 3.6.1 Main function [basic.start.main]
+> ## 3.6.1 Main function [basic.start.main]
 
 > 1 A program shall contain a global function called main, which is the designated start of the program. It is
 implementation-defined
@@ -206,9 +208,9 @@ startup
 contains the execution of constructors for objects of namespace scope with static storage duration; termination
 contains the execution of destructors for objects with static storage duration. ]
 
-### 2.2 ANSI C89 对宿主环境的规定
+## 2.2 ANSI C89 对宿主环境的规定
 
-> #### 2.1.2.2 Hosted environment
+> ### 2.1.2.2 Hosted environment
 
 > A hosted environment need not be provided, but shall conform to the following specifications if present.
 
@@ -244,13 +246,13 @@ contains the execution of destructors for objects with static storage duration. 
 
 但这种说法显然太隐晦了。
 
-### ISO C99 对宿主环境的规定
+## ISO C99 对宿主环境的规定
 
-> #### 5.1.2.2 Hosted environment
+> ### 5.1.2.2 Hosted environment
 
 > 1 A hosted environment need not be provided, but shall conform to the following specifications if present.
 
-> ##### 5.1.2.2.1 Program startup
+> #### 5.1.2.2.1 Program startup
 
 > 1 The function called at program startup is named `main`. The implementation declares no prototype for this function. It shall be defined with a return type of int and with no parameters:
 
@@ -277,11 +279,11 @@ program name is not available from the host environment. If the value of `argc` 
 
 这里实质的变化是明确要求 ANSI C 中的两种原型必须被宿主实现接受。而 or in some other implementation-defined manner 的妥协可以看成是对 can 的兼容。
 
-### ISO C++98 的规定
+## ISO C++98 的规定
 
-> ## 3.6 Start and termination [basic.start]
+> # 3.6 Start and termination [basic.start]
 
-> ### 3.6.1 Main function [basic.start.main]
+> ## 3.6.1 Main function [basic.start.main]
 
 > 1 A program shall contain a global function called main, which is the designated start of the program. It is implementation-defined whether a program in a freestanding environment is required to define a main function. [Note: in a freestanding environment, startup and termination is implementation-defined; startup contains the execution of constructors for objects of namespace scope with static storage duration; termination contains the execution of destructors for objects with static storage duration. ]
 
@@ -304,9 +306,9 @@ ISO C++ 的规定和 ISO C 类似，但有几点重要的不同：
 - c)main必须返回 `int` 。
 - d)全局 `main` 禁止被使用。因此不像 C ， C++ 中 `main` 无法递归调用。 `&::main` 也是错误的。
 
-## 结论
+# 结论
 
-### `main` 的兼容性
+## `main` 的兼容性
 
 别盲目认为哪个是对的哪个是错的，标准没这么简单。
 
@@ -314,7 +316,7 @@ ISO C++ 的规定和 ISO C 类似，但有几点重要的不同：
 
 在 C++ 中不返回 `int` 的 `main` 直接不符合标准。
 
-### 基于保证可移植性的入口函数使用的建议策略
+## 基于保证可移植性的入口函数使用的建议策略
 
 以下不适用于自己实现语言或者写操作系统之类。
 
@@ -322,13 +324,13 @@ ISO C++ 的规定和 ISO C 类似，但有几点重要的不同：
 - b)如无特殊必要，尽量使用标准明文规定的两种形式；
 - c)使用其它形式应能找到文档，并且确保当前需求能容忍由此导致的可移植性缺陷。
 
-## 附录
+# 附录
 
-### 标准返回值
+## 标准返回值
 
 ISO C99 起，及 ISO C++98 起，全局 `main` 若没有 `return` ，相当于末尾隐含 `return 0;` 。对于一般实现，返回 0 表示程序执行成功。 C/C++ 标准库宏 `EXIT_SUCCESS` 表示由实现定义的成功返回状态。 `EXIT_SUCCESS` 可用于 `exit` 函数，而 `main` 终止和 `exit` 语义上等价，所以也可以 `return EXIT_SUCCESS;` 代替。
 
-### 关于 Bjarne Stroupstrup 的说法
+## 关于 Bjarne Stroupstrup 的说法
 
 在个人主页中 Bjarne Stroustrup 明确解答了[关于 `void main` 的问题](http://www.stroustrup.com/bs_faq2.html#void-main) ，表示不赞同使用 `void main` 。其中提到， `void main`
 
