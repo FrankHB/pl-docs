@@ -59,4 +59,5 @@
 ## 观点和杂项
 
 * [《UTF-8 遍地开花宣言》批判](criticisms-on-UTF-8-everywhere-manifesto.md)
+* [字体渲染](font-rendering.md)
 
