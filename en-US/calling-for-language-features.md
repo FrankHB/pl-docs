@@ -577,17 +577,17 @@ Macros without hygiene are not safe nor efficient to be used by default. It shou
 
 ## Namespace separation
 
-The namespace separation of values is the design to distinguish a term denotes callable entities (*functions*, or *combiners* in vau-calculi parlance) from others.
+The namespace separation of values is the design to distinguish a term denoting callable entities (*functions*, or *combiners* in vau-calculi parlance) from others.
 
-This perhaps first well-known by Lisp communities with [the article about *function cells* and *value cells*](http://www.nhplace.com/kent/Papers/Technical-Issues.html). It is interested because functions used as a significant kind of first-class entities are concerned particularly by Lisp dialects and they involve very different looks in resulted idiomatic code. The separation is called "Lisp-2" for the purpose, and the remained dialects are instances of "Lisp-1".
+This is perhaps first well-known by Lisp communities (see [the article about *function cells* and *value cells*](http://www.nhplace.com/kent/Papers/Technical-Issues.html)). It is interested because functions used as a significant kind of first-class entities are concerned particularly by some Lisp dialects and different designs involve very different looks in the resulted idiomatic code. The resulted dialects with the separation is called "Lisp-2", in contrast to the remained "Lisp-1" ones.
 
-Note the term "namespace" is not a language-supported entity here, but a mechanism in *name resolution*. The etymology is still plausible, though. See discussion about terminology below.
+Note the term "namespace" is not a language-supported entity here, but a mechanism in *name resolution*. The etymology is still plausible, though. See the discussion about terminology below.
 
-Separation of namespaces is better avoided for the general-purposed language design at least for 3 different reasons:
+Separation of namespaces is better avoided for the general-purposed language design. There are at least 3 different reasons of this policy:
 
-* It simplifies the language rules in the specification about name resolution.
+* It simplifies language rules in the specification about name resolution.
 * It simplifies interactions with first-class functions used in the code.
-* It avoids needlessly confusion between duplicate names in same scope.
+* It avoids needlessly confusion between duplicate names in the same scope.
 
 ### Terminology
 
