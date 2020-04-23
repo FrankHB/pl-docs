@@ -64,6 +64,24 @@
 
 　　从这里更加可以看出之前的例子为什么是笑话。强要加给“类型”以含义的，明明是**没怎么搞清需求**以及很可能**对类型系统如何在编码时起作用一窍不通**的用户，而并不来源于类型系统自身的设计。反过来，符合这些上梁不正的需求的类型系统“设计”，倒极可能带来更高渣设计的语用风险——比如说，解决一类明明在设计目标领域内的（其它语言容易做到的）问题怎么用都麻烦，让用户怀疑人生之类……
 
+## 形式主义的认知偏差
+
+　　先前提到，“类型”是类型论研究的对象。在形式系统之内，这种对象最初被认为表示论域([domain of discourse](https://en.wikipedia.org/wiki/Domain_of_discourse)) 。不巧的是，随着时间的推移，越来越复杂的类型轮被构造，类型的预期语用发生了很大的变化，乃至名存实亡——用户不再（或因为过于复杂而无法）关心某一个项具有的类型代表是何种被讨论的对象集合，而只在乎“是什么类型”这种形式判断。
+
+　　历史上，[Curry-Howard 对应](https://zh.wikipedia.org/zh-cn/%E6%9F%AF%E9%87%8C-%E9%9C%8D%E5%8D%8E%E5%BE%B7%E5%90%8C%E6%9E%84)指出的逻辑和公式计算的演绎系统的关系为类型形式主义者提供了新的切入点。在“类型”的明确的本体论意义不复存在之后，在计算中描述类型具有逻辑上的对应操作成了一般的“类型”普遍缺乏外部（脱离作为项的元数据使用的情形）领域意义的救命稻草——类型用于断言被描述的系统具有的可证明的逻辑性质。遗憾的是，普遍意义上，这行不通：
+
+* 严格来说，最初的对应仅指的是[简单类型λ演算](https://zh.wikipedia.org/zh-cn/%E7%AE%80%E5%8D%95%E7%B1%BB%E5%9E%8B%CE%BB%E6%BC%94%E7%AE%97)和[直觉逻辑](https://zh.wikipedia.org/zh-cn/%E7%9B%B4%E8%A7%89%E9%80%BB%E8%BE%91)的对应。虽然存在有限的一些扩展，这里的对应仍有被在扩展之外（错误地）普遍默认的情形。这种对应受限于实际描述系统的源语言，且这种局面难以改变。
+	* 通过归纳证明的扩展对应是有限的。而以某个类型论作为逻辑基础，一般地，原则上没法构造性地保证它能对应某个外部的公式计算，因为后者并不保证以类型论作为元语言进行描述的，自然不保证能以特定类型论表达；证明这种对应存在即涉嫌循环论证。
+	* 研究扩展关系的进展并不快。例如，带有一般用户习以为常的指令式控制(imperative control) 作用的λvC 演算和[经典逻辑](https://zh.wikipedia.org/zh-cn/%E7%BB%8F%E5%85%B8%E9%80%BB%E8%BE%91)的对应关系在 1990 年才被 Timothy Griffi 明确提出。
+* 断言证明总是可以同构于程序(proof-as-programs) 同时使命题作为类型(proposition-as-types) 在计算上的应用仍然是一厢情愿的。
+	* 需要注意普遍的计算允许以不符合[强规范化](https://zh.wikipedia.org/zh-cn/%E8%A7%84%E8%8C%83%E5%8C%96%E6%80%A7%E8%B4%A8)性质的程序表达的一般的[偏可计算函数(partially computational function)](https://zh.wikipedia.org/zh-cn/%E5%8F%AF%E8%AE%A1%E7%AE%97%E5%87%BD%E6%95%B0#%E5%AE%9A%E4%B9%89) ，却不能保证存在一一对应的有效的“部分证明”(partial proof) ——显然证明必须停机。
+	* 考虑到以上被表达的一般的偏函数的非强规范化性质可被认为是一种有别于有限步骤求值的计算作用(computational effect) ，逻辑系统根本上只能表达纯(pure) 的计算，而不能表达更丰富的带有各种副作用的计算。
+	* 这表示即便能依赖这些对应，也只能解释一部分计算中的“类型”的意义。
+
+　　即便接受上述对应，仍不能解决一个事关用户自由的合理性问题——凭什么这些预期的性质就必须是通过拼凑组合某些预置的、随项按硬编码特设规则传染得到的类型，而不是由用户直接以语言中的计算规则表达何为预期性质的、不必然依赖具体的项的元数据来表达？
+
+　　至少就编码解决实际问题的程序而言，显然存在更直接的方法来摆脱意义不明的或实现过于复杂的“类型”的缺陷，如 [Benjamin C. Pierce](https://en.wikipedia.org/wiki/Benjamin_C._Pierce) 的[一个 talk](http://www.cis.upenn.edu/~bcpierce/papers/harmful-mfps.pdf) ，其中举例设计语言中对类型的滥用遇到的问题，并提出[契约](https://zh.wikipedia.org/zh-cn/%E5%A5%91%E7%BA%A6%E5%BC%8F%E8%AE%BE%E8%AE%A1)作为解决其中一部分问题的（部分）替代解决方案。这可能早就该是业内应被周知的做法，虽然迄今业界[似乎仍然习惯](https://cstheory.stackexchange.com/a/5231/55732)把契约弱化为[断言](https://zh.wikipedia.org/zh-cn/%E6%96%B7%E8%A8%80%20%28%E7%A8%8B%E5%BC%8F%29) 而使之不足以系统性地代替类型系统。
+
 # 派生概念
 
 　　出了偏差是要负责任的……
@@ -203,44 +221,44 @@
 
 ## 渊源
 
-　　众所周知，罗素悖论在集合论框架中被 [ZF](https://zh.wikipedia.org/zh-cn/策梅洛-弗兰克尔集合论) 等[公理化集合论](https://zh.wikipedia.org/zh-cn/公理化集合论)形式上地解决。包括 ZF 和 [新基础集合论](https://zh.wikipedia.org/zh-cn/新基础集合论)等的公理化集合论在演化中历史弱化直至放弃（由[有序对](https://zh.wikipedia.org/zh-cn/有序对)编码集合的构造取代）了类型的概念。这意味着“类型”在构成数学基础的逻辑系统中不是必要的。鉴于[其它之后历史上其它一些理论取代公理化集合论地位的失败](https://zh.wikipedia.org/zh-cn/范畴论#历史注记)，类型的概念迄今仍未被公认作为整个数学的形式基础。
+　　众所周知，罗素悖论在集合论框架中被 [ZF](https://zh.wikipedia.org/zh-cn/%E7%AD%96%E6%A2%85%E6%B4%9B-%E5%BC%97%E5%85%B0%E5%85%8B%E5%B0%94%E9%9B%86%E5%90%88%E8%AE%BA) 等[公理化集合论](https://zh.wikipedia.org/zh-cn/%E5%85%AC%E7%90%86%E5%8C%96%E9%9B%86%E5%90%88%E8%AE%BA)形式上地解决。包括 ZF 和 [新基础集合论](https://zh.wikipedia.org/zh-cn/%E6%96%B0%E5%9F%BA%E7%A1%80%E9%9B%86%E5%90%88%E8%AE%BA)等的公理化集合论在演化中历史弱化直至放弃（由[有序对](https://zh.wikipedia.org/zh-cn/%E6%9C%89%E5%BA%8F%E5%AF%B9)编码集合的构造取代）了类型的概念。这意味着“类型”在构成数学基础的逻辑系统中不是必要的。鉴于[其它之后历史上其它一些理论取代公理化集合论地位的失败](https://zh.wikipedia.org/zh-cn/%E8%8C%83%E7%95%B4%E8%AE%BA#%E5%8E%86%E5%8F%B2%E6%B3%A8%E8%AE%B0)，类型的概念迄今仍未被公认作为整个数学的形式基础。
 
-　　不过，基于[逻辑学](https://zh.wikipedia.org/zh-cn/数理逻辑)的进展，上述有关“类型”的遗产被发展为[类型论](https://zh.wikipedia.org/zh-cn/类型论)这一新的数学分支，为[元数学](https://zh.wikipedia.org/zh-cn/元数学)和[类型系统](https://zh.wikipedia.org/zh-cn/類型系統)提供替代集合论的[形式模型](https://zh.wikipedia.org/wiki/模型论)。
+　　不过，基于[逻辑学](https://zh.wikipedia.org/zh-cn/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91)的进展，上述有关“类型”的遗产被发展为[类型论](https://zh.wikipedia.org/zh-cn/%E7%B1%BB%E5%9E%8B%E8%AE%BA)这一新的数学分支，为[元数学](https://zh.wikipedia.org/zh-cn/%E5%85%83%E6%95%B0%E5%AD%A6)和[类型系统](https://zh.wikipedia.org/zh-cn/%E9%A1%9E%E5%9E%8B%E7%B3%BB%E7%B5%B1)提供替代集合论的[形式模型](https://zh.wikipedia.org/zh-cn/%E6%A8%A1%E5%9E%8B%E8%AE%BA)。
 
 ## 类型、逻辑和语言设计
 
-　　按逻辑学的传统，类型论或形式化的类型系统的设计常用[相继式演算](https://zh.wikipedia.org/zh-cn/相继式演算)表达。其中逻辑公式断言了符合类型系统要求的合式(well-formed) 的项。一个语言中的 typing 或 tyechecking 的实现可以对应为找到符合公式指定的类型约束的项，或证明这样的合式公式(well-formed formula) 。
+　　按逻辑学的传统，类型论或形式化的类型系统的设计常用[相继式演算](https://zh.wikipedia.org/zh-cn/%E7%9B%B8%E7%BB%A7%E5%BC%8F%E6%BC%94%E7%AE%97)表达。其中逻辑公式断言了符合类型系统要求的合式(well-formed) 的项。一个语言中的 typing 或 tyechecking 的实现可以对应为找到符合公式指定的类型约束的项，或证明这样的合式公式(well-formed formula) 。
 
-　　因为相似性，[自动定理证明](https://zh.wikipedia.org/wiki/定理机器证明)和[形式验证](https://zh.wikipedia.org/wiki/形式验证)等特别适合这样的方法。这些领域使用的[领域特定语言](领域特定语言)具有特定的、较丰富特性的具体类型论。一些与此相关的基于特定类型论的语言也被提出：
+　　因为相似性，[自动定理证明](https://zh.wikipedia.org/zh-cn/%E5%AE%9A%E7%90%86%E6%9C%BA%E5%99%A8%E8%AF%81%E6%98%8E)和[形式验证](https://zh.wikipedia.org/zh-cn/%E5%BD%A2%E5%BC%8F%E9%AA%8C%E8%AF%81)等特别适合这样的方法。这些领域使用的[领域特定语言](领域特定语言)具有特定的、较丰富特性的具体类型论。一些与此相关的基于特定类型论的语言也被提出：
 
-* [LCF](https://en.wikipedia.org/wiki/Logic_for_Computable_Functions) 引入 [ML语言](https://zh.wikipedia.org/wiki/ML语言) 作为定理证明系统的元语言，使用其中的 [Hindley-Milner 类型系统](https://en.wikipedia.org/wiki/Hindley–Milner_type_system)。后继的 [HOL](https://en.wikipedia.org/wiki/HOL_%28proof_assistant%29) 系统也使用 ML 。
-* [Nuprl](https://en.wikipedia.org/wiki/Nuprl) 使用[直觉类型论](https://zh.wikipedia.org/zh-cn/直觉类型论)。
-* [Coq](https://zh.wikipedia.org/zh-cn/Coq) 使用[归纳构造演算](https://zh.wikipedia.org/zh-cn/构造演算) 。
+* [LCF](https://en.wikipedia.org/wiki/Logic_for_Computable_Functions) 引入 [ML语言](https://zh.wikipedia.org/zh-cn/ML%E8%AF%AD%E8%A8%80) 作为定理证明系统的元语言，使用其中的 [Hindley-Milner 类型系统](https://en.wikipedia.org/wiki/Hindley–Milner_type_system)。后继的 [HOL](https://en.wikipedia.org/wiki/HOL_%28proof_assistant%29) 系统也使用 ML 。
+* [Nuprl](https://en.wikipedia.org/wiki/Nuprl) 使用[直觉类型论](https://zh.wikipedia.org/zh-cn/%E7%9B%B4%E8%A7%89%E7%B1%BB%E5%9E%8B%E8%AE%BA)。
+* [Coq](https://zh.wikipedia.org/zh-cn/Coq) 使用[归纳构造演算](https://zh.wikipedia.org/zh-cn/%E6%9E%84%E9%80%A0%E6%BC%94%E7%AE%97) 。
 * [Haskell](https://zh.wikipedia.org/zh-cn/Haskell) 也使用 H-M 类型系统。
-* 一些 ML 和 Haskell 扩展使用[依赖类型](https://zh.wikipedia.org/wiki/依赖类型)。
+* 一些 ML 和 Haskell 扩展使用[依赖类型](https://zh.wikipedia.org/zh-cn/%E4%BE%9D%E8%B5%96%E7%B1%BB%E5%9E%8B)。
 * [Adga](https://zh.wikipedia.org/zh-cn/Agda) 和 [Idris](https://zh.wikipedia.org/zh-cn/Idris) 使用的类型系统基于 [UTT](https://www.researchgate.net/profile/Zhaohui_Luo/publication/225233240_A_unifying_theory_of_dependent_types_the_schematic_approach/links/0deec52a1025ec6518000000/A-unifying-theory-of-dependent-types-the-schematic-approach.pdf?origin=publication_detail) 。
 * [F*](https://www.fstar-lang.org/) 的类型系统支持特性包括依赖类型和[限制类型](https://en.wikipedia.org/wiki/Refinement_type)。
 
 ## 作为语言设计模型的有效性
 
-　　基于[柯里-霍华德同构](https://zh.wikipedia.org/zh-cn/柯里-霍华德同构) ，一部分语言不仅使用类型论提供类型系统的基础设计，也作为语义模型的整体基础，保证计算可被表达而适用于通用目的。不过，就“表达计算”而非求出证明这一目的而言，这样的方法在原则上有一些其它通用语言不合适的性质：类型论原则上具有额外的复杂性，作为表达通用的计算的基本模型不够简明(succinct) 。这个判断的表现和理由是：
+　　基于 Curry-Howard 对应，一部分语言不仅使用类型论提供类型系统的基础设计，也作为语义模型的整体基础，保证计算可被表达而适用于通用目的。不过，就“表达计算”而非求出证明这一目的而言，这样的方法在原则上有一些其它通用语言不合适的性质：类型论原则上具有额外的复杂性，作为表达通用的计算的基本模型不够简明(succinct) 。这个判断的表现和理由是：
 
-* 集合论的例子表明一个不依赖类型概念的演绎系统即有相当强的表达力。类似地，一个表达计算的系统，[原则](https://zh.wikipedia.org/zh-cn/递归论)上并不必须引入类型。
+* 集合论的例子表明一个不依赖类型概念的演绎系统即有相当强的表达力。类似地，一个表达计算的系统，[原则](https://zh.wikipedia.org/zh-cn/%E9%80%92%E5%BD%92%E8%AE%BA)上并不必须引入类型。
 * 虽然证明和计算的同构揭示了一些深层的联系，逻辑系统能表达计算并非模型设计的原始目的。
 * 任何包含类型的系统，不论以相继式演算还是更一般的演绎逻辑表示，都较为复杂。这导致设计和维护（查找和修正缺陷）一个类型系统的设计，相比一个同等的不要求表达类型部分的计算的基础模型，普遍具有较高的难度和较大的工作量。
 * 当然，一个不包含类型的基础模型需要引入类型语义时无法避免类似的工作量；但这至少可以通过模块分离解决。而以类型为中心的基础理论则表示类型全然无法被剥离。
 * 以类型论作为核心语义规则的系统因为内廪的冗余复杂性等原因，对人类用户不友好。
-	* 即便表达能力在可计算性上等价，也无法提供对计算作用(computational effect) 的直接抽象。本质的原因是计算作用并没有依赖于特定的类型上（而间接依赖于项上）的必要，强制要求类型表达计算作用的做法添加了一层对类型论设计者以外无用的间接抽象，是一种抽象泄漏。
-		* 这也是有的设计中单独建模[作用系统](https://en.wikipedia.org/wiki/Effect_system)的原因之一——即便它和类型系统有相似性。
-	* 直觉主义意义上的复杂性：基本不可能简洁地把程序分解为可被人直接模拟操作的[结构操作语义](https://zh.wikipedia.org/zh-cn/操作语义学)（[小步语义](https://en.wikipedia.org/wiki/Operational_semantics#Structural_operational_semantics)）。
+	* 即便表达能力在可计算性上等价，也无法提供对计算作用的直接抽象。本质的原因是计算作用并没有依赖于特定的类型上（而间接依赖于项上）的必要，强制要求类型表达计算作用的做法添加了一层对类型论设计者以外无用的间接抽象，是一种抽象泄漏。
+		* 这也是有的设计中单独建模[作用系统(en-US)](https://en.wikipedia.org/wiki/Effect_system) 的原因之一——即便它和类型系统有相似性。
+	* 直觉主义意义上的复杂性：基本不可能简洁地把程序分解为可被人直接模拟操作的[结构操作语义](https://zh.wikipedia.org/zh-cn/%E6%93%8D%E4%BD%9C%E8%AF%AD%E4%B9%89%E5%AD%A6)（[小步语义](https://en.wikipedia.org/wiki/Operational_semantics#Structural_operational_semantics)）。
 		* 要让用户（哪怕是设计类型论的专家）记忆核心语言的逻辑公式来解读程序的含义（且不考虑目的）脱离实际。
-		* 作为对比，退化为[无类型 λ 演算](https://zh.wikipedia.org/wiki/Λ演算) 的系统表达的基本计算本质上并不陌生，因为这实际上也是多数常见[指令式语言]中的一个严格子集。尽管后者的形式定义也非常晦涩，但非形式的理解和适当的形式模型相对容易找到对应。特别地，不要求任意的项的良型(well-typed) 对直觉理解的效率有相当大的影响。
-	* 一旦引入类型，就难以避免和常见语言的显著差别，这样的差别还可能引起计算能力的改变。例如，即便是看起来“足够简单”的[简单类型 λ 演算](https://zh.wikipedia.org/zh-cn/简单类型lambda演算)，其 β-归约的[强规范性](https://zh.wikipedia.org/zh-cn/规范化性质)使之严格弱于[图灵完备](https://zh.wikipedia.org/zh-cn/圖靈完備性)语言的表达能力。
+		* 作为对比，退化为[无类型 λ 演算](https://zh.wikipedia.org/zh-cn/%CE%9B%E6%BC%94%E7%AE%97)的系统表达的基本计算本质上并不陌生，因为这实际上也是多数常见[指令式语言]中的一个严格子集。尽管后者的形式定义也非常晦涩，但非形式的理解和适当的形式模型相对容易找到对应。特别地，不要求任意的项的良型(well-typed) 对直觉理解的效率有相当大的影响。
+	* 一旦引入类型，就难以避免和常见语言的显著差别，这样的差别还可能引起计算能力的改变。例如，即便是看起来“足够简单”的简单类型λ演算，其 β-归约的强规范性使之严格弱于[图灵完备](https://zh.wikipedia.org/zh-cn/%E5%9C%96%E9%9D%88%E5%AE%8C%E5%82%99%E6%80%A7)语言的表达能力。
 	* 检验代码是否合式通常不直观，因为并不存在一般的方法保证能从可能语法正确的程序上完全地、任意地提取合式的性质，这本质上需要读者自行记忆各个项的类型并实现类型检查。相比之下，不以类型规则作为核心语义的通常语言中虽然也无法实现性质的提取，但直接在项上（而不是隐藏在项的类型中）的显式编码相对容易通过约定来标识。例如，对控制作用(control effect) 限定在少数构造中的常规语言，通过排除特定控制副作用的项即容易确认强规范性的操作，这对一般的类型系统不适用。这种不直观性破坏了高级语言的一部分抽象的目的。
 	* 退一步讲，以类型论为核心的模型可能以非传统类型论的方式改进而克服抽象性和不直观性，但这没有避免或改善自身的复杂性，反而使整个设计更复杂。并且，借着同构的“合理目的”，在相似的特性集合上创造的元语言上的 [TMTOWTDI](https://zh.wikipedia.org/zh-cn/不止一种方法去做一件事) 的术语滥用的做法，并没有简化对计算的表达，反而容易引起误会。
 * 以类型论为核心语义规则的系统对机器不友好，有效实现受到明显的限制。
-	* 和[逻辑编程](https://zh.wikipedia.org/zh-cn/邏輯編程)类似，实现必须在一定程度上填补声明式语言和底层的指令式表示（如机器 [ISA](https://zh.wikipedia.org/zh-cn/指令集架構) ）的形态差距。相对于存在较简洁的结构化语义的模型来说，这需要更大差异性的变换，普遍更困难。
-	* 这样的模型基本没有同时提出或补充提出面向机器的版本，只在具体的实现中逐步完善。与此相比，不依赖类型论，直接用规约表示计算的抽象机模型[早在 1960 年代就被提出](https://zh.wikipedia.org/wiki/SECD抽象机)，而[和规约系统的变换](https://www.cs.bham.ac.uk/~hxt/research/principles-of-programming-languages-notes.pdf)也被研究多年，经验积累较成熟。
+	* 和[逻辑编程](https://zh.wikipedia.org/zh-cn/%E9%82%8F%E8%BC%AF%E7%B7%A8%E7%A8%8B)类似，实现必须在一定程度上填补声明式语言和底层的指令式表示（如机器 [ISA](https://zh.wikipedia.org/zh-cn/%E6%8C%87%E4%BB%A4%E9%9B%86%E6%9E%B6%E6%A7%8B) ）的形态差距。相对于存在较简洁的结构化语义的模型来说，这需要更大差异性的变换，普遍更困难。
+	* 这样的模型基本没有同时提出或补充提出面向机器的版本，只在具体的实现中逐步完善。与此相比，不依赖类型论，直接用规约表示计算的抽象机模型[早在 1960 年代就被提出](https://zh.wikipedia.org/zh-cn/SECD抽象机)，而[和规约系统的变换](https://www.cs.bham.ac.uk/~hxt/research/principles-of-programming-languages-notes.pdf)也被研究多年，经验积累较成熟。
 	* 这种差异也导致实现习惯上普遍依赖翻译成外部的语言这种方式，整体上使通用目的计算有较大的互操作成本，对实现技术的应用也受到限制。
 	* 一般地，对提供近似功能和保证的系统，替代的其它形式模型通常也难以十分高效地直接实现。但显然“不要求以类型论作为基础”蕴含了更少的要求，更容易保证不引入不必要引入限制。
 
@@ -252,9 +270,9 @@
 
 ## 过度设计
 
-　　上面的分析实际上能在一些设计上体现。也有的设计者认识到这里存在问题，如 [Benjamin C. Pierce](https://en.wikipedia.org/wiki/Benjamin_C._Pierce) 的[一个 talk](http://www.cis.upenn.edu/~bcpierce/papers/harmful-mfps.pdf) ，其中举例设计语言中对类型的滥用遇到的问题，并提出[契约](https://zh.wikipedia.org/zh-cn/契约式设计)作为解决其中一部分问题的（部分）替代。（另外有个值得一提的表述，Types good ⇒ More types better?）
+　　上面的分析实际上能在一些设计上体现。先前提到的 BCP 的 talk 体现了他已经认识到这里存在的在语言设计中滥用类型的问题。（另外有个值得一提的表述，Types good ⇒ More types better?）
 
-　　有[类型论支持者](https://ice1000.org/about-cn/)认为这里的契约就是所谓的[限制类型](https://en.wikipedia.org/wiki/Refinement_type)。不过首先就历史看，契约风格的设计在限制类型前独立提出，而其涵盖的[同样具有逻辑学背景的某些方法](https://zh.wikipedia.org/zh-cn/霍尔逻辑)的历史更是长得多。其次，抛开一些具体设计的相似性，契约在方法论上不要求类型理论的基础模型。因此，这显然是两回事。这样的观点的也可以视为术语滥用后果的例子。
+　　有[类型论支持者](https://ice1000.org/about-cn/)认为这里的契约就是所谓的[限制类型](https://en.wikipedia.org/wiki/Refinement_type)。不过首先就历史看，契约风格的设计在限制类型前独立提出，而其涵盖的[同样具有逻辑学背景的某些方法](https://zh.wikipedia.org/zh-cn/%E9%9C%8D%E5%B0%94%E9%80%BB%E8%BE%91)的历史更是长得多。其次，抛开一些具体设计的相似性，契约在方法论上不要求类型理论的基础模型。因此，这显然是两回事。这样的观点的也可以视为术语滥用后果的例子。
 
 　　另一个例子是对（以 Java 为代表的语言）提供 [checked exception](https://en.wikipedia.org/wiki/Exception_handling#Checked_exceptions) 的语言特性的观点。就特性本身来讲这算不上和类型论相关的过度设计（倒是可以作为独立于类型设计的控制作用的例子），但是一些对这项特性的观点表明某些用户存在对类型相关理论以及类型在语言设计影响和重要性的误读。例如，[这里](http://www.yinwang.org/blog-cn/2017/05/23/kotlin)的观点：
 
@@ -262,7 +280,7 @@
 
 > 也就是说，你必须检查这个函数的整个“调用树”的代码，才能确信这个函数不会抛出异常。这样的调用树可以是非常大的。说白了，这就是在用人工对代码进行“全局静态分析”，遍历整个调用树。这不但费时费力，看得你眼花缭乱，还容易漏掉出错。显然让人做这种事情是不现实的，所以绝大部分时候，程序员都不能确信这个函数调用不会出现异常。
 
-　　这是一种典型的误解。事实上，这里描述的情况并不一定是无意的，造成困难可能仅仅是因为理解不足导致的误用。支持这个观点（而假定“确信这个函数不会抛出异常”总是必要的）的用户显然并不清楚[异常中立性(exception neutrality)](https://gcc.gnu.org/onlinedocs/libstdc++/manual/using_exceptions.html) 在实际代码中起到的作用：表达接口的使用者明确*不需要关心* 和*不应依赖* 某个特定上下文可能存在的异常执行路径。这是一种接口设计上有意的[信息隐藏(en-US)](https://en.wikipedia.org/wiki/Information_hiding)（因为该条目质量问题，不引用中文维基百科词条）。（此外，另一个和具体实现细节相关的目的是接口的[二进制](https://zh.wikipedia.org/wiki/应用二进制接口)稳定性。）在这种上下文中要求使用 checked exception 是把目的彻底搞反了，即便能允许实现，也是自寻烦恼。
+　　这是一种典型的误解。事实上，这里描述的情况并不一定是无意的，造成困难可能仅仅是因为理解不足导致的误用。支持这个观点（而假定“确信这个函数不会抛出异常”总是必要的）的用户显然并不清楚[异常中立性(exception neutrality)](https://gcc.gnu.org/onlinedocs/libstdc++/manual/using_exceptions.html) 在实际代码中起到的作用：表达接口的使用者明确*不需要关心* 和*不应依赖* 某个特定上下文可能存在的异常执行路径。这是一种接口设计上有意的[信息隐藏(en-US)](https://en.wikipedia.org/wiki/Information_hiding)（因为该条目质量问题，不引用中文维基百科词条）。（此外，另一个和具体实现细节相关的目的是接口的[二进制](https://zh.wikipedia.org/zh-cn/%E5%BA%94%E7%94%A8%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%8E%A5%E5%8F%A3)稳定性。）在这种上下文中要求使用 checked exception 是把目的彻底搞反了，即便能允许实现，也是自寻烦恼。
 
 　　是什么引起了这样的误会？除了无师自通的理（瞎）解（蒙）能力和实际接口设计相关的经验问题外，下文的说辞也许能揭示一些原因：
 
@@ -284,17 +302,17 @@
 
 > Java 的 Checked Exception 作为一个例外，是静态的异常， 但是这种语法结构和返回带有错误信息的类型 （可以理解为 Haskell 的 Either， Rust 的 Result） 是同构的（这篇文章本身说的很有道理，但请不要看它所引用的《给 Java 说句公道话》）。
 
-　　如果说清楚地了解原因，那么应该容易地认识到， checked exception 在这里体现了冗余信息的反面教材，并不能作为体现动态类型信息的价值。不过为什么会遗漏这个考虑，是只有不清楚异常中立的作用的原因吗？
+　　如果说清楚地了解原因，那么应该容易地认识到，checked exception 在这里是体现冗余信息的反面教材，并不能作为体现动态类型信息的价值。不过为什么会遗漏这个考虑，是只有不清楚异常中立的作用的原因吗？
 
 　　也许还真不是。回想上面 BCP 的 talk ，可能真陷入 Types good ⇒ More types better 的怪圈里去了……即便实际上表达控制作用可以全然不关心类型（比如[这个](https://dl.acm.org/citation.cfm?id=39443)）。
 
-　　实际上，并不限于 checked exception ，具有类似性质的依赖“模块化”类型检查造成的带有传染性的污染都极易显著地阻碍工程意义上的可扩展性：一旦需要添加新的代码进行交互，牵一发而动全身，搞不好得把接口代码也全部修改一遍。类似的一个实例如[使用 sum type 代替子类型](https://www.reddit.com/r/haskell/comments/423o0c/why_no_subtypingsubtype_polymorphism/cz88npa/)。从逻辑的角度来讲，这些用法是对[封闭世界假定](https://zh.wikipedia.org/zh-cn/封闭世界假定)的不当依赖。考虑到应用类型检查的主要目的之一是帮助用户避免不符合意图的非预期的程序构造，这样的非预期地限制了本该合理的程序构造的过度设计可被认为是假阳性(negative positive) 结果的实例。这个实例实在地揭示出类型检查的普遍局限性——不论类型系统如何强大，仍然需要人为地担保类型推理前提不和意图冲突这种非形式的正确性；这可能比确保类型正确性更难，而且容易被忽视，而和应用类型检查的主要原始目的相悖。
+　　实际上，并不限于 checked exception ，具有类似性质的依赖“模块化”类型检查造成的带有传染性的污染都极易显著地阻碍工程意义上的可扩展性：一旦需要添加新的代码进行交互，牵一发而动全身，搞不好得把接口代码也全部修改一遍。类似的一个实例如[使用 sum type 代替子类型](https://www.reddit.com/r/haskell/comments/423o0c/why_no_subtypingsubtype_polymorphism/cz88npa/)。从逻辑的角度来讲，这些用法是对[封闭世界假定](https://zh.wikipedia.org/zh-cn/%E5%B0%81%E9%97%AD%E4%B8%96%E7%95%8C%E5%81%87%E5%AE%9A)的不当依赖。考虑到应用类型检查的主要目的之一是帮助用户避免不符合意图的非预期的程序构造，这样的非预期地限制了本该合理的程序构造的过度设计可被认为是假阳性(negative positive) 结果的实例。这个实例实在地揭示出类型检查的普遍局限性——不论类型系统如何强大，仍然需要人为地担保类型推理前提不和意图冲突这种非形式的正确性；这可能比确保类型正确性更难，而且容易被忽视，而和应用类型检查的主要原始目的相悖。
 
 ## 关于等价性的设计
 
 　　因为类型论自身的特点，使用类型论作为模型的语言强调和依赖特定形式的等价性。这些等价性和不以类型论基础的语言有一定的差异，使之可能不如其它语言直接地在计算中表达。
 
-　　逻辑推理可以[*演绎*](https://zh.wikipedia.org/zh-cn/演绎推理) 的形式表达，这也用于表达作为逻辑系统或计算的元语言的模型，其中的基本操作以[*重写系统*](https://zh.wikipedia.org/zh-cn/重写逻辑) 的形式表示，称为*规约(reduction)* 。在规约中保持系统的语言保证的等价关系作为基本的相等性，称为[*规约等价性(reduction equality)* 或*计算相等性(computational equality)*](https://ncatlab.org/nlab/show/equality#computational_equality) 。*内涵的(intensional)* 类型论中特别地强调计算相等性（有时被涵盖于[*定义相等性(definitional equality)*](https://ncatlab.org/nlab/show/equality#definitional_equality) ）和[*命题相等性(propositional equality)*](https://ncatlab.org/nlab/show/equality#propositional_equality) 的区别（只有后者需要证明），使以类型论为模型的语言能同时表达计算和逻辑中需要的等价关系。这样的预设分类保持了语义的清晰并一定程度上避免了元语言和对象语言中关于等价谓词的规格重复，但相对非类型论系统（至少，相对不引入静态类型的系统，例如使用[潜在类型](https://en.wikipedia.org/wiki/Latent_typing)的设计）显得更复杂。内涵的类型论因为保证终止，其可计算性严格弱于图灵完备的语言。（*外延(extensional)* 的类型论则不明确区分这点，但也使类型检查[不可判定](https://zh.wikipedia.org/zh-cn/不可判定问题)，并不保证终止。）此外，可能因为外延过广以及实现通常不提供一致的底层对象模型的原因，类型论系统一般也缺乏能生成一般地“相等”的等价谓词的机制（如 [EGAL](http://web.cecs.pdx.edu/~black/publications/egal.pdf) ），尽管其它不少语言也没有这样的特性。
+　　逻辑推理可以[*演绎*](https://zh.wikipedia.org/zh-cn/%E6%BC%94%E7%BB%8E%E6%8E%A8%E7%90%86) 的形式表达，这也用于表达作为逻辑系统或计算的元语言的模型，其中的基本操作以[*重写系统*](https://zh.wikipedia.org/zh-cn/%E9%87%8D%E5%86%99%E9%80%BB%E8%BE%91) 的形式表示，称为*规约(reduction)* 。在规约中保持系统的语言保证的等价关系作为基本的相等性，称为[*规约等价性(reduction equality)* 或*计算相等性(computational equality)*](https://ncatlab.org/nlab/show/equality#computational_equality) 。*内涵的(intensional)* 类型论中特别地强调计算相等性（有时被涵盖于[*定义相等性(definitional equality)*](https://ncatlab.org/nlab/show/equality#definitional_equality) ）和[*命题相等性(propositional equality)*](https://ncatlab.org/nlab/show/equality#propositional_equality) 的区别（只有后者需要证明），使以类型论为模型的语言能同时表达计算和逻辑中需要的等价关系。这样的预设分类保持了语义的清晰并一定程度上避免了元语言和对象语言中关于等价谓词的规格重复，但相对非类型论系统（至少，相对不引入静态类型的系统，例如使用[潜在类型](https://en.wikipedia.org/wiki/Latent_typing)的设计）显得更复杂。内涵的类型论因为保证终止，其可计算性严格弱于图灵完备的语言。（*外延(extensional)* 的类型论则不明确区分这点，但也使类型检查[不可判定](https://zh.wikipedia.org/zh-cn/不可判定问题)，并不保证终止。）此外，可能因为外延过广以及实现通常不提供一致的底层对象模型的原因，类型论系统一般也缺乏能生成一般地“相等”的等价谓词的机制（如 [EGAL](http://web.cecs.pdx.edu/~black/publications/egal.pdf) ），尽管其它不少语言也没有这样的特性。
 
 　　从语言的设计上考虑，要在形式上使语言能有效地解决可编程的问题同时要能被有效地实现（不蕴含对实现手段的不必要的限制），其[理论](https://en.wikipedia.org/wiki/Theory_%28mathematical_logic%29)需要提供一系列保持等价关系的等式(equation) ，即其公式在形式上包含相等关系的表达（即*等式理论(equational theory)* ）。这样指定的等价关系，允许实现在一定程度上变换以提供不同但对应相同语义的等价优化实现。这样的等式支持的等价关系实例越多，则允许支持的潜在优化余地越大。但是，若要保持语言的（不论是对设计者还是对用户的）简单性，等式不能过多。作为实用语言的理想的模型应该满足这样的性质，同时需要避免*平凡* 的理论，即理论中只包含*自反* 的陈述的情形。虽然对表达计算的目的目的来讲，平凡性并不是一个直接的问题；但对描述变换的逻辑系统而言，平凡性可能导致致命的困难，其例子和讨论详见[这篇文献](https://web.wpi.edu/Pubs/ETD/Available/etd-090110-124904/unrestricted/jshutt.pdf)的 8.4.1 和 8.4.2 节。这影响到元语言意义上的实现：因为自反性被等价关系蕴含，平凡的等式理论并不能体现对“语义等价的不同的实现”的支持，意味着实现通常需要全程序分析才能对程序进行等价变换；这也意味着使用类型论这样的逻辑系统替代对计算的表达（而不只是关于计算的表达）会遇到一些额外的困难。
 
