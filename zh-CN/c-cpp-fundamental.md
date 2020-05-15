@@ -16,7 +16,7 @@
 
 仅在此标注权威文献。
 
-正式标准 ISO/IEC 14882:2011 和 ISO/IEC 9899:1999 分别标记为 [C++11] 和 [C11] 。
+正式标准 ISO/IEC 14882:2011 和 ISO/IEC 9899:2011 分别标记为 [C++11] 和 [C11] 。
 
 相关工作组文献，以标准草案为例： [ISO/IEC JTC1 WG21 N3936](https://github.com/cplusplus/draft/blob/master/papers/N3936.pdf?raw=true) 和 [ISO/IEC JTC1 WG14 N1570](http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1570.pdf) ）分别标记为 [WG21/N3936] 和 [WG14/N1570] 。
 
