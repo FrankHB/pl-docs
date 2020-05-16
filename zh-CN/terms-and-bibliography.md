@@ -6,11 +6,11 @@
 
 ANSI C89 指 ANSI X3.159-1989 ，后来被采纳为 ISO/IEC 9899:1990 ，通称 C90 。两者正文仅有格式变化（另外 C90 不包含 Rationale ）。
 
-C99 或 ISO C99 指 ISO/IEC 9899:1999 ，被 ANSI 于 2000 年 5 月采纳。
+C99 或 ISO C99 指 ISO/IEC 9899:1999 ，被 ANSI 于 2000 年 5 月采纳。在草案阶段被称为 C9X 。
 
 [C11](https://zh.wikipedia.org/zh-cn/C11) 或 ISO C11 指 ISO/IEC 9899:2011 ，是第三版正式 C 语言国际语言标准，也被称为 C1X 。
 
-C17 、C18 或 ISO C18 指 ISO/IEC 9899:2018 ，是第四版正式 C 语言国际语言标准。草案定稿于 2017 年，出版于 2018 年。其中 `__STDC_VERSION__` 定义为 `201711L` 。
+C17 、C18 或 ISO C18 指 ISO/IEC 9899:2018 ，是第四版正式 C 语言国际语言标准，对上一版只有小的修正。草案定稿于 2017 年，出版于 2018 年。其中 `__STDC_VERSION__` 定义为 `201711L` 。
 
 [ANSI C](https://zh.wikipedia.org/zh-cn/ANSI_C) 一般即 ANSI C89 。实际上也只有这版标准是先 ANSI 后 ISO 。
 
@@ -24,5 +24,6 @@ C++98 或 ISO C++98 指 ISO/IEC 14882:1998 ，是第一个 C++ 语言国际标�
 
 [C++14](https://zh.wikipedia.org/zh-cn/C++14) 或 ISO C++14 指 ISO/IEC 14882:2014 ，是第四版 C++ 语言国际标准，有一定修正，之前称为 C++1y 。
 
-[C++17](https://en.wikipedia.org/wiki/C++17) 或 ISO C++17 指预定出版的 ISO/IEC 14882:2017 ，是 C++ 语言国际标准的一个主要版本，被称为 C++1z 。
+[C++17](https://en.wikipedia.org/wiki/C++17) 或 ISO C++17 指 ISO/IEC 14882:2017 ，是第五版 C++ 语言国际标准，有较大改动，之前称为 C++1z 。
 
+[C++20](https://en.wikipedia.org/wiki/C++20) 或 ISO C++20 指预定出版的 ISO/IEC 14882:2020 ，是 C++ 语言国际标准的一个主要版本，被称为 C++2a 。
