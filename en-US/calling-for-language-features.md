@@ -151,6 +151,8 @@ See subclauses below for other details.
 * Allowing native (mutable) states natively
 	* No need to "compile" manually to get the states transformed
 
+For the necessity of impure effects, see the subclause of first-class effects below.
+
 The formal model of impure variant of lambda calculi are relatively recent compared to the practical languages with the feature. See [[Plo75]](http://homepages.inf.ed.ac.uk/gdp/publications/cbn_cbv_lambda.pdf) and [[Fe91]](https://www2.ccs.neu.edu/racket/pubs/scp91-felleisen.ps.gz).
 
 ##### Lexical scoped impure lambda calculi based
@@ -188,14 +190,66 @@ First-class entities are also important for abstraction, because abstraction is 
 
 An *object* is an entity which preserve its identity. Unless otherwise specified, any two objects can be differentiated by the identity. This definition has more restrictions of the identity compared to the one in the dissertation introducing the vau calculi (which is called as a first-class entity, see above).
 
-The identity is needed for [ontology](https://en.wikipedia.org/wiki/Ontology) purpose. Although when not built-in, it can still be expressed by derived languages from the base specification, the essence of generality makes this approach unnecessarily *indirect* in the whole design. This is the very same reason compared to the reason about keeping expressiveness of [*side effects*](https://en.wikipedia.org/wiki/Side_effect) in the base specification (rather than providing them through the derived languages), as well as the reason of allowing the programs being *stateful* (see also first-class states below): if a language is lacking of these essential features by design, it is more suited to be a target language [being transformed to](https://en.wikipedia.org/wiki/Program_transformation) (e.g. by a [compiler](https://en.wikipedia.org/wiki/Compiler) during translation of a source program, or within a [proof assistant](https://en.wikipedia.org/wiki/Proof_assistant) during verifying some properties of a source program), but not a language used by human users directly.
+The identity is needed for [ontology](https://en.wikipedia.org/wiki/Ontology) purpose. Although when not built-in, it can still be expressed by derived languages from the base specification, the essence of generality makes this approach unnecessarily *indirect* in the whole design.
+
+### First-class effects
+
+* Allowing programmability over computational effects in a same manner
+* Enabling possibilities customization of effects in the object language
+
+Support of computational effects are crucial in a general-purposed language.
+
+There can be many *kinds* of effects. Basically, these are two sorts, *pure* and *impure*, which are both needed in the required design:
+
+* Pure effects determine the value of computation, which is typically the result expressed in expressions after their evaluation.
+	* In programming languages based on a calculus with recursively composed terms (expressions) in its syntax, pure effects are not avoidable in practice.
+* Impure effects determine the potential changes of the state of the execution of the program which are not directly seen in the expressions.
+	* They are [*side effects*](https://en.wikipedia.org/wiki/Side_effect) to the evaluations.
+	* Impure effects can be avoided largely by using the so-called [purely functional programming](https://en.wikipedia.org/wiki/Purely_functional_programming) paradigm. However, this is specifically rejected here. See the misfeature subclauses below.
+* Different kind of effects can model different computations in specific domains.
+	* Pure effects model the processes of traditional pure mathematical computations, like numerical computations (ignoring the floating-pointing evrironment).
+	* Impure effects can model (mutable) states. See the subclause about first-class states below.
+	* Impure effects can model program control. See the subclause about first-class continuations below.
+
+As a computational device, effects shall be *composable* in some degrees.
+
+* Pure effects naturally composed over the syntactic combination of terms: the result of an expression can be defined as the combination of the results of its subexpressions.
+* Impure effects are not so easy to compose naturally, because their outcome on the program behavior usually depend on the occurence of other effects and the order of comosition, and not all of them can be coexisted  meaningfully.
+	* For example, the effect of modifaction on a memory location is a side effect, which will overwrite the previous effect of same kind. And concurrent effects of this kinds without sufficient synchronization often cause unpredictable program state.
+	* There need a programmable mechanism to specify which manners are acceptable by users.
+	* There need some semantic rules to prevent the potential unpredicatable states by default, or it is too error-prone.
+
+Note that keeping the identity over the first-class objects has the very same reason compared to the reason about keeping expressiveness of side effects in the base specification (rather than providing them through the derived languages) here.
+
+#### Structrual sanity requirment on the programmable effect system
+
+As of the basis of the reasoning about extensibility, there is an additional sanity requirement on the structrual description of the first-classness. That is, the first-class effects shall be extensible based on the effect kinds have less restrictions, if any.
+
+This implies:
+
+* Pure effects are programmably implementable as and effectively considered a special case of general (perhaps impure) effects, with the restriction to prove it pure in the concerned contexts.
+	* The approach to enforce purely functional style by default as well as some effectful exceptional entities is not an acceptable design choice here.
+* Qualifiers having different kinds of restrictions on entities (like ISO C's `const` and `volatile`) are orthogonal and not comparable by default.
+	* Both `const` and `volatile` is more restrictive to the unqualified types. In the type system parlance, for some complete object type `T`, both `const T` and `volatile T` are subtypes of `T` (which are used as inhabitant expression of type `T` after lvalue conversions). Similarly, `T*` is a subtype of both `const T*` and `volatile T*` (due to the contravariant nature on cv-qualification of pointer type constructor `*`). But there is no such relationship between `const T` and `volatile T`, or between `const T*` and `volatile T*`.
+	* On the contrast, forming the basis by placing the immutability (e.g. by some `mutable` which negates `const`) in the default preset to be the basis is not acceptable.
+
+This is made for the purpose of extensibility about the programmable restrictions.
+
+* The rule ensures that the action of adding some restrictions being more comprehensive and more easy to express.
+* The rule also prevents some difficulties of lost of the orthogonality of the restrictions too early.
+
+Making the restrictions themselves composable can be quite natural. For example, both `const T` and `volatile T` can be formed directly by some type constructors named as `const` and `volatile` with a single type parameter `T`. (The type constructors are actually `std::add_const_t` and `std::add_volatile_t` in ISO C++ for a complete object type `T`.) On contrast, allowing something like `mutable` to qualify `T` in the same manner requires some more rules (e.g. pattern matching rules on the inner structure of the entity denoted by the signature `T`) to absorb the yet unknown `T`, to reflect the qualification has proved the fact that `mutable T` has more restrictions about mutability over `T`.
+
+The remained orthogonal properties seems more subtle. Consider some language with immutablity on objects by default, for example, Rust. Rust actually mixes concurrent properties as well: objects can be "shared read-only" or "uniquely owned read-writable". Users have no direct chance to specify the "mutable" preciesly. Although Rust rejects to allow shared mutable objects by default, it still need to provide workaround as ["interior mutability"](https://doc.rust-lang.org/core/cell/index.html). This does not make the language more difficult to learn, but any effort to add a new kind of "mutability" in the language will be costly. It can be realistic once the implementation can reason mutability (based on some user-provided contextual equality) instead of the modifiability (based on hard-coded equality) for constant propagation. As a result, the lack of orthogonality harms the chance of some more optimal implementaions.
 
 ### First-class states
 
 * Allowing a normative way of distinction of different side effects
-* Enabling possibilities to specific kinds of customized effects (e.g. ISO C style `volatile`)
+* Enabling possibilities to specific kinds of customized side effects (e.g. ISO C style `volatile`)
 
-By specifying identity on objects, side effects can be bound on objects with restricted number of instances. The restriction ensures the effects on the object are not duplicated or eliminated unexpectedly.
+By specifying the identity on objects, side effects can be bound on objects with restricted number of instances. The restriction ensures the effects on the object are not duplicated or eliminated unexpectedly.
+
+Note that keeping the identity over the first-class objects has the very same reason compared to the reason to allow the programs being *stateful*: if a language is lacking of these essential features by design, it is more suited to be a target language [being transformed to](https://en.wikipedia.org/wiki/Program_transformation) (e.g. by a [compiler](https://en.wikipedia.org/wiki/Compiler) during translation of a source program, or within a [proof assistant](https://en.wikipedia.org/wiki/Proof_assistant) during verifying some properties of a source program), but not a language used by human users directly.
 
 ### First-class continuations
 
@@ -386,6 +440,18 @@ Even despite the requirement of first-class falsity, properties like [totality](
 Such properties may be beneficial or even vital in some problem domains like [automated theorem proving](https://en.wikipedia.org/wiki/Automated_theorem_proving) and the typechecking implementation of languages. This certainly does not cover the general cases where computation and programmability are needed. It should be possible to make some DSLs serving to such domains, with some derivation of language features to allow users enforce such properties, if needed.
 
 Note mandatory of such properties usually needs to introduce some sorts of concrete type systems. This is also disallowed by related subclauses above.
+
+### Purity
+
+Purity, or the effort to prevent the expressiveness of impure computational effects, is considered a non-goal in a general-purposed language design.
+
+Impure effects may change the states implicitly. Purity instead prevent them. However, they are still unavoidable in a whole meaning program, because a program without side effects cannot interact with the implementation environment. That is, the user of a program without impure effects can never get the result computed by the program. This implies the existence of program structure semantically equivalent to the impure effects to express the side effects. 
+
+Purity guarantees the reasoning of the computations being side-effect free. This eases many analysis, but also makes the users more laborious to express the side effects in other parts of the program in some other unnatural ways (see the counterexamples subclauses below).
+
+For a general-purposed design, no preference to enforce the purely functional style shall be assumed without careful conventions. It is ultimately the freedom of users to determine whether it is necessary to mix the pure and impure parts of the programs in the same language. It is still possible to annotate the specific parts of the program to be pure, if users want that.
+
+Avoiding purity be default is also necessary to composable different effects. See also the rationale of the first-class effects in the previous subclause.
 
 ## Various control primitives
 
