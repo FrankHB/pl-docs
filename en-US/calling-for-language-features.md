@@ -627,11 +627,22 @@ ISO C++ merges *type-specifier* name separation by default but allowing exceptio
 
 Module systems are useful in organizing modular code components consistently. However, they can be derived from primitive constructs as libraries.
 
-The way of derivation is considered superior than built-in primitive features for various reasons. The general reasons of primitives vs. derivations are all suited here.
+The way of derivation is considered superior than built-in primitive features for various reasons:
 
-Avoiding module systems out of the language rules also prevents some confusions about the concept itself. As the result of *modularized* designs, modules can have different granularity. For example, a translation unit can be a module, as well as a function in it. Typically, modules with different granularity coexist in a program. There is no good reason to only name one of them as the language feature and reject others. (This point is also true for avoiding the name of "interface" as a language feature as it is in Java and C#.)
+* The general reasons of primitives vs. derivations are all suited here.
+	* There are different designs with different kinds of features. No one can definitely meet all requirments.
+		* As a result, module systems are often complex in practice.
+		* In particular, the built-in ones in many languages tend to have a rich set of pre-built features, rather than first being simple and extensible.
+		* This seems quite bad comparing to other parts of a general-purposed language design.
+	* Testing different styles of module system designs with derivations have less risks to break the whole language design.
+* Avoiding module systems out of the language rules also prevents some confusions about the concept itself.
+	* As the result of [*modularized* designs](https://en.wikipedia.org/wiki/Modular_design), modules can have different granularities.
+		* For example, a translation unit, as well as a function in it, can be a module.
+	* Typically, modules with different granularities coexist in a program. Choice to a specific granularity over others often depends on contexts.
+		* There is no good reason to only name one of them as the language feature and reject others.
+	* This point is also true for avoiding the name of "interface" as a name of language feature like in Java and C#.)
 
-For the case specific to the module systems, derivations are also allowed to be used as basic building blocks of more abstracted high-level facilities for engineering purpose (e.g. [building systems](https://en.wikipedia.org/wiki/Build_automation) and [CI (continuous integration)](https://en.wikipedia.org/wiki/Continuous_integration). A single fixed design of modules without multi-level reflective derivations in mind is hardly convincingly support the ideas well in general.
+For the cases specific to the module systems, derivations can be used as the basic building blocks of more abstracted high-level facilities for engineering purpose (e.g. [building systems](https://en.wikipedia.org/wiki/Build_automation) and [CI (continuous integration)](https://en.wikipedia.org/wiki/Continuous_integration). A single fixed design of modules without multi-level reflective derivations in mind is hardly convincingly support the ideas well in general.
 
 (Rationale and examples TBD.)
 
