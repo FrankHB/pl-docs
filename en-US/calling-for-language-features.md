@@ -242,6 +242,36 @@ Making the restrictions themselves composable can be quite natural. For example,
 
 The remained orthogonal properties seems more subtle. Consider some language with immutablity on objects by default, for example, Rust. Rust actually mixes concurrent properties as well: objects can be "shared read-only" or "uniquely owned read-writable". Users have no direct chance to specify the "mutable" preciesly. Although Rust rejects to allow shared mutable objects by default, it still need to provide workaround as ["interior mutability"](https://doc.rust-lang.org/core/cell/index.html). This does not make the language more difficult to learn, but any effort to add a new kind of "mutability" in the language will be costly. It can be realistic once the implementation can reason mutability (based on some user-provided contextual equality) instead of the modifiability (based on hard-coded equality) for constant propagation. As a result, the lack of orthogonality harms the chance of some more optimal implementaions.
 
+#### Distinguishing of the effect kinds
+
+Either by inference or user-provided annotations, the design shall provide some mechanisms to distinguish different kinds of the effects (before further to name the kinds as first-class objects):
+
+* Pure and impure effects are distinguished.
+	* This allows users to encode the intentional use of pure effects on domains requiring out-of-order composition of the code.
+	* This enables the possibilities of many traditional common optimizations of the code (like [constant folding](https://en.wikipedia.org/wiki/Constant_folding) and [common subexpression elimination](https://en.wikipedia.org/wiki/Common_subexpression_elimination)) depending on the purity directly programmable in the object language.
+	* It is also necessary to allow users to mimic a mostly purely functional paradigm in the program.
+* Control effects are distinguished from other kinds of impure effects.
+	* This allows users to encode the intentional use of the default control differently from others, e.g. to mark exceptional-free code explicitly (like C++'s `noexcept` specifier).
+	* This enables some possibilities of control transformation optimizations, e.g. elimination of trivial exception handling code which should logically has no control effects but difficult to be proved syntactically.
+* Other impure effects are further distinguished on demand.
+	* This enables the possibilites of some more advanced code transformations in higher-level domain-specific abstractions. See below.
+
+One of a notable application of the last case listed above is to model the effects in I/O (input/output) operatons.
+
+* Such operations are potentially effectful. 
+	* In essense, I/O imply side effects.
+* However, the specifications in most popular language for these notions are often defective due to lack of imprecise.
+	* Under the definitions used by some specifications (at least in ISO C and ISO C++), this is not guaranteed. Instead, they may have side effects or not, and nothing can be assumed without the implementation details. This is underspecified and the implementation cannot optimize them even there are provable pure parts (e.g. operations on the so-called memory streams).
+* To clarify the case, I/O operations here refer to the parts which are (strictly) statically unprovable to avoid the *I/O effects*.
+    * This requires the ability to distinguish different kinds of effects (here, I/O effects and other non-I/O ones) in some *nominal* way, because without the additional information (like in ISO C and ISO C++), different kinds are structrual equivalent and no differences can be found with other rules to aid to the further optimizations.
+	* The I/O effects shall be known having different characteristics from non-I/O effects such as the effects of modification on (non-`volatile`) objects in the abstract machine, so there can be different treatments on verification and optimization.
+	* The possiblity of the optimizations enabled by the additonal optimizations vary.
+    	* Elimination of the effects implied by some paired `getc` and `ungetc` calls on memory streams can be a simple distinguishing example.
+
+The mechanism to distinguish different kinds of effects shall include some way to determine whether an evaluation on some specific expression is definitely having some specific kinds or not where the differences are applicable in the contexts.
+
+Note to distinguish the kinds of effects not necessarily meaning *partition* on them, i.e. different kinds may have common non empty subset of instances of effects. The only exception is that pure and impure ones are mutual exclusive, by definition.
+
 ### First-class states
 
 * Allowing a normative way of distinction of different side effects
