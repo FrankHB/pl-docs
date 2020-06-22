@@ -74,7 +74,7 @@
 
 ## 规格说明
 
-　　[规格说明(en-US)](https://en.wikipedia.org/wiki/Specification_(technical_standard)) 是一种技术指导文献，规定设计、产品或其它交付物符合预期的要求。
+　　[规格说明(en-US)](https://en.wikipedia.org/wiki/Specification_%28technical_standard%29) 是一种技术指导文献，规定设计、产品或其它交付物符合预期的要求。
 
 　　规格说明文档在工程上是常用的必要文件，它经常被协调各方关于技术问题的整体的、正式的规范约定，是评价交付物质量的主要依据。
 
