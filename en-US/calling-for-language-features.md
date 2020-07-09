@@ -371,7 +371,19 @@ C++ is an example supporting such feature by destructors. Another similar exampl
 
 ### Necessity
 
-A language lacking deterministic deallocation may require [GC (garbage collection)](https://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29), if it does allow allocation of resources (so it can be a general-purposed language) and it does not avoid collection at all (to avoid leaking the allocated resources totally). GC can be deterministic with reference counting, but it cannot handle cyclic references properly. Tracing GC is not deterministic. This makes it in general not fit for resources other than memory and there have to be different mechanism to handle different kind of resources, like finalizers, which may lead to complex problems like [object resurrection](https://en.wikipedia.org/wiki/Object_resurrection). Even for memory, it will leak if not called in time. Most garbage collectors have STW (stop-the-world) problem on collection, and they are often not friendly to memory efficiency and real-time applications by default. Thus, GC is better opt-in for a general-purposed language.
+A language lacking deterministic deallocation may require [GC (garbage collection)](https://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29), if it does allow allocation of resources (so it can be a general-purposed language) and it does not avoid collections at all (to avoid leaking the allocated resources totally).
+
+Deterministic deallocation is preferred to the mandatory of GC for multiple reasons. Typically, GC make troubles not existed at the first place where the deterministic deallocation is available.
+
+* GC can be (somewhat) deterministic with reference counting, but it cannot handle cyclic references properly.
+* Tracing GC is not deterministic. This makes it in general not fit well for resources other than memory and there have to be different mechanism to handle different kind of resources (e.g. by finalizers), which may lead to complex problems like [object resurrection](https://en.wikipedia.org/wiki/Object_resurrection).
+* Even for memory, GC will leak if the collection not called in time.
+	* This is worse in practice because the collection is not always guaranteed available in the object language.
+	* Even the collection is available in the object language, it can be simply a non-binding request. The call can be delayed or even ignored by the runtime, and there is generally no other reliable way to prevent the uncertainty.
+	* As the result, programmers have effectively lose the control of deterministic memory management by default. Such GC has no capability to replace deterministic deallocation (whether it is tracing or not).
+* Most garbage collectors have the [STW (stop-the-world)](https://en.wikipedia.org/wiki/Tracing_garbage_collection#Stop-the-world_vs._incremental_vs._concurrent) problem on collection, and they are often not friendly to memory efficiency and real-time applications by default.
+
+Thus, GC is better opt-in for a general-purposed language.
 
 # Avoidance of mandatory
 
@@ -537,7 +549,26 @@ ISO C has the notion reflecting the status of objects being allocated in the glo
 
 See discussions in the subclause about necessity of deterministic deallocation above. This directly disallows relying on [tracing GC](https://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29#Tracing).
 
-GC also effectively encourages blur on object *ownership* and *access rights*, and further avoids using first-class objects as abstraction of resources whose relations of ownership can be naturally expressed as [DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph)s by succinct use of [RAII](https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization) idiom. Note in such cases, [cyclic references with equal ownership](https://en.wikipedia.org/wiki/Memory_leak#Reference_counting_and_cyclic_references) should be in general avoided by external owners or [weak references](https://en.wikipedia.org/wiki/Weak_reference). Someone may argue [this discipline harms idiomatic recursion use of closures](http://lambda-the-ultimate.org/node/5007#comment-81721), but the right of ignorance of ownership actually does not exist in nature: either it has to be managed by external owners implicitly (like a GC), or it has to be done explicitly. GC has indeed nothing to do with [closures](https://en.wikipedia.org/wiki/Closure_%28computer_programming%29) for historical reasons without the concrete background of some specific languages (which may sometimes imply the GC is always used). The so-called [funarg problem](https://en.wikipedia.org/wiki/Funarg_problem) can be resolved without aid of GC after the clarification of object ownership. (Actually, GC is the special case that uses the external owner.)
+GC also effectively encourages confusions on several important properties of objects.
+
+* It blurs the *ownership* and *access rights* of objects.
+* It makes the *lifetime* of objects overly implicit.
+	* The notion is important because it determines the identity of the live instance of the objects, which can make differences on program behavior.
+	* When the differences are sensible, the Lispy terminology *extent* should not be used instead.
+		* For example, a first-class continuation may have an minimal extent determined by the call graph before its capture, which is not necessarily same to its lifetime. It is the lifetime but not the extent to determine the necessary timing of the allocation of the deallocation for the object.
+* It further avoids using first-class objects as abstraction of resources whose relations of ownership can be naturally expressed as [DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph)s by succinct use of [RAII](https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization) idiom.
+	* In such cases, [cyclic references with equal ownership](https://en.wikipedia.org/wiki/Memory_leak#Reference_counting_and_cyclic_references) should be in general avoided by external owners or [weak references](https://en.wikipedia.org/wiki/Weak_reference).
+	* Someone may argue [this discipline harms idiomatic recursion use of closures](http://lambda-the-ultimate.org/node/5007#comment-81721), but the right of ignorance of ownership actually does not exist in nature: either it has to be managed by external owners implicitly (like a GC), or it has to be done explicitly.
+	* GC has indeed nothing to do with [closures](https://en.wikipedia.org/wiki/Closure_%28computer_programming%29) for historical reasons without the concrete background of some specific languages (which may sometimes imply the GC is always used).
+		* The so-called [funarg problem](https://en.wikipedia.org/wiki/Funarg_problem) can be resolved without aid of GC after the clarification of object ownership. (Actually, GC is the special case that uses the external owner.)
+
+Moreover, GC interferes the extensibility of the language rules.
+
+* Once the (global) GC implied by the language rules and it is in use, it is almost impossible to opt-out.
+	* Due to the nature of nondeterminism, it is generally impossible to prove that no resources is owned by the global instance in any non-trivial programs.
+* However, if the mandated GC is composed by multiple instances of collectors backed by separated stores, it is not *that* bad.
+	* This is essentially a set of *pools* of memory, which is not the typical case discussed here.
+	* Nevertheless, explicit pools exposed in the object language are preferred to these implicit instances.
 
 There are other implementation concerns to avoid general-purposed GC by default.
 
@@ -547,7 +578,7 @@ There are other implementation concerns to avoid general-purposed GC by default.
 * Notably, GC often incurs memory consumption problem even with a robust global store. That is, requiring [a lot more backing memory than the amount being needed](https://sealedabstract.com/rants/why-mobile-web-apps-are-slow/index.html).
 	* Note this is actually a kind of "leak" as per the definition of [[Cl98]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.8567&rep=rep1&type=pdf), being stricter worse than deterministic release of memory in block scope variables of ALGOL-like languages.
 	* This increases the risks of [page faults](https://en.wikipedia.org/wiki/Page_fault) in modern systems, which is even worse for performance.
-* Many GC incurs the [STW (stop-the-world)](https://en.wikipedia.org/wiki/Tracing_garbage_collection#Stop-the-world_vs._incremental_vs._concurrent) problem. This can seriously degenerate responsibility of applications by poor latency and causes bad user experience in cases of interactive applications.
+* Many GC incurs the STW (stop-the-world) problem (mentioned previously). This can seriously degenerate responsibility of applications by poor latency and causes bad user experience in cases of interactive applications.
 	* Generational or incremental GC may relieve the problem, but not totally avoid. And the complexity of GC implementation can increase a lot.
 	* Most concurrent GC implementations have no better situations except that the stop time would be less. But the complexity can be even more.
 	* The [C4](https://www.azul.com/files/c4_paper_acm2.pdf) claims it can totally avoid the stop. However, it is only meaningfully available on a system equipped with huge amount of memory (say, several TBs in one instance).
@@ -555,6 +586,9 @@ There are other implementation concerns to avoid general-purposed GC by default.
 	* Although in theory GC is not necessarily inconsistent with these requirements, it is already quite hard to implement. With limited memory resources, this is even harder.
 * Some languages with need of "system programming" like C, C++ and Rust avoid GC by default.
 	* In particular, (general-purposed) GC violates [zero overhead](https://webstore.iec.ch/preview/info_isoiec18015{ed1.0}en.pdf) principle in C++, and similarly, [zero overhead abstraction](https://blog.rust-lang.org/2015/05/11/traits.html) in Rust.
+* By relying on more assumptions of the underlying implementation, a so-called [conservative GC](https://en.wikipedia.org/wiki/Tracing_garbage_collection#Precise_vs._conservative_and_internal_pointers) can perform better than a so-called precise GC, at the cost of less portability.
+	* In particular, a conservation GC can sometimes [perform better with the knowledge of the underlying layout of the activation records](https://github.com/justinethier/cyclone/raw/master/docs/research-papers/CheneyMTA.pdf).
+	* This strategy in practice may incur higher risks on portability in the evolution towards optimal resource management implementations because less fallbacks can be easily integrated back into the language designs without clashes.
 
 Note the discouragement of GC does not cover the following facilities.
 
