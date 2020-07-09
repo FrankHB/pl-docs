@@ -451,6 +451,33 @@ Kernel and [PicoLisp](https://picolisp.com) do not mandate explicit phases.
 
 Some language like [Java](https://docs.oracle.com/javase/specs/jls/se11/html/index.html) specifies the translation as compilation (even now it has a [REPL (read-eval-print loop)](https://en.wikipedia.org/wiki/Read–eval–print_loop)-style interface named [jshell](https://openjdk.java.net/jeps/222)). This is not desired in general.
 
+## Certain kinds of syntaxes
+
+Many languages mandates specialized kinds of syntactic forms in a formal grammar. This makes the evaluation rules complicated than needed.
+
+Overly complicated syntactic forms shall not be mandated in the core language rules. Nor they shall be built-in.
+
+Such syntaxes are more difficult to be consistent with each other, compared to other syntactic rules.
+
+Hard-coded syntaxes rules are also difficult to remember, hence error-prone in nature.
+
+Lacking of such rules allowing the language more easily to achieve *homoiconicity*, leading to a simpler way to represent the code as data.
+
+Note the extent of instances of this subclause can be more subjective than others. See examples for references (still not exhaustive, though).
+
+### Examples
+
+Many lisp dialects have *special forms* which are built-in.
+
+Infix syntaxes are considered overly complicated in general because other forms are sufficient and often more expressive.
+
+* Infix forms are less expressive than both prefix and post forms.
+	* Infix forms can naturally have only 2 groups of positional arguments. Both prefix and postfix forms can have more choices on arity.
+	* Prefix and postfix forms can have powerful inductive rules over a set of arbitrary number of arguments. They are not applicable to infix forms.
+* Instances of infix syntaxes vary.
+	* Many languages have *infix operators*. They are considerably complicated enough to be the example, due to hard-coded rules (in a non-trivial amount) which requires memorization by the users of these languages.
+	* C has infix syntaxes of declarators, which are potentionally confusing. Note the so-called "right-left rule" does not correctly reflect the normative rules defined by the formal syntaxes.
+
 ## Concrete type systems
 
 In essence, modeling type systems is one of the target domains of a general-purposed language. Any built-in complicated type system difficult to be model should be prevented.
