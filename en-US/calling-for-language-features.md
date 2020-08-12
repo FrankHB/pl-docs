@@ -422,12 +422,12 @@ Moreover, separation of phases cause confusions. Informally, there [exists peopl
 
 Both points do not work in general, because:
 
-* 1) "To run" means *a priori* separation, as an explicit emphasized form of "runtime" phase in the lifetime the product.
-	* Although this is not in the phases of *translation* in strictly sense, it is still largely redundant for similar reasons proposed here.
-	* It is possible to eliminate this separated "run" phase by some real-time analysis which "runs" simultaneously *before deployment*. This *unified* approach should provide same (if not more) benefits for automatic verification.
-	* The situation of separation vs. unified phases here is a bit like [AOT](https://en.wikipedia.org/wiki/Ahead-of-time_compilation) vs. [JIT](https://en.wikipedia.org/wiki/Just-in-time_compilation) compilation. Both cases require some trading off to determine how much dynamic properties to be resolved later. However, while JIT does have some obvious weakness about the cost and quality of the result, it is not yet clearly known how unified approach is more deficient in practice.
+* 1) "To run" means *a priori* separation, as an explicitly emphasized form of "runtime" phase in the lifetime the product.
+	* Although this is not in the phases of *translation* strictly, it is still largely redundant for similar reasons proposed here.
+	* It is possible to eliminate this separated "run" phase by some real-time analysis which "runs" simultaneously *before the deployment*. This *unified* approach should provide the same (if not more) benefits for automatic verification.
+	* The situation of separation vs. unified phases here is a bit like [AOT](https://en.wikipedia.org/wiki/Ahead-of-time_compilation) vs. [JIT](https://en.wikipedia.org/wiki/Just-in-time_compilation) compilation. Both cases require some trading-off to determine how much dynamic properties to be resolved later. However, while the JIT approach does have some obvious weakness on the cost and quality of the result, it is not yet clearly known how the unified approach is more deficient in practice (due to lacking of experience, probably).
 * 2) Separation of concerns has essentially nothing to do with separation of phases in nature.
-	* Separation of concerns is a principle towards better interface design *all around*, rather than something buried in subtle language-specific details to implement the principle. The required "distinction" approach will either leak abstraction based on assumptions not always available in the interface design or make it simply not feasible and implementable.
+	* Separation of concerns is a principle towards better interface design *all around*, rather than something buried in subtle language-specific details to implement the principle. The required "distinction" approach will either leak the abstraction based on assumptions not always available in the interface design or make it simply not feasible and implementable.
 	* The original text is in a response to criticize the Kernel language, so it actually not only requires the *distinction* literally, but also requires it being more aggressively *built-in* in the language. Even distinction between different phases can convey the idea well enough, *separation* them with *globally* ordered subset of rules in the language is overspecified. In contrast, avoiding assumptions on phases *ruled explicitly by the language* still does not prevent *users* to introduce required distinctions *locally*.
 	* Arbitrary distinction of phases is directly broken when a solution needs to express similar things across different phases, so any predefined phases will undermine the separation and/or code bloat (as similar code duplicated across phases).
 
@@ -647,11 +647,11 @@ However, it does not work in general without [leaks abstraction](https://en.wiki
 
 ### Examples
 
-D [assumes flat memory spaces with specified machine width](https://dlang.org/overview.html#features_to_drop).
+D [assumes flat memory spaces with some specified machine width](https://dlang.org/overview.html#features_to_drop).
 
 ### Counterexamples
 
-Both ISO C and ISO C++ lack specified ABI specification within the language rules. Only limited *linkage* support is mandated by C++. However, users may believe the false illusion that "C has defined ABI" and "C++ does not". This is perhaps caused by various reasons.
+Both ISO C and ISO C++ lack specified ABI specifications within the language rules. Only limited *linkage* support is mandated by C++. However, users may believe the false illusion that "C has defined ABI" and "C++ does not". This is perhaps caused by various reasons.
 
 * Implementations of C are often treated as the *de-facto standard*.
 	* Historically, C was targeting ISA-level "native" platforms. This is still true in most modern implementations.
@@ -679,7 +679,7 @@ Metaprogramming is the programming mechanism and technique to manipulate a progr
 	* With given benefits above, it is hardly feasible to be replaced by other means.
 	* Nevertheless, not all styles of metaprogramming share these properties. Namely, it *can*, but not *must*, have the benefits. The fact suggests that such benefits are from some more basic elements of the language design, but not by the allowance of metaprogramming itself.
 
-While the purpose is plausible, it is not the feature that a general language to support directly. The various implementation techniques (see below) can be broken down into more fundamental feature sets. They are hereby basically superseded by explicit `eval` style code of vau abstractions with more consistent rules for several reasons.
+While the purpose is plausible, it is not the feature that a general-purposed language need to support directly. The various implementation techniques (see below) can be broken down into more fundamental feature sets. They are hereby basically superseded by explicit `eval` style code of vau abstractions with more consistent rules for several reasons.
 
 * The computational expressiveness is guaranteed by formal models (at least compared to macros). (Note [macros solely in C-like preprocessor itself is not Turing-complete](https://stackoverflow.com/questions/3136686/is-the-c99-preprocessor-turing-complete)).
 * This approach also avoids need of predefined multiple phases of translation.
