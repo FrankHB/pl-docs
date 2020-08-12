@@ -6,7 +6,7 @@ Some documents may contain subjective viewpoints. Some of them may change due to
 
 # Rules
 
-Contents in this repository conform to the [YSLib wiki editing rules](http://bitbucket.org/FrankHB/yslib/wiki/WikiRules.en-US.md).
+Contents in this repository conform to the [YSLib wiki editing rules](https://frankhb.github.io/YSLib-book/WikiRules.en-US.html).
 
 # Copyright
 
