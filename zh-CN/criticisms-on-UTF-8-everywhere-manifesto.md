@@ -164,7 +164,7 @@ UTF-16 当然很烂。
 
 > 况且，MultiByteToWideChar 不是最快的 UTF-8↔UTF-16 转换函数。
 
-作为撸过[目前为止还没有发现更快的 UTF-8 → UTF-16 解码实现](https://bitbucket.org/FrankHB/yslib/src/a202273d25704212e9a1c61faa2f714b8e7e2b25/YFramework/include/CHRLib/StaticMapping.hpp?at=master&fileviewer=file-view-default#StaticMapping.hpp-303)的，我可以负责任地讲，实际上相当慢……虽然通常并不介意这点差距。
+作为撸过[目前为止还没有发现更快的 UTF-8 → UTF-16 解码实现](https://github.com/FrankHB/YSLib/blob/28e48fdfbe988b7e6e70851873bee86cc0d13094/YFramework/include/CHRLib/StaticMapping.hpp#L303)的，我可以负责任地讲，实际上相当慢……虽然通常并不介意这点差距。
 
 > 将文件存为无 **BOM**的 UTF-8 可以解决。MSVC 会认为文件已经在正确的代码页，就不会碰你的字符串。
 
