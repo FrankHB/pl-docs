@@ -33,6 +33,7 @@
 	* 虽然是即兴写给[看起来不那么懂语法](http://tieba.baidu.com/p/3835122876)而想要[技术交流](http://tieba.baidu.com/p/3829012515)的，不过实际上先例很多，也算是填了个好几年的坑
 * [类型 vs. 类型检查](typing-vs-typechecking.md)
 * [权威与混淆](authority-and-confusion.md)
+* [组合子语用批判](combinator-critique.md)
 
 ## 特性和设计
 
