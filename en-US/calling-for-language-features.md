@@ -123,7 +123,7 @@ Calculi are refinement of [*rewrite systems*](https://en.wikipedia.org/wiki/Rewr
 
 ### Named calculi based
 
-Like some traditional languages based on [lambda calculi](https://en.wikipedia.org/wiki/Lambda_calculi), with the ability to introduce names.
+* Like some traditional languages based on [lambda calculi](https://en.wikipedia.org/wiki/Lambda_calculi), with the ability to introduce names.
 
 Such a calculus provides a form of *abstraction* allowing expressing *substitution* with explicitly named *variables* directly, whose results embody the notion of *reusable* building blocks of computation. The most famous example of such device of abstraction is the [lambda abstraction](https://en.wikipedia.org/wiki/Lambda_calculus). As the part of one of the earliest formal models aiming to describe computation in general, it can be the prototype of many other similar facilities. It is also the *de facto* formal prototype of the so-called "function" (rather than [most ones in mathematics](https://en.wikipedia.org/wiki/History_of_the_function_concept)) in most contemporary programming language, even in languages whose designers do not have knowledge of formal models (but just derive the language from the *prior arts*). With the implied *name bindings*, Such device is handy to convey the *meaning* of components of programs in practice, as it directly provides formalized *explicit* (named) ways to describe the *input* (via zero or more named *parameters* in the abstraction) and the defined *output* (via the subterm as the *body* of the abstraction) independently, so users can establish *fine-grained* or the *minimal* local dependencies among some subsets of such program components on demand. One more benefit is that such program components can have computational effects both pure and non-pure without changes to the syntax, which effectively [separate the concerns](https://en.wikipedia.org/wiki/Separation_of_concerns) of the objects being modeled and specifically interested side effects tied on them, in a flexible way. Further, such separation enables a way to implement additional computational effects through some extensions of the deductive rules on existing calculi, so it also separates the concerns to language authors in the way of tailoring the feature set of the languages in some degrees, and the specializations of such a family of languages can be separately developed (by iteration) in a more engineering-friendly way. 
 
@@ -294,7 +294,7 @@ The reified continuation is first known as the result of [`call/cc` operator](ht
 * Allowing more reasonably implementable features on continuations
 * Simplification on user programs using first-class continuations
 
-Scheme's continuations [do not compose](http://okmij.org/ftp/continuations/undelimited.html#introduction). This limit its practical use. It can be resolved by introducing control delimiters. The resulted continuations are *delimited continuations*. It is also considered [superior to undelimited one [in any reasonable practical case](http://okmij.org/ftp/continuations/against-callcc.html).
+Scheme's continuations [do not compose](http://okmij.org/ftp/continuations/undelimited.html#introduction). This limit its practical use. It can be resolved by introducing control delimiters. The resulted continuations are *delimited continuations*. It is also considered superior to undelimited one [in any reasonable practical case](http://okmij.org/ftp/continuations/against-callcc.html).
 
 There are various of control operators for building delimited continuation. About their expressiveness, see [here](http://okmij.org/ftp/continuations/#impromptu-shift).
 
@@ -330,9 +330,11 @@ Nevertheless, syntactic forms at the call sites are still far from correct, beca
 
 ### Evlis tail calls
 
-* Known most efficient way in space being compatible to pass-by-value semantics
+* Known most efficient way in space being compatible to pass-by-value semantics not relying on the restrictions on the structure of the activation record frames
 
 See [[Cl98]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.8567&rep=rep1&type=pdf) and [this page](https://www.akalin.com/evlis-tail-recursion) for introduction.
+
+Note the sfs (safe-for-space) requirement is considered too restrictive here.
 
 ### Reasonable performance hit
 
@@ -524,7 +526,9 @@ Avoiding purity be default is also necessary to composable different effects. Se
 
 ## Various control primitives
 
-Control effect shall be reified, not by providing more build-in control primitives.
+Most control effects shall be reified, not by providing more build-in control primitives. This enables programmable controls in natural and extensible ways.
+
+Only a few control operator can me really primitive, notably, the branching (i.e. traditional `if`). Although the primitive `if` can be eliminated by adopting the [continuation passing style](https://en.wikipedia.org/wiki/Continuation_passing_style), making every program with branching more verbose than needed (becuase it usually only introduces grammatical noises and difficulties on [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns) with no practical benefits in this context) is clearly unintentional.
 
 ### Sequential control
 
@@ -787,17 +791,17 @@ Module systems are useful in organizing modular code components consistently. Ho
 The way of derivation is considered superior than built-in primitive features for various reasons:
 
 * The general reasons of primitives vs. derivations are all suited here.
-	* There are different designs with different kinds of features. No one can definitely meet all requirments.
+	* There are different designs with different kinds of features. None can definitely meet all requirments.
 		* As a result, module systems are often complex in practice.
-		* In particular, the built-in ones in many languages tend to have a rich set of pre-built features, rather than first being simple and extensible.
-		* This seems quite bad comparing to other parts of a general-purposed language design.
+		* In particular, the built-in ones in many languages tend to have a rich set of pre-built features, rather than being simple and extensible at first.
+		* This seems quite bad compared to other parts of a general-purposed language design.
 	* Testing different styles of module system designs with derivations have less risks to break the whole language design.
 * Avoiding module systems out of the language rules also prevents some confusions about the concept itself.
 	* As the result of [*modularized* designs](https://en.wikipedia.org/wiki/Modular_design), modules can have different granularities.
 		* For example, a translation unit, as well as a function in it, can be a module.
 	* Typically, modules with different granularities coexist in a program. Choice to a specific granularity over others often depends on contexts.
 		* There is no good reason to only name one of them as the language feature and reject others.
-	* This point is also true for avoiding the name of "interface" as a name of language feature like in Java and C#.)
+	* This point is also true for avoiding the name of "interface" as a name of language feature (as in Java and C#).
 
 For the cases specific to the module systems, derivations can be used as the basic building blocks of more abstracted high-level facilities for engineering purpose (e.g. [building systems](https://en.wikipedia.org/wiki/Build_automation) and [CI (continuous integration)](https://en.wikipedia.org/wiki/Continuous_integration). A single fixed design of modules without multi-level reflective derivations in mind is hardly convincingly support the ideas well in general.
 
@@ -814,7 +818,7 @@ For the cases specific to the module systems, derivations can be used as the bas
 		* Further, [Gödel's second incompleteness theorem](https://en.wikipedia.org/wiki/G%C3%B6del's_incompleteness_theorems#Second_incompleteness_theorem) shows that such formal systems cannot formalize a consistency proof to themselves on the meta level.
 * The system providing arithmetic operations should not be mandated as primitives in the core language.
 	* Despite the logical problems above, arithmetic systems have different difficulties on computation. No one is the choice fit to all problem domains, particularly when efficiency is taken into account.
-	* Explicit encoding based on the calculi (e.g. [Church numerals](https://en.wikipedia.org/wiki/Church_encoding) encoded in lambda calculi) are general in inefficient. The [computational complexity], both in time, space and determinism, are poor for most practical use cases. So, such encodings are never enough. Although there can be mapping between the entities in such model and external entities of numbers, it is still suspicious to be worthy for a general-purposed language.
+	* Explicit external encoding schemes based on the calculi (e.g. [Church numerals](https://en.wikipedia.org/wiki/Church_encoding) encoded in lambda calculi) are generally inefficient. The [computational complexity](https://en.wikipedia.org/wiki/Computational_complexity), both in time and space, are significantly poor for most practical use cases, and there is less determinism to estimate the range of the cost. So, such encodings are never enough. Although there can be mapping between the entities in such model and external entities such as numbers, it is still suspicious worth doing so in a general-purposed language.
 	* All other existing methods to implement them involve independent disciplines of internal encoding schemes (e.g. [floating-point arithmetic](https://en.wikipedia.org/wiki/Floating-point_arithmetic)).
 		* Such disciplines expose many different concrete properties not needed by the problem domains (e.g. hard-coded representable numerical boundary and precision limitations) , which needs to be worked around further.
 		* An improper model of numbers may introduce too many unnecessary dependencies difficult to correctly abstract away.
