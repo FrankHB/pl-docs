@@ -28,6 +28,17 @@ By leaving any specific domains out at first, the language needed here must be g
 
 In particular, the *smoothness conjecture* (in the section 1.1.2 of [the dissertation introducing the vau calculi](https://web.wpi.edu/Pubs/ETD/Available/etd-090110-124904/unrestricted/jshutt.pdf)) is interested in the design in this document, because a language can only become enough general-purposed by providing sufficient ability of adaption in different problem domains with effective and suited ways of abstraction in both the language to be derived and the languages being derived.
 
+With such judgement in mind, the language is expected to have following better properties:
+
+* Learning the language is easier.
+	* Learning the language features is easier, by promoting the coherence of the relationship between general purposes and general features.
+	* The utility of the efforts of learning is imporved (at least for the most common subset of the language rules), because the features can be heavily reused in a natural and uniform way, in different configurations of the design ("sublanguages").
+	* The flexibility allows users to learn a small subset of the language for a specific problem domain.
+* This nature has also positive effects on the evoluation of the language design, esp. for the future development about the extensions of the languages, because both the design of the features and the dependencies of these features can have more *orthogonal* properties (i.e. the involved subset of the language rules can be altered separatedly without having effects on each other).
+	* There would be (hopefully) less conflicts in the development.
+	* It is simpler to evaluate the effects of each design choice in the concrete configurations of the design for specific program domains.
+	* Abandon an improper extension could be cheaper (at the cost of compatibilities).
+
 ### Conservative adoption on proposed features
 
 This document tries to follow the first sentence of the INTRODUCTION chapter in [R<sup>n</sup>RS](http://community.schemewiki.org/?RnRS) specifications and takes it more seriously (despite that the rule is not strictly obeyed by versions of R<sup>n</sup>RS themselves as this document):
@@ -677,9 +688,9 @@ Metaprogramming is the programming mechanism and technique to manipulate a progr
 
 * Program transformers: in the general sense, this includes translators as the most implementations of programming language.
 * [Generative programming](https://en.wikipedia.org/wiki/Automatic_programming#Generative_programming): automatically generation of the program code.
-* Metaprogramming allows similar programming techniques used among different phases with more or less shared (or even the exact same) forms of the language constructs, rendering that only a quite small set of core features is need and *would* be supported by the same language.
+* Metaprogramming allows similar programming techniques used among different phases with more or less shared (or even the exact same) forms of the language constructs, rendering that only a quite small set of core features is needed and *would* be supported by the same language.
 	* This approach benefits greatly both generality and simplicity at the same time.
-	* It makes learning the language features easier by promoting the coherence of the relationship between general purposes and general features. It also improves the utility of the efforts of learning, because the features can be heavily reused in a natural and uniform way.
+	* It has better smoothness (c.f. the smoothness conjecture) in the base design.
 	* With given benefits above, it is hardly feasible to be replaced by other means.
 	* Nevertheless, not all styles of metaprogramming share these properties. Namely, it *can*, but not *must*, have the benefits. The fact suggests that such benefits are from some more basic elements of the language design, but not by the allowance of metaprogramming itself.
 
