@@ -232,26 +232,26 @@ As a computational device, effects shall be *composable* in some degrees.
 
 Note that keeping the identity over the first-class objects has the very same reason compared to the reason about keeping expressiveness of side effects in the base specification (rather than providing them through the derived languages) here.
 
-#### Structrual sanity requirment on the programmable effect system
+#### Structrual sanity requirements on the programmable effect system
 
-As of the basis of the reasoning about extensibility, there is an additional sanity requirement on the structrual description of the first-classness. That is, the first-class effects shall be extensible based on the effect kinds have less restrictions, if any.
+As of the basis of the reasoning about extensibility, there is at least one additional sanity requirement on the structrual description of the first-classness. That is, the first-class effects shall be extensible based on the effect kinds have less restrictions, if any.
 
 This implies:
 
 * Pure effects are programmably implementable as and effectively considered a special case of general (perhaps impure) effects, with the restriction to prove it pure in the concerned contexts.
 	* The approach to enforce purely functional style by default as well as some effectful exceptional entities is not an acceptable design choice here.
-* Qualifiers having different kinds of restrictions on entities (like ISO C's `const` and `volatile`) are orthogonal and not comparable by default.
-	* Both `const` and `volatile` is more restrictive to the unqualified types. In the type system parlance, for some complete object type `T`, both `const T` and `volatile T` are subtypes of `T` (which are used as inhabitant expression of type `T` after lvalue conversions). Similarly, `T*` is a subtype of both `const T*` and `volatile T*` (due to the contravariant nature on cv-qualification of pointer type constructor `*`). But there is no such relationship between `const T` and `volatile T`, or between `const T*` and `volatile T*`.
+* Type qualifiers having different kinds of restrictions on entities (like ISO C's `const` and `volatile`) are orthogonal and not comparable by default.
+	* Both `const` and `volatile` are more restrictive to the unqualified types. In the (C++'s) type system parlance, for some complete object type `T`, both `const T` and `volatile T` are subtypes of `T` (which are used as inhabitant expression of type `T` after lvalue conversions). Similarly, `T*` is a subtype of both `const T*` and `volatile T*` (due to the contravariant nature on cv-qualification of pointer type constructor `*`). But there is no such relationship between `const T` and `volatile T`, or between `const T*` and `volatile T*`.
 	* On the contrast, forming the basis by placing the immutability (e.g. by some `mutable` which negates `const`) in the default preset to be the basis is not acceptable.
 
 This is made for the purpose of extensibility about the programmable restrictions.
 
-* The rule ensures that the action of adding some restrictions being more comprehensive and more easy to express.
-* The rule also prevents some difficulties of lost of the orthogonality of the restrictions too early.
+* The rule ensures that the action of adding some restrictions being more comprehensive and easier to express.
+* The rule also prevents some difficulties so there are less chances to lose the orthogonality of the restrictions too early.
 
 Making the restrictions themselves composable can be quite natural. For example, both `const T` and `volatile T` can be formed directly by some type constructors named as `const` and `volatile` with a single type parameter `T`. (The type constructors are actually `std::add_const_t` and `std::add_volatile_t` in ISO C++ for a complete object type `T`.) On contrast, allowing something like `mutable` to qualify `T` in the same manner requires some more rules (e.g. pattern matching rules on the inner structure of the entity denoted by the signature `T`) to absorb the yet unknown `T`, to reflect the qualification has proved the fact that `mutable T` has more restrictions about mutability over `T`.
 
-The remained orthogonal properties seems more subtle. Consider some language with immutablity on objects by default, for example, Rust. Rust actually mixes concurrent properties as well: objects can be "shared read-only" or "uniquely owned read-writable". Users have no direct chance to specify the "mutable" preciesly. Although Rust rejects to allow shared mutable objects by default, it still need to provide workaround as ["interior mutability"](https://doc.rust-lang.org/core/cell/index.html). This does not make the language more difficult to learn, but any effort to add a new kind of "mutability" in the language will be costly. It can be realistic once the implementation can reason mutability (based on some user-provided contextual equality) instead of the modifiability (based on hard-coded equality) for constant propagation. As a result, the lack of orthogonality harms the chance of some more optimal implementaions.
+The remained orthogonal properties seem more subtle. Consider some language with immutablity on objects by default, for example, Rust. Rust actually mixes concurrent properties as well: objects can be "shared read-only" or "uniquely owned read-writable". Users have no choice to specify the "mutable" property on an entity directly and preciesly. Although Rust rejects to allow shared mutable objects by default, it still needs to provide workaround as ["interior mutability"](https://doc.rust-lang.org/core/cell/index.html). This does not necessarily make the language more difficult to learn, but any effort to add a new kind of "mutability" in the language will be significantly costly. It can be realistic once the implementation can reason mutability (based on some user-provided contextual equality) instead of the modifiability (based on hard-coded equality) for constant propagation. As a result, the lack of orthogonality harms the chance of some more optimal implementaions.
 
 #### Distinguishing of the effect kinds
 
