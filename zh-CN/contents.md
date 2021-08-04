@@ -32,8 +32,6 @@
 * [_[高级点的技术交流]_&#8203;什么叫语法(syntax)](what-is-syntax.md)（另见 [C语言吧主题](http://tieba.baidu.com/p/3863321148)）
 	* 虽然是即兴写给[看起来不那么懂语法](http://tieba.baidu.com/p/3835122876)而想要[技术交流](http://tieba.baidu.com/p/3829012515)的，不过实际上先例很多，也算是填了个好几年的坑
 * [类型 vs. 类型检查](typing-vs-typechecking.md)
-* [权威与混淆](authority-and-confusion.md)
-* [组合子语用批判](combinator-critique.md)
 
 ## 特性和设计
 
@@ -46,20 +44,13 @@
 	* 早期论述： [[1]](http://tieba.baidu.com/f?ct=335675392&tn=baiduPostBrowser&z=3605563618&sc=64936372503#64936372503) [[2]](http://tieba.baidu.com/f?ct=335675392&tn=baiduPostBrowser&z=3605563618&sc=64963805240#64963805240) [[3]](http://tieba.baidu.com/p/3615289496?pn=2)
 * [关于 GC 的意见](about-garbage-collection.md)（另见 [幻の上帝吧主题](https://tieba.baidu.com/p/3171730339)）
 * [关于语法](about-syntax.md)
-* [关于操作系统](about-operating-systems.md)
-* [关于接口](about-interface.md)
 	
 ## 语用和科普
 
 * [_[科普]_&#8203;_[FAQ]_&#8203;MinGW vs MinGW-W64及其它](mingw-vs-mingw-v64.md) （另见 [mingw 吧主题](http://tieba.baidu.com/p/3186232510) 和 [C++ 吧主题](http://tieba.baidu.com/p/3186234212)）
 * [《基本笔记》系列](elementary-notes/contents.md)
 
-## 备忘和发散
+## 环境和背景
 
-* [计算与物理](computation-and-physics.md)
-
-## 观点和杂项
-
-* [《UTF-8 遍地开花宣言》批判](criticisms-on-UTF-8-everywhere-manifesto.md)
-* [字体渲染](font-rendering.md)
+* [为什么我不喜欢苹果](why-i-dislike-apple.md)
 
