@@ -49,7 +49,7 @@ NTMBS <span style="font-variant: small-caps">ntmbs</span>
 
 > a sequence of values that have _character type_ that precede the terminating null character type value `charT()`
 
-　　具体说来，一个典型的场景是：多余一个元素的 `char`/`wchar_t`/`char16_t`/`char32_t`/其它实现允许的扩展字符类型的数组可以放一个 NTCTS 。
+　　具体说来，一个典型的场景是：多于一个元素的 `char`/`wchar_t`/`char16_t`/`char32_t`/其它实现允许的扩展字符类型的数组可以放一个 NTCTS 。
 
 　　注意，是 a sequence of values 而不是 characters ，表示抽象的含义。下面会看到 character （但不是 multibyte character ）在 C++ 标准库中的明确受限的意义。
 
@@ -195,7 +195,7 @@ NTMBS <span style="font-variant: small-caps">ntmbs</span>
 
 Appended @ 2012-7-30 01:32.
 
-* 明确一般意义形式上的字符串和C风格字符串的差异；
+* 明确一般意义形式上的字符串和 C 风格字符串的差异；
 * 明确 C 风格字符串和字符串字面量的差异；
 * 明确空字符不是字符串的内容；
 * 明确一般意义上的字符串长度和字符集/编码相关；
