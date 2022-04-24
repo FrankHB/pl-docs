@@ -44,7 +44,7 @@
 
 　　MinGW-W64 是同时支持 32 位和 64 位的，甚至还支持 32 位和 64 位的交叉编译（启用 multilib 支持的 MinGW 发行版例如 mingw-builds 可以用 `-m32` 或 `-m64` 指定）。
 
-　　显然， W64 和支持的架构无关。上面 i686 就不是 64 位的平台（而且可以看出这里的 32 也和架构没关系）。支持 64 为的对应三元组是x86_64-w64-mingw32。（另外 w32 是 GNU 惯用的对 Win32 的略称，也沿用到包括 MinGW 在内的一些项目中——如 [w32api](http://sourceforge.net/projects/mingw/files/MinGW/Base/w32api/) ，可能造成一些额外的混乱。）
+　　显然， W64 和支持的架构无关。上面 i686 就不是 64 位的平台（而且可以看出这里的 32 也和架构没关系）。支持 64 位的对应三元组是x86_64-w64-mingw32。（另外 w32 是 GNU 惯用的对 Win32 的略称，也沿用到包括 MinGW 在内的一些项目中——如 [w32api](http://sourceforge.net/projects/mingw/files/MinGW/Base/w32api/) ，可能造成一些额外的混乱。）
 
 　　……容易让人头疼的是，这两个项目现在都没死，偏偏还很容易因为这些字面上的原因搞错。为了下文描述方便，原版 MinGW 称为 [MinGW.org](http://mingw.org/) 。
 
@@ -107,7 +107,7 @@
 
 　　VC++ 调试支持当然好得多，但是编译器一坑爹集成调试再好也没用了。
 
-　　嘛， Clang++ ？ libc++ 什么时候能在 Windows 上跑顺再说——即便这样 MinGW 兼容的还是得依赖 MinGW 的 libgcc 。至于和 VC++ 兼容的 `clang-cl` ，看起来还在折腾微软的坑爹ABI黑箱（这没像大部分平台上 GCC 用的 [Itanium ABI](https://mentorembedded.github.io/cxx-abi/abi.html) 公开文档），一年半载别指望了。
+　　嘛， Clang++ ？ libc++ 什么时候能在 Windows 上跑顺再说——即便这样 MinGW 兼容的还是得依赖 MinGW 的 libgcc 。至于和 VC++ 兼容的 `clang-cl` ，看起来还在折腾微软的坑爹ABI黑箱（这没像大部分平台上 GCC 用的 [Itanium ABI](https://itanium-cxx-abi.github.io/cxx-abi/abi.html) 公开文档），一年半载别指望了。
 
 # 什么是异常模型和线程模型，用哪种比较好？
 
@@ -256,7 +256,7 @@
 　　偶然可能会有一些用户试图简要地给出一些选型结论，例如 [Codeforces 的测试](https://codeforces.com/blog/entry/96040)（附带[数据表格](https://docs.google.com/spreadsheets/d/1nOu7wJ1bB-z0WlkkS1FdYMrEoA10_G6f7ccINbSq-jU/edit?usp=sharing)）。不过，这明显有一些技术问题：
 
 * 比较的工具链版本不同。
-	* 表格中的日期是 2021-10-14 ，只有 winlibs.com 的 GCC 是 11.2.0 的版本。事实上，[MSYS2 的 GCC 在之后几天](https://mirrors.tuna.tsinghua.edu.cn/msys2/mingw/mingw64/) 发布了 11.2.0 的版本。这个比较似乎有点操之过急。
+	* 表格中的日期是 2021-10-14 ，只有 winlibs.com 的 GCC 是 11.2.0 的版本。事实上，[MSYS2 的 GCC 在之后几天](https://mirrors.tuna.tsinghua.edu.cn/msys2/mingw/mingw64/)发布了 11.2.0 的版本。这个比较似乎有点操之过急。
 	* 即便需要立即比较，当时 MSYS2 也有 GCC 10.3.0 。考虑滚动更新相当容易，为什么不升级到当时的最新版本、和 11.2.0 更接近的版本比较？
 * 没有给出具体的测试用例的源代码和构建环境配置。
 * （从名称上看的）一些 I/O 和数据转换的测试的结果看上去相当可疑，无法排除主要原因来自上游（编译器和标准库的实现）的差异。
