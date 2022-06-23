@@ -10,7 +10,7 @@ A [license](https://en.wikipedia.org/wiki/License) is an agreement on the licens
 
 Licensing is a legal process to specify the license on some works to ensure that the licensee will have the legal rights to interact with such licensed works when the related laws are capable to grant such rights. The laws defining such rights include copyright laws, patent laws, and so on.
 
-## How it work
+## How it works
 
 Although laws may differ in various jurisdictions, many rights are protected similarly. This is implemented by widely adopted international conventions like [Berne Convention](https://en.wikipedia.org/wiki/Berne_Convention). Such laws often reserve the rights to limited owners exclusively by default.
 

@@ -37,7 +37,7 @@ With such judgement in mind, the language is expected to have following better p
 * This nature has also positive effects on the evoluation of the language design, esp. for the future development about the extensions of the languages, because both the design of the features and the dependencies of these features can have more *orthogonal* properties (i.e. the involved subset of the language rules can be altered separatedly without having effects on each other).
 	* There would be (hopefully) less conflicts in the development.
 	* It is simpler to evaluate the effects of each design choice in the concrete configurations of the design for specific program domains.
-	* Abandon an improper extension could be cheaper (at the cost of compatibilities).
+	* Abandoning an improper extension could be cheaper (at the cost of compatibilities).
 
 ### Conservative adoption on proposed features
 
@@ -93,7 +93,7 @@ This embodies a philosophy requirement deeply: do abstract and express, rather t
 * Someone may conclude [closures imply predictable access of captures](http://lambda-the-ultimate.org/node/5007#comment-81721).
 	* The [declared notion to define the requirements](http://lambda-the-ultimate.org/node/5007#comment-81724) are based on existed language designs and even well-defined formal (denotational) semantic models, but all of them are specific to a few concrete language designs and neither of them has actually abstracted properly the need of distinction between a closure and "an object that happens to have some mutually recursive methods".
 	* This is not [historically](https://en.wikipedia.org/wiki/Closure_%28computer_programming%29#History_and_etymology) significant out of the concrete contexts above. For the original case and other simplest cases like [STLC](https://en.wikipedia.org/wiki/Simply_typed_lambda_calculus) mentioned here, the distinction is irrelevant because terms are not able to be recursively owned.
-	* Later closures are proposed to resolve the [funarg problem](https://en.wikipedia.org/wiki/Funarg_problem). However, the solution actually introduces an implicit premise relying on well-behaveness of accesses to captures, making the distinction significant. Although the problem itself is widespread (for any languages has the similar "function" notion), the solution is not adopted by all designs, so the meaning of the term "closure" is not naturally strengthened with more restrictions of well-behaveness.
+	* Later closures are proposed to resolve the [funarg problem](https://en.wikipedia.org/wiki/Funarg_problem). However, the solution actually introduces an implicit premise relying on well-behaveness of accesses to captures, making the distinction significant. Although the problem itself is widespread (for any languages having the similar "function" notion), the solution is not adopted by all designs, so the meaning of the term "closure" is not naturally strengthened with more restrictions of well-behaveness.
 	* Because nothing is otherwise required to restrict the extended meanings of "lexical" closures (used other than the simplest cases above) being well-behaved in the general sense in other directions, the contextual meaning ultimately depends on the language rules which define the term "closure". As of in general, the distinction should be still insignificant. (This approach of general terminology is also consistent to the spirit of "variables do not necessarily imply mutable states" whether the context is the so-called "functional languages" or not.)
 	* It is actually insignificant in some contemporarily designs. At least ISO C++ uses the terms [*closure object*](http://eel.is/c++draft/expr.prim.lambda#2) and [*closure type*](http://eel.is/c++draft/expr.prim.lambda#closure-1) satisfying both notions here.
 
@@ -274,10 +274,10 @@ One of a notable application of the last case listed above is to model the effec
 * However, the specifications in most popular language for these notions are often defective due to lack of imprecise.
 	* Under the definitions used by some specifications (at least in ISO C and ISO C++), this is not guaranteed. Instead, they may have side effects or not, and nothing can be assumed without the implementation details. This is underspecified and the implementation cannot optimize them even there are provable pure parts (e.g. operations on the so-called memory streams).
 * To clarify the case, I/O operations here refer to the parts which are (strictly) statically unprovable to avoid the *I/O effects*.
-    * This requires the ability to distinguish different kinds of effects (here, I/O effects and other non-I/O ones) in some *nominal* way, because without the additional information (like in ISO C and ISO C++), different kinds are structrual equivalent and no differences can be found with other rules to aid to the further optimizations.
+	* This requires the ability to distinguish different kinds of effects (here, I/O effects and other non-I/O ones) in some *nominal* way, because without the additional information (like in ISO C and ISO C++), different kinds are structrual equivalent and no differences can be found with other rules to aid to the further optimizations.
 	* The I/O effects shall be known having different characteristics from non-I/O effects such as the effects of modification on (non-`volatile`) objects in the abstract machine, so there can be different treatments on verification and optimization.
 	* The possiblity of the optimizations enabled by the additonal optimizations vary.
-    	* Elimination of the effects implied by some paired `getc` and `ungetc` calls on memory streams can be a simple distinguishing example.
+		* Elimination of the effects implied by some paired `getc` and `ungetc` calls on memory streams can be a simple distinguishing example.
 
 The mechanism to distinguish different kinds of effects shall include some way to determine whether an evaluation on some specific expression is definitely having some specific kinds or not where the differences are applicable in the contexts.
 
