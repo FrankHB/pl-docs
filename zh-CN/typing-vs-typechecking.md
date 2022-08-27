@@ -272,7 +272,7 @@
 　　因为相似性，[自动定理证明](https://zh.wikipedia.org/zh-cn/%E5%AE%9A%E7%90%86%E6%9C%BA%E5%99%A8%E8%AF%81%E6%98%8E)和[形式验证](https://zh.wikipedia.org/zh-cn/%E5%BD%A2%E5%BC%8F%E9%AA%8C%E8%AF%81)等特别适合这样的方法。这些领域使用的领域特定语言具有特定的、较丰富特性的具体类型论。一些与此相关的基于特定类型论的语言也被提出：
 
 * [LCF](https://en.wikipedia.org/wiki/Logic_for_Computable_Functions) 引入 [ML语言](https://zh.wikipedia.org/zh-cn/ML%E8%AF%AD%E8%A8%80) 作为定理证明系统的元语言，使用其中的 [Hindley-Milner 类型系统](https://en.wikipedia.org/wiki/Hindley–Milner_type_system)。后继的 [HOL](https://en.wikipedia.org/wiki/HOL_%28proof_assistant%29) 系统也使用 ML 。
-* [Nuprl](https://en.wikipedia.org/wiki/Nuprl) 使用[直觉类型论](https://zh.wikipedia.org/zh-cn/%E7%9B%B4%E8%A7%89%E7%B1%BB%E5%9E%8B%E8%AE%BA)。
+* [Nuprl](https://en.wikipedia.org/wiki/Nuprl) 使用扩展自[直觉类型论](https://zh.wikipedia.org/zh-cn/%E7%9B%B4%E8%A7%89%E7%B1%BB%E5%9E%8B%E8%AE%BA)的[计算类型论(computational type theory)](https://repository.upenn.edu/cgi/viewcontent.cgi?article=1863&context=cis_reports) 。
 * [Coq](https://zh.wikipedia.org/zh-cn/Coq) 使用[归纳构造演算](https://zh.wikipedia.org/zh-cn/%E6%9E%84%E9%80%A0%E6%BC%94%E7%AE%97) 。
 * [Haskell](https://zh.wikipedia.org/zh-cn/Haskell) 也使用 H-M 类型系统。
 * 一些 ML 和 Haskell 扩展使用[依赖类型](https://zh.wikipedia.org/zh-cn/%E4%BE%9D%E8%B5%96%E7%B1%BB%E5%9E%8B)。
