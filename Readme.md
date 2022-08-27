@@ -10,7 +10,7 @@ Contents in this repository conform to the [YSLib wiki editing rules](https://fr
 
 # Copyright
 
-© 2014-2020 [FrankHB](mailto:frankhb1989@gmail.com).
+© 2014-2022 [FrankHB](mailto:frankhb1989@gmail.com).
 
 Except as otherwise specified explicitly, materials in this repository are licensed under following terms:
 
