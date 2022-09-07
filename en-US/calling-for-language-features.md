@@ -576,7 +576,7 @@ Scheme does not have loops in primitive features. It encourages recursion (with 
 
 For the purpose of flexibility of a general-purposed language, a single global configuration of memory space (the global store) shall not be mandated. This effectively allows the implementations to provide no global allocation facilities when they are not supposed to be useful, e.g. for devices designed to run programs with fixed memory footprints. Note this does not prevent implementations to provide such interface for compatilibity. Implemantations can also provide opt-in global allocation which always fail.
 
-Moreover, it ensures the remaining design of the language does not relies on the global properties of allocation. This means it can be less problematic to adapt to implementation schemes with constraints about the memory locality, such as [distributing systems](https://en.wikipedia.org/wiki/Distributed_computing), because:
+Moreover, it ensures the remaining design of the language does not rely on the global properties of allocation. This means it can be less problematic to adapt to implementation schemes with constraints about the memory locality, such as [distributing systems](https://en.wikipedia.org/wiki/Distributed_computing), because:
 
 * No global sharing is implied.
 * No global memory consistency is implied.
