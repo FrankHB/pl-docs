@@ -191,6 +191,17 @@
 
 　　此外，内联 vtable 开启 LTO 导致链接失败。此时应保证非内联的虚函数，使 vtable 在特定翻译单元内生成；这样也有利于编译性能。
 
+## PIC 和 PIE
+
+　　PIC（ position-independent code ，位置无关代码）和 PIE（position-independent executable ，位置无关可执行文件）引起目标代码生成中关于寻址方式的变化，允许更简单地实现重定位而共享加载的动态库二进制代码，以及使加载的代码不适用绝对地址而实现 ASLR（address space layout randomization，地址空间随机化）提升安全性。这在许多平台上生成动态库时需要；但 Windows 上，显式的 `-fPIC`/`-fPIE` 或 `-fpic`/`-fpie` 选项是多余的，一般应当避免使用：
+
+* 因为 ABI 要求，32 位 Windows 不使用 PIC/PIE 。
+* 因为 ABI 要求，x86_64 位 Windows 总是相当于使用 PIC 。
+* 较旧版本的 GCC 可能生成提示这些选项多余的警告，但[提示的原因具有误导性，而被移除](https://gcc.gnu.org/legacy-ml/gcc-patches/2015-08/msg00836.html)。
+* 其它编译器如 Clang++ 可能明确不在 MinGW 支持这些选项。
+
+　　原则上 PIC/PIE 相较不适用 PIC/PIE 的绝对寻址的代码会引入一些开销。为了使这项开销尽可能小，体系结构可支持高效的相对当前指令位置寻址的访存方式。然而，尽管[这是 70 年代的 PDP-11 就支持的特性，IA-32 长期以来不支持](https://stackoverflow.com/questions/31332299/31332516)，直至 x86_64 支持 RIP 相对寻址。这是 Windows 的 ABI 的差异的主要技术理由。
+
 # 附录：发行版选择问题
 
 　　一直以来，Win32 上存在支持 GCC（以及可能有 LLVM/Clang）的发行版，包括且不限于：
