@@ -137,7 +137,9 @@
 
 　　所以取决于具体需要。要兼容性好点的一般还是 POSIX 。
 
-　　最近有新的基于 [mcfgthread](https://github.com/lhmouse/mcfgthread) 实现的 MCF 线程模型可以替代 POSIX 线程模型，在 Windows 7 和更新的系统有较好的性能。
+　　较新的基于 [mcfgthread](https://github.com/lhmouse/mcfgthread) 实现的 MCF 线程模型可以替代 POSIX 线程模型，在 Windows 7 和更新的系统有较好的性能。
+
+　　自 GCC 13 起，[mcfgthread 作为 `mcf` 现成模型已被合并到上游](https://gcc.gnu.org/git/?p=gcc.git;a=commit;h=f036d759ecee538555fa8c6b11963e4033732463)（虽然[配置文档](https://gcc.gnu.org/install/configure.html)没有同步更新）。
 
 　　最后，还有单线程的 single 模型…… Windows 上应该没啥必要用。
 
