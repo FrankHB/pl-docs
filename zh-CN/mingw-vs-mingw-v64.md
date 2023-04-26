@@ -18,7 +18,7 @@
 
 　　有一点值得注意，在 MSVC 中， 32 位环境（当然是说跑的 Intel 兼容CPU的PC）预定义宏 `_WIN32` ，但 64 位环境同时预定义了 `_WIN32` 和 `_WIN64` 。
 
-　　顺便，通常 64 位主要指 x86_64 （微软称为 AMD64 ，这个兼容 x86 的基础架构一开始的确是AMD先搞出来的，后来才有 Intel EM64T ）。
+　　顺便，通常 64 位主要指 x86_64（微软称为 AMD64 ，这个兼容 x86 的基础架构一开始的确是AMD先搞出来的，后来才有 Intel EM64T ）。
 
 　　64 位 Itanium 也有 `_WIN64` ，不过一般见不到且跟MinGW没什么关系且现在都不正式支持了，不管了……
 
@@ -83,13 +83,13 @@
 * 本机环境（直接在 Windows 下运行）
 	* [MinGW-w64](https://sourceforge.net/projects/mingw-w64) 提供若干工具链的下载
 		* [mingw-builds](https://sourceforge.net/projects/mingwbuilds/) 旧站点
-	* [MSYS2](http://sourceforge.net/projects/msys2) （使用包管理器 `pacman` 安装 `mingw-w64-i686-toolchain` 或 `mingw-w64-x86_64-toolchain`）
+	* [MSYS2](http://sourceforge.net/projects/msys2)（使用包管理器 `pacman` 安装 `mingw-w64-i686-toolchain` 或 `mingw-w64-x86_64-toolchain`）
 	* [TDM-GCC](http://tdm-gcc.tdragon.net/)
 	* [nuwen.net MinGW distro](https://nuwen.net/mingw.html) 仅提供 Win32 线程模型
 	* [GCC-MCF](http://lhmouse.com/gcc-mcf/) 仅提供 MCF 实现
 * 交叉构建环境
 	* [Arch Linux MinGW-w64 GCC](https://www.archlinux.org/packages/community/x86_64/mingw-w64-gcc/)
-	* [MSYS2](http://sourceforge.net/projects/msys2) （使用包管理器 `pacman` 安装 `mingw-w64-cross-toolchain`）
+	* [MSYS2](http://sourceforge.net/projects/msys2)（使用包管理器 `pacman` 安装 `mingw-w64-cross-toolchain`）
 
 # MinGW 发行版支持什么本机语言编译器？
 
@@ -103,7 +103,7 @@
 
 　　对于 C++ 前端来说 MinGW 尤为重要，现阶段根本没有能顶替的。作为系统默认 ABI 新锐代表的 MSVC2015 Update n ——前端还是残的……各种 bug 。
 
-　　GCC 也有各种傻缺 bug ，不过至少在前端来说，程度上绝逼打不过 `cl` （ Microsoft C&C++ Optimizing Compiler ）。
+　　GCC 也有各种傻缺 bug ，不过至少在前端来说，程度上绝逼打不过 `cl`（ Microsoft C&C++ Optimizing Compiler ）。
 
 　　VC++ 调试支持当然好得多，但是编译器一坑爹集成调试再好也没用了。
 
@@ -115,13 +115,13 @@
 
 　　首先，异常模型。 C++ 标准没规定异常怎么实现。 MinGW GCC 使用的 Itanium ABI 也没规定必须怎么实现（但规定了一些公共接口），这部分由实现自行考虑。
 
-　　GCC 一般提供了 SjLj （ C 的 `setjmp`/`longjmp` ）实现的 stub 。对于 x86 ，允许使用 Dwarf2 调试信息的实现。两者的区别在于 sjlj 比较通用，但是即便不抛出捕获异常而只是使用异常中立的风格隐式传递异常，也有运行时开销。而 Dwarf2 兼容性（考虑多层 C++ 和 C 的 DLL 互相调用来看）相对较差，但没有这种开销。
+　　GCC 一般提供了 SjLj（ C 的 `setjmp`/`longjmp` ）实现的 stub 。对于 x86 ，允许使用 Dwarf2 调试信息的实现。两者的区别在于 sjlj 比较通用，但是即便不抛出捕获异常而只是使用异常中立的风格隐式传递异常，也有运行时开销。而 Dwarf2 兼容性（考虑多层 C++ 和 C 的 DLL 互相调用来看）相对较差，但没有这种开销。
 
 　　两者 ABI 并不兼容（知道 C++ 坑爹了吧，不仅不同实现不兼容，同一个编译器同一个平台自己都能跟自己不兼容……）——前者依赖类似 `libgcc_s_sjlj.dll` 这样的 DLL ，后者则是类似 `libgcc_s_dw2.dll` 这样的。旧一点的可能也没有这种后缀差异。
 
 　　另外， libstdc++ 作为 C++ 标准库实现显然依赖异常，但名字一样的 DLL 可能依赖的不是同一种。所以混用多个版本 MinGW GCC 且没把 `PATH` 清理干净的时候容易出现找不到符号定义导致链接失败。这还不是最坑的，有时候 `gdb` 载入不同位置的 DLL 在运行时挂掉，还不只是一个 `PATH` 的问题……这种情况下先拿 [Sysinternals](https://technet.microsoft.com/en-us/sysinternals/bb545021.aspx) 的 [Process Exporler](https://technet.microsoft.com/en-us/sysinternals/bb896653.aspx) 之类的工具看看进程加载的 DLL 是不是预期的再说。
 
-　　为什么说要有这么坑爹不兼容的，像 VC++ 一样用一种不就好了……其实 Win32 x86 上最理想的应该是和 VC++ 一样[基于 SEH （ Windows 结构化异常处理）的实现](https://en.wikipedia.org/wiki/Microsoft-specific_exception_handling_mechanisms)，但是 [Borland 关于这个的专利](https://www.google.com/patents/US5628016)才没过期几天……所以你懂的。
+　　为什么说要有这么坑爹不兼容的，像 VC++ 一样用一种不就好了……其实 Win32 x86 上最理想的应该是和 VC++ 一样[基于 SEH（ Windows 结构化异常处理）的实现](https://en.wikipedia.org/wiki/Microsoft-specific_exception_handling_mechanisms)，但是 [Borland 关于这个的专利](https://www.google.com/patents/US5628016)才没过期几天……所以你懂的。
 
 　　x64 上没专利的麻烦，有 SjLj 和 SEH 的实现，一般还是 SEH 。
 
@@ -145,13 +145,13 @@
 
 　　MSYS(minimal system) 原本是 MinGW.org 项目的一个组件，旨在 Windows 上提供一套类 UNIX shell 为基础的“系统”。它本身不提供编译器或者大小写敏感的文件系统支持（其实 [NTFS 倒是支持这里的“ POSIX 语义”](http://superuser.com/questions/364057/why-is-ntfs-case-sensitive)，但基本没看见有谁用……）。
 
-　　和作为原生 Win32 程序的 MinGW 不同， MSYS 环境下编译的本机程序依赖于额外的特定的 MSYS 运行时，更接近 Cygwin （强调 POSIX 兼容性），会有性能损失（但一般意义上比 Cygwin 轻量）。对应的[三元组](http://sourceforge.net/p/mingw-w64/wiki2/TypeTriplets/)是 \*-pc-msys （通常其中的 pc 可以省略即缩写为 \*-msys ）。 MSYS 提供了一个 sysroot 环境（下面有 `/bin` 和 `/etc` 等），因此移植 POSIX 环境的程序一般更方便。
+　　和作为原生 Win32 程序的 MinGW 不同， MSYS 环境下编译的本机程序依赖于额外的特定的 MSYS 运行时，更接近 Cygwin（强调 POSIX 兼容性），会有性能损失（但一般意义上比 Cygwin 轻量）。对应的[三元组](http://sourceforge.net/p/mingw-w64/wiki2/TypeTriplets/)是 \*-pc-msys（通常其中的 pc 可以省略即缩写为 \*-msys ）。 MSYS 提供了一个 sysroot 环境（下面有 `/bin` 和 `/etc` 等），因此移植 POSIX 环境的程序一般更方便。
 
 　　所以常规的实践是，如果只是开发 Windows 程序，能用 MinGW 就不要用 MSYS 原生的编译器来构建。当然，使用 MSYS 上的 `sh` 等工具还是没问题，跟 GNU 工具配套怎么说比 `cmd` 好用。（虽然也有不少琐碎的兼容性问题。）
 
 # 什么是 MSYS2 ， MSYS2 上的 MinGW 发行版是怎么回事？
 
-　　字面意思，MSYS 2.0 。比起 1.0 来说更加像 Cygwin （例如 `/etc/fstab` 配置）。项目[在 sf.net 上托管](http://sourceforge.net/projects/msys2/)。
+　　字面意思，MSYS 2.0 。比起 1.0 来说更加像 Cygwin（例如 `/etc/fstab` 配置）。项目[在 sf.net 上托管](http://sourceforge.net/projects/msys2/)。
 
 　　其中的一个特色是基础系统附带 [ArchLinux](https://www.archlinux.org/) 移植的包管理器pacman，可以同时独立部署 `/mingw32` (i686-w64-mingw32) 和 `/mingw64`(x86_64-w64-mingw32) 下的开发和运行环境。注意和 mingw64 并列时 mingw32 自然指的不只是三元组的最后一项了。
 
@@ -173,7 +173,7 @@
 
 　　简单可靠的方式是用 [Dependency Walker](http://www.dependencywalker.com/) 等工具查看依赖。
 
-　　对于 C++ 程序，除非不用 POSIX thread 可以省掉 libwinpthread ，一般至少得确保上面异常模型和线程模型讨论中提到的三个 DLL （注意就算不显式使用标准库，编译器生成的代码也可能用到——典型的如默认 `::operator new` ，所以得带上 libstdc++ ）。
+　　对于 C++ 程序，除非不用 POSIX thread 可以省掉 libwinpthread ，一般至少得确保上面异常模型和线程模型讨论中提到的三个 DLL（注意就算不显式使用标准库，编译器生成的代码也可能用到——典型的如默认 `::operator new` ，所以得带上 libstdc++ ）。
 
 　　使用 MCF 线程模型需要部署对应的 mcfgthread 动态库（如 `mcfgthread-9.dll` ）。
 
@@ -181,10 +181,11 @@
 
 ## LTO
 
-　　GCC 4.9的 LTO （链接时优化）默认使用新的目标文件格式，生成的文件不包含冗余的二进制代码。
-但是 LTO 有特定的 phase （[内部会调用 `make` 多编译几个 pass](https://gcc.gnu.org/onlinedocs/gccint/LTO-Overview.html#LTO-Overview) ），传统的静态链接器(`ar`) 不知道这里的约定，所以原来好好的东西，升级 4.9 以后开了 `-flto` 就可能找不到符号链接失败。
+　　GCC 4.9 的 LTO（链接时优化）默认使用新的目标文件格式，生成的文件不包含冗余的二进制代码。
 
-　　许多 MinGW 发行版仍然没实现 `gcc-ar` （运行会提示没支持 linker plugin ）。兼容旧版本的行为还得加上 `-ffat-lto-objects` 编译选项。
+　　但是 LTO 有特定的 phase（[内部会调用 `make` 多编译几个 pass](https://gcc.gnu.org/onlinedocs/gccint/LTO-Overview.html#LTO-Overview) ），传统的静态链接器(`ar`) 不知道这里的约定，所以原来好好的东西，升级 4.9 以后开了 `-flto` 就可能找不到符号链接失败。
+
+　　许多 MinGW 发行版仍然没实现 `gcc-ar`（运行会提示没支持 linker plugin ）。兼容旧版本的行为还得加上 `-ffat-lto-objects` 编译选项。
 
 　　较新版本可能解决了这个问题。
 
@@ -259,7 +260,7 @@
 	* 表格中的日期是 2021-10-14 ，只有 winlibs.com 的 GCC 是 11.2.0 的版本。事实上，[MSYS2 的 GCC 在之后几天](https://mirrors.tuna.tsinghua.edu.cn/msys2/mingw/mingw64/)发布了 11.2.0 的版本。这个比较似乎有点操之过急。
 	* 即便需要立即比较，当时 MSYS2 也有 GCC 10.3.0 。考虑滚动更新相当容易，为什么不升级到当时的最新版本、和 11.2.0 更接近的版本比较？
 * 没有给出具体的测试用例的源代码和构建环境配置。
-* （从名称上看的）一些 I/O 和数据转换的测试的结果看上去相当可疑，无法排除主要原因来自上游（编译器和标准库的实现）的差异。
+*（从名称上看的）一些 I/O 和数据转换的测试的结果看上去相当可疑，无法排除主要原因来自上游（编译器和标准库的实现）的差异。
 	* 例如涉及浮点数的测试，结果大致上分为两组，慢的都是上游版本低的。
 	* 还有反过来的，像 `cout_int` ，除了显示上游影响的可能性，还和总的结论矛盾。
 	* 因为没测试用例代码也没具体输出结果，很难确定数据的正确性（不排除一些实现对精度上的妥协）。
