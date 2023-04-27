@@ -107,7 +107,7 @@
 
 　　VC++ 调试支持当然好得多，但是编译器一坑爹集成调试再好也没用了。
 
-　　嘛， Clang++ ？ libc++ 什么时候能在 Windows 上跑顺再说——即便这样 MinGW 兼容的还是得依赖 MinGW 的 libgcc 。至于和 VC++ 兼容的 `clang-cl` ，看起来还在折腾微软的坑爹ABI黑箱（这没像大部分平台上 GCC 用的 [Itanium ABI](https://itanium-cxx-abi.github.io/cxx-abi/abi.html) 公开文档），一年半载别指望了。
+　　嘛，Clang++ ？除非是 G++ 腻了换换口味还是得接着用 libstdc++ ，libc++ 什么时候能在 Windows 上跑顺再说——即便这样 MinGW 兼容的还是得依赖 MinGW 的 libgcc 。至于和 VC++ 兼容的 `clang-cl` ，看起来还在折腾微软的坑爹 ABI 黑箱（这没像大部分平台上 GCC 用的 [Itanium ABI](https://itanium-cxx-abi.github.io/cxx-abi/abi.html) 公开文档），一年半载别指望了。
 
 # 什么是异常模型和线程模型，用哪种比较好？
 
@@ -151,7 +151,7 @@
 
 　　所以常规的实践是，如果只是开发 Windows 程序，能用 MinGW 就不要用 MSYS 原生的编译器来构建。当然，使用 MSYS 上的 `sh` 等工具还是没问题，跟 GNU 工具配套怎么说比 `cmd` 好用。（虽然也有不少琐碎的兼容性问题。）
 
-# 什么是 MSYS2 ， MSYS2 上的 MinGW 发行版是怎么回事？
+# 什么是 MSYS2 ，MSYS2 上的 MinGW 发行版是怎么回事？
 
 　　字面意思，MSYS 2.0 。比起 1.0 来说更加像 Cygwin（例如 `/etc/fstab` 配置）。项目[在 sf.net 上托管](http://sourceforge.net/projects/msys2/)。
 
@@ -166,6 +166,22 @@
 　　虽然滚挂了也没多大事，不过版本是个问题。如果需要特定版本的 GCC 就不适用（比如规避GCC 4.9的坑爹bug……），除非有耐心自己找到 `.xz` 手动安装。
 
 　　相关配置（包括 `pacman` 的一些中国大陆镜像）可以看[这里](https://bitbucket.org/FrankHB/yslib/wiki/Prerequisitions.zh-CN.md]) 。
+
+　　除了 GCC ，较新版本的 MSYS2 也提供了 Clang 的支持和使用 ucrt 代替 msvcrt 作为 C 运行时库的工具链。在 Windows 11 ARM64 上，MinGW Clang 可以支持 [64 位 ARM 架构](https://www.msys2.org/wiki/arm64/)。
+
+　　综上，MSYS2 [现已支持以下环境](https://www.msys2.org/docs/environments/)组合：
+
+* MSYS
+* UCRT64
+* CLANG64
+* CLANGARM64
+* CLANG32
+* MINGW64
+* MINGW32
+
+　　除了本机的 MSYS 环境，其它都是 MinGW 环境。这些环境可以在一个 MSYS2 安装中共存。而最早期的 MinGW 发行版只相当于支持 MINGW32 。
+
+　　使用 MSYS 和 MinGW 共存的环境时混用不同环境的工具，因此需要注意[文件系统路径](https://www.msys2.org/docs/filesystem-paths/)等问题。
 
 # 部署程序需要提供哪些文件？
 
@@ -231,7 +247,10 @@
 * 首先现在一般默认 MinGW-w64 而不是 MinGW.org（这个上面章节有提过）。
 * MSYS2 的支持的构建目标(target) 比较全面。
 	* 同时支持 32/64 位(i686/x86_64) 这个基本都做得到，略过。
-	* 主要看 libc ，除了传统的 MSVCRT ，也支持 UCRT 。一些其它比较传统的发行版可能不会有那么全面的支持。
+	* GCC 可支持不同的 libc ，除了传统的 MSVCRT ，也支持 UCRT 。
+	* 除了 GCC ，也支持 Clang 。
+	* 使用 ARM64 架构的 Windows ，Clang 支持 64 位 ARM 架构(aarch64) 本机构建。
+	* 较传统的发行版缺少这些全面的支持选项。
 * 同时有 `pacman` ，这个是核心竞争力。不用费心部署问题了。
 	* 不过反过来，因为不放心依赖 MSYS2 中的非 MinGW 本机环境（而依赖了 MSYS2 dll ）或者不太有替代品的包，想要避免过于依赖 MSYS2 ，可以选其它的环境测试。
 * 非 MSYS2 的性能可能偶然会更好，但无法排除偶然性——确定是 MSYS2 的发行构建机制上而不是别的什么原因（特别是上游工具链版本的问题）导致 MSYS2 发行版确实更慢。
