@@ -45,7 +45,7 @@
 
 > 苹果对开源究竟是负面还是正面影响这很纠结。WebKit 其实不能算是很大的贡献，毕竟 WebKit 的源代码本来就来自开源社区的 KHTML，因而从协议上讲 WebKit 最终必须回馈给开源社区，否则就违法了。但是另一方面说，苹果产品的存在，是对 WebKit 是一种推广，因而这种推广使得这个属于开源社区的引擎具有了更好的网站兼容性。 
 
-　　想起之前还见到过 WebKit 对 KHTML 上游回馈不自觉的消息，如果这个说法没问题，苹果确实难以算得上贡献很大，乃至可以说并不光彩。不过，苹果对自己基本能控制的开源项目应该要大方点，主要例子是早期的 LLVM 。
+　　想起之前还见到过 WebKit 对 KHTML 上游回馈不自觉（试图隐藏修改而不合并回上游）的消息，如果这个说法没问题，苹果确实难以算得上贡献很大，乃至可以说并不光彩。不过，苹果对自己基本能控制的开源项目应该要大方点，主要例子是早期的 LLVM 。
 
 > 苹果的存在，还带来另外一个问题：原先不用 Windows 的用户只能去用 Linux，而有了苹果之后，人们就有了除 Windows/Linux 以外的选择。实际上，这个后果是，有相当一部分的 Linux 用户叛逃去了 MacOSX。从这个意义上说，其实对开源社区不利。 
 
@@ -283,4 +283,70 @@
 # 5.2 Objective-C
 
 # 5.3 Swift
+
+# 5.4 Safari
+
+　　需要强调，本文在引出主要观点的讨论中使用的理由不依赖软件实现的技术问题。
+
+　　否则，技术上来说，不使用 Safari（更确切地，其中的 JavaScriptCore ，所以实际上包含了 iOS 上的“换皮”浏览器）在现实可用的用户权利意义上确实低人一等，因为[这是唯一在客户端应用提供 ECMAScript 6 的 PTC(proper tail call) 的实现](https://kangax.github.io/compat-table/es6/)。
+
+　　理由（因为无法指望消除的理解门槛，大多数读者建议跳过）：
+
+* 这项特性是 ES6 的最重要的改进，**没有之一**，即便是专业开发者也很可能难以**意识到**（不提理解）这点。原因可能是……专业能力普遍不足。
+	* 这里的专业开发者包括制定 [ECMA-262](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/) 的不少 [TC39](https://tc39.es/) 专家组成员。
+	* 否则，就不会有那么多[莫须有的争议](https://github.com/kangax/compat-table/issues/819)。
+		* 特别地，部分 TC39 成员反对 PTC 而提出 [STC(syntaictic tail call)](https://github.com/tc39/proposal-ptc-syntax) 的替代方案，[体现出他们不清楚 PTC 的特殊性](https://github.com/tc39/proposal-ptc-syntax/issues/23)。
+		* 不提理论重要性，其中一些实际阻碍 PTC 实现的工程理由就是错的。
+			* 甚至 [Google V8 曾经实现过，一年后又去除了](https://bugs.chromium.org/p/v8/issues/detail?id=4698)。
+				* 这工作量并不小，瞎折腾了属于是。
+				* 于是这里倒是有充分理由可以鄙视 Google 的一些工程师的品味以及无组织无计划性。
+				* 虽然[迫于 WebAssembly 的要求过了几年又给加回来了](https://v8.dev/blog/wasm-tail-call)。
+			* 相比之下，Mozilla 和 Microsoft 在这里基本是无能。
+				* Chakra 看来是唯一陷入了 ABI 兼容的传统艺能[问题](https://github.com/chakra-core/ChakraCore/issues/796)导致根本上技术困难的。
+			* 结果，苹果还就真的是矮子里拔高个的比较能看的独苗了。
+		* 不展开[实现策略](https://frankhb.github.io/YSLib-book/Features/NPL.zh-CN.html#tco-%E5%AE%9E%E7%8E%B0%E7%AD%96%E7%95%A5%E6%A6%82%E8%BF%B0)，就挂一个技术问题：[backtrace 和 PTC 不兼容（曾经）是基础不那么靠谱的编程语言实现者中一个流行的迷信](https://groups.google.com/g/comp.lang.functional/c/06h9o9jks48/m/9BPR0nI9PQUJ)，除非外部兼容问题，没什么理由凭空无法[实现](https://www.muq.org/~cynbe/ml/smlnj-hacking-backtraces.html)不出来。
+			* 退一步讲，连放宽要求加一个模式带上 shadow stack 都想不到的，没资格拿 stack trace 的困难说事。
+			* 退两步讲，只是为了调试体验，[加个选项临时禁用](https://github.com/tc39/proposal-ptc-syntax/issues/23#issuecomment-901724902)也不是什么难理解的事。
+				* 特别是考虑 ES 引擎的实现者基本都应是（熟练的）C++ 用户，而 C++ 标准库的调试模式（如 [MSVC](https://learn.microsoft.com/cpp/standard-library/debug-iterator-support) 和 [libstdc++](https://gcc.gnu.org/onlinedocs/libstdc++/manual/debug_mode.html)）普遍提供不满足语言规范强制的计算复杂度规则（如[关于迭代器的要求](https://eel.is/c++draft/iterator.requirements#general-13)）的接口，要想不到这点是有些匪夷所思的。
+* 考虑理论上的问题，PTC 的重要性特别体现在：是否从语言规范上保证 PTC 是一种足以重要到**相当上游的分类依据**。
+	* 理论形式的第一个系统性论述参考 [[Cl98]](https://www.researchgate.net/profile/William_Clinger/publication/2728133_Proper_Tail_Recursion_and_Space_Efficiency/links/02e7e53624927461c8000000/Proper-Tail-Recursion-and-Space-Efficiency.pdf) 。
+		* 这里使用的是 PTR(proper tail recursion) ，不过实际内容远比递归(recursion) 更普遍（包括内部实现的 administrative state 的处理），所以 PTC 是一般的用法。
+			* 这种差异在许多通俗（不那么理论的）读物也有提到（如 [Programming in Lua](https://www.lua.org/pil/6.3.html) ）。
+		* 即便放眼整个计算机科学的相关领域，基本没有更显著的其它例子表明，单凭算法的复杂度这样的渐进性质就能够单独决定一个系统的整体性质的**正确性**。
+	* 用词是重要的。特别地，PTC/PTR 不是 TCO(tail call optimization) ，因为它是一种保证，而不是优化。忽视这一点容易造成理解偏差。
+		* 但对大多数所谓的专业用户，[包括一些 Lisp 的实现者](https://groups.google.com/d/msg/comp.lang.lisp/AezzhxTliME/2Zsq7HUn_ssJ)，避免稀里糊涂似乎仍然太难了。
+		* 严格来说，[ES6 使用 tail position](https://262.ecma-international.org/6.0/#sec-tail-position-calls) 的 position 因为语义的定义方式过于强调语法的(syntactic) 性质（配合[动态语义](https://262.ecma-international.org/6.0/#sec-preparefortailcall)的实现细节）而非直接要求支持复杂度界限（或者等效地要求免除对调用深度的限制），形式上可以有弱化的理解，实际要求也是比较宽松的。只不过不修改语言规范本身时，不会遇到这种难以概括的问题。
+* 实际的问题影响更加深远：PTC 决定**大量常见语言特性的原生支持是冗余的**，极大地**降低语言设计可触及的复杂度下限**。
+	* PTC 允许递归调用和其它少量更基本特性**完全取代**命令式语言的所谓控制结构在接口功能上的基本地位。
+		* 所谓基本特性是指*控制作用(control effect)* 的抽象。
+			* 当前该领域发展仍然相当迟缓，常年炒冷饭（什么 algebraic effects ，说白了不就是 delimited continuation 换皮么）。
+			* 终端应用的缺失是一个重要原因。
+		* 这个基础上，所谓的控制关键字可以完全实现为库。
+	* 更重要地，这进一步**消除语言设计者及实现者和普通开发者之间的技术壁垒**。
+		* 这也支持了本文的主要观点：**用户和开发者不具有绝对的差异**。
+* [关于 ES6 的一些实现经验](https://github.com/babel/babel/issues/256) 等表明，缺乏 PTC 几乎无法通过直接内嵌实现变通解决——几乎只能重新实现整个核心语言。
+	* 或者说，因为 PTC 依赖特定实现的魔法过于深刻，以至于没有 PTC 的语言在实现上对普通用户而言就是个无可救药的残废。
+	* 缩水的 STC 没有那么困难的问题，也说明 STC 在普遍性的地位上没 PTC 的特殊性值得单独加入语言特性清单。
+* 因此，不论是理论还是实践，是否提供 PTC 保证的差异在语言演化的系统发生树上被区分的节点理应先于许多其它看似普遍的性质。
+	* 例如，是否存在类型系统，相比起来都不算是什么大不了的差别，实在不行用户自己都能解决。……什么？连写些库和工具给现有语言加一个类型系统都不会？要么是用的语言可扩展性太弱了，要么是太菜了。
+		* 实际上就是工业界都烂大街了的套路，即便例子数量不多存在感爆炸。ES 上有 [spec 坑几年了且看起来不打算填坑的](http://github.com/microsoft/TypeScript/issues/15711) TypeScript ，就是 Python 那么混子的都有 [PEP-484](https://peps.python.org/pep-0484/) 。
+	* 当然，虽然很少，也有严格比 PTC 更有存在感的特性和分类。特别地，函数*调用(call)* 是 PTC 的 C 存在的前提。
+		* 函数调用在上游普遍以 λ 演算为基础建模，对应其函数应用的语义规则（β 规约）。这和变量一道构成了高级语言的事实分野（不涉及变量替换的组合子逻辑一般不被视为高级语言的模型）。
+		* PTC 在这个意义上仅对高级语言有效。但是，考虑不用调用很难表达大多数实用算法，因此 PTC 事实上几乎处处存在实际意义。
+		* PTR 的 R 实际上仅指*递归调用(recusive call)* ，不是更一般地的递归形式（如 [μ-递归函数](https://zh.wikipedia.org/zh-cn/%E9%80%92%E5%BD%92%E5%87%BD%E6%95%B0)）。因此 PTC 在一般意义上是更合适的说法。
+* 本文中除笔者以外的人物，除了 RMS 因为 [Emacs Lisp](https://en.wikipedia.org/wiki/Emacs_Lisp) 多少沾点边以外，专业背景和积累都不用指望理解这个问题。
+	* 当然说 RMS 够格其实也相当可疑，毕竟大约[因为历史背景的影响](https://stackoverflow.com/a/38494010)，Emacs Lisp [也没有 PTC](https://en.wikipedia.org/wiki/Emacs_Lisp#Language_features) 。
+		* 其实[连动态作用域都能保持几十年](https://stackoverflow.com/a/38509006)的设计，品味也不能指望了。虽说从实现经验来说，动态作用域其实并不和 PTC 完全冲突，不过确实是得考虑更多东西。
+		* [RMS 对动态作用域的选型理由至少……非常古董](https://en.wikipedia.org/wiki/Emacs_Lisp#From_dynamic_to_lexical_scoping)，因为只有纯解释器才有这方面的问题。
+	* 如果需要另外点名，在技术领域和这里的非技术（~~钞能力~~）领域同时有~~那么点~~相提并论的影响力的人物中，可能只能加上 Paul Graham 这么一个。
+		* 毕竟 [Arc](https://en.wikipedia.org/wiki/Arc_(programming_language)) 看来[还是有 PTC 的](http://www.righto.com/2008/02/arc-internals-part-1.html)，~~虽然[文档](https://arclanguage.github.io/ref/)糟烂到没提~~……~~用 Racket 实现的 Lisp flavor 故意没 PTC 的才怪了。~~
+	* 作为对比，[Guido van Rossum 的理解](http://neopythonic.blogspot.com/2009/04/tail-recursion-elimination.html)显然是[不够格相提并论的](http://neopythonic.blogspot.com/2009/04/final-words-on-tail-calls.html)。
+	* 当然，要以对理论上的理解的充分性评价，这几个人看上去都不那么懂行。
+* 暂时懒得专门整理文档讨论有关技术话题~~黑一些人~~，所以有点跑题的这坨也就先糊在这里吧。
+
+　　实际看，不论是 Web 前端开发者还是相关基础设施的开发者，几乎从来没有注意到这类技术问题。
+
+　　这里明显是苹果以外的竞争对手更加明显地作恶——不论是消极的，还是积极的。然而，很遗憾，苹果的垄断（特别是 iOS 上）没有对澄清偏见和错误认知起到明显的帮助，即便这本应是苹果的技术资产中（相对剩下的市场来）最先进的而不需要依赖垄断就该被推广的部分。
+
+　　如果改变刻板印象，情况是否会有不同？
 
