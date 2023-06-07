@@ -166,6 +166,10 @@ For the necessity of impure effects, see the subclause of first-class effects be
 
 The formal model of impure variant of lambda calculi are relatively recent compared to the practical languages with the feature. See [[Plo75]](http://homepages.inf.ed.ac.uk/gdp/publications/cbn_cbv_lambda.pdf) and [[Fe91]](https://www2.ccs.neu.edu/racket/pubs/scp91-felleisen.ps.gz).
 
+Note that the impurity are conflict to [*η-reduction*](https://en.wikipedia.org/wiki/Lambda_calculus#%CE%B7-reduction), because the combination of the operator with "empty" operand is confilct with the referencing of the operator itself. This is direct in the syntax, and also unavoidable in the semantic without further modifications on the reduction rules.
+
+More precisely, the pure calculi can support bidirectional *η-conversion*. As a model of computation (rather than logic), enforcing the direction to produce the computational result (if any) by default is important, so insisting on the bidirectional conversion is quite a misfeature. And without the bidirectional conversion applicable to do the equational reasoning in various contexts, the reduction itself is far less impressive, and even redundant. Thus, abandoning η-reduction is a plausible choice to make the language rules succinct. It is even natural when side effects are needed.
+
 ##### Lexical scoped impure lambda calculi based
 
 * Allowing scope-based encapsulation
@@ -763,7 +767,7 @@ Separation of namespaces is better avoided for the general-purposed language des
 
 ### Terminology
 
-It is argued that ["Lisp-1" and "Lisp-2" are bad jargons](http://ergoemacs.org/emacs/lisp1_vs_lisp2.html). This is sometimes inappropriate.
+It is argued that ["Lisp-1" and "Lisp-2" are bad jargons](http://xahlee.info/emacs/emacs/lisp1_vs_lisp2.html). This is sometimes inappropriate.
 
 > “lisp-2” should be called multi-value-namespace languages.
 
@@ -789,11 +793,23 @@ This is technically wrong because there are Lisp derivations neither dialects of
 
 This is true. However, there seems no better replacements in general, besides the Lisp-specific "cells", which is technically not even in the language specifications but left as implementation details. The variant of term "namespace" is also used out of Lisp dialects, see the subclause about ISO C below. (Also note [Racket uses its namespaces to implement environments](https://docs.racket-lang.org/inside/im_env.html), which may be more proper usage of the original meaning.)
 
+### Number of namespaces
+
+As noted in [the article](http://www.nhplace.com/kent/Papers/Technical-Issues.html), there can be more than 2 namespaces. But this is less irrelavant here, because cases of more than 1 namespaces also suffer from issues of Lisp-2 in general.
+
+Instead, the mentioned nature for multiple namespaces holding "additional meanings associated symbols" are actually popular if the difference of notations are uninterested. That is, it is just the *metadata*. Whether the metadata is stored in one more cells or many more cells are also less interested by the language design, because it can be addressed by the transformation in the implementation, as pure details, say, the IR (immediate representation) in a compiler. Given that there can be more than one IRs in different phases of translation, this is even less interesting fix up the concrete numbers of cells in the language design.
+
+Actually there is at least one notable and popular kind of metadata: the (dynamic) type. However, this is not specific to symbols, but potentionally all objects in the language. Types can considerably carry more information than the separation of namespaces in more flexible ways. In particular, [overloading, as a kind of ad-hoc polymorphism](https://www.semanticscholar.org/paper/Fundamental-Concepts-in-Programming-Languages-Strachey/a4411c83fd89ffc81a1fe148b09a148f1dbf0ca8), can have effects of separation of functions and non-function variables on the resulted code. It just does not require the fixed rules on notations. With types, there can be arbitrary many kind of "cells" instead of namespaces having equivalent effects here. The same restriction of [abandoning η-reduction](#impure-lambda-calculi-based) also have effects here as in traditional Lisp-2 languages, though.
+
+After all, why would one care about the metadata of symbols if it is not specific the the evaluation rules specific to them? And besides the tricks of notations, why screw up with the evaluation rules, esp. there are alternatives (metadata) doing better in general?
+
 ### Examples
 
-ISO C has different *name spaces* (be careful, there is a space in the term) for *identifiers*. This does not cause Lisp-1 vs. Lisp-2 concerns because C does not have first-class functions. However, the complexity of rules is still existed, and the duplication of names may still likely introduce confusion if not carefully used. Declarations like `typedef struct name {...} name;` are often used to render the omission of `struct` allowed, but it is hard to tell readers whether or which is intentional by the code (depending on the attitude to [TIMTOWTDI](https://en.wikipedia.org/wiki/There's_more_than_one_way_to_do_it)), undermining the consistency of codeing styles.
+ISO C has different *name spaces* (be careful, there is a space in the term) for *identifiers*. This does not cause Lisp-1 vs. Lisp-2 concerns because C does not have first-class functions. However, the complexity of rules still exist, and the duplication of names may still likely introduce confusion if not carefully used. Declarations like `typedef struct name {...} name;` are often used to render the omission of `struct` allowed, but it is hard to tell readers whether or which is intentional by the code (depending on the attitude to [TIMTOWTDI](https://en.wikipedia.org/wiki/There's_more_than_one_way_to_do_it)), undermining the consistency of coding styles.
 
 ISO C++ merges *type-specifier* name separation by default but allowing exceptional cases via *elaborated-type-specifier* syntactic elements in a semi-compatible way to C, albeit with more complicated rules. This makes some code simpler (without need of `typedef`s) and reduces possible metaprogramming issues on type specifiers, although the complicated rules may lead to defects like [this](https://wg21.cmeerw.net/cwg/issue95). In all, the language itself is equipped with separation rules, but intentionally pretended to be a single-namespace one.
+
+From the point of merging the functions and non-function variables, [C and C++ are Lisp-1, as illustrated in the mentioned article above](http://xahlee.info/emacs/emacs/lisp1_vs_lisp2.html). However, the complexity of dealing with tags (which are not names of entities) still varies. With the default style of C, it is more like Lisp-2 because `X` and `struct X` are different if there is no declarations like `typedef struct X X;`. On the other hand, C++ is more like ordinary Lisp-1 here. And given that there are kind of tags (say, `union`), there can be Lisp-3 or more in similar languages.
 
 ## Module systems
 
