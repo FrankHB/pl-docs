@@ -819,7 +819,7 @@ The way of derivation is considered superior than built-in primitive features fo
 
 * The general reasons of primitives vs. derivations are all suited here.
 	* There are different designs with different kinds of features. None can definitely meet all requirments.
-		* As a result, module systems are often complex in practice.
+		* As a result of adapting to different needs, module systems are often complex in practice.
 		* In particular, the built-in ones in many languages tend to have a rich set of pre-built features, rather than being simple and extensible at first.
 		* This seems quite bad compared to other parts of a general-purposed language design.
 	* Testing different styles of module system designs with derivations have less risks to break the whole language design.
@@ -830,9 +830,48 @@ The way of derivation is considered superior than built-in primitive features fo
 		* There is no good reason to only name one of them as the language feature and reject others.
 	* This point is also true for avoiding the name of "interface" as a name of language feature (as in Java and C#).
 
-For the cases specific to the module systems, derivations can be used as the basic building blocks of more abstracted high-level facilities for engineering purpose (e.g. [building systems](https://en.wikipedia.org/wiki/Build_automation) and [CI (continuous integration)](https://en.wikipedia.org/wiki/Continuous_integration). A single fixed design of modules without multi-level reflective derivations in mind is hardly convincingly support the ideas well in general.
+For cases specific to module systems, derivations can be used as the basic building blocks of more abstracted high-level facilities for engineering purpose (e.g. [building systems](https://en.wikipedia.org/wiki/Build_automation) and [CI (continuous integration)](https://en.wikipedia.org/wiki/Continuous_integration). A single fixed design of modules without multi-level reflective derivations in mind can hardly convincingly support the ideas well in general.
 
-(Rationale and examples TBD.)
+(More rationale and examples TBD.)
+
+### Examples
+
+Standard ML provides a [module system](https://en.wikipedia.org/wiki/Standard_ML#Module_system). It is [well-teached](https://courses.cs.washington.edu/courses/cse341/04wi/lectures/09-ml-modules.html), and believed [not difficult to grasp](https://www.classes.cs.uchicago.edu/archive/2005/winter/33600-1/docs/Tofte_modules_tutorial.pdf). While the purpose and experiences are plausible, none of the core problems mentioned above are really addressed, and it certainly does not able to meet all requirements about modules the users may expect (e.g. interaction with the build system to make some metaprogramming stuff during configuration phases). Once the language needs further evolution to include these missing features, there is no easy chance to replace it to a better system without massive reconsideration of the design (e.g. to prove the change will not break the existing code). Namely, the module system itself is still not modularized enough to meed some complex needs in reality.
+
+C++ modules (since ISO C\++20) is a mess. There are mutiple serious problems:
+
+* None of the core problems above are addressed.
+	* Notably, the design is known incomplete as of ISO C++20.
+		* Later standard versions (since ISO C++23) will improve the design, but this implies more uncertainty and difficulties of adoption for real projects which has strict requirements to pin the standard (or even toolchain) versions.
+* Far worse (than the case in standard ML, at least), the design make the language rules complicated a lot, with little sense in the availabity of language features or the improvement of the experience of modularization works.
+	* The complexity is baked into the core language rules.
+		* This even affects users with no interest in C++ modules (but just the language standards since ISO C++20).
+	* There are no benefits like first-classness in modules in SML.
+	* The major improvement over the traditional headers and source translation units are the potentially improved implementation efficiency of translation, rather than the effectiveness on modularization itself.
+		* With the compatibility problems in mind, it even does not making the activities of producing and using modules easier.
+* Transition from code not using C++ modules to code using C++ modules is (likely) not that easy and beneficial.
+	* The decision of introducing C++ modules in a concrete project is usually one-way.
+		* Once it is added to an existing project, there comes the inconsistency of different components in it.
+		* That is, the project manager must be aware of the risks of inconsist transition state. It may imply unexpected bugs and cost.
+	* There exist certain cases not technically feasible to opt-in C++ modules.
+		* Notably, every C modules used in a C++ project cannot opt-in C++ modules, simply because C++ modules are not supported in C.
+		* Each component needs to work with previous versions of C++ can not be changed in-place.
+			* Vendering may be not worthing.
+			* Adding additional conditional inclusion path into such components can work, but costly in general.
+			* Even if the decision of the change is already made, it is often questionable about how much sense to opt-in C++ modules support before it is popular enough.
+	* New projects are generally encouraged to use C++ modules. But the acceptance is still doubtful.
+		* The implementations are not popular enough. The availability and usability are generally in doubt.
+			* Using of C++ modules will undermine one of the most competitive pros of C++: portability.
+		* There are bugs in implementations preventing it being popular.
+			* For example, Microsoft VC++, as one of the most complete implementation, enables its standard module implementation by default. However, this [has broken certain projects](https://stackoverflow.com/questions/76055294). The workaround is disabling it.
+* Although using of C++ modules is optional (i.e. the traditional way without C++ modules can still work in ISO C++20), there is no easy way to rule it out.
+	* Mixture of code using C++ modules and code not using C++ modules are expected to work because of the need of compatibility. This makes some interoperability issues inside the language rules.
+	* This is also true for implemenations. There are potentionally bugs of tools. Some are known (see the example of implementations below). There may be more.
+	* Mixture of code can be a longterm problems in the whole C++ ecosystem.
+		* Given the technically infeasibility and the doubts to opt-in C++ modules, the mainstream adoption may be late, compared to other languages.
+		* Build tools are developed together with the module system. They are lagged.
+		* Not everyone can afford the overhead of the mixture.
+		* The result is more fragmentation, in the aspects of both the community and the availablity of library resources.
 
 ## Concrete arithmetic systems
 
