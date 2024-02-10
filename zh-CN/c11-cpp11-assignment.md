@@ -208,7 +208,7 @@ f(i = -1, i = -1); // the behavior is undefined
 
 > James Widman: How's this for a possible re-wording?
 
->> In all cases, the side effect of the assignment expression is sequenced after the value computations of the right and left operands. Furthermore, if the assignment expression appears in a context where an lvalue is required, the side effect of the assignment expression is sequenced before its value computation. 
+>> In all cases, the side effect of the assignment expression is sequenced after the value computations of the right and left operands. Furthermore, if the assignment expression appears in a context where an lvalue is required, the side effect of the assignment expression is sequenced before its value computation.
 
 > **Notes from the February, 2008 meeting:**
 
@@ -266,7 +266,7 @@ f(i = -1, i = -1); // the behavior is undefined
 
 > 5.17 [expr.ass] paragraph 1 says,
 
->>    The result of the assignment operation is the value stored in the left operand after the assignment has taken place; the result is an lvalue. 
+>>    The result of the assignment operation is the value stored in the left operand after the assignment has taken place; the result is an lvalue.
 
 > What is the normative effect of the words "after the assignment has taken place"? I think that phrase ought to mean that in addition to whatever constraints the rules about sequence points might impose on the implementation, assignment operators on built-in types have the additional constraint that they must store the left-hand side's new value before returning a reference to that object as their result.
 
@@ -367,7 +367,7 @@ f(i = -1, i = -1); // the behavior is undefined
 
 > Append to 5.17 [expr.ass] paragraph 1:
 
->> There is a sequence point between assigning the new value to the left operand and yielding the result of the assignment expression. 
+>> There is a sequence point between assigning the new value to the left operand and yielding the result of the assignment expression.
 
 > I believe that this proposal achieves my desired effect of not constraining when j is incremented in x[j++] = y, because I don't think there is a constraint on the relative order of incrementing j and executing the assignment. However, I do think it allows expressions such as (i += v) += 42, although with different semantics from C if v is volatile.
 

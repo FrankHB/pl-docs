@@ -8,7 +8,7 @@ Quoted text are from the referenced material: [P0145R1](http://www.open-std.org/
 
 Suspectable. Because ...
 
-> In a nutshell, given an expression such as `f(a, b, c)`, the order in which the 
+> In a nutshell, given an expression such as `f(a, b, c)`, the order in which the
 sub-expressions `f`, `a`, `b`, `c` (which are of arbitrary shapes) are evaluated is left  unspecified by the standard. If any two of these sub-expressions happen to modify the same object without intervening sequence points, the behavior of the program is undefined.
 For instance, the expression `f(i++, i)` where `i` is an integer variable leads to undefined behavior, as does `v[i] = i++`.
 
@@ -30,7 +30,7 @@ If it is still indeed annoying for someone, then C-like languages are likely not
 
 ## 2 A Corroding Problem
 
-> The traps aren’t just for novices or the careless programmer. 
+> The traps aren’t just for novices or the careless programmer.
 
 Not exactly. If one does not know why these fundamental rules are important and why ignorance of them is dangerous, he *is* a novice. If one has no idea to avoid it, he *is* a novice. If one cannot force *himself* to obey the convention to prevent such trap, he *is* careless. The remained problem is how to enforce *others* following the convention, but that is another story.
 
@@ -62,7 +62,7 @@ Questionable. What support can the language provide? How? There are many "contem
 
 A more apporiate statement can be: the language should *allow* contemporary idioms, and *encourage* them when there are no obvious defects and superior replacements.
 
-> For example, using `<<` as insertion operator into a stream is now an elementary idiom.  
+> For example, using `<<` as insertion operator into a stream is now an elementary idiom.
 
 False. Using `<<` as insertion operator into a stream is only idiomatic for *formatted insertion* of *standard stream classes* and similarly designed classes, and actually not so *elementary* because it is somewhat domain-specific and less dependent by widely spreaded higher-level usage.
 
@@ -89,7 +89,7 @@ Then forbid such use by fixing the interface, if teaching the correct idiom is t
 
 Only with a clear design and a clean clue in user's mind to reason why (or not) he should take the idiomatic way.
 
-> The changes suggested below are conservative, pragmatic, with one overriding guiding principle: **effective support for idiomatic C++**. 
+> The changes suggested below are conservative, pragmatic, with one overriding guiding principle: **effective support for idiomatic C++**.
 
 Actually they are not conservative because they changed the expression semantics so broadly (though the meaning and the behavior of the programs may keep the same); also not so pragmatic because of the limitation of the idioms they supported.
 
@@ -106,7 +106,7 @@ This is also methodologically questionable. It seems that "to support of member 
 
 This is probably not feasible, because as different compliers do, different human users may also *always* read and write differently, e.g. to assume and depend on the left-to-right order as possible vs. to assume indeterminate evluation and to depend on explicit sequenced ordering (while there should only be one concise set of rules of the language, of course). The worse thing is, there is no way to refine programers (as conformance to compilers) being away from TIMTOWTDI. So in this case, change of rules can only reflect some of the existed practice, thus the result may be less idiomatic than the status quo, which largely defeats the original purpose.
 
-> Rather, the driver seat should be given to idioms. 
+> Rather, the driver seat should be given to idioms.
 
 Which idioms?
 
@@ -147,7 +147,7 @@ It seems that "the value computation and the associates side effects of E1 are s
 
 How do the optimizer take the advantage of stricter limitation on imlementation?
 
-> Based on these experiments, we feel confident recommending the left-to-right evaluation rules for syntactic function calls and in the functional cast notation involving more than  one arguments in the argument list. 
+> Based on these experiments, we feel confident recommending the left-to-right evaluation rules for syntactic function calls and in the functional cast notation involving more than  one arguments in the argument list.
 
 This chapter is mostly about experience on specific implementation, concerned with some QoI issues. These experiments do not provide some further information to answer:
 
@@ -159,7 +159,7 @@ Note that an implementation may even need to modify nothing to be conforming.
 
 ## 8. Alternate Evaluation Order for Function Calls
 
-> We do not believe that such a non determinism brings any substantial added optimization 
+> We do not believe that such a non determinism brings any substantial added optimization
 benefit, but it does perpetuate the confusion and hazards around order of evaluations in function calls.
 
 Please prove your belief.

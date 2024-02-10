@@ -166,7 +166,7 @@ ISO C++98/03 在表格的 note 里要求 “should” O(1) ，因此 libstdc++ �
 而 ISO C++11 改成了 “shall” O(1) ，这种实现就不符合标准了。
 
  can 的含义。
- 
+
 应该注意 can 表示可能性，而不是要求。和表示准许的may也应该有清楚的区别。
 
 # 正题
@@ -196,7 +196,7 @@ ISO C99 是这样的：
 没什么变化。
 
 ISO C++98 是这样的：
- 
+
 > ## 3.6.1 Main function [basic.start.main]
 
 > 1 A program shall contain a global function called main, which is the designated start of the program. It is

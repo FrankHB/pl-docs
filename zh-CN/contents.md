@@ -46,7 +46,7 @@
 	* 早期论述：[[1]](http://tieba.baidu.com/f?ct=335675392&tn=baiduPostBrowser&z=3605563618&sc=64936372503#64936372503) [[2]](http://tieba.baidu.com/f?ct=335675392&tn=baiduPostBrowser&z=3605563618&sc=64963805240#64963805240) [[3]](http://tieba.baidu.com/p/3615289496?pn=2)
 * [关于 GC 的意见](about-garbage-collection.md)（另见 [幻の上帝吧主题](https://tieba.baidu.com/p/3171730339)）
 * [关于语法](about-syntax.md)
-	
+
 ## 语用和科普
 
 * [_[科普]_&#8203;_[FAQ]_&#8203;MinGW vs MinGW-W64及其它](mingw-vs-mingw-v64.md)（另见 [mingw 吧主题](http://tieba.baidu.com/p/3186232510) 和 [C++ 吧主题](http://tieba.baidu.com/p/3186234212)）
