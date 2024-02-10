@@ -639,7 +639,7 @@ There are other implementation concerns to avoid general-purposed GC by default.
 Note the discouragement of GC does not cover the following facilities.
 
 * Specific resource management schemes sharing some properties with GC, like resource pools (esp. [memory pools](https://en.wikipedia.org/wiki/Memory_pool)), are recommended as the replacement of GC for specific resource usage patterns.
-* Transformations based on analysis of resources usage include [escape analysis](https://en.wikipedia.org/wiki/Escape_analysis) and [region inference](https://en.wikipedia.org/wiki/Region-based_memory_management#Region_inference) (sometimes referred as the _static GC_).
+* Transformations based on analysis of resources usage include [escape analysis](https://en.wikipedia.org/wiki/Escape_analysis) and [region inference](https://en.wikipedia.org/wiki/Region-based_memory_management#Region_inference) (sometimes referred as the *static GC*).
 * Deterministic local collectors can be used to suppress leaks further than ALGOL-like block structures (see [[Cl98]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.8567&rep=rep1&type=pdf)), including the case of implementation of TCO without GC.
 
 ## [ABI](https://en.wikipedia.org/wiki/Application_binary_interface) dependency
