@@ -10,9 +10,11 @@ Contents in this repository conform to the [YSLib wiki editing rules](https://fr
 
 # Copyright
 
-© 2014-2023 [FrankHB](mailto:frankhb1989@gmail.com).
+© 2014-2024 [FrankHB](mailto:frankhb1989@gmail.com).
 
 Except as otherwise specified explicitly, materials in this repository are licensed under following terms:
 
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+[![http://creativecommons.org/licenses/by-sa/4.0/](http://i.creativecommons.org/l/by-sa/4.0/88x31.png "license")](http://creativecommons.org/licenses/by-sa/4.0/)
+
+This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/ "CC-BY-SA 4.0").
 
