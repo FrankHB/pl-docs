@@ -8,21 +8,22 @@ Quoted text are from the referenced material: [P0145R1](http://www.open-std.org/
 
 Suspectable. Because ...
 
-> In a nutshell, given an expression such as `f(a, b, c)`, the order in which the
-sub-expressions `f`, `a`, `b`, `c` (which are of arbitrary shapes) are evaluated is left  unspecified by the standard. If any two of these sub-expressions happen to modify the same object without intervening sequence points, the behavior of the program is undefined.
-For instance, the expression `f(i++, i)` where `i` is an integer variable leads to undefined behavior, as does `v[i] = i++`.
+> In a nutshell, given an expression such as `f(a, b, c)`, the order in which the sub-expressions `f`, `a`, `b`, `c` (which are of arbitrary shapes) are evaluated is left  unspecified by the standard. If any two of these sub-expressions happen to modify the same object without intervening sequence points, the behavior of the program is undefined.
+> For instance, the expression `f(i++, i)` where `i` is an integer variable leads to undefined behavior, as does `v[i] = i++`.
 
 The current rules are already somewhat clear (compared with the proposed rules) and not hard to recite. It seems that there are few people willing spending time on this topic continuously. Novices usually do not try to change the core language rules, and seasoned users usually do not bother to do too much beyond setting up the convention to follow the standard.
 
 > Even when the behavior is not undefined, the result of evaluating an expression can still be anybody’s guess.  Consider the following program fragment:
-```
-#include <map>
-int main() {
-	std::map<int, int> m;
-	m[0] = m.size(); // #1
-}
-```
-What should the map object `m` look like after evaluation of the statement marked #1? `{{0, 0}}` or `{{0, 1}}` ?
+>
+>```cpp
+>#include <map>
+>int main() {
+>	std::map<int, int> m;
+>	m[0] = m.size(); // #1
+>}
+>```
+>
+> What should the map object `m` look like after evaluation of the statement marked #1? `{{0, 0}}` or `{{0, 1}}` ?
 
 It should be clear without guess because every time the reader meet `=`, he should trace the dependencies (including evaluation order) trivially in a few milliseconds. Since [CWG222](http://wg21.cmeerw.net/cwg/issue222) is resolved, it should be safe to merge the parsing and tracing passes in one's brain for both overloaded and builtin `=` as long as the left side operand has no insane subexpressions screwing up the value dependencies, which should be easy to keep (away from abuse of macros and "properties", etc). Here the effect of `=` is up to the values of operands uniquely. Note the fragment is *not* the case like `m[m[0] = m.size()] = m.size();`. On the other hand, will it be a problem in practice? Just *do not write obviouosly stupid unreadable code*.
 
@@ -117,9 +118,9 @@ Which idioms?
 This can hardly be simple in C++. The proposed changes of rules also shows it.
 
 > In summary, the following expressions are evaluated in the order `a`, then `b`, then `c`, then `d`:
-
+>
 >	1.	`a.b`
->	2. 	`a->b`
+>	2.	`a->b`
 >	3.	`a->*b`
 >	4.	`a(b1, b2, b3)`
 >	5.	`b @= a`
@@ -159,8 +160,7 @@ Note that an implementation may even need to modify nothing to be conforming.
 
 ## 8. Alternate Evaluation Order for Function Calls
 
-> We do not believe that such a non determinism brings any substantial added optimization
-benefit, but it does perpetuate the confusion and hazards around order of evaluations in function calls.
+> We do not believe that such a non determinism brings any substantial added optimization benefit, but it does perpetuate the confusion and hazards around order of evaluations in function calls.
 
 Please prove your belief.
 

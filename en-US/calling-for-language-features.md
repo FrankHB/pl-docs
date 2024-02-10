@@ -770,7 +770,6 @@ Separation of namespaces is better avoided for the general-purposed language des
 It is argued that ["Lisp-1" and "Lisp-2" are bad jargons](http://xahlee.info/emacs/emacs/lisp1_vs_lisp2.html). This is sometimes inappropriate.
 
 > “lisp-2” should be called multi-value-namespace languages.
-
 > “lisp-1” should be called single-value-namespace languages.
 
 This is good and even better for non-Lisp languages, but lengthy. The "value" is also a source of imprecision when it is defined differently in the object languages.
