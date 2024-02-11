@@ -69,14 +69,14 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 > 2 Between the previous and next sequence point an object shall have its stored value modified at most once by the evaluation of an expression. Furthermore, the prior value shall be read only to determine the value to be stored.70)\
 > 70) This paragraph renders undefined statement expressions such as
 >
->```
+>```c
 >    i = ++i + 1;
 >    a[i++] = i;
 >```
 >
 > while allowing
 >
->```
+>```c
 >    i = i + 1;
 >    a[i] = i;
 >```
@@ -119,14 +119,14 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 > 2 If a side effect on a scalar object is unsequenced relative to either a different side effect on the same scalar object or a value computation using the value of the same scalar object, the behavior is undefined. If there are multiple allowable orderings of the subexpressions of an expression, the behavior is undefined if such an unsequenced side effect occurs in any of the orderings.84)\
 > 84) This paragraph renders undefined statement expressions such as
 >
->```
+>```c
 >    i = ++i + 1;
 >    a[i++] = i;
 >```
 >
 > while allowing
 >
->```
+>```c
 >    i = i + 1;`
 >    a[i] = i;
 >```
@@ -137,7 +137,7 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 > 15 Except where noted, evaluations of operands of individual operators and of subexpressions of individual expressions are unsequenced. [ Note: In an expression that is evaluated more than once during the execution of a program, unsequenced and indeterminately sequenced evaluations of its subexpressions need not be performed consistently in different evaluations. —end note ] The value computations of the operands of an operator are sequenced before the value computation of the result of the operator. If a side effect on a scalar object is unsequenced relative to either anotherside effect on the same scalar object or a value computation using the value of the same scalar object, the behavior is undefined.\
 > [ *Example:*
 >
-> ```
+> ```cpp
 > void f(int, int);
 > void g(int i, int* v) {
 >   i = v[i++]; // the behavior is undefined
@@ -173,7 +173,7 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 > [Voted into the WP at the September, 2008 meeting.]\
 > In 1.9 [intro.execution] paragraph 16, the following expression is still listed as an example of undefined behavior:
 >
->```
+>```cpp
 >    i = ++i + 1;
 >```
 >
@@ -183,7 +183,7 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 >> In order to value-compute the RHS (++i + 1), it is necessary to first value-compute the lvalue expression ++i and then do an lvalue-to-rvalue conversion on the result. This guarantees that the incrementation side-effect is sequenced before the computation of the addition operation, which in turn is sequenced before the assignment side effect. In other words, it yields a well-defined order and final value for this expression.\
 > It should be noted that a similar expression
 >
->```
+>```cpp
 >    i = i++ + 1;
 >```
 >
@@ -199,7 +199,7 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 > **Proposed resolution (March, 2008):**\
 > Change the example in 1.9 [intro.execution] paragraph 16 as follows:
 >
->```
+>```cpp
 >    i = v[i++];             // the behavior is undefined
 >    i = 7, i++, i++;        // i becomes 9
 >    i = ~~++i~~i++ + 1;        // the behavior is undefined
@@ -217,20 +217,20 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 > [Voted into the WP at the September, 2008 meeting.]\
 > I believe that the committee has neglected to take into account one of the differences between C and C++ when defining sequence points. As an example, consider
 >
->```
+>```cpp
 >    (a += b) += c;
 >```
 >
 > where `a`, `b`, and `c` all have type `int`. I believe that this expression has undefined behavior, even though it is well-formed. It is not well-formed in C, because `+=` returns an rvalue there. The reason for the undefined behavior is that it modifies the value of \``a`' twice between sequence points.\
 > Expressions such as this one are sometimes genuinely useful. Of course, we could write this particular example as
 >
->```
+>```cpp
 >    a += b; a += c;
 >```
 >
 > but what about
 >
->```
+>```cpp
 >    void scale(double* p, int n, double x, double y) {
 >        for (int i = 0; i < n; ++i) {
 >            (p[i] *= x) += y;
@@ -241,7 +241,7 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 > All of the potential rewrites involve multiply-evaluating p[i] or unobvious circumlocations like creating references to the array element.\
 > One way to deal with this issue would be to include built-in operators in the rule that puts a sequence point between evaluating a function's arguments and evaluating the function itself. However, that might be overkill: I see no reason to require that in
 >
->```
+>```cpp
 >    x[i++] = y;
 >```
 >
@@ -288,7 +288,7 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 > Andrew Koenig:\
 > Whatever we may have intended, I do not think that there is any clean way of making
 >
->```
+>```cpp
 >    volatile int v;
 >    int i;
 >    i = v = 42;
@@ -297,14 +297,14 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 > have the same semantics in C++ as it does in C. Like it or not, the subexpression `v = 42` has the type ``reference to volatile int,'' so if this statement has any meaning at all, the meaning must be to store 42 in v and then fetch the value of v to assign it to i.\
 > Indeed, if v is volatile, I cannot imagine a conscientious programmer writing a statement such as this one. Instead, I would expect to see
 >
->```
+>```cpp
 >    v = 42;
 >    i = v;
 >```
 >
 > if the intent is to store `42` in `v` and then fetch the (possibly changed) value of `v`, or
 >
->```
+>```cpp
 >    v = 42;
 >    i = 42;
 >```
@@ -323,19 +323,19 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 > **Notes from October 2004 meeting:**\
 > Discussion centered around whether a sequence point “between assigning the new value to the left operand and yielding the result of the expression” would require completion of all side effects of the operand expressions before the value of the assignment expression was used in another expression. The consensus opinion was that it would, that this is the definition of a sequence point. Jason Merrill pointed out that adding a sequence point after the assignment is essentially the same as rewriting
 >
->```
+>```cpp
 >    b += a
 >```
 >
 > as
 >
->```
+>```cpp
 >    b += a, b
 >```
 >
 > Clark Nelson expressed a desire for something like a “weak” sequence point that would force the assignment to occur but that would leave the side effects of the operands unconstrained. In support of this position, he cited the following expression:
 >
->```
+>```cpp
 >    j = (i = j++)
 >```
 >
@@ -405,7 +405,7 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 
 　　这个问题在C++03中的答案是右值，也就是说对 `volatile` 左值赋值后需要无条件从被赋值中左值取得存储的值来作为右值。这在实现中可以被轻易优化掉，但在语言规则中存在一定问题，如：
 
-```
+```cpp
 void f()
 {
 	volatile int x;
@@ -425,7 +425,7 @@ void f()
 > [Voted into the WP at the March, 2011 meeting.]\
 > C and C++ differ in the treatment of an expression statement, in particular with regard to whether a volatile lvalue is fetched. For example,
 >
->```
+>```cpp
 >    volatile int x;
 >    void f() {
 >        x;    // Fetches x in C, not in C++
@@ -434,7 +434,7 @@ void f()
 >
 > The reason C++ is different in this regard is principally due to the fact that an assignment expression is an lvalue in C++ but not in C. If the lvalue-to-rvalue conversion were applied to expression statements, a statement like\
 >
->```
+>```cpp
 >    x = 5;
 >```
 >

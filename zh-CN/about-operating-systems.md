@@ -98,7 +98,7 @@
 
 　　不过相比起来，对习惯痛苦面具的专业开发者而言，区区 `\\\\` 还是算不了什么……比如引用[我写过的一段实际代码](https://github.com/FrankHB/YSLib/blob/38aadbd9704883f4a43b46c7fad3ae9e8f75484d/Tools/Scripts/SHBuild-YSLib-build.txt#L232-L233)：
 
-```
+```shell
 	++ "-DYSL_VCS_Revision=\"\\\"\\\\\\\"" rev-str "\\\\\\\"\\\"\""
 ```
 
