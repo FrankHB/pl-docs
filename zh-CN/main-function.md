@@ -6,13 +6,9 @@ Created @ 2012-11-07.
 
 发现以前说的太零碎，不太好引用……整理一下。
 
-目前我看到的比较靠谱的说法（有正确的引用出处，并指出了实现扩展）：
+目前我看到一个[比较靠谱的说法（有正确的引用出处，并指出了实现扩展）](http://homepage.ntlworld.com/jonathan.deboynepollard/FGA/legality-of-void-main.html)。
 
-http://homepage.ntlworld.com/jonathan.deboynepollard/FGA/legality-of-void-main.html
-
-http://tieba.baidu.com/p/626323902
-
-↑而这里的说法是有问题的。
+而[这里](http://tieba.baidu.com/p/626323902)的说法是有问题的。
 
 这里再解释一下ISO C/C++中对 `main` 的要求。
 
@@ -145,7 +141,7 @@ ISO C\++98/03 在表格的 note 里要求 “should” O(1) ，因此 libstdc++ 
 
 # 正题
 
-附一个参考链接： http://stackoverflow.com/questions/1765686/correctly-declaring-the-main-function-in-ansi-c
+附一个[参考链接](http://stackoverflow.com/questions/1765686)。
 
 ## ANSI C/ISO C 对独立环境的规定
 

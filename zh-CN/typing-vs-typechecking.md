@@ -200,8 +200,8 @@
 
 　　看似专业的错误面面观（当然，也不是每个作者都用错了）：
 
-* https://www.zhihu.com/question/19918532
-* http://lambda-the-ultimate.org/node/5286
+* [这个知乎问题](https://www.zhihu.com/question/19918532)下的各种回答。
+* [这篇 LtU 讨论](http://lambda-the-ultimate.org/node/5286)中的一些讨论。
 
 　　**提示** 首先，考虑讨论的是一般的语言设计，不要先入为主地假想类型（系统）已经存在。其次，“使用语言规则约束程序行为提供保证”的设计手段和“使用类型系统的某些性质提供保证实现这种设计手段”不是同一个层次的抽象。
 

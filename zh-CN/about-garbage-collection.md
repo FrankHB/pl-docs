@@ -1750,7 +1750,7 @@ closure optimization 没说清楚是啥，大概是指以存在 closure 为前�
 
 ## 2015-05-07 17:28 幻の上帝
 
-ref: http://tieba.baidu.com/p/2411685175
+引用[原贴](http://tieba.baidu.com/p/2411685175)。
 
 # 引用回复 2
 
@@ -2083,7 +2083,7 @@ Created @ 2016-10-03, titiled "[默认 GC 的危害](https://gist.github.com/Fra
 
 GC = garbage collection/garbage collector ，垃圾回收/垃圾回收器。
 
-一些技术性观点： http://tieba.baidu.com/p/3171730339
+一些技术性观点参见[此贴](http://tieba.baidu.com/p/3171730339)。
 
 GC 特指非决定性(nondeterminstic) 的自动资源回收机制，主要管理在线存储资源（内存）。静态 GC 等本质上属于决定性资源回收的机制不属于此讨论范围。
 
@@ -2126,7 +2126,7 @@ GC 造成的问题很多（也正因为如此在一般意义上只能作为谨�
 * 什么是成本和效率之间的妥协，什么是一开始就应该考虑满足的需求。
 * 什么是开发者本应做到的，什么是适合让机器自动完成的。
 
-反面教材例： http://yinwang.org/blog-cn/2016/09/18/rust 。
+反面教材例如[这篇关于 Rust 的评论](http://yinwang.org/blog-cn/2016/09/18/rust)。
 
 这个反面教材还体现了对资源管理问题的外行。根据教育背景和历史，按理说，该作者对[这篇论文](https://www.cs.indiana.edu/~dyb/pubs/call1cc.pdf)应该不至于没有听说过才对，如此还理解不了表达式中的值的转移相对复制（或者更一般地，确保资源的单一实例相对资源的复制）是更基础普遍的操作（而不是反之），就很费解了。可能这和类似所谓的 [有类型 λ 演算被作为无类型 λ 演算更基础的理论(en-US)](https://en.wikipedia.org/wiki/Typed_lambda_calculus) 这样的反工程常识（因为 multirooted ，没有单一理论选取的基准，无法管理依赖）的主观认识相关？
 

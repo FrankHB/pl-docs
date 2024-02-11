@@ -8,7 +8,7 @@
 
 # 样品
 
-https://www.zhihu.com/question/30467199/answer/490183958 by bhuztez
+[知乎回答](https://www.zhihu.com/question/30467199/answer/490183958) by bhuztez 。
 
 　　表达个人观点，整理和保存资料并非具有冒犯性，在普遍意义上是对公众有益的。但是，为了个体好恶而无视一般人具有的更深层次的利用计算的方式，鼓吹个别风格，则是无益的。
 
