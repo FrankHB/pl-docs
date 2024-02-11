@@ -19,6 +19,7 @@
 　　之后的几年，和一些苹果产品的用户交流之后，让我改变了一些看法。我意识到，我迟早需要把零碎的看法集结起来，而最终有了现在这篇文章——似乎是时候做一个了断了。直接的契机是最近偶然翻到[一个知乎问题](https://www.zhihu.com/question/19874278) ：
 
 > 为什么 RMS 和 ESR 等组织的开源运动领军人物如此仇恨乔布斯？\
+<!-- markdownlint-disable-next-line MD034 -->
 > 继10月6日Richard Stallman发表“我不希望看到他死去，但乐于看到他离去”的言论（http://stallman.org/archives/2011-jul-oct.html#06_October_2011_(Steve_Jobs)）之后，开源运动的另一位领军人物Eric Raymond在10月8日支持RMS，认为乔布斯比盖茨更加威胁自由，因为人们害怕和尊重微软，却热爱苹果（http://esr.ibiblio.org/?p=3790）。\
 >苹果对开源社区的贡献要比微软大，至少推动了Webkit项目的发展。\
 >近年来RMS和ESR在绝大多数问题上都意见不太一致，为什么这次却先后狠批乔布斯？

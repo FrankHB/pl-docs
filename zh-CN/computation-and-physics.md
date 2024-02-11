@@ -4,6 +4,7 @@
 
 　　最近发现了一些有趣的联系，在这里简记一下。
 
+<!-- markdownlint-disable-next-line MD011 -->
 　　这个想法起先出自 Alan Key 关于 Lisp 和 Maxwell 方程组的的评论([[1]](https://www.righto.com/2008/07/maxwells-equations-of-software-examined.html)[[2]](https://www.michaelnielsen.org/ddi/lisp-as-the-maxwells-equations-of-software/))。
 
 # 对应

@@ -177,6 +177,8 @@ This article briefly talked about exception handling mechanism provided by C++ a
 
 # 参考文献
 
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable MD034 -->
 * \[1] Exception handling \[G/OL]. 2013-03-09, 2013-03-10. https://en.wikipedia.org/wiki/Exception_handling
 * \[2] Double fault \[G/OL]. 2012-05-02, 2013-03-10. https://en.wikipedia.org/wiki/Double_fault
 * \[3] ISO/IEC 14882:2011(E)，Information technology — Programming languages — C++ \[S]．Geneva, Switzerland，2011.
@@ -187,4 +189,5 @@ This article briefly talked about exception handling mechanism provided by C++ a
 * \[8] Herb Sutter. A Pragmatic Look at Exception Specifications \[J]. C/C++ Users Journal, 20(7) , 2002-07. http://www.gotw.ca/publications/mill22.htm
 * \[9] Herb Sutter. Questions About Exception Specifications \[A/OL]. 2007-01-24, 2013-03-10. https://herbsutter.com/2007/01/24/questions-about-exception-specifications/
 * \[10] Doug Gregor. Deprecating Exception Specifications \[J/OL]. C++ Standards Committee Papers, N3051=10-0041 , 2010-03-12. https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3051.htm
+<!-- markdownlint-restore -->
 

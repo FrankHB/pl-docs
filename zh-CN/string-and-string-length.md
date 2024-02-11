@@ -65,6 +65,7 @@ NTMBS <span style="font-variant: small-caps">ntmbs</span>
 
 **ISO C++11**
 
+<!-- markdownlint-disable-next-line MD001 -->
 > ##### 17.5.2.1.4 Character sequences [character.seq]
 >
 > 1 The C standard library makes widespread use of characters and character sequences that follow a few uniform conventions:\

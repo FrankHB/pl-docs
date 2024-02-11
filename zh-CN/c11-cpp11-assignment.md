@@ -12,6 +12,7 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 
 **ISO C11(N1570)**
 
+<!-- markdownlint-disable-next-line MD001 -->
 > ### 5.1.2.3
 >
 > 2 Accessing a volatile object, modifying an object, modifying a file, or calling a function that does any of those operations are all side effects,12) which are changes in the state of the execution environment. Evaluation of an expression in general includes both value computations and initiation of side effects. Value computation for an lvalue expression includes determining the identity of the designated object.
@@ -38,6 +39,7 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 
 **ISO C++11**
 
+<!-- markdownlint-disable-next-line MD024 -->
 > # 1.9
 >
 > 1 The semantic descriptions in this International Standard define a parameterized nondeterministic abstract machine. This International Standard places no requirement on the structure of conforming implementations. In particular, they need not copy or emulate the structure of the abstract machine. Rather, conforming implementations are required to emulate (only) the observable behavior of the abstract machine as explained below.5\
@@ -60,6 +62,7 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 
 **ISO C99**
 
+<!-- markdownlint-disable-next-line MD001 -->
 > ### 5.1.2.3
 >
 > 2 Accessing a volatile object, modifying an object, modifying a file, or calling a function that does any of those operations are all side effects,11) which are changes in the state of the execution environment. Evaluation of an expression may produce side effects. At certain specified points in the execution sequence called sequence points, all side effects of previous evaluations shall be complete and no side effects of subsequent evaluations shall have taken place. (A summary of the sequence points is given in annex C.)
@@ -83,6 +86,7 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 
 **ISO C++03**
 
+<!-- markdownlint-disable-next-line MD024 -->
 > # 1.9
 >
 > 7 Accessing an object designated by a volatile lvalue (3.10), modifying an object, calling a library I/O function, or calling a function that does any of those operations are all side effects, which are changes in the state of the execution environment. Evaluation of an expression might produce side effects. At certain specified points in the execution sequence called sequence points, all side effects of previous evaluations shall be complete and no side effects of subsequent evaluations shall have taken place.7)\
@@ -100,6 +104,7 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 
 **ISO C11(N1570)**
 
+<!-- markdownlint-disable-next-line MD001 -->
 > ### 5.1.2.3
 >
 > 3 Sequenced before is an asymmetric, transitive, pair-wise relation between evaluations executed by a single thread, which induces a partial order among those evaluations. Given any two evaluations A and B, if A is sequenced before B, then the execution of A shall precede the execution of B. (Conversely, if A is sequenced before B, then B is sequenced after A.) If A is not sequenced before or after B, then A and B are unsequenced. Evaluations A and B are indeterminately sequenced when A is sequenced either before or after B, but it is unspecified which.13) The presence of a sequence point between the evaluation of expressions A and B implies that every value computation and side effect associated with A is sequenced before every value computation and side effect associated with B. (A summary of the sequence points is given in annex C.)\
@@ -113,6 +118,7 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 
 **ISO C11(N1570)**
 
+<!-- markdownlint-disable-next-line MD024 -->
 > # 6.5
 >
 > 1 An expression is a sequence of operators and operands that specifies computation of a value, or that designates an object or a function, or that generates side effects, or that performs a combination thereof. The value computations of the operands of an operator are sequenced before the value computation of the result of the operator.\
@@ -168,6 +174,7 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 
 > ## 637. Sequencing rules and example disagree
 >
+<!-- markdownlint-disable-next-line MD013 -->
 > ### Section: 1.9  [intro.execution]     Status: CD1     Submitter: Ofer Porat     Date: 2 June 2007
 >
 > [Voted into the WP at the September, 2008 meeting.]\
@@ -212,6 +219,7 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 
 > ## 222. Sequence points and lvalue-returning operators
 >
+<!-- markdownlint-disable-next-line MD013 -->
 > ### Section: 5  [expr]     Status: CD1     Submitter: Andrew Koenig     Date: 20 Dec 1999
 >
 > [Voted into the WP at the September, 2008 meeting.]\
@@ -249,6 +257,8 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 > A less stringent alternative might be to say that when a built-in operator yields an lvalue, the implementation shall not subsequently change the value of that object as a consequence of that operator.\
 > I find it hard to imagine an implementation that does not do this already. Am I wrong? Is there any implementation out there that does not `do the right thing' already for (a += b) += c?\
 > 5.17 [expr.ass] paragraph 1 says,\
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable MD027 -->
 >>    The result of the assignment operation is the value stored in the left operand after the assignment has taken place; the result is an lvalue.\
 > What is the normative effect of the words "after the assignment has taken place"? I think that phrase ought to mean that in addition to whatever constraints the rules about sequence points might impose on the implementation, assignment operators on built-in types have the additional constraint that they must store the left-hand side's new value before returning a reference to that object as their result.\
 > One could argue that as the C++ standard currently stands, the effect of `x = y = 0;` is undefined. The reason is that it both fetches and stores the value of `y`, and does not fetch the value of y in order to compute its new value.\
@@ -284,6 +294,7 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 > 　　make the result of assignment an rvalue (only builtin-assignment, maybe only for builtin types), which makes some presently valid programs invalid\
 > 　　introduce "two-face semantics" for builtin assignments, and clarify the sequence problematics\
 > 　　make a special rule for assignment to a volatile lvalue of builtin type\
+<!-- markdownlint-restore -->
 > I think the last one has the least impact on existing programs, but it is an ugly solution.\
 > Andrew Koenig:\
 > Whatever we may have intended, I do not think that there is any clean way of making
@@ -373,6 +384,7 @@ Created @ 2013-01-09, markdown @ 2014-11-09.
 
 **ISO C++11**
 
+<!-- markdownlint-disable-next-line MD024 -->
 > # 5.17
 >
 > 1 The assignment operator (`=`) and the compound assignment operators all group right-to-left. All require a modifiable lvalue as their left operand and return an lvalue referring to the left operand. The result in all cases is a bit-field if the left operand is a bit-field. In all cases, the assignment is sequenced after the value computation of the right and left operands, and before the value computation of the assignment expression. With respect to an indeterminately-sequenced function call, the operation of a compound assignment is a single evaluation. [ Note: Therefore, a function call shall not intervene between the lvalue-to-rvalue conversion and the side effect associated with any single compound assignment operator. —end note ]
@@ -420,6 +432,7 @@ void f()
 
 > ## 1054. Lvalue-to-rvalue conversions in expression statements
 >
+<!-- markdownlint-disable-next-line MD013 -->
 > ### Section: 6.2  [stmt.expr]     Status: FDIS     Submitter: Hans Boehm     Date: 2010-03-16
 >
 > [Voted into the WP at the March, 2011 meeting.]\

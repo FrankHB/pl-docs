@@ -897,6 +897,7 @@ C++ modules (since ISO C\++20) is a mess. There are mutiple serious problems:
 
 For arithmetic systems not in the core language, some points above are still suited. The [numerical tower](https://en.wikipedia.org/wiki/Numerical_tower) is suggested here to be the prototype for general-purposed practical use, as it avoids most shortcomings of the computational concerns.
 
+<!-- markdownlint-disable-next-line MD026 -->
 # Why not ...
 
 Here are some examples to illustrate how existing languages fail to satisfy the requirements. Each one should have one or more pros to be endorsed.

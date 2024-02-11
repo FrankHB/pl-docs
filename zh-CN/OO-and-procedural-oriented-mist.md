@@ -16,6 +16,7 @@ This is also arranged as a dissertation @ ZJU.
 
 　　应该注意的是，这些范型并不都是同一层次上的风格，且由于分类方法的不同，不都是互斥的。当然也有些范型是对立的：结构化与*非结构化(non-structured)* ，但这是少数。因此通常在同一段程序中使用了一种以上的编程范型，只强调其中的一部分。
 
+<!-- markdownlint-disable-next-line MD013 -->
 # III.结构化编程(structued programing) 、命令式编程(imperative programing) 和过程式编程(procedural programing)
 
 　　早期的程序没有强调任何范型，是非结构化的。结构化程序由子程序的（顺序）执行、选择、迭代构成，无需跳转。
