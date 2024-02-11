@@ -184,7 +184,7 @@ This article briefly talked about exception handling mechanism provided by C++ a
 * \[5] David Abrahams. Exception Safety in Generic Components [C]. Generic Programming, Proc. of a Dagstuhl Seminar, Lecture Notes on Computer Science. Volume. 1766. http://www.boost.org/community/exception_safety.html
 * \[6] Herb Sutter. Exception Safety and Exception Specifications: Are They Worth It? \[J/OL]. Guru of the Week, #82 , 2001-06-30. http://www.gotw.ca/gotw/082.htm
 * \[7] 刘未鹏. 错误处理(Error-Handling)：为何、何时、如何(rev#2) \[A/OL]. http://blog.csdn.net/pongba/article/details/1815742, 2007-10-08, 2013-03-10.
-* \[8] Herb Sutter. A Pragmatic Look at Exception Specifications \[J]. C/C++ Users Journal, 20(7) , 2002-07. http://www.gotw.ca/gotw/082.htm
-* \[9] Herb Sutter. Questions About Exception Specifications \[A/OL]. 2007-01-24, 2013-03-10. http://www.gotw.ca/gotw/082.htm
+* \[8] Herb Sutter. A Pragmatic Look at Exception Specifications \[J]. C/C++ Users Journal, 20(7) , 2002-07. http://www.gotw.ca/publications/mill22.htm
+* \[9] Herb Sutter. Questions About Exception Specifications \[A/OL]. 2007-01-24, 2013-03-10. https://herbsutter.com/2007/01/24/questions-about-exception-specifications/
 * \[10] Doug Gregor. Deprecating Exception Specifications \[J/OL]. C++ Standards Committee Papers, N3051=10-0041 , 2010-03-12. http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3051.htm
 

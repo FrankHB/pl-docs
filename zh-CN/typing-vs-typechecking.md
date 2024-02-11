@@ -217,7 +217,7 @@
 
 　　类型系统（或者，至少它的一个实现——确信符合要求的程序代码）可以作为逻辑系统，相应地具有类型可靠性。具有类型可靠性的类型系统，静态地（在运行前）通过类型检查得到程序的性质，和程序运行时保证的性质总是一致。
 
-　　有些关于类型安全的命题可能足够众所周知之而被作为可靠性的公认判断准则，比如[这个](http://typeof.net/2014/m/formation-of-modern-magic--why-functions-are-contravariant-in-the-input-type.html)（嘛，函数类型对参数类型协变的公理，原文挂了暂时也懒得找）。遗憾的是可用的结论虽然普适但过于基础而太少，而且仍然依赖特定对象语言的类型系统设计（有些语言根本就不支持表达这样的类型所以就是一句空话……）。
+　　有些关于类型安全的命题可能足够众所周知之而被作为可靠性的公认判断准则，比如[这个](https://web.archive.org/web/20161029103253/https://typeof.net/2014/m/formation-of-modern-magic--why-functions-are-contravariant-in-the-input-type.html)。遗憾的是可用的结论虽然普适但过于基础而太少，而且仍然依赖特定对象语言的类型系统设计（有些语言根本就不支持表达这样的类型所以就是一句空话……）。
 
 ## 强制类型(Mandatory Typing)
 

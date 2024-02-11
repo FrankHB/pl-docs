@@ -6,7 +6,7 @@ Created @ 2013-04-12, r1 rev 2013-04-12, markdown @ 2015-09-14.
 
 本文提到的“原文”同样是指《高质量C++/C编程指南》。
 
-[原文链接](http://oss.org.cn/man/develop/c&c++/c/c.htm#_Toc520633988)已经修正。
+[原文链接](https://web.archive.org/web/20150729130900/https://oss.org.cn/man/develop/c&c++/c/c.htm#_Toc520633988)已经修正。
 
 (\*)“以实际经验出发”并不和内容有误矛盾。即便实际经验是符合事实的，对于不够有经验的读者还是有相当的危害。
 

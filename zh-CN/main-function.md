@@ -6,7 +6,7 @@ Created @ 2012-11-07.
 
 发现以前说的太零碎，不太好引用……整理一下。
 
-目前我看到一个[比较靠谱的说法（有正确的引用出处，并指出了实现扩展）](http://homepage.ntlworld.com/jonathan.deboynepollard/FGA/legality-of-void-main.html)。
+目前我看到一个[比较靠谱的说法（有正确的引用出处，并指出了实现扩展）](https://web.archive.org/web/20160604095048/https://homepage.ntlworld.com/jonathan.deboynepollard/FGA/legality-of-void-main.html)。
 
 而[这里](http://tieba.baidu.com/p/626323902)的说法是有问题的。
 

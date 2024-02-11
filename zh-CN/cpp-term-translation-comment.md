@@ -2,7 +2,7 @@
 
 Created @ 2012-12-28, markdown @ 2014-11-07.
 
-参见[引用原文](http://www.is.pku.edu.cn/~qzy/books/cppl/words.htm)。
+参见[引用原文](https://www.math.pku.edu.cn/teachers/qiuzy/books/cppl/words.htm)。
 
 引用著作：
 
