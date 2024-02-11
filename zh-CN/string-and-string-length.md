@@ -45,7 +45,7 @@ NTMBS <span style="font-variant: small-caps">ntmbs</span>
 > ## 17.3.17 [defns.ntcts]
 >
 > **NTCTS**\
-> a sequence of values that have _character type_ that precede the terminating null character type value `charT()`
+> a sequence of values that have *character type* that precede the terminating null character type value `charT()`
 
 　　具体说来，一个典型的场景是：多于一个元素的 `char`/`wchar_t`/`char16_t`/`char32_t`/其它实现允许的扩展字符类型的数组可以放一个 NTCTS 。
 
@@ -59,7 +59,7 @@ NTMBS <span style="font-variant: small-caps">ntmbs</span>
 >
 > **multibyte character**\
 > sequence of one or more bytes representing a member of the extended character set of either the source or the execution environment\
-> [ _Note:_ The extended character set is a superset of the basic character set (2.3)._—end note_ ]
+> [ *Note:* The extended character set is a superset of the basic character set (2.3).*—end note* ]
 
 　　（至于字符、基本执行字符集什么的虽然是必要基础但理解起来很简单，暂且不在此展开。）
 
@@ -68,9 +68,9 @@ NTMBS <span style="font-variant: small-caps">ntmbs</span>
 > ##### 17.5.2.1.4 Character sequences [character.seq]
 >
 > 1 The C standard library makes widespread use of characters and character sequences that follow a few uniform conventions:\
-> — A _letter_ is any of the 26 lowercase or 26 uppercase letters in the basic execution character set.167\
-> — The _decimal-point character_ is the (single-byte) character used by functions that convert between a (single-byte) character sequence and a value of one of the floating-point types. It is used in the character sequence to denote the beginning of a fractional part. It is represented in Clauses 18 through 30 and Annex D by a period, ’.’, which is also its value in the `"C"` locale, but may change during program execution by a call to `setlocale(int, const char*)`,168 or by a change to a locale object, as described in Clauses 22.3 and 27.\
-> — A _character sequence_ is an array object (8.3.4) _A_ that can be declared as <tt>_T A [N]_</tt>, where _T_ is any of the types `char`, `unsigned char`, or `signed char` (3.9.1), optionally qualified by any combination of const or volatile. The initial elements of the array have defined contents up to and including an element determined by some predicate. A character sequence can be designated by a pointer value _S_ that points to its first element.\
+> — A *letter* is any of the 26 lowercase or 26 uppercase letters in the basic execution character set.167\
+> — The *decimal-point character* is the (single-byte) character used by functions that convert between a (single-byte) character sequence and a value of one of the floating-point types. It is used in the character sequence to denote the beginning of a fractional part. It is represented in Clauses 18 through 30 and Annex D by a period, ’.’, which is also its value in the `"C"` locale, but may change during program execution by a call to `setlocale(int, const char*)`,168 or by a change to a locale object, as described in Clauses 22.3 and 27.\
+> — A *character sequence* is an array object (8.3.4) *A* that can be declared as <tt>*T A [N]*</tt>, where *T* is any of the types `char`, `unsigned char`, or `signed char` (3.9.1), optionally qualified by any combination of const or volatile. The initial elements of the array have defined contents up to and including an element determined by some predicate. A character sequence can be designated by a pointer value *S* that points to its first element.\
 > 167) Note that this definition differs from the definition in ISO C 7.1.1.\
 > 168) declared in `<clocale>` (22.6).
 
@@ -80,10 +80,10 @@ NTMBS <span style="font-variant: small-caps">ntmbs</span>
 
 > ##### 17.5.2.1.4.1 Byte strings [byte.strings]
 >
-> 1 A _null-terminated byte string_, or NTBS, is a character sequence whose highest-addressed element with defined content has the value zero (the _terminating null_ character); no other element in the sequence has the value zero.169\
-> 2 The _length_ of an NTBS is the number of elements that precede the terminating null character. An empty ntbs has a length of zero.\
-> 3 The _value_ of an NTBS is the sequence of values of the elements up to and including the terminating null character.\
-> 4 A _static_ NTBS is an NTBS with static storage duration.170\
+> 1 A *null-terminated byte string*, or NTBS, is a character sequence whose highest-addressed element with defined content has the value zero (the *terminating null* character); no other element in the sequence has the value zero.169\
+> 2 The *length* of an NTBS is the number of elements that precede the terminating null character. An empty ntbs has a length of zero.\
+> 3 The *value* of an NTBS is the sequence of values of the elements up to and including the terminating null character.\
+> 4 A *static* NTBS is an NTBS with static storage duration.170\
 > 169) Many of the objects manipulated by function signatures declared in \<cstring> (21.7) are character sequences or NTBSs. The size of some of these character sequences is limited by a length value, maintained separately from the character sequence.\
 > 170) A string literal, such as "abc", is a static ntbs.
 
@@ -97,8 +97,8 @@ NTMBS <span style="font-variant: small-caps">ntmbs</span>
 
 > ##### 17.5.2.1.4.2 Multibyte strings [multibyte.strings]
 >
-> 1 A _null-terminated multibyte string_, or NTMBS, is an NTBS that constitutes a sequence of valid multibyte characters, beginning and ending in the initial shift state.171\
-> 2 A _static_ NTMBS is an NTMBS with static storage duration.\
+> 1 A *null-terminated multibyte string*, or NTMBS, is an NTBS that constitutes a sequence of valid multibyte characters, beginning and ending in the initial shift state.171\
+> 2 A *static* NTMBS is an NTMBS with static storage duration.\
 > 171) An NTBS that contains characters only from the basic execution character set is also an NTMBS. Each multibyte character then consists of a single byte.
 
 　　可见 NTMBS 是 NTBS 的子集，它其中可以包含多个（连续）字节组成的字符。
@@ -109,7 +109,7 @@ NTMBS <span style="font-variant: small-caps">ntmbs</span>
 
 **ISO C99/C11(N1570)**
 
-> 7.1.1/1 A _string_ is a contiguous sequence of characters terminated by and including the first null character. The term _multibyte string_ is sometimes used instead to emphasize special processing given to multibyte characters contained in the string or to avoid confusion with a wide string. A _pointer to a string_ is a pointer to its initial (lowest addressed) character. The _length of a string_ is the number of bytes preceding the null character and the _value of a string_ is the sequence of the values of the contained characters, in order.
+> 7.1.1/1 A *string* is a contiguous sequence of characters terminated by and including the first null character. The term *multibyte string* is sometimes used instead to emphasize special processing given to multibyte characters contained in the string or to avoid confusion with a wide string. A *pointer to a string* is a pointer to its initial (lowest addressed) character. The *length of a string* is the number of bytes preceding the null character and the *value of a string* is the sequence of the values of the contained characters, in order.
 
 　　至于宽字符串，ISO C 单独处理（当然长度也是），某种意义上从 C 角度来说“宽字符串不是字符串”：
 
@@ -117,7 +117,7 @@ NTMBS <span style="font-variant: small-caps">ntmbs</span>
 
 > ## 7.1.1 Definitions of terms
 >
-> 4 A _wide string_ is a contiguous sequence of wide characters terminated by and including the first null wide character. A _pointer to a wide string_ is a pointer to its initial (lowest addressed) wide character. The _length of a wide string_ is the number of wide characters preceding the null wide character and the _value of a wide string_ is the sequence of code values of the contained wide characters, in order.
+> 4 A *wide string* is a contiguous sequence of wide characters terminated by and including the first null wide character. A *pointer to a wide string* is a pointer to its initial (lowest addressed) wide character. The *length of a wide string* is the number of wide characters preceding the null wide character and the *value of a wide string* is the sequence of code values of the contained wide characters, in order.
 
 　　这样对于 `strlen`/`wcslen` 这样的接口来说，所求的长度是非常容易理解的——不包含末尾空字符的字符数；乘上 `sizeof(char)`/`sizeof(wchar_t)` 就是对应不包含末尾空字符的字节数（对于char来说自然可以互换）。
 
@@ -133,7 +133,7 @@ NTMBS <span style="font-variant: small-caps">ntmbs</span>
 
 ## 1.词法形式
 
-　　`"xxx"` 、`L"xxx"` 、`u"xxx"` 等。另外 raw string literal/user defined literal 以及后者造成的 C++03/C++11 关于一个string literal是否是一个 _token_ 的不兼容性等等，这里关系不大，先略过。
+　　`"xxx"` 、`L"xxx"` 、`u"xxx"` 等。另外 raw string literal/user defined literal 以及后者造成的 C++03/C++11 关于一个string literal是否是一个 *token* 的不兼容性等等，这里关系不大，先略过。
 
 ## 2.具有静态存储期
 
