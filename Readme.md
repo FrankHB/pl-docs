@@ -14,7 +14,7 @@ Contents in this repository conform to the [YSLib wiki editing rules](https://fr
 
 Except as otherwise specified explicitly, materials in this repository are licensed under following terms:
 
-[![http://creativecommons.org/licenses/by-sa/4.0/](http://i.creativecommons.org/l/by-sa/4.0/88x31.png "license")](http://creativecommons.org/licenses/by-sa/4.0/)
+[![https://creativecommons.org/licenses/by-sa/4.0/](https://i.creativecommons.org/l/by-sa/4.0/88x31.png "license")](https://creativecommons.org/licenses/by-sa/4.0/)
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/ "CC-BY-SA 4.0").
+This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/ "CC-BY-SA 4.0").
 
