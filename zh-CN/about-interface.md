@@ -6,7 +6,7 @@
 
 # 概念
 
-　　[接口](https://zh.wikipedia.org/zh-cn/接口)是交互(interaction) 实现的抽象手段。具体的接口可能从属于：
+　　[接口](https://zh.wikipedia.org/zh-cn/%E6%8E%A5%E5%8F%A3)是交互(interaction) 实现的抽象手段。具体的接口可能从属于：
 
 * 接口设备(interface device) ，一种具有连接功能的物理实体，如插座(socket) 。
 * 可编程接口(programmable interface) ，一种以可组合描述的形式提供的可复用设施，如抽象基类(abstract base class) 。

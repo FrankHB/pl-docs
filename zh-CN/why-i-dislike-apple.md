@@ -10,7 +10,7 @@
 
 　　不论是什么立场，对当代科技应用史有一定了解的人，都不难赞同，苹果至少是一家不平凡的公司。它的主要创始人，[史蒂夫·乔布斯](https://zh.wikipedia.org/zh-cn/%E5%8F%B2%E8%92%82%E5%A4%AB%C2%B7%E4%B9%94%E5%B8%83%E6%96%AF)，是这种不平凡的鲜明特色的主要代表。他在这家企业中的作用和影响不言而喻。他也是苹果的一些最重要产品的负责人。借由他本人的言行，苹果公司和产品的印象被推广到各个场合。因此，对他、苹果公司和一些相关的产品的评价，许多时候是通用的，甚至可以认为是同一话题。其中特别重要的话题之一就是：如何评价他对业界的影响。
 
-　　我没有使用过 20 世纪的苹果的早期产品。我对乔布斯的最初印象来自比尔·盖茨的传记《赢尽天下》中的侧面描述。不过，这并没有让我有多少深刻的印象。改变这个局面的是乔布斯重新执掌苹果后退出的 [iPod](https://zh.wikipedia.org/zh-cn/IPod) 和 [iPhone](https://zh.wikipedia.org/wiki/IPhone) 系列产品——截止今日，我从未拥有过这些产品，也不觉得这些产品合适我使用，但是产品上的一些设计和背后的更深刻的思想的思辨，对那时候的我而言是个相当有趣的话题；这段时间，对乔布斯、这些产品和苹果的印象才逐渐丰富起来。尽管在这以来的数年之中基本就有定论，我没有公开发表过任何相关的评价。直至乔布斯去世后，[理查德·马修·斯托曼(**RMS**)](https://zh.wikipedia.org/zh-cn/%E7%90%86%E6%9F%A5%E5%BE%B7%C2%B7%E6%96%AF%E6%89%98%E6%9B%BC) 发表的[对此的评论](http://stallman.org/archives/2011-jul-oct.html#06_October_2011_%28Steve_Jobs%29)才让我注意到存在一段令人记忆深刻的描述：
+　　我没有使用过 20 世纪的苹果的早期产品。我对乔布斯的最初印象来自比尔·盖茨的传记《赢尽天下》中的侧面描述。不过，这并没有让我有多少深刻的印象。改变这个局面的是乔布斯重新执掌苹果后退出的 [iPod](https://zh.wikipedia.org/zh-cn/IPod) 和 [iPhone](https://zh.wikipedia.org/zh-cn/IPhone) 系列产品——截止今日，我从未拥有过这些产品，也不觉得这些产品合适我使用，但是产品上的一些设计和背后的更深刻的思想的思辨，对那时候的我而言是个相当有趣的话题；这段时间，对乔布斯、这些产品和苹果的印象才逐渐丰富起来。尽管在这以来的数年之中基本就有定论，我没有公开发表过任何相关的评价。直至乔布斯去世后，[理查德·马修·斯托曼(**RMS**)](https://zh.wikipedia.org/zh-cn/%E7%90%86%E6%9F%A5%E5%BE%B7%C2%B7%E6%96%AF%E6%89%98%E6%9B%BC) 发表的[对此的评论](http://stallman.org/archives/2011-jul-oct.html#06_October_2011_%28Steve_Jobs%29)才让我注意到存在一段令人记忆深刻的描述：
 
 > I'm not glad he's dead, but I'm glad he's gone.
 
@@ -331,7 +331,7 @@
 	* 缩水的 STC 没有那么困难的问题，也说明 STC 在普遍性的地位上没 PTC 的特殊性值得单独加入语言特性清单。
 * 因此，不论是理论还是实践，是否提供 PTC 保证的差异在语言演化的系统发生树上被区分的节点理应先于许多其它看似普遍的性质。
 	* 例如，是否存在类型系统，相比起来都不算是什么大不了的差别，实在不行用户自己都能解决。……什么？连写些库和工具给现有语言加一个类型系统都不会？要么是用的语言可扩展性太弱了，要么是太菜了。
-		* 实际上就是工业界都烂大街了的套路，即便例子数量不多存在感爆炸。ES 上有 [spec 坑几年了且看起来不打算填坑的](http://github.com/microsoft/TypeScript/issues/15711) TypeScript ，就是 Python 那么混子的都有 [PEP-484](https://peps.python.org/pep-0484/) 。
+		* 实际上就是工业界都烂大街了的套路，即便例子数量不多存在感爆炸。ES 上有 [spec 坑几年了且看起来不打算填坑的](https://github.com/microsoft/TypeScript/issues/15711) TypeScript ，就是 Python 那么混子的都有 [PEP-484](https://peps.python.org/pep-0484/) 。
 	* 当然，虽然很少，也有严格比 PTC 更有存在感的特性和分类。特别地，函数*调用(call)* 是 PTC 的 C 存在的前提。
 		* 函数调用在上游普遍以 λ 演算为基础建模，对应其函数应用的语义规则（β 规约）。这和变量一道构成了高级语言的事实分野（不涉及变量替换的组合子逻辑一般不被视为高级语言的模型）。
 		* PTC 在这个意义上仅对高级语言有效。但是，考虑不用调用很难表达大多数实用算法，因此 PTC 事实上几乎处处存在实际意义。
@@ -341,8 +341,8 @@
 		* 其实[连动态作用域都能保持几十年](https://stackoverflow.com/a/38509006)的设计，品味也不能指望了。虽说从实现经验来说，动态作用域其实并不和 PTC 完全冲突，不过确实是得考虑更多东西。
 		* [RMS 对动态作用域的选型理由至少……非常古董](https://en.wikipedia.org/wiki/Emacs_Lisp#From_dynamic_to_lexical_scoping)，因为只有纯解释器才有这方面的问题。
 	* 如果需要另外点名，在技术领域和这里的非技术（~~钞能力~~）领域同时有~~那么点~~相提并论的影响力的人物中，可能只能加上 Paul Graham 这么一个。
-		* 毕竟 [Arc](https://en.wikipedia.org/wiki/Arc_(programming_language)) 看来[还是有 PTC 的](http://www.righto.com/2008/02/arc-internals-part-1.html)，~~虽然[文档](https://arclanguage.github.io/ref/)糟烂到没提~~……~~用 Racket 实现的 Lisp flavor 故意没 PTC 的才怪了。~~
-	* 作为对比，[Guido van Rossum 的理解](http://neopythonic.blogspot.com/2009/04/tail-recursion-elimination.html)显然是[不够格相提并论的](http://neopythonic.blogspot.com/2009/04/final-words-on-tail-calls.html)。
+		* 毕竟 [Arc](https://en.wikipedia.org/wiki/Arc_(programming_language)) 看来[还是有 PTC 的](https://www.righto.com/2008/02/arc-internals-part-1.html)，~~虽然[文档](https://arclanguage.github.io/ref/)糟烂到没提~~……~~用 Racket 实现的 Lisp flavor 故意没 PTC 的才怪了。~~
+	* 作为对比，[Guido van Rossum 的理解](https://neopythonic.blogspot.com/2009/04/tail-recursion-elimination.html)显然是[不够格相提并论的](https://neopythonic.blogspot.com/2009/04/final-words-on-tail-calls.html)。
 	* 当然，要以对理论上的理解的充分性评价，这几个人看上去都不那么懂行。
 * 暂时懒得专门整理文档讨论有关技术话题~~黑一些人~~，所以有点跑题的这坨也就先糊在这里吧。
 

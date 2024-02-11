@@ -4,7 +4,7 @@
 
 # 概述
 
-以下评论基于[中译版本](http://utf8everywhere.org/zh-cn)。
+以下评论基于[中译版本](https://utf8everywhere.org/zh-cn)。
 
 一些科普常识和结论（例如 UTF-16 因为变长特性导致的无能，以及代码页是不合理的烂设计）是没有问题的。但是，从动机、论证的目的以及参照的依据看，存在相当多的低级错误，应予视为误导。
 
@@ -30,7 +30,7 @@
 
 因为不是随便谁都能往 Unicode 里添加公认接受的字符，这导致了 Unicode 扩展不同于寻常的字符集定义的流程，缺乏文化和厂商中立性，并且可能会对实现添加麻烦。
 
-近期较为显著的例子是 [emoji](http://unicode.org/reports/tr51/) 。一个笑话：为什么 [FreeType](https://www.freetype.org/) 突然需要[依赖 libpng](https://git.archlinux.org/svntogit/packages.git/commit/trunk?h=packages/freetype2&id=f2903d2374daf5becc931b010efb2f613eaaae18) 才能看起来[使 Unicode 渲染的支持“完整”](https://sourceforge.net/projects/freetype/files/freetype2/2.5.0/)一些呢？
+近期较为显著的例子是 [emoji](https://unicode.org/reports/tr51/) 。一个笑话：为什么 [FreeType](https://www.freetype.org/) 突然需要[依赖 libpng](https://git.archlinux.org/svntogit/packages.git/commit/trunk?h=packages/freetype2&id=f2903d2374daf5becc931b010efb2f613eaaae18) 才能看起来[使 Unicode 渲染的支持“完整”](https://sourceforge.net/projects/freetype/files/freetype2/2.5.0/)一些呢？
 
 ## 6
 
@@ -236,7 +236,7 @@ UTF-16 当然很烂。
 　　另一类细节障碍是对实践的不够熟悉。原文的作者显然不够明白 C 和 C++ 的麻烦。有几个典型的基本认知偏差使这篇文章里的建议（注意虽然有一章名义上是针对 Windows 文本处理，但因为至少关心可移植性而不全是）被削弱，甚至本身也多少变成了反面教材：
 
 * 没有充分认识到 `wchar_t` 自身不指定背后的字符集和编码上的非确定性（因此不适合可移植地作为 Unicode 字符集或编码中的字符表示）。
-	* 实际上，ISO C++ 中使用 `wchar_t` 来表示的字符的范围和表示方式实质上一直是未指定(unspecified) 的，因为只有[很少的规则](http://eel.is/c++draft/lex.charset#3)规定了对应的对所谓的宽字符集(wide-character set) 的要求。ISO C 的做法也大体和 ISO C++ 类似，而且通常更松垮——如 `wchar_t` 不是内建的“字符类型”，而是标准库提供的某个整数类型的 `typedef` 别名。
+	* 实际上，ISO C++ 中使用 `wchar_t` 来表示的字符的范围和表示方式实质上一直是未指定(unspecified) 的，因为只有[很少的规则](https://eel.is/c++draft/lex.charset#3)规定了对应的对所谓的宽字符集(wide-character set) 的要求。ISO C 的做法也大体和 ISO C++ 类似，而且通常更松垮——如 `wchar_t` 不是内建的“字符类型”，而是标准库提供的某个整数类型的 `typedef` 别名。
 	* 这里的“宽字符集”的要求实质上少得过分，以至于允许符合(conforming) 标准的实现实际上不用支持“宽”字符集。
 		* 这使表示“宽”字符可能词不达意，直接让可移植性成了极端的空话—— Android NDK 早期版本（以及之后早期的 API level ）使用和 `char` 同等表示范围的 `wchar_t` 就是个（大概）臭名昭著的例子。
 		* 即便没有那么极端，所谓的宽字符具体有多“宽”，也是不确定的。例如，Windows 使用 2 字节 16 位的 `wchar_t` ；而 Linux 和其它一些系统（包括改掉了 1 字节的 Android ）使用 4 字节的 `wchar_t` 。这在字符表示的值上就不可能保证可移植。
@@ -244,7 +244,7 @@ UTF-16 当然很烂。
 		* 例如 4 个字节的 `wchar_t` 使用的基本都是 UCS4/UTF-32 ，这在二进制意义原则上除了[字节序](https://zh.wikipedia.org/zh-cn/%E5%AD%97%E8%8A%82%E5%BA%8F)引起的差异外可以视为等价。
 		* 但 Windows 早期即支持单一的 Unicode（实际是 UCS-2LE ，当时没有 UTF-8 ），大约在 Windows 2000 才开始（NT API 和部分 Win32 API 中）支持 UTF-16 （都是小端序 LE 编码）。更全面完整的 Unicode 支持（如 [`WM_UNICHAR` 消息](https://docs.microsoft.com/windows/win32/inputdev/wm-unichar)）至少是 Windows XP 以后的事。
 	* 这也是 ISO C++ （以及 ISO C ）需要 `char16_t` 和 `char32_t` 这样比 `wchar_t` 提供更多位宽要求的类型来支持 Unicode 的主要理由。但即便知道具体环境，也不能彻底替代。
-		* ISO C++ 中的[严格别名(strict aliasing) 规则](http://eel.is/c++draft/basic.lval#11)使 `wchar_t` 在严格的可移植性意义下不能通过 `reinterpret_cast` 的常规 type punning 转换为其它实际允许在二进制意义上兼容的类型（如 Windows 下的 `char16_t` 和 `wchar_t` ），否则会引起未定义行为——而这[已被流行的实现实际实现使用](https://llvm.org/doxygen/TypeBasedAliasAnalysis_8cpp_source.html)了。C++20 本来可能有希望能通过 `[[may_alias]]` 变通一下……好在大多数这种情形 C++ 的实现同时都是 C 的实现，而 ISO C 中的 `char16_t` 也好 `wchar_t` 都是整数类型的别名而不是单独的类型，恰好不受严格别名的约束（即便 ISO C 也有微妙不同但类似的规则），因此编译器（理论上）不能随便进行跨二进制翻译单元的优化——原则上它不能知道这里的源代码应该遵循 ISO C 还是 ISO C++ 的规则。
+		* ISO C++ 中的[严格别名(strict aliasing) 规则](https://eel.is/c++draft/basic.lval#11)使 `wchar_t` 在严格的可移植性意义下不能通过 `reinterpret_cast` 的常规 type punning 转换为其它实际允许在二进制意义上兼容的类型（如 Windows 下的 `char16_t` 和 `wchar_t` ），否则会引起未定义行为——而这[已被流行的实现实际实现使用](https://llvm.org/doxygen/TypeBasedAliasAnalysis_8cpp_source.html)了。C++20 本来可能有希望能通过 `[[may_alias]]` 变通一下……好在大多数这种情形 C++ 的实现同时都是 C 的实现，而 ISO C 中的 `char16_t` 也好 `wchar_t` 都是整数类型的别名而不是单独的类型，恰好不受严格别名的约束（即便 ISO C 也有微妙不同但类似的规则），因此编译器（理论上）不能随便进行跨二进制翻译单元的优化——原则上它不能知道这里的源代码应该遵循 ISO C 还是 ISO C++ 的规则。
 		* 库的支持残缺。如 ISO C++ 的 `std::basic_string` 尚且对 `wchar_t` 和 `char16_t` 之类有比较公平的支持，`<iostream>` 之类，除了 `char` 和 `wchar_t` 外基本就没法用。（C 标准库也大致上类似。）
 * 编码上的“尽早转换”是只使用一种统一编码的策略。
 	* 以损失少量可移植性代价，这很大程度是可行的，但没有充分理由说明直接使用 UTF-8 就更可靠。（反而还有更多潜在的问题。比如说……确定被支持的 Unicode 的版本是什么了吗？）
@@ -254,7 +254,7 @@ UTF-16 当然很烂。
 	* 这依赖标准库实现而不是编译器。Windows 上不只有 MSVC ，使用的标准库也未必是同一个。一个不需要依赖 C++17 的不同的更多实例参见[这里](https://github.com/FrankHB/YSLib/blob/9303135fe10ae04e0a4ca156ce859c4f4d799c71/YFramework/include/YCLib/FileIO.h)。老实说，MSVC 的标准库扩展用起来还算是比较省事的，虽然有更麻烦的[内部 API 不稳定的问题](https://github.com/FrankHB/YSLib/blob/9303135fe10ae04e0a4ca156ce859c4f4d799c71/YFramework/include/YCLib/FileIO.h#L872)。
 * Win32 中不依赖 `UNICODE` 宏的做法原则上是合适的，但是：
 	* 至少到现在，微软的古董教条已经没有那么大的影响力。
-		* 原文开头暗示使用 `UNICODE` 在 Win32 中使用 Unicode 是必须的。这是技术上错误的。如同在之后的关于 Windows 的建议隐含的，使用 `W` 版本的函数实际上并不需要依赖 `UNICODE` 宏的定义。注意 Win32 SDK API 通过 `_T` 和配套的宏的切换所谓 MBCS/Unicode 函数调用的整体机制是，没有 `A` 和 `W` 后缀的宏名根据“是否使用 Unicode ”被替换为 `A` 或者 `W` 的版本的函数名。仅仅是因为不期望的替换，而不管是什么后缀，都是足够的 `#undef` 这些宏的理由。相比之下，类似 `_T` 这样的作为 ISO C 和 [ISO C++ 的保留名称](http://eel.is/c++draft/lex#name-3.2)本身就是可移植代码应该避免使用的。
+		* 原文开头暗示使用 `UNICODE` 在 Win32 中使用 Unicode 是必须的。这是技术上错误的。如同在之后的关于 Windows 的建议隐含的，使用 `W` 版本的函数实际上并不需要依赖 `UNICODE` 宏的定义。注意 Win32 SDK API 通过 `_T` 和配套的宏的切换所谓 MBCS/Unicode 函数调用的整体机制是，没有 `A` 和 `W` 后缀的宏名根据“是否使用 Unicode ”被替换为 `A` 或者 `W` 的版本的函数名。仅仅是因为不期望的替换，而不管是什么后缀，都是足够的 `#undef` 这些宏的理由。相比之下，类似 `_T` 这样的作为 ISO C 和 [ISO C++ 的保留名称](https://eel.is/c++draft/lex#name-3.2)本身就是可移植代码应该避免使用的。
 		* 微软[在 VS2013 的时候就 deprecated 掉了 MFC 的 MBCS 版本支持](https://docs.microsoft.com/previous-versions/ey142t48%28v=vs.140%29)（应该是考虑大部分不再使用非宽字符版本的 API 以及安装体积的问题），虽然还可以单独另外安装。不过，这反倒引起了[困惑](https://developercommunity.visualstudio.com/content/problem/63478/error-msb8031-building-an-mfc-project-for-a-non-un.html)。
 	* 漏了应当使用 `::OutputDebugStringA`（因为 `W` 的版本没啥用）这样的特例。
 	* 默认使用更基本的 `W` 版本 Win32 API 有个更重要的理由是很多文件相关的 API 中，非 `W` 版本的支持是次等的，在功能上有更多的限制——如[路径长度](https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file#maximum-path-length-limitation)问题。
@@ -262,7 +262,7 @@ UTF-16 当然很烂。
 
 　　当然，并不能指望所有开发者都是关于这类问题的专家；或者说，大多数开发者都不够了解问题的全貌。这从此类选型上的迷惘普遍存在于包含语言标准库的设计的现状中就可见一斑——仅仅考虑现在 ISO C++ 对 Unicode 支持的混乱情形以及教学上的问题（所谓 teachability ），就实在不容乐观。（不信？不用说别的，光考虑 `char16_t` 和 `char32_t` 相对 `wchar_t` 的可用性，以及如何使用标准库应对仅仅涉及 UTF-8 和其它 Unicode 编码之间的转换问题，就够麻烦的了。）这不是区区一个 UTF-8 遍地开花就能解决的问题。
 
-　　就 C++ 而言，这种支持上的问题甚至是深入语言核心特性的，并且已经显现了实践上的琐碎的麻烦。有用户指出，使用 C++11 引入的 `u8`（字符串）字面量前缀能解决无法明确编码的问题。这通常的确是个好的实践，但可能是因为这种实践不够遍地开花的关系，似乎鲜少有用户知道这种字面量在 C++20 的扩展（引入 `char8_t` 类型）后造成新的兼容性问题；尤其需要注意的是，核心的向后兼容问题是明确被注意到但[被放弃支持](http://open-std.org/JTC1/SC22/WG21/docs/papers/2019/p1423r3.html#option2)的。作为所谓 UTF-8 子类型的合理使用的设计策略，其理由仅仅是为了避免所谓 mixing of UTF-8 data with non-UTF-8 data ，是很没逻辑的——难道用了这种设计，就能自动地使原本用 `char` 的既定的（大多数用户因为没别的现成专用的类型而默认会选择的）混用场景变成了不混用的足够理想的源代码么？而根本上，不论 UTF-8 字符是否真的应该适合使用专用的名义的(nominal) 数据类型来表示，它总是原本表示窄字符的 `char`（作为事实上“不确定执行字符集编码”的字符的表示类型）的子类型，而不会是反过来的关系，因此排除[原始提案中的隐式转换](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0482r6.html#design_compat_core_implicit_conversion)后，有理由认为新的 `char8_t` 名义类型的语义在设计上根本不完整。更讽刺的是，如果一开始就不用 `u8` 前缀，而通过约定源代码使用的源字符集来强制 UTF-8 编码这样的策略，反倒不会有这种（本不必要的）基本不得不修改带有 `u8` 前缀的源代码才能确保完全兼容 C++20 的问题（还能适合非 UTF-8 编码）。这类细碎的问题和先前已经提及的各种 Unicode 方案固有的缺陷一样层出不穷，始终体现了在复杂现实上的头脑简单实现所谓的“简朴性”希望渺茫；下游用户是否有余裕来讨论“更加重要”也因此愈加可疑。
+　　就 C++ 而言，这种支持上的问题甚至是深入语言核心特性的，并且已经显现了实践上的琐碎的麻烦。有用户指出，使用 C++11 引入的 `u8`（字符串）字面量前缀能解决无法明确编码的问题。这通常的确是个好的实践，但可能是因为这种实践不够遍地开花的关系，似乎鲜少有用户知道这种字面量在 C++20 的扩展（引入 `char8_t` 类型）后造成新的兼容性问题；尤其需要注意的是，核心的向后兼容问题是明确被注意到但[被放弃支持](https://www.open-std.org/JTC1/SC22/WG21/docs/papers/2019/p1423r3.html#option2)的。作为所谓 UTF-8 子类型的合理使用的设计策略，其理由仅仅是为了避免所谓 mixing of UTF-8 data with non-UTF-8 data ，是很没逻辑的——难道用了这种设计，就能自动地使原本用 `char` 的既定的（大多数用户因为没别的现成专用的类型而默认会选择的）混用场景变成了不混用的足够理想的源代码么？而根本上，不论 UTF-8 字符是否真的应该适合使用专用的名义的(nominal) 数据类型来表示，它总是原本表示窄字符的 `char`（作为事实上“不确定执行字符集编码”的字符的表示类型）的子类型，而不会是反过来的关系，因此排除[原始提案中的隐式转换](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0482r6.html#design_compat_core_implicit_conversion)后，有理由认为新的 `char8_t` 名义类型的语义在设计上根本不完整。更讽刺的是，如果一开始就不用 `u8` 前缀，而通过约定源代码使用的源字符集来强制 UTF-8 编码这样的策略，反倒不会有这种（本不必要的）基本不得不修改带有 `u8` 前缀的源代码才能确保完全兼容 C++20 的问题（还能适合非 UTF-8 编码）。这类细碎的问题和先前已经提及的各种 Unicode 方案固有的缺陷一样层出不穷，始终体现了在复杂现实上的头脑简单实现所谓的“简朴性”希望渺茫；下游用户是否有余裕来讨论“更加重要”也因此愈加可疑。
 
 ## 其它选项
 
@@ -272,7 +272,7 @@ UTF-16 当然很烂。
 
 　　排除关心是否变长的内部编码，GB18030 是一个最典型的可替代 UTF-8 的例子：它同属变长编码，且能提供 UTF-8 支持的主要特性（虽然实现的广泛支持程度仍然可能是问题）。
 
-　　**注意** 虽然只有译文（第 13 章）提到了关于 GB18030 的观点，但这里的忽略 GB18030 这种有代表性（由国家标准化组织而不是国际组织维护，对特定字符集子集优化）的变体，本来就是一个选型上的技术缺陷——特别正文存在一章单独讨论亚洲文本的空间效率却仅考虑比较 UTF-16 和 UTF-8 的时候。[英文文本](http://utf8everywhere.org/)在这一章中甚至还链接到了中译文章，显然没理由不注意到“亚洲文字”在这里在乎的是什么。（当然，标题上打倒 UTF-16 的目的还是基本达到了。）
+　　**注意** 虽然只有译文（第 13 章）提到了关于 GB18030 的观点，但这里的忽略 GB18030 这种有代表性（由国家标准化组织而不是国际组织维护，对特定字符集子集优化）的变体，本来就是一个选型上的技术缺陷——特别正文存在一章单独讨论亚洲文本的空间效率却仅考虑比较 UTF-16 和 UTF-8 的时候。[英文文本](https://utf8everywhere.org/)在这一章中甚至还链接到了中译文章，显然没理由不注意到“亚洲文字”在这里在乎的是什么。（当然，标题上打倒 UTF-16 的目的还是基本达到了。）
 
 　　当然，GB18030 并非比无条件地 UTF-8 合适。存在一些明显的、合理的动机使开发者放弃支持 GB18030 而使用 UTF-8 ，或者至少优先考虑支持 UTF-8 ：
 
@@ -284,10 +284,10 @@ UTF-16 当然很烂。
 　　但是，不预设更特定需求的前提下，以下论点是站不住脚的：
 
 * “东亚文字不常见。”
-	* 至少在国际互联网上随机文本来源的国际化场景中，[CJK 字符](https://zh.wikipedia.org/wiki/CJK)未必如 ASCII 子集的字符常见，但其中占据 3 个八元组的汉字和标点符号几乎总是比 UTF-8 支持的占据 2 个八元组码位表示的字符更常见。背后的理由是，用户基数实在差太多了……
+	* 至少在国际互联网上随机文本来源的国际化场景中，[CJK 字符](https://zh.wikipedia.org/zh-cn/CJK)未必如 ASCII 子集的字符常见，但其中占据 3 个八元组的汉字和标点符号几乎总是比 UTF-8 支持的占据 2 个八元组码位表示的字符更常见。背后的理由是，用户基数实在差太多了……
 	* 基于 Unicode 的编码相当程度地（通过 unified ideographs ）改善了不同东亚文字共用字形微妙的不同和编码兼容性差的问题。这是潜在的各自为政的历史遗留编码无法解决好的问题。这样的问题体现了 Unicode 对东亚文字的实用性。反过来，其它（如西欧）的一些文字，因为没有那么多需要编码的文字单元，不使用 Unicode 也可能解决很大一部分问题（例如，使用 ISO 8859 系列）。（再极端点说，英文只使用 US-ASCII 照样玩的转儿，加上 UTF-8 直接兼容，无视 Unicode 都行……要没 BOM 之类的元数据，咋知道用 UTF-8 编码的英文文本到底算不算用了 Unicode 来编码？）结果是，世界上用户数较多的主要书面语言中，东亚文字才是最有必要使用 Unicode 杀手应用，在这个意义上反而是最“常见”的。
 * “UTF-8 具有更好的兼容性。”
-	* 事实是，至少考虑中文简化字惯用历史编码的向后兼容性，GB18030 编码完全或近乎完全向后兼容 [GB2312](https://zh.wikipedia.org/zh-cn/GB_2312) 及衍生的 [GBK](https://zh.wikipedia.org/zh-cn/%E6%B1%89%E5%AD%97%E5%86%85%E7%A0%81%E6%89%A9%E5%B1%95%E8%A7%84%E8%8C%83) 和 [CP936](https://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E9%A0%81936) 这样的常见实现；而 UTF-8 没有这样的支持。越是关心这里的兼容性，则 GB18030 较 UTF-8 的优势也越明显。
+	* 事实是，至少考虑中文简化字惯用历史编码的向后兼容性，GB18030 编码完全或近乎完全向后兼容 [GB2312](https://zh.wikipedia.org/zh-cn/GB_2312) 及衍生的 [GBK](https://zh.wikipedia.org/zh-cn/%E6%B1%89%E5%AD%97%E5%86%85%E7%A0%81%E6%89%A9%E5%B1%95%E8%A7%84%E8%8C%83) 和 [CP936](https://zh.wikipedia.org/zh-cn/%E4%BB%A3%E7%A2%BC%E9%A0%81936) 这样的常见实现；而 UTF-8 没有这样的支持。越是关心这里的兼容性，则 GB18030 较 UTF-8 的优势也越明显。
 	* 和其它基于 Unicode 的编码相比，GB18030 也能基本实现兼容，因为原则上每个 GB 18030 标准版本规定的字符集都复用了 Unicode 字符集（的某个版本），作为 UTF 使用的 GB18030 和 UTF-8 编码主要差异是码位映射规则的不同。
 	* GB18030 使用的映射规则较复杂。但因为实现向后兼容性的需要，很大程度复用了被兼容的编码的码位分配。于是，GB18030 和 UTF-8 之间的映射，跟 GBK 和 UTF-8 兼容字符子集之间的映射类似，基本上都需要偏移映射表支持转换。因此，实现 UTF-8 和过时的编码的相互转换，并不会比实现 UTF-8 和 GB18030 互操作简单到哪去，而比混用 GB18030 与其基本向后兼容的过时编码更复杂。
 	* 只有不考虑过时编码而只考虑 Unicode 的其它转换格式之间的兼容性，UTF-8 才可能有略好的兼容性支持，但这种差异实用上基本只能通过不同版本标准支持来体现，这意味着 Unicode 不同版本之间的微妙兼容性问题极有可能更大。

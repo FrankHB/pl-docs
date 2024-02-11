@@ -186,7 +186,7 @@ Java 在这里就好得多，直接给出了文法定义，并明确使用上下
 
 （尽管实际上仍然只有形式语法……是 [Guy Steele](https://en.wikipedia.org/wiki/Guy_L._Steele,_Jr.) 参与起草的关系么？）
 
-**[JLS 8](http://docs.oracle.com/javase/specs/jls/se8/jls8.pdf)**
+**[JLS 8](https://docs.oracle.com/javase/specs/jls/se8/jls8.pdf)**
 
 > 2 Grammars 9\
 > 2.1 Context-Free Grammars 9\
@@ -198,7 +198,7 @@ Java 在这里就好得多，直接给出了文法定义，并明确使用上下
 
 C# 大体上抄的 Java ，以及C艹的部分糟烂（又是关于<>的疼货）……
 
-**[ECMA-334 3 2005](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf)**
+**[ECMA-334 3 2005](https://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf)**
 
 > 9.1 Programs\
 > 9.2 Grammars\
@@ -208,7 +208,7 @@ C# 大体上抄的 Java ，以及C艹的部分糟烂（又是关于<>的疼货�
 
 ECMAScript 总体上也是一路货（否则干嘛叫 JavaScript ……）
 
-**[ECMA-262 5.1 2011](http://www.ecma-international.org/ecma-262/5.1/ECMA-262.pdf)**
+**[ECMA-262 5.1 2011](https://www.ecma-international.org/ecma-262/5.1/ECMA-262.pdf)**
 
 > 5 Notational Conventions\
 > 5.1 Syntactic and Lexical Grammars\
@@ -223,7 +223,7 @@ C++/CLI 是直接照搬 ISO C++ 偷懒了。
 
 [Haskell 2010 Report](https://www.haskell.org/definition/haskell2010.pdf) 则只是提了下 notation ，看起来都没说啥 grammar ……不知道对混乱的设计有多少自知之明呢。
 
-作为补充说明，[Scheme](https://en.wikipedia.org/wiki/Scheme_%28programming_language%29) 的 [R<sup>n</sup>RS](http://www.schemers.org/Documents/Standards/) 是少数给出了文法描述的形式语义的语言规范。正文符号太疼略。
+作为补充说明，[Scheme](https://en.wikipedia.org/wiki/Scheme_%28programming_language%29) 的 [R<sup>n</sup>RS](https://www.schemers.org/Documents/Standards/) 是少数给出了文法描述的形式语义的语言规范。正文符号太疼略。
 
 顺便，注意 Scheme 的语法和 [S-expression](https://en.wikipedia.org/wiki/S-expression) 的语法是两回事。
 

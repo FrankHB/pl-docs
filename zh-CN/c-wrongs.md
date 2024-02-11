@@ -28,7 +28,7 @@ Created @ 2014-07-29 09:01, rev v5 2015-04-12, markdown @ 2015-09-14.
 
 # 2.标准化的有效性
 
-　　不能否认，在被规范化的语言（而不是实现）针对平台的可移植性来讲，C差不多应该是现在的语言中最强的了。ISO C++ 在某些少数极端情况下的可移植性的确不如 ISO C（见 [WG21/N4049](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4049.pdf) ）。而其它语言，假定 1 字节不等于 8 比特的大小就足够打退堂鼓，若不够可以再加上允许原码/反码作为有符号数表示——这两者是 ISO C 和 ISO C++ 都明确支持而其它大部分语言规范都与之矛盾的东西。
+　　不能否认，在被规范化的语言（而不是实现）针对平台的可移植性来讲，C差不多应该是现在的语言中最强的了。ISO C++ 在某些少数极端情况下的可移植性的确不如 ISO C（见 [WG21/N4049](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4049.pdf) ）。而其它语言，假定 1 字节不等于 8 比特的大小就足够打退堂鼓，若不够可以再加上允许原码/反码作为有符号数表示——这两者是 ISO C 和 ISO C++ 都明确支持而其它大部分语言规范都与之矛盾的东西。
 
 　　标准化的一个重要作用是取得共识，避免一些重复工作，提升可移植性，减轻用户（包括实现者）的负担。若标准被架空而没有被实际使用，标准本身就失去了绝大部分意义。
 
@@ -36,19 +36,19 @@ Created @ 2014-07-29 09:01, rev v5 2015-04-12, markdown @ 2015-09-14.
 
 　　（好吧，若干年后，ECMA-334 终于更新了……那么压力给到了没标准化就因为[人力不足](https://github.com/microsoft/TypeScript/issues/15711#issuecomment-409028030)然后[弃坑](https://github.com/microsoft/TypeScript/issues/15711#issuecomment-661290678)的 TypeScript 那边？该说真不愧是[同一个爹](https://zh.wikipedia.org/zh-cn/%E5%AE%89%E5%BE%B7%E6%96%AF%C2%B7%E6%B5%B7%E5%B0%94%E6%96%AF%E4%BC%AF%E6%A0%BC)的么……）
 
-　　啥，ECMA 是区域性组织，不够权威？——人家现在叫 [ECMA International](http://www.ecma-international.org/memento/) 好不好。不过不够权威好像是能坐实点，[C++/CLI 在 ISO 标准化被英国的意见驳回](http://www.stroustrup.com/uk-objections.pdf) ，ECMA 就通过成 [ECMA-372](http://www.ecma-international.org/publications/standards/Ecma-372.htm) 了……
+　　啥，ECMA 是区域性组织，不够权威？——人家现在叫 [ECMA International](https://www.ecma-international.org/memento/) 好不好。不过不够权威好像是能坐实点，[C++/CLI 在 ISO 标准化被英国的意见驳回](https://www.stroustrup.com/uk-objections.pdf) ，ECMA 就通过成 [ECMA-372](https://www.ecma-international.org/publications/standards/Ecma-372.htm) 了……
 
-　　那么这里就拿 C++ 比较好了。同样是 [ISO/IEC JTC1/SC22](http://www.open-std.org/JTC1/SC22/) 下的工作组，两者的产出看似类似，效果大相径庭。
+　　那么这里就拿 C++ 比较好了。同样是 [ISO/IEC JTC1/SC22](https://www.open-std.org/JTC1/SC22/) 下的工作组，两者的产出看似类似，效果大相径庭。
 
-　　而敢无视 [WG21](http://www.open-std.org/JTC1/SC22/WG21/) 的实现——据我所知，一个都没有。即便 GNU 早年隐晦地表达过和标准划清界限，现在来看在 C++ 前端是口嫌体正直了。反观 GNU C ，这个效应就弱得多。
+　　而敢无视 [WG21](https://www.open-std.org/JTC1/SC22/WG21/) 的实现——据我所知，一个都没有。即便 GNU 早年隐晦地表达过和标准划清界限，现在来看在 C++ 前端是口嫌体正直了。反观 GNU C ，这个效应就弱得多。
 
 　　简而言之，ISO C 虽然整体上是有效的，但是对于语言实现者来说，效力略为不足。
 
 　　概括起来，这有两方面原因。
 
-　　其一是 WG14 本身的活动没有 WG21 强调“open”。[WG21 的文档](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/) 早就被公开多年，而 [WG14 的](http://www.open-std.org/jtc1/sc22/wg14/www/documents) 没记错的话到 2012 年才被公开。
+　　其一是 WG14 本身的活动没有 WG21 强调“open”。[WG21 的文档](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/) 早就被公开多年，而 [WG14 的](https://www.open-std.org/jtc1/sc22/wg14/www/documents) 没记错的话到 2012 年才被公开。
 
-　　可能是由于 C++ 本身的复杂性以及历史教训（轻率引入 `export` 和dynamic exception specification）需要避免消极的 design by committee 的影响，参与 C++ 工作讨论的非委员会用户活动非常显著，[Google Groups 里讨论标准提议的论坛](https://groups.google.com/a/isocpp.org/forum/?fromgroups#!forum/std-proposals) 已经开设了好几年。[isocpp.org](http://isocpp.org) 也是一例。WG21 甚至[在 github 上拥有公开仓库](https://github.com/cplusplus/draft/)允许用户 pull request 修改标准草案的内容。
+　　可能是由于 C++ 本身的复杂性以及历史教训（轻率引入 `export` 和dynamic exception specification）需要避免消极的 design by committee 的影响，参与 C++ 工作讨论的非委员会用户活动非常显著，[Google Groups 里讨论标准提议的论坛](https://groups.google.com/a/isocpp.org/forum/?fromgroups#!forum/std-proposals) 已经开设了好几年。[isocpp.org](https://isocpp.org) 也是一例。WG21 甚至[在 github 上拥有公开仓库](https://github.com/cplusplus/draft/)允许用户 pull request 修改标准草案的内容。
 
 　　反观C方面呢？一个对应的东西都没有。
 
@@ -64,21 +64,21 @@ Created @ 2014-07-29 09:01, rev v5 2015-04-12, markdown @ 2015-09-14.
 
 　　C 欠缺了太多东西。
 
-　　上面的隐晦分歧就是指，是不是在标准化的接口中，允许函数返回动态分配的对象然后让用户自行释放？ ISO C 的意见是“不”——于是 [`asprintf`](http://www.gnu.org/software/libc/manual/html_node/Dynamic-Output.html) 乃至 [`strdup`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/strdup.html) 都不可能出现在 ISO C 标准库，但这个原则之前看来从来没有被正式提起过。而 POSIX 方面以及其它传统 C 用户大概不会这么认为（特别是 GNU ）。
+　　上面的隐晦分歧就是指，是不是在标准化的接口中，允许函数返回动态分配的对象然后让用户自行释放？ ISO C 的意见是“不”——于是 [`asprintf`](https://www.gnu.org/software/libc/manual/html_node/Dynamic-Output.html) 乃至 [`strdup`](https://pubs.opengroup.org/onlinepubs/9699919799/functions/strdup.html) 都不可能出现在 ISO C 标准库，但这个原则之前看来从来没有被正式提起过。而 POSIX 方面以及其它传统 C 用户大概不会这么认为（特别是 GNU ）。
 
 　　其它主流语言里还有这种奇葩问题么？
 
 　　而 ISO C 新引入的东西，很多也不是自身的设计。
 
-　　ISO C11 引入的 sequenced before 的 wording ，是 [WG21 N2239](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2239.html) 提出来的。注意，是 C++ 的 paper ，[C 后来照搬](http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1252.htm) 过去了（与之相关的还有[并发模型](http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1276.htm) ）。
+　　ISO C11 引入的 sequenced before 的 wording ，是 [WG21 N2239](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2239.html) 提出来的。注意，是 C++ 的 paper ，[C 后来照搬](https://www.open-std.org/jtc1/sc22/wg14/www/docs/n1252.htm) 过去了（与之相关的还有[并发模型](https://www.open-std.org/jtc1/sc22/wg14/www/docs/n1276.htm) ）。
 
 　　（嘛，C++ 比较激进删除了之前 ISO C 引进的 sequence point ，不过这里有个 bug ，漏了 sequenced after 这个定义，我邮件过去了，处理情况见[这里](https://github.com/cplusplus/draft/issues/61) 。）
 
-　　C11 同时照搬过去的还有多线程和 atomic 的基本概念。由于语言特性上的先天不足，C 没法做到 C++ 的优雅（虽然这词普遍恶心，但用在这里的确不错）。（看看那个奇葩的 [`_Atomic`](http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1485.pdf) ……）
+　　C11 同时照搬过去的还有多线程和 atomic 的基本概念。由于语言特性上的先天不足，C 没法做到 C++ 的优雅（虽然这词普遍恶心，但用在这里的确不错）。（看看那个奇葩的 [`_Atomic`](https://www.open-std.org/jtc1/sc22/wg14/www/docs/n1485.pdf) ……）
 
-　　C11 还不得不[引入了某种意义上的“临时对象”](http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1285.htm) ，这种手段又是[埋坑](http://www.open-std.org/jtc1/sc22/wg14/www/docs/dr_423.htm) 。
+　　C11 还不得不[引入了某种意义上的“临时对象”](https://www.open-std.org/jtc1/sc22/wg14/www/docs/n1285.htm) ，这种手段又是[埋坑](https://www.open-std.org/jtc1/sc22/wg14/www/docs/dr_423.htm) 。
 
-　　C11 绝无仅有的东西呢？哦，比如 [`generic-selection`](http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1441.htm) ？我问一下，这里谁对 [`_Generic`](http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1404.htm) 有印象的？知道它是怎么回事的？能说清解决了什么问题，并且是怎么起作用的？有多少人在实际代码中用过？在其它语言中类似的东西是什么？
+　　C11 绝无仅有的东西呢？哦，比如 [`generic-selection`](https://www.open-std.org/jtc1/sc22/wg14/www/docs/n1441.htm) ？我问一下，这里谁对 [`_Generic`](https://www.open-std.org/jtc1/sc22/wg14/www/docs/n1404.htm) 有印象的？知道它是怎么回事的？能说清解决了什么问题，并且是怎么起作用的？有多少人在实际代码中用过？在其它语言中类似的东西是什么？
 
 　　ISO C 比 ISO C++ 多出来的，特别是近来新添加的，差不多尽是广大C用户都难以认同的琐碎玩意儿……
 
@@ -150,7 +150,7 @@ Appended @ 2014-07-29 15:58.
 
 　　只有有符号数导致 Java 需要引入 `>>>` 操作符以便区别对待符号位，在另一方面导致了语言的复杂。缺少无符号数还导致一些应用上的麻烦——例如实现随机数生成器、通信协议或者图像处理算法之类。
 
-　　[Java 抛弃有符号数的理由据信是“无符号数更复杂，因此不需要”](http://stackoverflow.com/questions/430346/why-doesnt-java-support-unsigned-ints)——根据上面的分析，这是典型的扯蛋。一个比较可能的实际理由是对无符号数“莫名其妙”地回绕的无谓恐惧，特别是对结果比较操作上。但事实上，任何一个对这些语言中算术操作有清楚了解的用户，都不应该陷入这种陷阱，特别是编译器能轻易检查出对有符号数的不保证兼容性使用的情况下。
+　　[Java 抛弃有符号数的理由据信是“无符号数更复杂，因此不需要”](https://stackoverflow.com/questions/430346)——根据上面的分析，这是典型的扯蛋。一个比较可能的实际理由是对无符号数“莫名其妙”地回绕的无谓恐惧，特别是对结果比较操作上。但事实上，任何一个对这些语言中算术操作有清楚了解的用户，都不应该陷入这种陷阱，特别是编译器能轻易检查出对有符号数的不保证兼容性使用的情况下。
 
 　　大概也正是因为如此，C# 没有在这里“借鉴” Java ，还是补充了 `uint` 。不过，C# 的语言规则导致 `uint` 和 `int` 诊断消息设置有些神经质，大量用户代码中还是充斥着本来不应该出现的 `int` 。设计者应该只是确信 `uint` 不可少，但只是有符号数的补充，而非尽量鼓励使用的对象。这和 C/C++ 的设计非常不同，也并没有完全发挥无符号数的好处。
 
@@ -168,9 +168,9 @@ Appended @ 2014-08-11 16:53.
 
 　　ISO C规定了允许 `asm` 关键字嵌入汇编代码作为扩展，但 C 并不依赖这项特性。
 
-　　可能由于 Bjarne Stroustrup 等对阻止语言分裂的立场（如果需要另一个例子，可以参照[对 Embedded C++ 的观点](http://www.stroustrup.com/bs_faq.html#EC++)），ISO C++ 没有 ISO C那种“扩展”的概念，`asm` 关键字直接是正式的语言组成部分。
+　　可能由于 Bjarne Stroustrup 等对阻止语言分裂的立场（如果需要另一个例子，可以参照[对 Embedded C++ 的观点](https://www.stroustrup.com/bs_faq.html#EC++)），ISO C++ 没有 ISO C那种“扩展”的概念，`asm` 关键字直接是正式的语言组成部分。
 
-　　 C++ 的 `asm-definition` 的含义是实现定义的，但同样也并不见得里面就是汇编语言——例如，[Cheerp](http://leaningtech.com/cheerp/) 使用 `asm` 内联 JavaScript （[虽然后来改为了 `__asm__`](https://github.com/leaningtech/cheerp-wiki/wiki/JavaScript-interoperability)）……
+　　 C++ 的 `asm-definition` 的含义是实现定义的，但同样也并不见得里面就是汇编语言——例如，[Cheerp](https://leaningtech.com/cheerp/) 使用 `asm` 内联 JavaScript （[虽然后来改为了 `__asm__`](https://github.com/leaningtech/cheerp-wiki/wiki/JavaScript-interoperability)）……
 
 　　不管是 C还是 C++ ，作为实例的不支持内联汇编的实现也不难找，例如[用于 ARM 和 x64 的 VC++](https://msdn.microsoft.com/en-us/library/4ks26t93.aspx) 。
 
@@ -206,7 +206,7 @@ Appended @ 2014-08-11 16:53.
 
 　　一般地，高级语言的规范自身通过描述程序的语义和/或行为，事实上给出了一套更高级普遍的接口。ABI 规范作为适用于二进制互操作的低层次的接口，相对来说提供的是语言规范的实现，以缩小适用范围为代价，补充语言规范中没有限定的一些细节。
 
-　　C / C++ 这类本机实现的 ABI 一般可以分为体系结构和编译器相关的两部分。可惜某些实现[不给出清晰的、友好的、公开的规范](http://llvm.org/devmtg/2013-11/slides/Kleckner-ClangVisualC++.pdf)，拿黑箱让用户自己猜……活该谁倒霉呢。
+　　C / C++ 这类本机实现的 ABI 一般可以分为体系结构和编译器相关的两部分。可惜某些实现[不给出清晰的、友好的、公开的规范](https://llvm.org/devmtg/2013-11/slides/Kleckner-ClangVisualC++.pdf)，拿黑箱让用户自己猜……活该谁倒霉呢。
 
 　　没有足够能参照的 ABI ，所以需要互操作时，不得不通过观察生成的中间代码来预测实际可能的程序行为，这也不是不能理解。这种不保证可移植性的程序行为，语言规范更加管不着。
 
@@ -251,7 +251,7 @@ Appended @ 2015-08-09 10:00.
 
 Appended @ 2015-08-09 10:04.
 
-看起来逗号表达式[如何“有用”](http://www.zhihu.com/question/22710102)，也算一般理解了。
+看起来逗号表达式[如何“有用”](https://www.zhihu.com/question/22710102)，也算一般理解了。
 
 ### 3.2
 
@@ -267,11 +267,11 @@ Appended @ 2015-08-09 10:54.
 
 　　用户理解得是否正确清晰而不会造成破事，除了语言设计，语言规范的质量自身也是重要参考因素。
 
-　　首先需要澄清，我并非觉得 ISO/IEC 14882 作为技术文档的质量很好——相反，它相当罗嗦，有不少 [bug](http://www.open-std.org/jtc1/sc22/wg21/docs/cwg_defects.html) （虽然被我和其他少数人不断修正但也不断会窜出新的），并且总体来说并不怎么容易看。
+　　首先需要澄清，我并非觉得 ISO/IEC 14882 作为技术文档的质量很好——相反，它相当罗嗦，有不少 [bug](https://www.open-std.org/jtc1/sc22/wg21/docs/cwg_defects.html) （虽然被我和其他少数人不断修正但也不断会窜出新的），并且总体来说并不怎么容易看。
 
-　　而这些不足也同样适用于 ISO/IEC 9899 ，除了不断窜出新 [bug](http://www.open-std.org/jtc1/sc22/wg14/www/docs/summary.htm) 这点（嘛……理由是 ISO C 更新实在太少）。
+　　而这些不足也同样适用于 ISO/IEC 9899 ，除了不断窜出新 [bug](https://www.open-std.org/jtc1/sc22/wg14/www/docs/summary.htm) 这点（嘛……理由是 ISO C 更新实在太少）。
 
-　　当然，这两个都够吊打体例不够清楚到技术标准程度的 spec 了，比如 [JLS](https://docs.oracle.com/javase/specs/) （[现在的版本](https://docs.oracle.com/javase/specs/jls/se8/jls8.pdf) 甚至比ISO C++ Clause 17 之前的部分还长，以后我倒是看看谁说 Java 语言规则简单然后就能啪啪打脸了）和 M$ 的 [C# spec](https://msdn.microsoft.com/zh-cn/library/ms228593.aspx)（ [ECMA 那个](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf)还好不过显然过时放置 play 中）。
+　　当然，这两个都够吊打体例不够清楚到技术标准程度的 spec 了，比如 [JLS](https://docs.oracle.com/javase/specs/) （[现在的版本](https://docs.oracle.com/javase/specs/jls/se8/jls8.pdf) 甚至比ISO C++ Clause 17 之前的部分还长，以后我倒是看看谁说 Java 语言规则简单然后就能啪啪打脸了）和 M$ 的 [C# spec](https://msdn.microsoft.com/zh-cn/library/ms228593.aspx)（ [ECMA 那个](https://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf)还好不过显然过时放置 play 中）。
 
 　　但是，虽说这两个很多地方都不怎么样，一些关键的地方还是有高下的。
 
@@ -279,7 +279,7 @@ Appended @ 2015-08-09 10:54.
 
 　　一个比较直接的实例是，关于未定义行为“在什么时候发生”的破事。
 
-　　实际上这里即便是 ISO C ，本义也是清楚的。但是就会出来这种[逗比问题](http://www.zhihu.com/question/25981190)：
+　　实际上这里即便是 ISO C ，本义也是清楚的。但是就会出来这种[逗比问题](https://www.zhihu.com/question/25981190)：
 
 > **这是一道精妙的题目还是一道傻逼题目？**\
 > 问题出自：大型互联网公司为什么会出一些质量低下的校招题目？\

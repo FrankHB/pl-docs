@@ -1,6 +1,6 @@
 ﻿# Some comments on refining expression evaluation order of C++
 
-Quoted text are from the referenced material: [P0145R1](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0145r1.pdf).
+Quoted text are from the referenced material: [P0145R1](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0145r1.pdf).
 
 ## 1 Introduction
 
@@ -25,7 +25,7 @@ The current rules are already somewhat clear (compared with the proposed rules) 
 >
 > What should the map object `m` look like after evaluation of the statement marked #1? `{{0, 0}}` or `{{0, 1}}` ?
 
-It should be clear without guess because every time the reader meet `=`, he should trace the dependencies (including evaluation order) trivially in a few milliseconds. Since [CWG222](http://wg21.cmeerw.net/cwg/issue222) is resolved, it should be safe to merge the parsing and tracing passes in one's brain for both overloaded and builtin `=` as long as the left side operand has no insane subexpressions screwing up the value dependencies, which should be easy to keep (away from abuse of macros and "properties", etc). Here the effect of `=` is up to the values of operands uniquely. Note the fragment is *not* the case like `m[m[0] = m.size()] = m.size();`. On the other hand, will it be a problem in practice? Just *do not write obviouosly stupid unreadable code*.
+It should be clear without guess because every time the reader meet `=`, he should trace the dependencies (including evaluation order) trivially in a few milliseconds. Since [CWG222](https://wg21.cmeerw.net/cwg/issue222) is resolved, it should be safe to merge the parsing and tracing passes in one's brain for both overloaded and builtin `=` as long as the left side operand has no insane subexpressions screwing up the value dependencies, which should be easy to keep (away from abuse of macros and "properties", etc). Here the effect of `=` is up to the values of operands uniquely. Note the fragment is *not* the case like `m[m[0] = m.size()] = m.size();`. On the other hand, will it be a problem in practice? Just *do not write obviouosly stupid unreadable code*.
 
 If it is still indeed annoying for someone, then C-like languages are likely not suitable, please try Lisp-like dialects without such overhead of dealing with infix expressions instead.
 

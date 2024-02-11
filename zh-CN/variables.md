@@ -51,7 +51,7 @@
 　　除了说明性(informative) 的（如出现在 NOTE 和脚注中的）用法，自 ISO/IEC 9899:2017 引入的 名词 variable 的其它用法包括：
 
 * 条件变量([condition variable](https://zh.wikipedia.org/zh-cn/%E7%9B%A3%E8%A6%96%E5%99%A8_%28%E7%A8%8B%E5%BA%8F%E5%90%8C%E6%AD%A5%E5%8C%96%29#%E6%A2%9D%E4%BB%B6%E8%AE%8A%E6%95%B8%28Condition_Variable%29)) ，和这里的所谓变量是两回事。
-* 7.17.2.1 `ATOMIC_VAR_INIT` 宏中出现的应为 object 的 variable（可以看到这个概念在 C++ 中明确有定义），这里明显是抄错了 ISO C++11 里的文本漏了替换。（说起来这个都已经[被提案在 ISO C++20 中废弃了](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p1138r0.pdf)，还有 [C 的问题的一份功劳](http://www.open-std.org/jtc1/sc22/wg14/www/docs/n2257.htm#dr_485)……）
+* 7.17.2.1 `ATOMIC_VAR_INIT` 宏中出现的应为 object 的 variable（可以看到这个概念在 C++ 中明确有定义），这里明显是抄错了 ISO C++11 里的文本漏了替换。（说起来这个都已经[被提案在 ISO C++20 中废弃了](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p1138r0.pdf)，还有 [C 的问题的一份功劳](https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2257.htm#dr_485)……）
 
 # C++ 语言的变量
 

@@ -36,7 +36,7 @@
 
 　　用三元组表示目标平台，当年的 MinGW 是指 i386-pc-mingw32 。这里 i386 也可以是 i486 等等……总之是 32 位 x86 指令集架构的名称；中间的 pc 可选，表示厂商名； mingw32 表示系统名。特别注意，事实上成为标准的“专有名词” mingw32 里的 32 是固定的；另外，所有这些大小写一般也是固定的。GCC 等的源码配置里面也有硬编码进去。
 
-　　然后，因为只支持 32 位，有人觉得不够用。这里的一个主要人物，就是现在 MinGW-W64 的主要维护者 Kai Tietz 。[因为工作需要重新实现提供 x64 支持的 MinGW](http://sourceforge.net/p/mingw/mailman/message/23108552/) 后提交到上游但[被拒绝](http://sourceforge.net/p/mingw/mailman/message/23100595/)，于是 fork 为单独的项目，这就是 MinGW-W64 的由来。
+　　然后，因为只支持 32 位，有人觉得不够用。这里的一个主要人物，就是现在 MinGW-W64 的主要维护者 Kai Tietz 。[因为工作需要重新实现提供 x64 支持的 MinGW](https://sourceforge.net/p/mingw/mailman/message/23108552/) 后提交到上游但[被拒绝](https://sourceforge.net/p/mingw/mailman/message/23100595/)，于是 fork 为单独的项目，这就是 MinGW-W64 的由来。
 
 　　可见，MinGW-W64 和原版 MinGW 有所渊源，但是独立的两个项目。
 
@@ -44,7 +44,7 @@
 
 　　MinGW-W64 是同时支持 32 位和 64 位的，甚至还支持 32 位和 64 位的交叉编译（启用 multilib 支持的 MinGW 发行版例如 mingw-builds 可以用 `-m32` 或 `-m64` 指定）。
 
-　　显然，W64 和支持的架构无关。上面 i686 就不是 64 位的平台（而且可以看出这里的 32 也和架构没关系）。支持 64 位的对应三元组是 x86_64-w64-mingw32 。（另外 w32 是 GNU 惯用的对 Win32 的略称，也沿用到包括 MinGW 在内的一些项目中——如 [w32api](http://sourceforge.net/projects/mingw/files/MinGW/Base/w32api/) ，可能造成一些额外的混乱。）
+　　显然，W64 和支持的架构无关。上面 i686 就不是 64 位的平台（而且可以看出这里的 32 也和架构没关系）。支持 64 位的对应三元组是 x86_64-w64-mingw32 。（另外 w32 是 GNU 惯用的对 Win32 的略称，也沿用到包括 MinGW 在内的一些项目中——如 [w32api](https://sourceforge.net/projects/mingw/files/MinGW/Base/w32api/) ，可能造成一些额外的混乱。）
 
 　　……容易让人头疼的是，这两个项目现在都没死，偏偏还很容易因为这些字面上的原因搞错。为了下文描述方便，原版 MinGW 称为 [MinGW.org](http://mingw.org/) 。
 
@@ -68,9 +68,9 @@
 
 　　比较新的发行版，一开始就着眼于 MinGW-W64 。最著名的发行版之一应该是 mingw-builds ，基本上近年来（ GCC4.7 以后） Windows 上能用支持最新版本最快的，支持交叉编译。
 
-　　mingw-builds 一开始在 sf.net 上有[自己的项目](http://sourceforge.net/projects/mingwbuilds/)，不过后来表示要求加入 [MinGW-W64项目](https://sourceforge.net/projects/mingw-w64) 作为 official builds ，所以停更了，更新都在 MinGW-W64 里面，不过残念的是好像到现在 MinGW-W64 看来都不提供唯一的官方发行版，所以还是叫做 personal builds 。
+　　mingw-builds 一开始在 sf.net 上有[自己的项目](https://sourceforge.net/projects/mingwbuilds/)，不过后来表示要求加入 [MinGW-W64项目](https://sourceforge.net/projects/mingw-w64) 作为 official builds ，所以停更了，更新都在 MinGW-W64 里面，不过残念的是好像到现在 MinGW-W64 看来都不提供唯一的官方发行版，所以还是叫做 personal builds 。
 
-　　另外提一下还有微软 VC++ 标准库（ Dinkumware 生产）维护者之一 [Mr.STL(Stephan T. Lavavej)](http://nuwen.net/stl.html) 个人的[发行版](http://nuwen.net/mingw.html) ，很早就在默认 specs 里加了 `-std=c++11` ，而GCC 5 改用 `-std=c++14` 。（[官方 GCC 6 会用 `-std=gnu++14` 。](https://gcc.gnu.org/gcc-6/changes.html)）
+　　另外提一下还有微软 VC++ 标准库（ Dinkumware 生产）维护者之一 [Mr.STL(Stephan T. Lavavej)](https://nuwen.net/stl.html) 个人的[发行版](https://nuwen.net/mingw.html) ，很早就在默认 specs 里加了 `-std=c++11` ，而GCC 5 改用 `-std=c++14` 。（[官方 GCC 6 会用 `-std=gnu++14` 。](https://gcc.gnu.org/gcc-6/changes.html)）
 
 　　还有 MSYS2 项目的 MinGW 发行版（这里可能有新的混乱，下文再说），也是 mingw-builds 一伙人搞的，4.9.1 比 mingw-builds 更新还快几个小时。
 
@@ -83,13 +83,13 @@
 * 本机环境（直接在 Windows 下运行）
 	* [MinGW-w64](https://sourceforge.net/projects/mingw-w64) 提供若干工具链的下载
 		* [mingw-builds](https://sourceforge.net/projects/mingwbuilds/) 旧站点
-	* [MSYS2](http://sourceforge.net/projects/msys2)（使用包管理器 `pacman` 安装 `mingw-w64-i686-toolchain` 或 `mingw-w64-x86_64-toolchain`）
-	* [TDM-GCC](http://tdm-gcc.tdragon.net/)
+	* [MSYS2](https://sourceforge.net/projects/msys2)（使用包管理器 `pacman` 安装 `mingw-w64-i686-toolchain` 或 `mingw-w64-x86_64-toolchain`）
+	* [TDM-GCC](https://tdm-gcc.tdragon.net/)
 	* [nuwen.net MinGW distro](https://nuwen.net/mingw.html) 仅提供 Win32 线程模型
-	* [GCC-MCF](http://lhmouse.com/gcc-mcf/) 仅提供 MCF 实现
+	* [GCC-MCF](https://lhmouse.com/gcc-mcf/) 仅提供 MCF 实现
 * 交叉构建环境
 	* [Arch Linux MinGW-w64 GCC](https://www.archlinux.org/packages/community/x86_64/mingw-w64-gcc/)
-	* [MSYS2](http://sourceforge.net/projects/msys2)（使用包管理器 `pacman` 安装 `mingw-w64-cross-toolchain`）
+	* [MSYS2](https://sourceforge.net/projects/msys2)（使用包管理器 `pacman` 安装 `mingw-w64-cross-toolchain`）
 
 # MinGW 发行版支持什么本机语言编译器？
 
@@ -127,7 +127,7 @@
 
 　　第二，线程模型。
 
-　　主要有两个，Win32 和 POSIX ，[对标准库线程的支持不一样](http://stackoverflow.com/questions/13212342/whats-the-difference-between-thread-posixs-and-thread-win32-in-gcc-port-of-windo) 。
+　　主要有两个，Win32 和 POSIX ，[对标准库线程的支持不一样](https://stackoverflow.com/questions/13212342/whats-the-difference-between-thread-posixs-and-thread-win32-in-gcc-port-of-windo) 。
 
 　　Windows 线程 API 和 [POSIX(pthread)](https://en.wikipedia.org/wiki/POSIX_Threads) 有很大不同，而 ISO C++ 的 `std::thread` 为代表的接口是很接近 pthread 的。
 
@@ -145,15 +145,15 @@
 
 # 什么是 MSYS ，和 MinGW 有什么区别？
 
-　　MSYS(minimal system) 原本是 MinGW.org 项目的一个组件，旨在 Windows 上提供一套类 UNIX shell 为基础的“系统”。它本身不提供编译器或者大小写敏感的文件系统支持（其实 [NTFS 倒是支持这里的“ POSIX 语义”](http://superuser.com/questions/364057/why-is-ntfs-case-sensitive)，但基本没看见有谁用……）。
+　　MSYS(minimal system) 原本是 MinGW.org 项目的一个组件，旨在 Windows 上提供一套类 UNIX shell 为基础的“系统”。它本身不提供编译器或者大小写敏感的文件系统支持（其实 [NTFS 倒是支持这里的“ POSIX 语义”](https://superuser.com/questions/364057)，但基本没看见有谁用……）。
 
-　　和作为原生 Win32 程序的 MinGW 不同，MSYS 环境下编译的本机程序依赖于额外的特定的 MSYS 运行时，更接近 Cygwin（强调 POSIX 兼容性），会有性能损失（但一般意义上比 Cygwin 轻量）。对应的[三元组](http://sourceforge.net/p/mingw-w64/wiki2/TypeTriplets/)是 \*-pc-msys（通常其中的 pc 可以省略即缩写为 \*-msys ）。MSYS 提供了一个 sysroot 环境（下面有 `/bin` 和 `/etc` 等），因此移植 POSIX 环境的程序一般更方便。
+　　和作为原生 Win32 程序的 MinGW 不同，MSYS 环境下编译的本机程序依赖于额外的特定的 MSYS 运行时，更接近 Cygwin（强调 POSIX 兼容性），会有性能损失（但一般意义上比 Cygwin 轻量）。对应的[三元组](https://sourceforge.net/p/mingw-w64/wiki2/TypeTriplets/)是 \*-pc-msys（通常其中的 pc 可以省略即缩写为 \*-msys ）。MSYS 提供了一个 sysroot 环境（下面有 `/bin` 和 `/etc` 等），因此移植 POSIX 环境的程序一般更方便。
 
 　　所以常规的实践是，如果只是开发 Windows 程序，能用 MinGW 就不要用 MSYS 原生的编译器来构建。当然，使用 MSYS 上的 `sh` 等工具还是没问题，跟 GNU 工具配套怎么说比 `cmd` 好用。（虽然也有不少琐碎的兼容性问题。）
 
 # 什么是 MSYS2 ，MSYS2 上的 MinGW 发行版是怎么回事？
 
-　　字面意思，MSYS 2.0 。比起 1.0 来说更加像 Cygwin（例如 `/etc/fstab` 配置）。项目[在 sf.net 上托管](http://sourceforge.net/projects/msys2/)。
+　　字面意思，MSYS 2.0 。比起 1.0 来说更加像 Cygwin（例如 `/etc/fstab` 配置）。项目[在 sf.net 上托管](https://sourceforge.net/projects/msys2/)。
 
 　　其中的一个特色是基础系统附带 [ArchLinux](https://www.archlinux.org/) 移植的包管理器pacman，可以同时独立部署 `/mingw32` (i686-w64-mingw32) 和 `/mingw64`(x86_64-w64-mingw32) 下的开发和运行环境。注意和 mingw64 并列时 mingw32 自然指的不只是三元组的最后一项了。
 
@@ -189,7 +189,7 @@
 
 　　不同版本不同语言不同编译器编译出来的东西都不太一样。最简单暴力也可靠（？）的方法就是复制可执行程序到没装环境的白板测试机上看少了哪些东西（不过未必一目了然）。
 
-　　简单可靠的方式是用 [Dependency Walker](http://www.dependencywalker.com/) 等工具查看依赖。
+　　简单可靠的方式是用 [Dependency Walker](https://www.dependencywalker.com/) 等工具查看依赖。
 
 　　对于 C++ 程序，除非不用 POSIX thread 可以省掉 libwinpthread ，一般至少得确保上面异常模型和线程模型讨论中提到的三个 DLL（注意就算不显式使用标准库，编译器生成的代码也可能用到——典型的如默认 `::operator new` ，所以得带上 libstdc++ ）。
 

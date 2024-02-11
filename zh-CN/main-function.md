@@ -8,7 +8,7 @@ Created @ 2012-11-07.
 
 目前我看到一个[比较靠谱的说法（有正确的引用出处，并指出了实现扩展）](https://web.archive.org/web/20160604095048/https://homepage.ntlworld.com/jonathan.deboynepollard/FGA/legality-of-void-main.html)。
 
-而[这里](http://tieba.baidu.com/p/626323902)的说法是有问题的。
+而[这里](https://tieba.baidu.com/p/626323902)的说法是有问题的。
 
 这里再解释一下ISO C/C++中对 `main` 的要求。
 
@@ -141,7 +141,7 @@ ISO C\++98/03 在表格的 note 里要求 “should” O(1) ，因此 libstdc++ 
 
 # 正题
 
-附一个[参考链接](http://stackoverflow.com/questions/1765686)。
+附一个[参考链接](https://stackoverflow.com/questions/1765686)。
 
 ## ANSI C/ISO C 对独立环境的规定
 
@@ -282,7 +282,7 @@ ISO C99 起，及 ISO C\++98 起，全局 `main` 若没有 `return` ，相当于
 
 ## 关于 Bjarne Stroupstrup 的说法
 
-在个人主页中 Bjarne Stroustrup 明确解答了[关于 `void main` 的问题](http://www.stroustrup.com/bs_faq2.html#void-main) ，表示不赞同使用 `void main` 。其中提到，`void main`
+在个人主页中 Bjarne Stroustrup 明确解答了[关于 `void main` 的问题](https://www.stroustrup.com/bs_faq2.html#void-main) ，表示不赞同使用 `void main` 。其中提到，`void main`
 
 > ... is not and never has been C++, nor has it even been C.
 

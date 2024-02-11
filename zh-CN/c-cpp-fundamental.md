@@ -1,6 +1,6 @@
 ﻿# ISO C/C++ 基础总结
 
-本文档意为避免 C 和 C++ 语言中的一些陷阱的通用指引及撰写相关 [FAQ](http://en.wikipedia.org/wiki/FAQ) 的权威参考的要点注解。
+本文档意为避免 C 和 C++ 语言中的一些陷阱的通用指引及撰写相关 [FAQ](https://en.wikipedia.org/wiki/FAQ) 的权威参考的要点注解。
 
 可能会包含程序语言理论或其它语言的具体例子作为参照。
 
@@ -18,7 +18,7 @@
 
 正式标准 ISO/IEC 14882:2011 和 ISO/IEC 9899:2011 分别标记为 [C++11] 和 [C11] 。
 
-相关工作组文献，以标准草案为例：[ISO/IEC JTC1 WG21 N3936](https://github.com/cplusplus/draft/blob/master/papers/N3936.pdf?raw=true) 和 [ISO/IEC JTC1 WG14 N1570](http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1570.pdf) ）分别标记为 [WG21/N3936] 和 [WG14/N1570] 。
+相关工作组文献，以标准草案为例：[ISO/IEC JTC1 WG21 N3936](https://github.com/cplusplus/draft/blob/master/papers/N3936.pdf?raw=true) 和 [ISO/IEC JTC1 WG14 N1570](https://www.open-std.org/jtc1/sc22/wg14/www/docs/n1570.pdf) ）分别标记为 [WG21/N3936] 和 [WG14/N1570] 。
 
 标记中可包括章节号或章节引用。
 
@@ -56,7 +56,7 @@
 
 对于没有经过设计的语言比如自然语言来说，语法和语义的界限通常并不明确。和其它形式语言一样，它们也可以用*文法(grammar)* 来描述。
 
-对于显式区分语法和语义的语言来说，语法和语义也可以通过指定*形式文法(formal grammar)* 研究。形式文法被具体表述为*记法(notation)* 时本身构成一种*元语言(metalanguage)* ，具有自身的*[元语法(meta syntax)](http://en.wikipedia.org/wiki/Metasyntax)* 。元语法的一个经典的例子是 [BNF](http://en.wikipedia.org/wiki/Backus%E2%80%93Naur_Form) 。
+对于显式区分语法和语义的语言来说，语法和语义也可以通过指定*形式文法(formal grammar)* 研究。形式文法被具体表述为*记法(notation)* 时本身构成一种*元语言(metalanguage)* ，具有自身的*[元语法(meta syntax)](https://en.wikipedia.org/wiki/Metasyntax)* 。元语法的一个经典的例子是 [BNF](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_Form) 。
 
 ISO C 和 ISO C++ 使用相似的文法标记。关于体例说明，分别参考 [C11 Clause 6] 和 [C++11 1.6] ；此外，通过 [C11 Annex A] 和 [C++11 Annex A] 总览语法。
 

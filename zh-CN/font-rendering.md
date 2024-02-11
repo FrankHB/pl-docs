@@ -63,7 +63,7 @@
 	* 把 FreeType 和 MacType 混淆，则接近直白的**愚蠢**。
 	* 也应当注意 FreeType 并不只是能够实现这些效果。FreeType 的默认效果和使用的具体 API 和使用的参数及字体都有关。
 	* 事实上，FreeType 也能光栅化点阵字体（虽然并不怎么直白，以至作为开发者，之前还修复过[误用灰度而无法正确支持 SimSun 点阵的问题](https://github.com/FrankHB/YSLib/blob/f1518054a117619e32d260a11ca30bdef9c2d51b/YFramework/source/YSLib/Service/CharRenderer.cpp#L99)）。
-	* 虽然使用了 C 这样（对一般非“系统”应用来讲尤其）普遍[糟糕](c-wrongs.md)的语言，但项目的代码质量意外地挺不错，模块化和文档的质量都比较高，实现也比 [stb](https://github.com/nothings/stb/blob/master/stb_truetype.h) 之流干净多了（尽管有出现过诸如严格兼容 ANSI C 却仍误用 `_` 起始的保留标识符这样的琐碎问题，不过维护者发现[修正](http://git.savannah.gnu.org/cgit/freetype/freetype2.git/commit/?id=37412ff9f42212bcf4dd29d9762f3c35b5735768)了）。近期 FreeType 的 API 有影响到依赖关系的整体性冗余问题，但这是 [Unicode 造的孽](criticisms-on-UTF-8-everywhere-manifesto.md) 。
+	* 虽然使用了 C 这样（对一般非“系统”应用来讲尤其）普遍[糟糕](c-wrongs.md)的语言，但项目的代码质量意外地挺不错，模块化和文档的质量都比较高，实现也比 [stb](https://github.com/nothings/stb/blob/master/stb_truetype.h) 之流干净多了（尽管有出现过诸如严格兼容 ANSI C 却仍误用 `_` 起始的保留标识符这样的琐碎问题，不过维护者发现[修正](https://git.savannah.gnu.org/cgit/freetype/freetype2.git/commit/?id=37412ff9f42212bcf4dd29d9762f3c35b5735768)了）。近期 FreeType 的 API 有影响到依赖关系的整体性冗余问题，但这是 [Unicode 造的孽](criticisms-on-UTF-8-everywhere-manifesto.md) 。
 
 　　遗憾的是，该知乎问题下的回答，虽然不乏详尽的比较分析，基本上并没有看穿这里提到的最重要的合理性问题。
 

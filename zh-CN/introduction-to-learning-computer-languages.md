@@ -41,7 +41,7 @@
 
 ## 入门书目问题 [1]
 
-源：[这个贴吧主题](http://tieba.baidu.com/p/5759976927) 14L 。
+源：[这个贴吧主题](https://tieba.baidu.com/p/5759976927) 14L 。
 
 　　C++入门书？Bjarne Stroustrup的The C++ Programming Language，虽然我也没耐心看几百页就去直接读ISO C++了。
 
@@ -67,13 +67,13 @@
 
 ## 入门书目问题 [2]
 
-源：[这个贴吧主题](http://tieba.baidu.com/p/6113807981) 15L 。
+源：[这个贴吧主题](https://tieba.baidu.com/p/6113807981) 15L 。
 
 　　虽然吧规有给清单，不过我本人不推荐任何书，更反对没其它编程语言的经验直接上手 C++ 。你不是天选之人，没本事把一坨蠢书的 bug 都找出来，之后事半功倍就等着呵呵吧。
 
 　　硬说的话，SICP 旧版和 CSAPP 打底，基本上看懂（不一定需要做题，看各人本事）以后学其它语言稍微容易点。讲 ALGOL-like 语言的国产书和带 Primer 的都更不推荐，稍微要上路点的，C 可能一本合格的都没有，C++ 看 Bjarne Stroustrup 的出版年份较近的入门读物。（我不给具体书名。如果找不到，说明基本不适合学这玩意儿。）但是你非得要“速成”，除了会啃权威文档习惯快速断章取义给书找 bug 以外基本没什么办法——跟某些没经验者的不同，这就是已知最快的方法（只不过对基础技能要求比较高，但说白了也就是一般专业要求而已），除非你有本事发明你学的东西（但即便是有，也就是快慢的区别，参考权威文献对这种 artifact 是批判的基础所以不可能省掉）。当然，LZ 可以抱怨短时间吃 3 本书强人所难，不过 LZ 的问题本来就是这个状况，何况就现在本科教师普遍连什么权威材料该参考都搞不清楚的教学质量，大多数专业 4 年出来的基本也都达不到这个入门水准。
 
-源：[同主题](http://tieba.baidu.com/p/6113807981) 16L 。
+源：[同主题](https://tieba.baidu.com/p/6113807981) 16L 。
 
 　　关于 SICP 之类的前期入门问题，免责声明：我没全部审阅过。但是我还是没找到更好的替代，所以顺便解释一下。
 
@@ -154,7 +154,7 @@
 
 　　为了文明用语，暂时先不对其它具体讲法进一步长篇大论了，有问题可以个别提问和讨论。
 
-源：[同主题](http://tieba.baidu.com/p/6113807981) 18L 。
+源：[同主题](https://tieba.baidu.com/p/6113807981) 18L 。
 
 　　还有一段 disclaimer 漏了，补充给了解 Scheme 的同学，虽然我认为 Scheme 很多地方设计得更正确，不过请勿在这个议题上误认为我是在单方面鼓吹 Scheme ：
 
@@ -178,7 +178,7 @@
 
 源：[[备份]为什么就学C/C++来说VS是渣](https://tieba.baidu.com/p/3706209867)。
 
-原始源：[失效链接](http://www.bilibili.com/video/av2211552/) 评论 795L 。
+原始源：[失效链接](https://www.bilibili.com/video/av2211552/) 评论 795L 。
 
 **注释** 即便没失效也没多少意义，因为现在找不到楼层了。
 
@@ -194,7 +194,7 @@
 
 源：[同主题](https://tieba.baidu.com/p/3706209867)。
 
-原始源：[失效链接](http://www.bilibili.com/video/av2234283/)
+原始源：[失效链接](https://www.bilibili.com/video/av2234283/)
 
 **注释** 背景知识参见[关于变量](about-variables.md)。
 
@@ -281,9 +281,9 @@
 　　一些体现现有具体语言的复杂和混乱情形的实例：
 
 * 一些重要基本概念，如*变量(variable)* 和*对象(object)* ，定义在各个语言中存在出入。
-	* [JLS 规定*变量(variable)* 是带类型的存储](https://docs.oracle.com/javase/specs/jls/se20/html/jls-4.html#jls-4.12)，[Go 语言规范也类似](https://go.dev/ref/spec)，而这实际相当于 ISO C 和 [ISO C++ 中*对象(object)*](http://eel.is/c++draft/intro.object#1) 的概念。
+	* [JLS 规定*变量(variable)* 是带类型的存储](https://docs.oracle.com/javase/specs/jls/se20/html/jls-4.html#jls-4.12)，[Go 语言规范也类似](https://go.dev/ref/spec)，而这实际相当于 ISO C 和 [ISO C++ 中*对象(object)*](https://eel.is/c++draft/intro.object#1) 的概念。
 	* ISO C [没有变量的正式定义](https://github.com/FrankHB/pl-docs/blob/master/zh-CN/variables.md)。
-	* [ISO C++ 的变量](http://eel.is/c++draft/basic#def.odr-5)总是具名的。这符合数学传统，同时和 ISO/IEC 2382 的定义兼容。
+	* [ISO C++ 的变量](https://eel.is/c++draft/basic#def.odr-5)总是具名的。这符合数学传统，同时和 ISO/IEC 2382 的定义兼容。
 	* Java 和 Go 语言的定义和数学传统以及遵循这个传统（“变量的值不可变”）的纯函数式语言（如 Haskell ）中的定义（特别地，*类型变量(type variable)* ）是冲突的。
 	* 事实上，[JLS 中直接定义了类型变量](https://docs.oracle.com/javase/specs/jls/se20/html/jls-4.html#jls-4.4)，是符合数学传统的；但类型变量不是变量，直观上存在矛盾。
 * ISO C++ 规定[*多态类(polymorphic class)* 是具有虚成员函数的类](https://eel.is/c++draft/class#virtual-1)，但实际上这里的*多态性(polymorphism)* 在一般意义上在一般意义上的特殊情形，即[*包含多态(inclusion polyrphism)* 或称*子类型多态(subtype polymorphism)*](https://zh.wikipedia.org/zh-cn/%E5%AD%90%E7%B1%BB%E5%9E%8B) 。
@@ -294,7 +294,7 @@
 
 　　此外，由于大多数语言的设计者未必具有足够的 PLT 背景，他们的作品不一定能够正确反映一般语言的知识。语言的实现者也未必足够清楚关于设计上的知识。例如：
 
-* Python 的设计者[承认不清楚尾调用和循环的区别](http://neopythonic.blogspot.com/2009/04/final-words-on-tail-calls.html)。
+* Python 的设计者[承认不清楚尾调用和循环的区别](https://neopythonic.blogspot.com/2009/04/final-words-on-tail-calls.html)。
 * Go 语言的设计者[看来不清楚*名义类型(nominal typing)*](https://www.reddit.com/r/programming/comments/chrtx/rob_pike_on_how_and_why_googles_new_go_language/) 。
 * Lisp 方言的一些编译器作者使用[*尾调用优化(TCO, tail call optimization)* 但并不清楚*真尾递归(proper tail recursion)* 的一般性质，造成一些混乱](https://groups.google.com/d/msg/comp.lang.lisp/AezzhxTliME/2Zsq7HUn_ssJ)。
 

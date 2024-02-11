@@ -2,7 +2,7 @@
 
 Created @ 2013-04-12, r1 rev 2013-04-12, markdown @ 2015-09-14.
 
-答[这篇贴子](http://tieba.baidu.com/p/2262386913)。
+答[这篇贴子](https://tieba.baidu.com/p/2262386913)。
 
 本文提到的“原文”同样是指《高质量C++/C编程指南》。
 

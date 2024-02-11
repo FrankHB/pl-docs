@@ -87,7 +87,7 @@ This is also significant to allow derived languages which require more refined c
 
 This embodies a philosophy requirement deeply: do abstract and express, rather than do reason instead. By burying the ease of the implementation under the requirement, it prioritize specific properties of interface at first. As the extent is indeed quite broad, some counterexamples are given to illustrate the intent:
 
-* Someone may conclude [a type represents falsity indicates the "crashed" state of the abstract machine](http://okmij.org/ftp/continuations/undelimited.html#introduction).
+* Someone may conclude [a type represents falsity indicates the "crashed" state of the abstract machine](https://okmij.org/ftp/continuations/undelimited.html#introduction).
 	* This is not conforming because it has introduced an implicit equivalence between "crashed state" and the [negation](https://en.wikipedia.org/wiki/Negation) of predictable states (*well-behaveness*), which is an implementation detail rather than the interface property.
 	* See also the discussion on mandatory typechecking in subclauses below for details.
 * Someone may conclude [closures imply predictable access of captures](http://lambda-the-ultimate.org/node/5007#comment-81721).
@@ -95,11 +95,11 @@ This embodies a philosophy requirement deeply: do abstract and express, rather t
 	* This is not [historically](https://en.wikipedia.org/wiki/Closure_%28computer_programming%29#History_and_etymology) significant out of the concrete contexts above. For the original case and other simplest cases like [STLC](https://en.wikipedia.org/wiki/Simply_typed_lambda_calculus) mentioned here, the distinction is irrelevant because terms are not able to be recursively owned.
 	* Later closures are proposed to resolve the [funarg problem](https://en.wikipedia.org/wiki/Funarg_problem). However, the solution actually introduces an implicit premise relying on well-behaveness of accesses to captures, making the distinction significant. Although the problem itself is widespread (for any languages having the similar "function" notion), the solution is not adopted by all designs, so the meaning of the term "closure" is not naturally strengthened with more restrictions of well-behaveness.
 	* Because nothing is otherwise required to restrict the extended meanings of "lexical" closures (used other than the simplest cases above) being well-behaved in the general sense in other directions, the contextual meaning ultimately depends on the language rules which define the term "closure". As of in general, the distinction should be still insignificant. (This approach of general terminology is also consistent to the spirit of "variables do not necessarily imply mutable states" whether the context is the so-called "functional languages" or not.)
-	* It is actually insignificant in some contemporarily designs. At least ISO C++ uses the terms [*closure object*](http://eel.is/c++draft/expr.prim.lambda#2) and [*closure type*](http://eel.is/c++draft/expr.prim.lambda#closure-1) satisfying both notions here.
+	* It is actually insignificant in some contemporarily designs. At least ISO C++ uses the terms [*closure object*](https://eel.is/c++draft/expr.prim.lambda#2) and [*closure type*](https://eel.is/c++draft/expr.prim.lambda#closure-1) satisfying both notions here.
 
 ### Examples
 
-[ISO C](http://www.open-std.org/jtc1/sc22/wg14/) and [ISO C++](http://www.open-std.org/jtc1/sc22/wg21/) fall in this category. Most others (like [Java](https://docs.oracle.com/javase/specs/jls/se11/html/index.html)) are not. Some languages only have undefined behavior in contexts which need to interact with the languages having this feature, e.g. `unsafe` in [C#](https://en.wikipedia.org/wiki/C_Sharp_%28programming_language%29) (specified by [ECMA-334](https://www.ecma-international.org/publications/standards/Ecma-334.htm)).
+[ISO C](https://www.open-std.org/jtc1/sc22/wg14/) and [ISO C++](https://www.open-std.org/jtc1/sc22/wg21/) fall in this category. Most others (like [Java](https://docs.oracle.com/javase/specs/jls/se11/html/index.html)) are not. Some languages only have undefined behavior in contexts which need to interact with the languages having this feature, e.g. `unsafe` in [C#](https://en.wikipedia.org/wiki/C_Sharp_%28programming_language%29) (specified by [ECMA-334](https://www.ecma-international.org/publications/standards/Ecma-334.htm)).
 
 ## Calculi based
 
@@ -116,9 +116,9 @@ It can also keep the specification essentially (formally) simple without certain
 
 As a minor concern, lack of designated models may introduce controversial views between existing languages and the models, which seriously undermines the value of any other candidates in practice. For example, the case about so-called [OO languages](http://www.atalon.cz/om/what-is-a-metaclass) reveals that almost all industrial OO languages are not well-formalized for years. Introducing a model specifically for the design of a language can avoid such embarrassment for that language, although there is still room of divergence on the topic of common properties among different languages.
 
-A notable exception is [Standard ML](http://sml-family.org/). A recent version of its specification is [here](http://sml-family.org/sml97-defn.pdf).
+A notable exception is [Standard ML](https://sml-family.org/). A recent version of its specification is [here](https://sml-family.org/sml97-defn.pdf).
 
-A secondary kind of such category is an informal model (usually expressed in natural language) in the specification, which can be formalized later. This is considered compromised to the purpose of formal specification. Nevertheless, a few languages can have the work together in their specifications. For example, the Scheme language have more than one models in various R<sup>n</sup>RS specifications in their appendix, but they are not normative. For Scheme, there are also standalone detailed documents like [this](http://users.eecs.northwestern.edu/~robby/pubs/papers/jfp2008-mf.pdf).
+A secondary kind of such category is an informal model (usually expressed in natural language) in the specification, which can be formalized later. This is considered compromised to the purpose of formal specification. Nevertheless, a few languages can have the work together in their specifications. For example, the Scheme language have more than one models in various R<sup>n</sup>RS specifications in their appendix, but they are not normative. For Scheme, there are also standalone detailed documents like [this](https://users.eecs.northwestern.edu/~robby/pubs/papers/jfp2008-mf.pdf).
 
 Some non-specifications for existing language dialects also fall in this category, like [[Muller92]](http://www.cs.bc.edu/~muller/research/postscript/toplas92.ps) and [[Ellison12]](https://fsl.cs.illinois.edu/publications/ellison-2012-thesis.pdf).
 
@@ -143,7 +143,7 @@ On the contrast, more low-level systems like [combinatory logic](https://en.wiki
 * A convenient mean to express the semantic definitions of such mappings is to use lambda abstractions instead. This is even *canonical* [in the most foundational level in such a system](https://en.wikipedia.org/wiki/SKI_combinator_calculus#Recursive_parameter_passing_and_quoting).
 * During programming using such systems, users have to introduce devices of abstraction in explicit style to figure the mappings out (see examples below).
 
-A notable example NOT in the category is [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck), whose "parent" model is [P''](https://en.wikipedia.org/wiki/P′′). Another is [the Unlambda programming language](http://www.madore.org/~david/programs/unlambda/), which implements a dialect of combinatory logic. Different to name-based calculi, the tokens or characters in such languages does not represent *names*. Thus, variable bindings cannot be introduced directly. As a result (and the example of the major difficulty to use them in practice), to figure out how to encode program logic as native mappings (in implicit style, like "functions" in Unlambda) usually requires users first to know the counterpart of the devices of the abstraction in explicit style, like [in lambda abstractions](http://www.madore.org/~david/programs/unlambda/#howto).
+A notable example NOT in the category is [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck), whose "parent" model is [P''](https://en.wikipedia.org/wiki/P%E2%80%B2%E2%80%B2). Another is [the Unlambda programming language](http://www.madore.org/~david/programs/unlambda/), which implements a dialect of combinatory logic. Different to name-based calculi, the tokens or characters in such languages does not represent *names*. Thus, variable bindings cannot be introduced directly. As a result (and the example of the major difficulty to use them in practice), to figure out how to encode program logic as native mappings (in implicit style, like "functions" in Unlambda) usually requires users first to know the counterpart of the devices of the abstraction in explicit style, like [in lambda abstractions](http://www.madore.org/~david/programs/unlambda/#howto).
 
 The (untyped) [lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculus) is the typical baseline model for its historical significance.
 
@@ -164,7 +164,7 @@ See subclauses below for other details.
 
 For the necessity of impure effects, see the subclause of first-class effects below.
 
-The formal model of impure variant of lambda calculi are relatively recent compared to the practical languages with the feature. See [[Plo75]](http://homepages.inf.ed.ac.uk/gdp/publications/cbn_cbv_lambda.pdf) and [[Fe91]](https://www2.ccs.neu.edu/racket/pubs/scp91-felleisen.ps.gz).
+The formal model of impure variant of lambda calculi are relatively recent compared to the practical languages with the feature. See [[Plo75]](https://homepages.inf.ed.ac.uk/gdp/publications/cbn_cbv_lambda.pdf) and [[Fe91]](https://www2.ccs.neu.edu/racket/pubs/scp91-felleisen.ps.gz).
 
 Note that the impurity are conflict to [*η-reduction*](https://en.wikipedia.org/wiki/Lambda_calculus#%CE%B7-reduction), because the combination of the operator with "empty" operand is confilct with the referencing of the operator itself. This is direct in the syntax, and also unavoidable in the semantic without further modifications on the reduction rules.
 
@@ -309,9 +309,9 @@ The reified continuation is first known as the result of [`call/cc` operator](ht
 * Allowing more reasonably implementable features on continuations
 * Simplification on user programs using first-class continuations
 
-Scheme's continuations [do not compose](http://okmij.org/ftp/continuations/undelimited.html#introduction). This limit its practical use. It can be resolved by introducing control delimiters. The resulted continuations are *delimited continuations*. It is also considered superior to undelimited one [in any reasonable practical case](http://okmij.org/ftp/continuations/against-callcc.html).
+Scheme's continuations [do not compose](https://okmij.org/ftp/continuations/undelimited.html#introduction). This limit its practical use. It can be resolved by introducing control delimiters. The resulted continuations are *delimited continuations*. It is also considered superior to undelimited one [in any reasonable practical case](https://okmij.org/ftp/continuations/against-callcc.html).
 
-There are various of control operators for building delimited continuation. About their expressiveness, see [here](http://okmij.org/ftp/continuations/#impromptu-shift).
+There are various of control operators for building delimited continuation. About their expressiveness, see [here](https://okmij.org/ftp/continuations/#impromptu-shift).
 
 ### Case studies
 
@@ -458,7 +458,7 @@ Both ISO C and ISO C++ specify phases of translation.
 
 [Racket](https://racket-lang.org) has [compile and run-time phases](https://docs.racket-lang.org/guide/stx-phases.html).
 
-[MetaOCaml](http://okmij.org/ftp/ML/MetaOCaml.html) facilitates multi-staging programming as the prominent feature, which assumes separately handling of staged code.
+[MetaOCaml](https://okmij.org/ftp/ML/MetaOCaml.html) facilitates multi-staging programming as the prominent feature, which assumes separately handling of staged code.
 
 ### Counterexamples
 
@@ -513,7 +513,7 @@ The typechecking is not allowed overall. It is users' freedom to derive the inva
 
 Although the concrete judgment of qualification is subjective, but clearly, the requirement type system shall at least allow undefined behavior in the most general cases.
 
-In this sense, it should be noted [the bottom type](https://en.wikipedia.org/wiki/Bottom_type) has special meaning on the purpose of the specification. It stands for "unpredictable (by design)" but not necessarily the "crashed" state (like [this](http://okmij.org/ftp/continuations/undelimited.html#introduction)).
+In this sense, it should be noted [the bottom type](https://en.wikipedia.org/wiki/Bottom_type) has special meaning on the purpose of the specification. It stands for "unpredictable (by design)" but not necessarily the "crashed" state (like [this](https://okmij.org/ftp/continuations/undelimited.html#introduction)).
 
 ## Restrictive computability
 
@@ -684,7 +684,7 @@ Both ISO C and ISO C++ lack specified ABI specifications within the language rul
 		* Overloading and namespaces are usually supported by [name mangling](https://en.wikipedia.org/wiki/Name_mangling) on symbols in binary file formats. Implementation of C also uses similar (but almost always simpler) strategy in practice, but this is not mandated by the language specification.
 		* ISO C++ does mandate more than ISO C, including the language support library within the standard library required by core language features (for support of exception handling, [RTTI](https://en.wikipedia.org/wiki/RTTI) and so on). These specifications make the runtime library is not avoidable in a complete conforming implementation in practice. The additional parts are usually strictly more complicated than libc and are often the reasons of binary incompatibility besides name mangling.
 		* These additional complexities may be worth having a standalone ABI specification like Itanium C++ ABI. Nevertheless, compatibility is still limited among different versions of the ABI specification, depending on feature addition of targeted versions of ISO C++.
-	* ISO C++ did attempt to address underlying ABI issues, e.g. allocator pointers compatible to [both near and far pointers](https://en.wikipedia.org/wiki/Intel_Memory_Model#Pointer_sizes), but the effect was suspicious. On the contrary, ISO C does not do so, although there are separated technical reports like [ISO TR18037](http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1169.pdf), which are far less well-known.
+	* ISO C++ did attempt to address underlying ABI issues, e.g. allocator pointers compatible to [both near and far pointers](https://en.wikipedia.org/wiki/Intel_Memory_Model#Pointer_sizes), but the effect was suspicious. On the contrary, ISO C does not do so, although there are separated technical reports like [ISO TR18037](https://www.open-std.org/jtc1/sc22/wg14/www/docs/n1169.pdf), which are far less well-known.
 
 ## [Metaprogramming](https://en.wikipedia.org/wiki/Metaprogramming)
 
@@ -709,7 +709,7 @@ While the purpose is plausible, it is not the feature that a general-purposed la
 
 [Macros](https://en.wikipedia.org/wiki/Metaprogramming#Macro_systems) are traditionally used to implement reflective features. They share similar pros and cons. See the specific subclauses below.
 
-[Metaclasses](https://en.wikipedia.org/wiki/Metaclass) are generative reflection facilities which are also [proposed for C++]([http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0707r3.pdf]).
+[Metaclasses](https://en.wikipedia.org/wiki/Metaclass) are generative reflection facilities which are also [proposed for C++]([https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0707r3.pdf]).
 
 C++ templates are hacked to support some of reflective features like introspection. The abused [template metaprogramming](https://en.wikipedia.org/wiki/Template_metaprogramming) techniques are also studied and introduced by design in languages like D.
 
@@ -755,7 +755,7 @@ Macros without hygiene are not safe nor efficient to be used by default. It shou
 
 The namespace separation of values is the design to distinguish a term denoting callable entities (*functions*, or *combiners* in vau-calculi parlance) from others.
 
-This is perhaps first well-known by Lisp communities (see [the article about *function cells* and *value cells*](http://www.nhplace.com/kent/Papers/Technical-Issues.html)). It is interested because functions used as a significant kind of first-class entities are concerned particularly by some Lisp dialects and different designs involve very different looks in the resulted idiomatic code. The resulted dialects with the separation is called "Lisp-2", in contrast to the remained "Lisp-1" ones.
+This is perhaps first well-known by Lisp communities (see [the article about *function cells* and *value cells*](https://www.nhplace.com/kent/Papers/Technical-Issues.html)). It is interested because functions used as a significant kind of first-class entities are concerned particularly by some Lisp dialects and different designs involve very different looks in the resulted idiomatic code. The resulted dialects with the separation is called "Lisp-2", in contrast to the remained "Lisp-1" ones.
 
 Note the term "namespace" is not a language-supported entity here, but a mechanism in *name resolution*. The etymology is still plausible, though. See the discussion about terminology below.
 
@@ -794,7 +794,7 @@ This is true. However, there seems no better replacements in general, besides th
 
 ### Number of namespaces
 
-As noted in [the article](http://www.nhplace.com/kent/Papers/Technical-Issues.html), there can be more than 2 namespaces. But this is less irrelavant here, because cases of more than 1 namespaces also suffer from issues of Lisp-2 in general.
+As noted in [the article](https://www.nhplace.com/kent/Papers/Technical-Issues.html), there can be more than 2 namespaces. But this is less irrelavant here, because cases of more than 1 namespaces also suffer from issues of Lisp-2 in general.
 
 Instead, the mentioned nature for multiple namespaces holding "additional meanings associated symbols" are actually popular if the difference of notations are uninterested. That is, it is just the *metadata*. Whether the metadata is stored in one more cells or many more cells are also less interested by the language design, because it can be addressed by the transformation in the implementation, as pure details, say, the IR (immediate representation) in a compiler. Given that there can be more than one IRs in different phases of translation, this is even less interesting fix up the concrete numbers of cells in the language design.
 

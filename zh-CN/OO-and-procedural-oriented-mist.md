@@ -12,7 +12,7 @@ This is also arranged as a dissertation @ ZJU.
 
 # II.编程范型(programing paradigm)
 
-　　是计算机编程中的一种基本方式[[en.wiki:programming paradigm]](http://en.wikipedia.org/wiki/Programming_paradigm) 。OOP 和*命令式编程(imperative programing)* 、*函数式编程(functional programing)* 、*逻辑编程(logical programing)* 并列，是当前主流的编程范型[[Kurt Nørmarks]](http://people.cs.aau.dk/~normark/prog3-03/html/notes/paradigms_themes-paradigm-overview-section.html)。此外还有*结构化(structured)* 、*声明式(declarative)* 、*面向方面(aspect-oriented)* 、*数据驱动(data-driven)* 、*泛型(generic)* 、*并行(parallel)* 、*元编程(metaprograming)* 等各种范型。
+　　是计算机编程中的一种基本方式[[en.wiki:programming paradigm]](https://en.wikipedia.org/wiki/Programming_paradigm) 。OOP 和*命令式编程(imperative programing)* 、*函数式编程(functional programing)* 、*逻辑编程(logical programing)* 并列，是当前主流的编程范型[[Kurt Nørmarks]](https://people.cs.aau.dk/~normark/prog3-03/html/notes/paradigms_themes-paradigm-overview-section.html)。此外还有*结构化(structured)* 、*声明式(declarative)* 、*面向方面(aspect-oriented)* 、*数据驱动(data-driven)* 、*泛型(generic)* 、*并行(parallel)* 、*元编程(metaprograming)* 等各种范型。
 
 　　应该注意的是，这些范型并不都是同一层次上的风格，且由于分类方法的不同，不都是互斥的。当然也有些范型是对立的：结构化与*非结构化(non-structured)* ，但这是少数。因此通常在同一段程序中使用了一种以上的编程范型，只强调其中的一部分。
 
@@ -22,7 +22,7 @@ This is also arranged as a dissertation @ ZJU.
 
 　　命令式编程是一种重要的编程范型。它和声明式编程相对，强调特定路径执行的步骤（控制流）使程序的状态向预期改变，而非和执行路径无关的计算逻辑的表达。大部分硬件实现的体系结构都直接支持命令式范型。可执行的语句作为语言特性，是支持命令式编程的重要特征。
 
-　　过程式编程有时被看作是命令式编程的同义词，也可以表示一种基于结构化编程和过程调用(procedual call) 的编程范型[[en.wiki:Procedural programming]](http://en.wikipedia.org/wiki/Procedural_programming)。过程（或例程、子例程、方法、函数——注意不要和函数式编程混淆）在这里是可以通过调用这一手段被重复执行的程序片段，作为语言特性，是支持过程式编程的语言的重要特征。
+　　过程式编程有时被看作是命令式编程的同义词，也可以表示一种基于结构化编程和过程调用(procedual call) 的编程范型[[en.wiki:Procedural programming]](https://en.wikipedia.org/wiki/Procedural_programming)。过程（或例程、子例程、方法、函数——注意不要和函数式编程混淆）在这里是可以通过调用这一手段被重复执行的程序片段，作为语言特性，是支持过程式编程的语言的重要特征。
 
 　　下文中提及的过程式编程都指第二种含义，而第一种直接称为命令式编程。
 
@@ -42,7 +42,7 @@ This is also arranged as a dissertation @ ZJU.
 
 　　对象和消息是 OOP 的核心。OOP 和对类型系统的抽象导致*类(class)* 概念的出现。使用类作为核心特性的语言实现 OOP 的*基于类的风格的(class-based style)* OO ，这是支持OOP的语言中的主流，如 C++ 、Java 。与之不同的是基于*原型的风格的(prototype-based style)* OO，如ECMAScript。
 
-　　当前流行的 C++ 、Java 等“主流面向对象语言”（事实上把 C++ 称为面向对象语言并太不恰当，见下文），其实并不能算最符合 OOP 的基本要义。原始的 OOP 的观点，见面向对象之父 Alan Kay 的阐述[[Alan Kay]](http://userpage.fu-berlin.de/~ram/pub/pub_jf47ht81Ht/doc_kay_oop_en) 。
+　　当前流行的 C++ 、Java 等“主流面向对象语言”（事实上把 C++ 称为面向对象语言并太不恰当，见下文），其实并不能算最符合 OOP 的基本要义。原始的 OOP 的观点，见面向对象之父 Alan Kay 的阐述[[Alan Kay]](https://www.purl.org/stefan_ram/pub/doc_kay_oop_en) 。
 
 　　OOP 常具有如下几个特性：数据抽象、封装、消息、组件化、多态和继承。注意，这些特性并非同时提出的，因此并非都是 OOP 的必要组成部分；也并非 OOP 的专利。
 
@@ -66,7 +66,7 @@ This is also arranged as a dissertation @ ZJU.
 
 [en.wiki:*] 英文喂鸡，喂度娘，略。
 
-[[Kurt Nørmarks]](http://people.cs.aau.dk/~normark/prog3-03/html/notes/paradigms_themes-paradigm-overview-section.html)
+[[Kurt Nørmarks]](https://people.cs.aau.dk/~normark/prog3-03/html/notes/paradigms_themes-paradigm-overview-section.html)
 
-[[Alan Kay]Dr. Alan Kay  on the Meaning of “Object-Oriented Programming”](http://userpage.fu-berlin.de/~ram/pub/pub_jf47ht81Ht/doc_kay_oop_en)
+[[Alan Kay]Dr. Alan Kay  on the Meaning of “Object-Oriented Programming”](https://www.purl.org/stefan_ram/pub/doc_kay_oop_en)
 

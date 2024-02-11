@@ -113,7 +113,7 @@ ISO C++11 提供了*标准布局类(standard-layout class)* 的概念，基本�
 ## 3.1 异常不得不被实现为内建的，某种意义上是缺乏上述两者的直接结果——这导致了另外的问题
 
 * 例如ABI兼容性——同一个体系结构和操作系统的同一版本的同一个实现，使用不同不同异常模型时仍然可能不兼容
-* 再如 [WG21/N4049](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4049.pdf)
+* 再如 [WG21/N4049](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4049.pdf)
 
 ## 3.2 面向对象支持——关键是面向对象本身就没有个相对统一的认识
 
