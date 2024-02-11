@@ -120,9 +120,9 @@ A notable exception is [Standard ML](http://sml-family.org/). A recent version o
 
 A secondary kind of such category is an informal model (usually expressed in natural language) in the specification, which can be formalized later. This is considered compromised to the purpose of formal specification. Nevertheless, a few languages can have the work together in their specifications. For example, the Scheme language have more than one models in various R<sup>n</sup>RS specifications in their appendix, but they are not normative. For Scheme, there are also standalone detailed documents like [this](http://users.eecs.northwestern.edu/~robby/pubs/papers/jfp2008-mf.pdf).
 
-Some non-specifications for existing language dialects also fall in this category, like [[Muller92]](http://www.cs.bc.edu/~muller/research/postscript/toplas92.ps) and [[Ellison12]](http://fsl.cs.illinois.edu/pubs/ellison-2012-thesis.pdf).
+Some non-specifications for existing language dialects also fall in this category, like [[Muller92]](http://www.cs.bc.edu/~muller/research/postscript/toplas92.ps) and [[Ellison12]](https://fsl.cs.illinois.edu/publications/ellison-2012-thesis.pdf).
 
-There exist works on formal models to improve current language specifications, like [this](http://fsl.cs.illinois.edu/pubs/ellison-2012-thesis.pdf). Similar work can identify the issue on some existed specification that is normative (but not based on formal models), like [this](https://github.com/cplusplus/draft/issues/2541).
+There exist works on formal models to improve current language specifications, like [this](https://fsl.cs.illinois.edu/publications/ellison-2012-thesis.pdf). Similar work can identify the issue on some existed specification that is normative (but not based on formal models), like [this](https://github.com/cplusplus/draft/issues/2541).
 
 A more specific requirement is the model should be *computational*, as a general language is always implemented with [*computational effects*](https://www.sciencedirect.com/science/article/pii/S1571066104050893/pdf), rather than by *(equational) reasoning*. The latter is centric in the models for some DSL (e.g. languages used in proof assistants) and some implementation methodologies (e.g. program transformation), but it is not necessarily in the designs of general-purposed languages. This is the main reason why "calculi" rather than more generic (arbitrary) "models" are focused here.
 
@@ -323,7 +323,7 @@ C and C++ lack first-class objects as the objects can have decayable types like 
 	* No need to abstract loops specifically
 * Allowing users to extend the mechanism when needed, with minimal compact to existing syntax
 
-This is an important property exposed by the language design with mandatory rules. See [[Cl98]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.8567&rep=rep1&type=pdf) for formalization on a dialect of the Scheme language. This property is generally language-neutral, and it can be adopted in new language designs.
+This is an important property exposed by the language design with mandatory rules. See [[Cl98]](https://www.researchgate.net/profile/William_Clinger/publication/2728133_Proper_Tail_Recursion_and_Space_Efficiency/links/02e7e53624927461c8000000/Proper-Tail-Recursion-and-Space-Efficiency.pdf) for formalization on a dialect of the Scheme language. This property is generally language-neutral, and it can be adopted in new language designs.
 
 Note *PTC (proper tail call)* is NOT same to *TCO (tail call optimization)*. See [here](https://groups.google.com/d/msg/comp.lang.lisp/AezzhxTliME/2Zsq7HUn_ssJ) for clarification.
 
@@ -347,7 +347,7 @@ Nevertheless, syntactic forms at the call sites are still far from correct, beca
 
 * Known most efficient way in space being compatible to pass-by-value semantics not relying on the restrictions on the structure of the activation record frames
 
-See [[Cl98]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.8567&rep=rep1&type=pdf) and [this page](https://www.akalin.com/evlis-tail-recursion) for introduction.
+See [[Cl98]](https://www.researchgate.net/profile/William_Clinger/publication/2728133_Proper_Tail_Recursion_and_Space_Efficiency/links/02e7e53624927461c8000000/Proper-Tail-Recursion-and-Space-Efficiency.pdf) and [this page](https://www.akalin.com/evlis-tail-recursion) for introduction.
 
 Note the sfs (safe-for-space) requirement is considered too restrictive here.
 
@@ -622,7 +622,7 @@ There are other implementation concerns to avoid general-purposed GC by default.
 	* This already conflicts with the requirements of avoiding mandatory of the global store described in the related subclause.
 	* Consequently, deriving a language without GC in user programs is generally impossible. This conflicts with the requirements of general-purposed property (at least to the configurations which cannot afford the overhead of the global store).
 * Notably, GC often incurs memory consumption problem even with a robust global store. That is, requiring [a lot more backing memory than the amount being needed](https://sealedabstract.com/rants/why-mobile-web-apps-are-slow/index.html).
-	* Note this is actually a kind of "leak" as per the definition of [[Cl98]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.8567&rep=rep1&type=pdf), being stricter worse than deterministic release of memory in block scope variables of ALGOL-like languages.
+	* Note this is actually a kind of "leak" as per the definition of [[Cl98]](https://www.researchgate.net/profile/William_Clinger/publication/2728133_Proper_Tail_Recursion_and_Space_Efficiency/links/02e7e53624927461c8000000/Proper-Tail-Recursion-and-Space-Efficiency.pdf), being stricter worse than deterministic release of memory in block scope variables of ALGOL-like languages.
 	* This increases the risks of [page faults](https://en.wikipedia.org/wiki/Page_fault) in modern systems, which is even worse for performance.
 * Many GC incurs the STW (stop-the-world) problem (mentioned previously). This can seriously degenerate responsibility of applications by poor latency and causes bad user experience in cases of interactive applications.
 	* Generational or incremental GC may relieve the problem, but not totally avoid. And the complexity of GC implementation can increase a lot.
@@ -640,7 +640,7 @@ Note the discouragement of GC does not cover the following facilities.
 
 * Specific resource management schemes sharing some properties with GC, like resource pools (esp. [memory pools](https://en.wikipedia.org/wiki/Memory_pool)), are recommended as the replacement of GC for specific resource usage patterns.
 * Transformations based on analysis of resources usage include [escape analysis](https://en.wikipedia.org/wiki/Escape_analysis) and [region inference](https://en.wikipedia.org/wiki/Region-based_memory_management#Region_inference) (sometimes referred as the *static GC*).
-* Deterministic local collectors can be used to suppress leaks further than ALGOL-like block structures (see [[Cl98]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.8567&rep=rep1&type=pdf)), including the case of implementation of TCO without GC.
+* Deterministic local collectors can be used to suppress leaks further than ALGOL-like block structures (see [[Cl98]](https://www.researchgate.net/profile/William_Clinger/publication/2728133_Proper_Tail_Recursion_and_Space_Efficiency/links/02e7e53624927461c8000000/Proper-Tail-Recursion-and-Space-Efficiency.pdf)), including the case of implementation of TCO without GC.
 
 ## [ABI](https://en.wikipedia.org/wiki/Application_binary_interface) dependency
 
