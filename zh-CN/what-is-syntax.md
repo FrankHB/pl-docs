@@ -10,7 +10,7 @@ Created @ 2015-07-01 08:50.
 
 # 0.体例
 
-引文文本使用 `>` 前缀（ markdown 语法时可自动转换）。
+引文文本使用 `>` 前缀（隐含在 markdown 源代码中自动转换）。
 
 包括翻译的引文用 `[[ ]]` 标识。
 
@@ -24,7 +24,7 @@ Created @ 2015-07-01 08:50.
 
 > In linguistics, syntax is the set of rules, principles, and processes that govern the structure of sentences in a given language. The term syntax is also used to refer to the study of such principles and processes. In linguistics, syntax is the set of rules, principles, and processes that govern the structure of sentences in a given language. The term syntax is also used to refer to the study of such principles and processes. The goal of many syntacticians is to discover the syntactic rules common to all languages.
 
-在语言学中，语法是一个语言中控制句子结构中的规则、原理和过程。术语 syntax 也指对这些原理和过程的研究。（译注： syntax = 语法学。）许多语法学家的目标是发现适用于所有语言的语法规则。
+在语言学中，语法是一个语言中控制句子结构中的规则、原理和过程。术语 syntax 也指对这些原理和过程的研究。（译注：syntax = 语法学。）许多语法学家的目标是发现适用于所有语言的语法规则。
 
 ]]
 
@@ -39,7 +39,7 @@ Created @ 2015-07-01 08:50.
 [[
 
 > ## Etymology
-
+>
 > From Ancient Greek: σύνταξις "coordination" from σύν syn, "together," and τάξις táxis, "an ordering".
 
 ## 语源
@@ -88,9 +88,9 @@ Created @ 2015-07-01 08:50.
 
 # 2.文法(grammar)
 
-细心的读者可能会发现，实际上经常被称为语法的词语并不是指 syntax ，而是上面出现过的另一个容易混淆的词： grammar 。
+细心的读者可能会发现，实际上经常被称为语法的词语并不是指 syntax ，而是上面出现过的另一个容易混淆的词：grammar 。
 
-仅涉及自然语言的话题中， grammar 常被翻译成“语法”，而 syntax 则是“句法”（上面的 logical syntax更惯于被翻译成“逻辑句法”），这并没有造成太大问题。不过在涉及更广的范围下，这样会造成一些误会。因为“句”的概念的微妙差异，导致“句法”这个词失去基础。这个情况下，作为泛指，通译 grammar 为“文法”， syntax 为“语法”。
+仅涉及自然语言的话题中，grammar 常被翻译成“语法”，而 syntax 则是“句法”（上面的 logical syntax更惯于被翻译成“逻辑句法”），这并没有造成太大问题。不过在涉及更广的范围下，这样会造成一些误会。因为“句”的概念的微妙差异，导致“句法”这个词失去基础。这个情况下，作为泛指，通译 grammar 为“文法”，syntax 为“语法”。
 
 按[维基](https://en.wikipedia.org/wiki/Grammar)给的定义：
 
@@ -145,35 +145,34 @@ ISO C 区分 **Constraints** 的要点是——这些规则和 **Syntax** 一样
 **WG14/N1570**
 
 > # 4 Conformance
-
-> 2 If a ‘‘shall’’ or ‘‘shall not’’ requirement that appears outside of a constraint or runtimeconstraint is violated, the behavior is undefined. Undefined behavior is otherwise
+>
+> 2 If a ‘‘shall’’ or ‘‘shall not’’ requirement that appears outside of a constraint or runtimeconstraint is violated, the behavior is undefined. Undefined behavior is otherwise\
 indicated in this International Standard by the words ‘‘undefined behavior’’ or by the
 omission of any explicit definition of behavior. There is no difference in emphasis among
 these three; they all describe ‘‘behavior that is undefined’’.
 
-这个意义下， **Constraints** 的规则和语法规则具有同等效力，尽管其中有一部分是形式语法说不清楚的(_constant-expression_) 。而剩下的，违反了就当未定义行为了。
+这个意义下，**Constraints** 的规则和语法规则具有同等效力，尽管其中有一部分是形式语法说不清楚的(_constant-expression_) 。而剩下的，违反了就当未定义行为了。
 
 在ISO C++中，这里的设计更加明确。
 
 **WG21/N4527**
 
 > ### 1.3.27 [defns.well.formed]
-
-> **well-formed program**
-
-> C++ program constructed according to the syntax rules, diagnosable semantic rules, and the One Definition Rule (3.2).
-
+>
+> **well-formed program**\
+> C++ program constructed according to the syntax rules, diagnosable semantic rules, and the One Definition Rule (3.2).\
+>
 > ## 1.4 Implementation compliance [intro.compliance]
-
+>
 > 1 The set of diagnosable rules consists of all syntactic and semantic rules in this International Standard except for those rules containing an explicit notation that “no diagnostic is required” or which are described as resulting in “undefined behavior.”
 
 同逻辑学的习惯，“合式”被作为构造性正确的标准，是可以明确决定的——只不过仍然不要求实现必须确定。有别于未定义行为，这里明确区分了诊断要求，表示了更精细的区别。
 
 ODR 本质上来源于构造性语义规则，不过因为单独翻译链接模型和对于不同实体本身的复杂性，这里做了妥协，直接和语法规则、可诊断语义规则并列了。
 
-另外值得一提的是，虽然 ISO C 和 ISO C++ 的 Annex A 都直接给出了类似的东西，但标题却不大一样： C 是 **Language syntax summary** ， C++ 是 **Grammar summary** 。
+另外值得一提的是，虽然 ISO C 和 ISO C++ 的 Annex A 都直接给出了类似的东西，但标题却不大一样：C 是 **Language syntax summary** ，C++ 是 **Grammar summary** 。
 
-其实也不难理解： C++ 的语法和语义虽然在原则上多少是想要明确分离的，具体设计上却自己打脸。
+其实也不难理解：C++ 的语法和语义虽然在原则上多少是想要明确分离的，具体设计上却自己打脸。
 
 C 的语法接近上下文无关语法(context-free grammar) （考虑到抽风的指针语法所以不纯粹），而C++的情况明显糟糕得多。
 
@@ -181,7 +180,7 @@ C 的语法接近上下文无关语法(context-free grammar) （考虑到抽风�
 
 换句话说，要说 C++ 的“语法”烂，正是因为它连“语法”是什么都说不清楚——规则的边界本来就是模糊的。
 
-大概这个槽点， ISO C++ 的 Annex A 也就老实写 grammar 而不是 syntax 了，尽管和C一样，明明两者都没有给出形式语义……
+大概这个槽点，ISO C++ 的 Annex A 也就老实写 grammar 而不是 syntax 了，尽管和C一样，明明两者都没有给出形式语义……
 
 Java 在这里就好得多，直接给出了文法定义，并明确使用上下文无关文法。
 
@@ -189,57 +188,42 @@ Java 在这里就好得多，直接给出了文法定义，并明确使用上下
 
 **[JLS 8](http://docs.oracle.com/javase/specs/jls/se8/jls8.pdf)**
 
-> 2 Grammars 9
-
-> 2.1 Context-Free Grammars 9
-
-> 2.2 The Lexical Grammar 9
-
-> 2.3 The Syntactic Grammar 10
-
+> 2 Grammars 9\
+> 2.1 Context-Free Grammars 9\
+> 2.2 The Lexical Grammar 9\
+> 2.3 The Syntactic Grammar 10\
 > 2.4 Grammar Notation 10
 
-当然， Java 的语义一锅乱七八糟的这里不展开了。
+当然，Java 的语义一锅乱七八糟的这里不展开了。
 
 C# 大体上抄的 Java ，以及C艹的部分糟烂（又是关于<>的疼货）……
 
 **[ECMA-334 3 2005](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf)**
 
-> 9.1 Programs
-
-> 9.2 Grammars
-
-> 9.2.1 Lexical grammar
-
-> 9.2.2 Syntactic grammar
-
+> 9.1 Programs\
+> 9.2 Grammars\
+> 9.2.1 Lexical grammar\
+> 9.2.2 Syntactic grammar\
 > 9.2.3 Grammar ambiguities
 
 ECMAScript 总体上也是一路货（否则干嘛叫 JavaScript ……）
 
 **[ECMA-262 5.1 2011](http://www.ecma-international.org/ecma-262/5.1/ECMA-262.pdf)**
 
-> 5 Notational Conventions
-
-> 5.1 Syntactic and Lexical Grammars
-
-> 5.1.1 Context-Free Grammars
-
-> 5.1.2 The Lexical and RegExp Grammars
-
-> 5.1.3 The Numeric String Grammar
-
-> 5.1.4 The Syntactic Grammar
-
-> 5.1.5 The JSON Grammar
-
+> 5 Notational Conventions\
+> 5.1 Syntactic and Lexical Grammars\
+> 5.1.1 Context-Free Grammars\
+> 5.1.2 The Lexical and RegExp Grammars\
+> 5.1.3 The Numeric String Grammar\
+> 5.1.4 The Syntactic Grammar\
+> 5.1.5 The JSON Grammar\
 > 5.1.6 Grammar Notation
 
 C++/CLI 是直接照搬 ISO C++ 偷懒了。
 
 [Haskell 2010 Report](https://www.haskell.org/definition/haskell2010.pdf) 则只是提了下 notation ，看起来都没说啥 grammar ……不知道对混乱的设计有多少自知之明呢。
 
-作为补充说明， [Scheme](https://en.wikipedia.org/wiki/Scheme_%28programming_language%29) 的 [R<sup>n</sup>RS](http://www.schemers.org/Documents/Standards/) 是少数给出了文法描述的形式语义的语言规范。正文符号太疼略。
+作为补充说明，[Scheme](https://en.wikipedia.org/wiki/Scheme_%28programming_language%29) 的 [R<sup>n</sup>RS](http://www.schemers.org/Documents/Standards/) 是少数给出了文法描述的形式语义的语言规范。正文符号太疼略。
 
 顺便，注意 Scheme 的语法和 [S-expression](https://en.wikipedia.org/wiki/S-expression) 的语法是两回事。
 
@@ -251,5 +235,5 @@ C++/CLI 是直接照搬 ISO C++ 偷懒了。
 
 （剩下的懒得写了自行脑补。）
 
-附注： C++ 标准中一处和本文不符的提法[已被修正](https://github.com/cplusplus/draft/pull/790)。
+附注：C++ 标准中一处和本文不符的提法[已被修正](https://github.com/cplusplus/draft/pull/790)。
 

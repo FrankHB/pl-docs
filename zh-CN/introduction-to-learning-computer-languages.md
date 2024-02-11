@@ -53,7 +53,7 @@
 
 　　C的话就是 K&R 的 The C Programming Language ，不过也可能有一些错误，所以随时准备考虑 ISO C 修正。
 
-　　C++入门的除了 BS 也就 Scott Meyers 的书稍微能看点。 Herb Sutter 和 Andrew Koenig 也算稍微高级那么点的话题的靠谱的作者（也包括一些关于 C 的说法）。这里提一下 Accerated C++ 风评还可以，但是应该比较旧了。相对来讲一些讲C++惯用法的书（[More] Efficient/Exceptional C++）和以及讲C相关的书如 C Traps and Pitfall 这种相对不那么容易过时，特别是后者——因为语言在这方面变动比较少。
+　　C++入门的除了 BS 也就 Scott Meyers 的书稍微能看点。Herb Sutter 和 Andrew Koenig 也算稍微高级那么点的话题的靠谱的作者（也包括一些关于 C 的说法）。这里提一下 Accerated C++ 风评还可以，但是应该比较旧了。相对来讲一些讲C++惯用法的书（[More] Efficient/Exceptional C++）和以及讲C相关的书如 C Traps and Pitfall 这种相对不那么容易过时，特别是后者——因为语言在这方面变动比较少。
 
 　　不推荐 C++ Primer 的原因是 Lippman 的文笔以及一些其它编排问题。以及读者认知偏差会比其它正经经典书更多。
 
@@ -71,7 +71,7 @@
 
 　　虽然吧规有给清单，不过我本人不推荐任何书，更反对没其它编程语言的经验直接上手 C++ 。你不是天选之人，没本事把一坨蠢书的 bug 都找出来，之后事半功倍就等着呵呵吧。
 
-　　硬说的话， SICP 旧版和 CSAPP 打底，基本上看懂（不一定需要做题，看各人本事）以后学其它语言稍微容易点。讲 ALGOL-like 语言的国产书和带 Primer 的都更不推荐，稍微要上路点的，C 可能一本合格的都没有， C++ 看 Bjarne Stroustrup 的出版年份较近的入门读物。（我不给具体书名。如果找不到，说明基本不适合学这玩意儿。）但是你非得要“速成”，除了会啃权威文档习惯快速断章取义给书找 bug 以外基本没什么办法——跟某些没经验者的不同，这就是已知最快的方法（只不过对基础技能要求比较高，但说白了也就是一般专业要求而已），除非你有本事发明你学的东西（但即便是有，也就是快慢的区别，参考权威文献对这种 artifact 是批判的基础所以不可能省掉）。当然，LZ 可以抱怨短时间吃 3 本书强人所难，不过 LZ 的问题本来就是这个状况，何况就现在本科教师普遍连什么权威材料该参考都搞不清楚的教学质量，大多数专业 4 年出来的基本也都达不到这个入门水准。
+　　硬说的话，SICP 旧版和 CSAPP 打底，基本上看懂（不一定需要做题，看各人本事）以后学其它语言稍微容易点。讲 ALGOL-like 语言的国产书和带 Primer 的都更不推荐，稍微要上路点的，C 可能一本合格的都没有，C++ 看 Bjarne Stroustrup 的出版年份较近的入门读物。（我不给具体书名。如果找不到，说明基本不适合学这玩意儿。）但是你非得要“速成”，除了会啃权威文档习惯快速断章取义给书找 bug 以外基本没什么办法——跟某些没经验者的不同，这就是已知最快的方法（只不过对基础技能要求比较高，但说白了也就是一般专业要求而已），除非你有本事发明你学的东西（但即便是有，也就是快慢的区别，参考权威文献对这种 artifact 是批判的基础所以不可能省掉）。当然，LZ 可以抱怨短时间吃 3 本书强人所难，不过 LZ 的问题本来就是这个状况，何况就现在本科教师普遍连什么权威材料该参考都搞不清楚的教学质量，大多数专业 4 年出来的基本也都达不到这个入门水准。
 
 源：[同主题](http://tieba.baidu.com/p/6113807981) 16L 。
 
@@ -87,7 +87,7 @@
 
 　　不过我发现我还是漏掉了一个优化，那就是 SICP 。当年有个出国的学生（记得是哲学类贴吧遇到的，现在反正不混贴吧了）百度消息问我里面的问题，我第一反应是“什么鬼”，还提醒应该多了解些“函数式编程”，现在看来可能是黑历史了，直到我自己之后重新开始自己设计语言，从 λ 演算开始开始推出“纯粹”的计算模型，才发现 Scheme 的设计显然的清晰之处。
 
-　　（还有个理由是，论长度， RnRS 显然比 ISO 的裹脚布清爽多了……差了几十倍。这导致原则上我对 LZ 这样的没基础的同学入门 C++ 这样的玩意儿持悲观态度，因为不管是什么书，杂七杂八的内容的数量就放在哪里，没基础就意味着不知道什么算是入门，哪些只是为了入门就能跳过的而节约时间。）
+　　（还有个理由是，论长度，RnRS 显然比 ISO 的裹脚布清爽多了……差了几十倍。这导致原则上我对 LZ 这样的没基础的同学入门 C++ 这样的玩意儿持悲观态度，因为不管是什么书，杂七杂八的内容的数量就放在哪里，没基础就意味着不知道什么算是入门，哪些只是为了入门就能跳过的而节约时间。）
 
 　　这时候我重新看了一部分 SICP （因为早就对非 spec 类文献习惯性速读，习题全部跳过不评价），发现里面确实有不少东西讲得比几乎所有其它入门教科书都清楚。
 
@@ -97,11 +97,9 @@
 
 　　具体内容的问题，随便举个例子：
 
-> Statements & Expressions. Python code consists of statements and expressions. Broadly, computer programs consist of instructions to either
-
->    Compute some value
->    Carry out some action
-
+> Statements & Expressions. Python code consists of statements and expressions. Broadly, computer programs consist of instructions to either\
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Compute some value\
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Carry out some action\
 > Statements typically describe actions. When the Python interpreter executes a statement, it carries out the corresponding action. On the other hand, expressions typically describe computations that yield values. When Python evaluates an expression, it computes its value. This chapter introduces several types of statements and expressions.
 
 　　从语言设计的角度来说，贸然把语句(statement) 和表达式(expression) 并列起来并不是什么好的讲法。
@@ -298,7 +296,7 @@
 
 * Python 的设计者[承认不清楚尾调用和循环的区别](http://neopythonic.blogspot.com/2009/04/final-words-on-tail-calls.html)。
 * Go 语言的设计者[看来不清楚*名义类型(nominal typing)*](https://www.reddit.com/r/programming/comments/chrtx/rob_pike_on_how_and_why_googles_new_go_language/) 。
-* Lisp 方言的一些编译器作者使用[*尾调用优化(TCO, tail call optimization)* 但并不清楚*真尾递归(proper tail recursion)* 的一般性质，造成一些混乱](https://groups.google.com/d/msg/comp.lang.lisp/AezzhxTliME/2Zsq7HUn_ssJ)。　　
+* Lisp 方言的一些编译器作者使用[*尾调用优化(TCO, tail call optimization)* 但并不清楚*真尾递归(proper tail recursion)* 的一般性质，造成一些混乱](https://groups.google.com/d/msg/comp.lang.lisp/AezzhxTliME/2Zsq7HUn_ssJ)。
 
 　　看起来可能是专家的语言设计和实现者尚且如此，没有足够参与语言维护工作的一般用户的观点同样（如果不是更）可能是相当地不可靠的，**这包括大多数的高校教师**。因为大学的具体 PL 课通常是基础课，可以理解通常难以配备足够的专家作为师资。
 

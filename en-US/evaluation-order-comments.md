@@ -8,7 +8,7 @@ Quoted text are from the referenced material: [P0145R1](http://www.open-std.org/
 
 Suspectable. Because ...
 
-> In a nutshell, given an expression such as `f(a, b, c)`, the order in which the sub-expressions `f`, `a`, `b`, `c` (which are of arbitrary shapes) are evaluated is left  unspecified by the standard. If any two of these sub-expressions happen to modify the same object without intervening sequence points, the behavior of the program is undefined.
+> In a nutshell, given an expression such as `f(a, b, c)`, the order in which the sub-expressions `f`, `a`, `b`, `c` (which are of arbitrary shapes) are evaluated is left  unspecified by the standard. If any two of these sub-expressions happen to modify the same object without intervening sequence points, the behavior of the program is undefined.\
 > For instance, the expression `f(i++, i)` where `i` is an integer variable leads to undefined behavior, as does `v[i] = i++`.
 
 The current rules are already somewhat clear (compared with the proposed rules) and not hard to recite. It seems that there are few people willing spending time on this topic continuously. Novices usually do not try to change the core language rules, and seasoned users usually do not bother to do too much beyond setting up the convention to follow the standard.
@@ -81,8 +81,7 @@ Since such idioms are not unique, the guarantee is not needed urgently.
 
 Still usable without chaining.
 
-> Without the guarantee that the obvious order of evaluation for function call and member  selection is obeyed, these facilities become traps, source of obscure, hard to track bugs
-, facile opportunities for vulnerabilities.
+> Without the guarantee that the obvious order of evaluation for function call and member  selection is obeyed, these facilities become traps, source of obscure, hard to track bugs, facile opportunities for vulnerabilities.
 
 Then forbid such use by fixing the interface, if teaching the correct idiom is too cumbersome.
 

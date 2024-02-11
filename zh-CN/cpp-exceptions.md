@@ -27,33 +27,33 @@ This article briefly talked about exception handling mechanism provided by C++ a
 
 # II.背景：异常和异常处理
 
-　　异常在计算机系统中被认为是非正常状态的抽象。异常能够干预程序的正常控制流，它很大程度地影响程序在某种预期条件以外的表现[1]。
+　　异常在计算机系统中被认为是非正常状态的抽象。异常能够干预程序的正常控制流，它很大程度地影响程序在某种预期条件以外的表现\[1] 。
 
-　　一般地说，当一个异常被处理(handled)时，程序控制流切换至称为异常处理器(exception handler)的子例程中。若异常是可继续(continuable)的，程序可以利用先前保存的信息切换回正常控制流。
+　　一般地说，当一个异常被处理(handled) 时，程序控制流切换至称为异常处理器(exception handler) 的子例程中。若异常是可继续(continuable) 的，程序可以利用先前保存的信息切换回正常控制流。
 
-　　异常处理被实现为硬件机制和特定的软件构造。前者的例子有IEEE浮点异常[1]、x86架构的双重故障(double fault)异常[2]；后者如Windows结构化异常处理(SEH)[1]，以及在多种语言如C++、Java、Ada等被内建支持[1][3]。
+　　异常处理被实现为硬件机制和特定的软件构造。前者的例子有 IEEE 浮点异常\[1]、x86架构的双重故障(double fault) 异常\[2]；后者如 Windows 结构化异常处理(SEH)\[1] ，以及在多种语言如 C++、Java、Ada 等被内建支持\[1]\[3]。
 
-　　对于软件实现的异常处理机制来说，术语“异常”典型地被作为储存异常条件(exception condition)的数据结构。异常的传输在这里有普遍的相似性：产生(raise)或抛出(throw)一个异常中断正常控制流，直至被捕获(catch)而处理。若一个异常能在程序的任意部分产生，那么这样的异常是异步(asynchronous)的，否则是同步(synchronous)的。
+　　对于软件实现的异常处理机制来说，术语“异常”典型地被作为储存异常条件(exception condition) 的数据结构。异常的传输在这里有普遍的相似性：产生(raise) 或抛出(throw) 一个异常中断正常控制流，直至被捕获(catch) 而处理。若一个异常能在程序的任意部分产生，那么这样的异常是异步(asynchronous) 的，否则是同步(synchronous) 的。
 
 　　由程序设计语言提供支持的异常一般通过编译器生成代码和运行时库动态的检查来实现。编译器需要在确定在特定位置生成代码，这里异常的异步性是受限的。因此，保留某些异常不由语言的实现而是由底层的操作系统或硬件提供支持是合理的。
 
-　　这样，不同层次上的异常处理机制处理不同的异常。例如，在安装Windows上的PC运行（带有运行时异常支持的）标准C++程序，浮点数异常被硬件处理、影响环境的某些状态后可继续执行；整数除以零或内存访问越界由Windows包装为结构化异常并抛出；通过new操作符分配失败时默认抛出std::bad_alloc异常。被抛出的异常若不被用户显式处理，默认情况下导致程序最终非正常退出。
+　　这样，不同层次上的异常处理机制处理不同的异常。例如，在安装 Windows 上的 PC 运行（带有运行时异常支持的）标准 C++ 程序，浮点数异常被硬件处理、影响环境的某些状态后可继续执行；整数除以零或内存访问越界由Windows包装为结构化异常并抛出；通过new操作符分配失败时默认抛出std::bad_alloc异常。被抛出的异常若不被用户显式处理，默认情况下导致程序最终非正常退出。
 
 # III.C++异常
 
-　　可见不是所有的程序逻辑的异常都被C++处理。标准C++只处理同步异常。
+　　可见不是所有的程序逻辑的异常都被 C++ 处理。标准 C++ 只处理同步异常。
 
-　　一些实现可能支持扩展，如VC++支持非标准关键字__try、__except等Windows SEH特性。对于可移植的C++程序，不应使用这些特性。
+　　一些实现可能支持扩展，如 VC++ 支持非标准关键字 `__try` 、`__except` 等 Windows SEH 特性。对于可移植的 C\++ 程序，不应使用这些特性。
 
-　　通行的做法是，当遇到需要抛出的异常条件时，用一个多态类(polymorphic class)类型的对象（是一种临时对象，称为异常对象）来储存，然后通过throw抛出，到最终需要处理异常处使用和try块对应的catch捕获。一般为了方便异常对象的生存期管理，catch指定的类型为异常对象的引用（const在此会被忽略，没有必要）。构造异常对象时一般应避免产生新的异常。
+　　通行的做法是，当遇到需要抛出的异常条件时，用一个多态类(polymorphic class)类型的对象（是一种临时对象，称为异常对象）来储存，然后通过throw抛出，到最终需要处理异常处使用和 `try` 块对应的 `catch` 捕获。一般为了方便异常对象的生存期管理，`catch` 指定的类型为异常对象的引用（ `const` 在此会被忽略，没有必要）。构造异常对象时一般应避免产生新的异常。
 
-　　`catch(...)`可以捕获任意类型的异常对象。需要注意的是，在上述带有扩展的实现中，catch(...)可能不安全地捕获到非C++异常[4]。所以通常避免使用抛出任意类型的异常以及catch(...)，而使用自己的异常类继承体系，以保证具有可移植性同时能确保适当情况下捕获所有异常[4]。
+　　`catch(...)` 可以捕获任意类型的异常对象。需要注意的是，在上述带有扩展的实现中，`catch(...)` 可能不安全地捕获到非 C++ 异常\[4]。所以通常避免使用抛出任意类型的异常以及 `catch(...)` ，而使用自己的异常类继承体系，以保证具有可移植性同时能确保适当情况下捕获所有异常\[4]。
 
-　　此外，C++可以使用异常规范(exception specification)来约束一个函数（函数模版）是否接受异常，或接受特定类型的异常，这在本文最后讨论。
+　　此外，C++ 可以使用异常规范(exception specification) 来约束一个函数（函数模版）是否接受异常，或接受特定类型的异常，这在本文最后讨论。
 
 # IV.异常安全
 
-　　异常安全是指在抛出异常后保持可预期的状态。通过Abrahams异常安全保证描述异常安全性[4-6]：
+　　异常安全是指在抛出异常后保持可预期的状态。通过 Abrahams 异常安全保证描述异常安全性\[4-6]：
 
 　　基本保证——允许失败操作改变程序状态，但不能有泄漏并且失败操作所影响的对象/模块必须仍然在生存期内并可用，状态必须是可靠的(consistent)（但不是完全可预测的）。
 
@@ -63,7 +63,7 @@ This article briefly talked about exception handling mechanism provided by C++ a
 
 　　获得异常安全的一般原则：
 
-　　使用“资源获取初始化”("resource acquisition is initialization")(RAII)来管理资源的分配——在析构函数中释放资源——自动对象会在异常抛出时析构，释放资源无需用户干预；
+　　使用“资源获取初始化”("resource acquisition is initialization")(RAII) 来管理资源的分配——在析构函数中释放资源——自动对象会在异常抛出时析构，释放资源无需用户干预；
 
 　　“从小处做好所有工作，然后保证只使用无异常抛出的操作”从而避免改变程序内部状态，直到能保证整个操作成功；
 
@@ -71,37 +71,37 @@ This article briefly talked about exception handling mechanism provided by C++ a
 
 　　参照标准库的策略保证异常安全：一个函数应当总是支持最严格的保证，同时不会对不需要这种保证的用户造成伤害。
 
-　　注意，一些关键函数，如析构函数和去配(deallocation)函数，必须是无抛出保证的操作，否则在某些条件（具体来说，抛出异常时的栈回退）下无法避免未定义行为，导致程序行为无法预测[3]。
+　　注意，一些关键函数，如析构函数和去配(deallocation) 函数，必须是无抛出保证的操作，否则在某些条件（具体来说，抛出异常时的栈回退）下无法避免未定义行为，导致程序行为无法预测[3]。
 
 # V.异常、失败(failure)和错误(error)
 
 　　异常表示非正常，它蕴含了失败——确定在不能完成接口约定的功能且无法在程序中恢复的情形。异常不一定是失败，而失败是异常（虽然有时候为了强调非失败的异常而单独提取出来）。
 
-　　错误（程序设计意义上的，不是指软件的bug）是程序员需要关注处理的对象，包括失败和违反接口约束但可能恢复的异常。用契约式设计(design by contract)来概括，这里的接口约束包含三个方面：前置条件(precondition)、不变量(invariant)和后置条件(postcondition)[1][7]。
+　　错误（程序设计意义上的，不是指软件的 bug ）是程序员需要关注处理的对象，包括失败和违反接口约束但可能恢复的异常。用契约式设计(design by contract) 来概括，这里的接口约束包含三个方面：前置条件(precondition) 、不变量(invariant) 和后置条件(postcondition) \[1]\[7]。
 
-　　错误不应该经常发生。经常发生的状况应该被预期，而不是作为错误处理(error handling)的对象[7]。
+　　错误不应该经常发生。经常发生的状况应该被预期，而不是作为错误处理(error handling)的对象\[7]。
 
-　　对于某些可恢复的异常，C++标准库提供了一些错误恢复例程，如对于默认new失败时[7]首先会调用new handler，无法恢复时才抛出异常。用std::set_new_hanlder等标准库函数来设置这样的例程[3]。
+　　对于某些可恢复的异常，C++标准库提供了一些错误恢复例程，如对于默认new失败时\[7]首先会调用new handler，无法恢复时才抛出异常。用std::set_new_hanlder等标准库函数来设置这样的例程[3]。
 
 # VI.错误处理的方式
 
 　　错误处理是C++异常处理最典型的应用领域。虽然语言并不阻止没有错误的流程中使用异常，但这样可能会导致代码不易读或导致调试时过于容易中断，往往被视为滥用。
 
-　　不使用异常处理的典型错误处理手段是静态存储状态和传递错误码(error code)。这两种方案都有其局限性。
+　　不使用异常处理的典型错误处理手段是静态存储状态和传递错误码(error code) 。这两种方案都有其局限性。
 
-　　静态存储错误状态（可能存储的就是错误码，如POSIX的errno、Win32的GetLastError）的局限性很明显；
+　　静态存储错误状态（可能存储的就是错误码，如 POSIX 的 `errno` 、Win32 的 `GetLastError` ）的局限性很明显；
 
 　　需要静态地分配空间——意味着要么允许错误状态被覆盖（这强迫用户必须在可能发生错误后第一时刻检查错误状态），要么浪费空间（不管可能产生错误的函数是否被调用到都需要）；
 
 　　在多线程环境下需要考虑同步及额外开销（若使用线程局部存储，则对实现的要求比较高）；
 
-　　几乎是无法重入(reenterable)的。
+　　几乎是无法重入(reenterable) 的。
 
-　　错误码通过函数参数或返回值传递（如Win32的GetLastError），每一次手动转发只能跨一层函数，和抛出、捕获异常相比，这导致一些明显不利[7]：
+　　错误码通过函数参数或返回值传递（如 Win32 的 `GetLastError` ），每一次手动转发只能跨一层函数，和抛出、捕获异常相比，这导致一些明显不利[7]：
 
 　　冗余——显式转发随调用层次增加而递增；
 
-　　混淆正常流程(happy path)和错误处理流程——往往需要很多代码判断错误码，错误处理代码和其它代码没有清晰的边界；
+　　混淆正常流程(happy path) 和错误处理流程——往往需要很多代码判断错误码，错误处理代码和其它代码没有清晰的边界；
 
 　　非健壮性——错误码处理实现有误时程序携带错误状态执行，难以确定实现的缺陷会如何暴露；
 
@@ -141,7 +141,7 @@ This article briefly talked about exception handling mechanism provided by C++ a
 
 　　首先是关于未确定为不可恢复的错误时的恢复策略。若确定可恢复时，可以直接原地恢复（例如配置文件不存在，就创建配置文件）；否则重新抛出异常，交给上层的调用者处理。
 
-　　然后是关于不可恢复的错误的处理。一是Sudden Death，保留足够的信息（如日志）后退出或重启模块；二是保证强异常安全的事务性回滚[7]。
+　　然后是关于不可恢复的错误的处理。一是 Sudden Death ，保留足够的信息（如日志）后退出或重启模块；二是保证强异常安全的事务性回滚[7]。
 
 　　回滚的实现主要有两种方式：事先复制可能被回滚的资源的副本，若回滚则使用副本代替已经发生错误的状态，否则丢弃副本；把回滚操作分解为若干具有无异常抛出保证的撤销操作[7]。后者比较节约资源，但受到限制比较大（需要对应的撤销操作都存在）。
 
@@ -153,7 +153,7 @@ This article briefly talked about exception handling mechanism provided by C++ a
 
 　　异常规范指定能从函数被抛出的异常类型，在函数声明（包括定义）中指定。C++11把旧有的异常规范称为动态异常规范，使用throw引导。违反动态异常规范会导致std::unexcepted的调用[3]。
 
-　　动态异常规范有以下缺点[6][8-10]：
+　　动态异常规范有以下缺点\[6]\[8-10]：
 
 　　静态类型的不一致性——它不是类型的一部分（不能出现在typedef中），却限制函数指针赋值和虚函数函数覆盖；
 
@@ -163,28 +163,28 @@ This article briefly talked about exception handling mechanism provided by C++ a
 
 　　在实践中，只有两种异常规范被认为是有用的：什么也不抛出，或者能抛出任何异常。
 
-　　C++11提供了新关键字`noexcept`引导的新的异常规范，并废弃(deprecate)动态异常规范[3][10]，以改善这种状况。`noexcept`只表示是否能保证不抛出异常，而不限定具体的异常类型。违反`noexcept`异常规范会导致`std::terminate`的调用。
+　　C++11 提供了新关键字 `noexcept` 引导的新的异常规范，并废弃(deprecate) 动态异常规范\[3]\[10]，以改善这种状况。`noexcept`只表示是否能保证不抛出异常，而不限定具体的异常类型。违反`noexcept`异常规范会导致`std::terminate`的调用。
 
-　　应该停用动态异常规范。适当使用`noexcept`异常规范，以使代码得到更多的优化机会。
+　　应该停用动态异常规范。适当使用 `noexcept` 异常规范，以使代码得到更多的优化机会。
 
 # IX.结论
 
-　　异常是一项C++中的重要特性。使用异常需要注意异常安全，可以通过RAII惯用法实现。
+　　异常是一项 C++ 中的重要特性。使用异常需要注意异常安全，可以通过 RAII 惯用法实现。
 
 　　错误可被作为一类异常对待。异常主要被应用于错误处理，并且一般优于其它方法。使用异常进行错误处理时应特别注意区分错误是否可恢复。
 
-　　异常规范是C++提供的语言特性，用于检查可以抛出的异常的类型。现在应使用noexcept异常规范而不是过时的动态异常规范。
+　　异常规范是 C++ 提供的语言特性，用于检查可以抛出的异常的类型。现在应使用 `noexcept` 异常规范而不是过时的动态异常规范。
 
 # 参考文献
 
-* [1] Exception handling [G/OL]. 2013-03-09, 2013-03-10. http://en.wikipedia.org/wiki/Exception_handling
-* [2] Double fault [G/OL]. 2012-05-02, 2013-03-10. http://en.wikipedia.org/wiki/Double_fault
-* [3] ISO/IEC 14882:2011(E)，Information technology — Programming languages — C++[S]．Geneva, Switzerland，2011.
-* [4] Boost Community. Error and Exception Handling [A/OL]. http://www.boost.org/community/error_handling.html
-* [5] David Abrahams. Exception Safety in Generic Components [C]. Generic Programming, Proc. of a Dagstuhl Seminar, Lecture Notes on Computer Science. Volume. 1766. http://www.boost.org/community/exception_safety.html
-* [6] Herb Sutter. Exception Safety and Exception Specifications: Are They Worth It? [J/OL]. Guru of the Week, #82 , 2001-06-30. http://www.gotw.ca/gotw/082.htm
-* [7] 刘未鹏. 错误处理(Error-Handling)：为何、何时、如何(rev#2) [A/OL]. http://blog.csdn.net/pongba/article/details/1815742, 2007-10-08, 2013-03-10.
-* [8] Herb Sutter. A Pragmatic Look at Exception Specifications [J]. C/C++ Users Journal, 20(7) , 2002-07. http://www.gotw.ca/gotw/082.htm
-* [9] Herb Sutter. Questions About Exception Specifications [A/OL]. 2007-01-24, 2013-03-10. http://www.gotw.ca/gotw/082.htm
-* [10] Doug Gregor. Deprecating Exception Specifications [J/OL]. C++ Standards Committee Papers, N3051=10-0041 , 2010-03-12. http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3051.htm
+* \[1] Exception handling \[G/OL]. 2013-03-09, 2013-03-10. http://en.wikipedia.org/wiki/Exception_handling
+* \[2] Double fault \[G/OL]. 2012-05-02, 2013-03-10. http://en.wikipedia.org/wiki/Double_fault
+* \[3] ISO/IEC 14882:2011(E)，Information technology — Programming languages — C++ \[S]．Geneva, Switzerland，2011.
+* \[4] Boost Community. Error and Exception Handling \[A/OL]. http://www.boost.org/community/error_handling.html
+* \[5] David Abrahams. Exception Safety in Generic Components [C]. Generic Programming, Proc. of a Dagstuhl Seminar, Lecture Notes on Computer Science. Volume. 1766. http://www.boost.org/community/exception_safety.html
+* \[6] Herb Sutter. Exception Safety and Exception Specifications: Are They Worth It? \[J/OL]. Guru of the Week, #82 , 2001-06-30. http://www.gotw.ca/gotw/082.htm
+* \[7] 刘未鹏. 错误处理(Error-Handling)：为何、何时、如何(rev#2) \[A/OL]. http://blog.csdn.net/pongba/article/details/1815742, 2007-10-08, 2013-03-10.
+* \[8] Herb Sutter. A Pragmatic Look at Exception Specifications \[J]. C/C++ Users Journal, 20(7) , 2002-07. http://www.gotw.ca/gotw/082.htm
+* \[9] Herb Sutter. Questions About Exception Specifications \[A/OL]. 2007-01-24, 2013-03-10. http://www.gotw.ca/gotw/082.htm
+* \[10] Doug Gregor. Deprecating Exception Specifications \[J/OL]. C++ Standards Committee Papers, N3051=10-0041 , 2010-03-12. http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3051.htm
 

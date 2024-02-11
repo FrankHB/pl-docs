@@ -18,7 +18,7 @@
 
 正式标准 ISO/IEC 14882:2011 和 ISO/IEC 9899:2011 分别标记为 [C++11] 和 [C11] 。
 
-相关工作组文献，以标准草案为例： [ISO/IEC JTC1 WG21 N3936](https://github.com/cplusplus/draft/blob/master/papers/N3936.pdf?raw=true) 和 [ISO/IEC JTC1 WG14 N1570](http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1570.pdf) ）分别标记为 [WG21/N3936] 和 [WG14/N1570] 。
+相关工作组文献，以标准草案为例：[ISO/IEC JTC1 WG21 N3936](https://github.com/cplusplus/draft/blob/master/papers/N3936.pdf?raw=true) 和 [ISO/IEC JTC1 WG14 N1570](http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1570.pdf) ）分别标记为 [WG21/N3936] 和 [WG14/N1570] 。
 
 标记中可包括章节号或章节引用。
 
@@ -48,7 +48,7 @@
 
 ## 1.1 语法和语义
 
-什么称为语法或语义不是 ISO C 或 ISO C++ 的内容。但是，尽管没有明确定义， ISO C和 ISO C++ 都明确地用到了这个概念。作为背景知识，在这里有必要澄清通常的含义。
+什么称为语法或语义不是 ISO C 或 ISO C++ 的内容。但是，尽管没有明确定义，ISO C和 ISO C++ 都明确地用到了这个概念。作为背景知识，在这里有必要澄清通常的含义。
 
 所谓*语法(syntax)* ，在一般高级语言中指一种描述合规性的“字面上的”构造。其它所有的含义可被归类为语义范畴。
 
@@ -60,7 +60,7 @@
 
 ISO C 和 ISO C++ 使用相似的文法标记。关于体例说明，分别参考 [C11 Clause 6] 和 [C++11 1.6] ；此外，通过 [C11 Annex A] 和 [C++11 Annex A] 总览语法。
 
-此外， ISO C 还对语言规则中使用 Constraints 和 Semantics 为标题进行了分类。
+此外，ISO C 还对语言规则中使用 Constraints 和 Semantics 为标题进行了分类。
 
 对于实用来说，这里语法和语义的区别重要性，在于**它指定了什么程序是应该正确被接受的**。
 
@@ -71,117 +71,94 @@ ISO C++ 定义了*合式的(well-formed)* 程序以及一些其它重要的术�
 **[WG21/N3936]**
 
 > # 1.3 Terms and definitions
-
+>
 > ## 1.3.10 [defns.impl.defined]
-
-> **implementation-defined behavior**
-
+>
+> **implementation-defined behavior**\
 > behavior, for a well-formed program construct and correct data, that depends on the implementation and that each implementation documents
-
+>
 > ## 1.3.12 [defns.locale.specific]
-
-> **locale-specific behavior**
-
+>
+> **locale-specific behavior**\
 > behavior that depends on local conventions of nationality, culture, and language that each implementation documents
-
+>
 > ## 1.3.24 [defns.undefined]
-
-> **undefined behavior**
-
-> behavior for which this International Standard imposes no requirements
-
+>
+> **undefined behavior**\
+> behavior for which this International Standard imposes no requirements\
 > [ Note: Undefined behavior may be expected when this International Standard omits any explicit definition of behavior or when a program uses an erroneous construct or erroneous data. Permissible undefined behavior ranges from ignoring the situation completely with unpredictable results, to behaving during translation or program execution in a documented manner characteristic of the environment (with or without the issuance of a diagnostic message), to terminating a translation or execution (with the issuance of a diagnostic message). Many erroneous program constructs do not engender undefined behavior; they are required to be diagnosed. —end note ]
-
+>
 > ## 1.3.25 [defns.unspecified]
-
-> **unspecified behavior**
-
-> behavior, for a well-formed program construct and correct data, that depends on the implementation
-
+>
+> **unspecified behavior**\
+> behavior, for a well-formed program construct and correct data, that depends on the implementation\
 > [ Note: The implementation is not required to document which behavior occurs. The range of possible behaviors is usually delineated by this International Standard. —end note ]
-
+>
 > ## 1.3.26 [defns.well.formed]
-
-> **well-formed program**
-
+>
+> **well-formed program**\
 > C++ program constructed according to the syntax rules, diagnosable semantic rules, and the One Definition Rule (3.2).
 
 其中：
-- *未定义行为(undefined behavior)* 在 ISO C++11 的意义上理解为“错误的”或“不可移植的”，不保证行为可预测。
 
-- *未指定(unspecified)* 不保证结果唯一，可以是正确的。
+* *未定义行为(undefined behavior)* 在 ISO C++11 的意义上理解为“错误的”或“不可移植的”，不保证行为可预测。
+* *未指定(unspecified)* 不保证结果唯一，可以是正确的。
+* *实现定义(implementation-defined)* 类似未指定，但实现有义务在文档上标注唯一确定的选项。
+* *可诊断(diagnosable)* [C++11 Clause 1.4] 详见下文。
+* *ODR(One Definition Rule)* [C++11 Clause 3] 独立于一般的语法和语义规则之外，详见下文。
 
-- *实现定义(implementation-defined)* 类似未指定，但实现有义务在文档上标注唯一确定的选项。
-
-- *可诊断(diagnosable)* [C++11 Clause 1.4] 详见下文。
-
-- *ODR(One Definition Rule)* [C++11 Clause 3] 独立于一般的语法和语义规则之外，详见下文。
-
-相对地， ISO C 也有类似的术语定义：
+相对地，ISO C 也有类似的术语定义：
 
 **[WG14/N1570]**
 
 > # 3.  Terms, definitions, and symbols
-
+>
 > # 3.4
-
-> 1 **behavior**
-
+>
+> 1 **behavior**\
 > external appearance or action
-
+>
 > ## 3.4.1
-
-> 1 **implementation-defined behavior**
-
-> unspecified behavior where each implementation documents how the choice is made
-
-> 2 EXAMPLE  An example of implementation-defined behavior is the propagation of the high-order bit when a signed integer is shifted right.
-
+>
+> 1 **implementation-defined behavior**\
+> unspecified behavior where each implementation documents how the choice is made\
+> 2 <tt>EXAMPLE</tt>  An example of implementation-defined behavior is the propagation of the high-order bit when a signed integer is shifted right.
+>
 > ## 3.4.2
-
-> 1 **locale-specific behavior**
-
-> behavior that depends on local conventions of nationality, culture, and language that each implementation documents
-
-> 2 EXAMPLE  An example of locale-specific behavior is whether theislowerfunction returns true for characters other than the 26 lowercase Latin letters.
-
+>
+> 1 **locale-specific behavior**\
+> behavior that depends on local conventions of nationality, culture, and language that each implementation documents\
+> 2 <tt>EXAMPLE</tt>  An example of locale-specific behavior is whether theislowerfunction returns true for characters other than the 26 lowercase Latin letters.
+>
 > ## 3.4.3
-
-> 1 **undefined behavior**
-
-> behavior, upon use of a nonportable or erroneous program construct or of erroneous data, for which this International Standard imposes no requirements
-
-> 2 <tt>NOTE</tt>  Possible undefined behavior ranges from ignoring the situation completely with unpredictable results, to behaving during translation or program execution in a documented manner characteristic of the environment (with or without the issuance of a diagnostic message), to terminating a translation or execution (with the issuance of a diagnostic message).
-
+>
+> 1 **undefined behavior**\
+> behavior, upon use of a nonportable or erroneous program construct or of erroneous data, for which this International Standard imposes no requirements\
+> 2 <tt>NOTE</tt>  Possible undefined behavior ranges from ignoring the situation completely with unpredictable results, to behaving during translation or program execution in a documented manner characteristic of the environment (with or without the issuance of a diagnostic message), to terminating a translation or execution (with the issuance of a diagnostic message).\
 > 3 <tt>EXAMPLE</tt>  An example of undefined behavior is the behavior on integer overflow.
-
+>
 > ## 3.4.4
-
-> 1 **unspecified behavior**
-
-> use of an unspecified value, or other behavior where this International Standard provides two or more possibilities and imposes no further requirements on which is chosen in any instance
-
+>
+> 1 **unspecified behavior**\
+> use of an unspecified value, or other behavior where this International Standard provides two or more possibilities and imposes no further requirements on which is chosen in any instance\
 > 2 <tt>EXAMPLE</tt>  An example of unspecified behavior is the order in which the arguments to a function are evaluated.
 
-不同主要在于 ISO C++ 的未指定和实现定义是分离的， ISO C 中的实现定义是未指定的特例。
+不同主要在于 ISO C++ 的未指定和实现定义是分离的，ISO C 中的实现定义是未指定的特例。
 
 ISO C 没有规定“合式”，而使用以下机制：
 
 > # 4. Conformance
-
-> 1 In this International Standard, “shall” is to be interpreted as a requirement on an implementation or on a program; conversely, “shall not” is to be interpreted as a prohibition.
-
-> 2 If a “shall” or “shall not” requirement that appears outside of a constraint or runtimeconstraint is violated, the behavior is undefined. Undefined behavior is otherwise indicated in this International Standard by the words “undefined behavior” or by the omission of any explicit definition of behavior. There is no difference in emphasis among these three; they all describe “behavior that is undefined”.
-
-> 3 A program that is correct in all other aspects, operating on correct data, containing unspecified behavior shall be a correct program and act in accordance with 5.1.2.3.
-
+>
+> 1 In this International Standard, “shall” is to be interpreted as a requirement on an implementation or on a program; conversely, “shall not” is to be interpreted as a prohibition.\
+> 2 If a “shall” or “shall not” requirement that appears outside of a constraint or runtimeconstraint is violated, the behavior is undefined. Undefined behavior is otherwise indicated in this International Standard by the words “undefined behavior” or by the omission of any explicit definition of behavior. There is no difference in emphasis among these three; they all describe “behavior that is undefined”.\
+> 3 A program that is correct in all other aspects, operating on correct data, containing unspecified behavior shall be a correct program and act in accordance with 5.1.2.3.\
 > 4 The implementation shall not successfully translate a preprocessing translation unit containing a#errorpreprocessing directive unless it is part of a group skipped by conditional inclusion.
 
 ## 1.3 诊断消息
 
 最典型的诊断消息是编译错误和警告。
 
-一个实现应当正确的程序。对于错误的程序，为了避免实现复杂， ISO C 和 ISO C++ 允许实现不完全进行语义检查。这里略有差异： ISO C 把这种情况统一为未定义行为，而 ISO C++ 特地增加了 no diagnostics required 条款。因此对于 C++ ，**编译通过的程序，即便排除未定义行为，在语言规则下仍然可能是错的**。
+一个实现应当正确的程序。对于错误的程序，为了避免实现复杂，ISO C 和 ISO C++ 允许实现不完全进行语义检查。这里略有差异：ISO C 把这种情况统一为未定义行为，而 ISO C++ 特地增加了 no diagnostics required 条款。因此对于 C++ ，**编译通过的程序，即便排除未定义行为，在语言规则下仍然可能是错的**。
 
 ## 1.4 存储模型
 
@@ -192,11 +169,9 @@ ISO C 没有规定“合式”，而使用以下机制：
 **[WG14/N1570]**
 
 > # 3.15
-
-> 1 **object**
-
-> region of data storage in the execution environment, the contents of which can represent values
-
+>
+> 1 **object**\
+> region of data storage in the execution environment, the contents of which can represent values\
 > 2 <tt>NOTE</tt>  When referenced, an object may be interpreted as having a particular type; see 6.3.2.1.
 
 这 ISO C++ 中基本一致：
@@ -204,7 +179,7 @@ ISO C 没有规定“合式”，而使用以下机制：
 **[WG21/N3936]**
 
 > # 1.8 The C++ object model [intro.object]
-
+>
 > 1 The constructs in a C++ program create, destroy, refer to, access, and manipulate objects. An *object* is a region of storage. [ *Note:* A function is not an object, regardless of whether or not it occupies storage in the way that objects do. *—end note* ] An object is created by a *definition* (3.1), by a *new-expression* (5.3.4) or by the implementation (12.2) when needed. The properties of an object are determined when the object is created. An object can have a *name* (Clause 3). An object has a *storage duration* (3.7) which influences its *lifetime* (3.8). An object has a *type* (3.9). The term *object type* refers to the type with which the object is created. Some objects are *polymorphic* (10.3); the implementation generates information associated with each such object that makes it possible to determine that object’s type during program execution. For other objects, the interpretation of the values found therein is determined by the type of the *expressions* (Clause 5) used to access them.
 
 在 Java[JLS8] 以及传统的*基于类风格的面向对象(class-based style object-orientation)* 的上下文中，对象则是指“类的实例”，和 ISO C 以及 ISO C++ 都不同。（另外，“实例”的意义在 ISO C++ 中也不一样。）
@@ -236,22 +211,17 @@ ISO C++ 引入 *ODR(One Definition Rule)* [C++11 Clause 3] 而特别指定了*�
 **[WG21/N3936]**
 
 > # 3 Basic concepts [basic]
-
-> 3 An *entity* is a value, object, reference, function, enumerator, type, class member, template, template specialization, namespace, parameter pack, or `this`.
-
-> 4 A name is a use of an *identifier* (2.11), *operator-function-id* (13.5), *literal-operator-id* (13.5.8), *conversion-function-id* (12.3.2), or *template-id* (14.2) that denotes an entity or *label* (6.6.4, 6.1).
-
-> 5 Every name that denotes an entity is introduced by a *declaration*. Every name that denotes a label is introduced either by a `goto` statement (6.6.4) or a *labeled-statement* (6.1).
-
+>
+> 3 An *entity* is a value, object, reference, function, enumerator, type, class member, template, template specialization, namespace, parameter pack, or `this`.\
+> 4 A name is a use of an *identifier* (2.11), *operator-function-id* (13.5), *literal-operator-id* (13.5.8), *conversion-function-id* (12.3.2), or *template-id* (14.2) that denotes an entity or *label* (6.6.4, 6.1).\
+> 5 Every name that denotes an entity is introduced by a *declaration*. Every name that denotes a label is introduced either by a `goto` statement (6.6.4) or a *labeled-statement* (6.1).\
 > 6 A *variable* is introduced by the declaration of a reference other than a non-static data member or of an object. The variable’s name, if any, denotes the reference or object.
 
-**但是， ISO C 没有这些概念。** 在 ISO C 中：
+**但是，ISO C 没有这些概念。** 在 ISO C 中：
 
-- variable 一词并没有被正式使用为名词表示“变量”的含义。在 *VLA(variable length array)* 中出现的是形容词，意为“变量的”，指不在翻译时确定大小，和这里的概念无关。
-
-- entity 一词被不经正式定义地使用，也没有和 ISO C 类似的含义（考虑 **ISO C 没有 ODR** ）。似乎作者认为是不言自明的。
-
-- name 一词被不经正式定义地使用。 ISO C 没有 ISO C++ 那样带记号 :: 的 *qualified-id* [C++11 5.1.1] 和 *operator-function-id* [C++11 13.5] 等语法构造，“标识符”和“名称”基本一致。
+* variable 一词并没有被正式使用为名词表示“变量”的含义。在 *VLA(variable length array)* 中出现的是形容词，意为“变量的”，指不在翻译时确定大小，和这里的概念无关。
+* entity 一词被不经正式定义地使用，也没有和 ISO C 类似的含义（考虑 **ISO C 没有 ODR** ）。似乎作者认为是不言自明的。
+* name 一词被不经正式定义地使用。ISO C 没有 ISO C++ 那样带记号 :: 的 *qualified-id* [C++11 5.1.1] 和 *operator-function-id* [C++11 13.5] 等语法构造，“标识符”和“名称”基本一致。
 
 ## 3.2 声明和定义
 
@@ -262,10 +232,9 @@ ISO C++ 引入 *ODR(One Definition Rule)* [C++11 Clause 3] 而特别指定了*�
 **[WG21/N3936]**
 
 > # 3.1 Declarations and definitions [basic.def]
-
-> 2 A declaration is a *definition* unless it declares a function without specifying the function’s body (8.4), it contains the `extern` specifier (7.1.1) or a *linkage-specification* 25 (7.5) and neither an *initializer* nor a *function-body* , it declares a static data member in a class definition (9.2, 9.4), it is a class name declaration (9.1), it is an *opaque-enum-declaration* (7.2), it is a *template-parameter* (14.1), it is a *parameter-declaration* (8.3.5) in a function declarator that is not the declarator of a *function-definition* , or it is a `typedef` declaration (7.1.3),
+>
+> 2 A declaration is a *definition* unless it declares a function without specifying the function’s body (8.4), it contains the `extern` specifier (7.1.1) or a *linkage-specification* 25 (7.5) and neither an *initializer* nor a *function-body* , it declares a static data member in a class definition (9.2, 9.4), it is a class name declaration (9.1), it is an *opaque-enum-declaration* (7.2), it is a *template-parameter* (14.1), it is a *parameter-declaration* (8.3.5) in a function declarator that is not the declarator of a *function-definition* , or it is a `typedef` declaration (7.1.3),\
 an *alias-declaration* (7.1.3), a using-declaration (7.3.3), a *static_assert-declaration* (Clause 7), an *attribute-declaration* (Clause 7), an *empty-declaration* (Clause 7), or a *using-directive* (7.3.4).
-
 > 25) Appearing inside the braced-enclosed *declaration-seq* in a *linkage-specification* does not affect whether a declaration is a definition.
 
 ISO C 也有类似的结论，但略有不同：
@@ -273,28 +242,21 @@ ISO C 也有类似的结论，但略有不同：
 **[WG14/N1570]**
 
 > # 6.7 Declarations
-
+>
 > ## Semantics
-
-> 5 A declaration specifies the interpretation and attributes of a set of identifiers. A *definition* of an identifier is a declaration for that identifier that:
-
-> — for an object, causes storage to be reserved for that object;
-
-> — for a function, includes the function body;<sup>119)</sup>
-
-> — for an enumeration constant, is the (only) declaration of the identifier;
-
-> — for a `typedef` name, is the first (or only) declaration of the identifier.
-
+>
+> 5 A declaration specifies the interpretation and attributes of a set of identifiers. A *definition* of an identifier is a declaration for that identifier that:\
+> — for an object, causes storage to be reserved for that object;\
+> — for a function, includes the function body;<sup>119)</sup>\
+> — for an enumeration constant, is the (only) declaration of the identifier;\
+> — for a `typedef` name, is the first (or only) declaration of the identifier.\
 > 119) Function definitions have a different syntax, described in 6.9.1.
 
 排除 ISO C++ 不兼容 ISO C 的部分，存在重要的差异：
 
-- **ISO C 的声明和定义都针对标识符。 ISO C++ 的声明引入名称（包括声明标识符的情形），而定义针对实体。**
-
-- **ISO C 中的一个声明是否是定义，可能和出现的位置相关。** （例如 *tentative definition* 。）
-
-- `typedef` 声明是可以定义而不总只是声明。
+* **ISO C 的声明和定义都针对标识符。ISO C++ 的声明引入名称（包括声明标识符的情形），而定义针对实体。**
+* **ISO C 中的一个声明是否是定义，可能和出现的位置相关。** （例如 *tentative definition* 。）
+* `typedef` 声明是可以定义而不总只是声明。
 
 ## 3.3 ODR
 
@@ -324,13 +286,12 @@ ISO C 避免使用“变量”的原因可能在于含义的不够明确。
 
 和直觉上不同，在 ISO C++ 的上下文中，变量和常量并不相对：
 
-- ISO C++ 明确定义了什么是变量，但没有定义什么是常量。
-
-- ISO C++中明确涉及常量的术语只有若干*常量表达式(constant-expression)*
+* ISO C++ 明确定义了什么是变量，但没有定义什么是常量。
+* ISO C++中明确涉及常量的术语只有若干*常量表达式(constant-expression)*
 
 常量表达式在实用的意义上指有可能在翻译时即可确定值的表达式，在一般意义上和变量不完全相对。
 
-而在 ISO C 中，却明确有*常量(constant)* 的术语。但是，这只是语法上的分类，相当于 ISO C++ 所说的一部分*字面量(literal) *。
+而在 ISO C 中，却明确有*常量(constant)* 的术语。但是，这只是语法上的分类，相当于 ISO C++ 所说的一部分*字面量(literal)* 。
 
 此外，应该了解，“常量”和下文的 const 限定符是完全两回事，尽管后者在 C++ 中具有常量的目的。
 
