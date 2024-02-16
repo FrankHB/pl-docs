@@ -47,6 +47,7 @@
 * [关于 GC 的意见](about-garbage-collection.md)（另见 [幻の上帝吧主题](https://tieba.baidu.com/p/3171730339)）
 * [关于语法](about-syntax.md)
 * [决策的哲学](philosophy-of-make-decision.md)
+* [关于智能](about-intelligence.md)
 
 ## 语用和科普
 
