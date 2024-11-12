@@ -17,4 +17,5 @@ Here is the list of the documents hosted in this repository
 ## Background topics
 
 * [Licensing](licensing.md)
+* [Collected issue clarifications](collected-issue-clarifications.md)
 
