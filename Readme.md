@@ -4,13 +4,13 @@ This is a repository about some programing languages and something about their t
 
 Some documents may contain subjective viewpoints. Some of them may change due to the new discoveries on the related topics. There should be rationales to explain why the author keep these points in the meantime. Missing of the discussion around them is not intended, unless explicitly specified.
 
-# Rules
+## Rules
 
 Contents in this repository conform to the [YSLib wiki editing rules](https://frankhb.github.io/YSLib-book/WikiRules.en-US.html).
 
-# Copyright
+## Copyright
 
-© 2014-2024 [FrankHB](mailto:frankhb1989@gmail.com).
+© 2014-2025 [FrankHB](mailto:frankhb1989@gmail.com).
 
 Except as otherwise specified explicitly, materials in this repository are licensed under following terms:
 
