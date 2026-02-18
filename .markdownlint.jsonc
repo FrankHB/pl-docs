@@ -1,5 +1,5 @@
 /*
-	© 2024-2025 FrankHB.
+	© 2024-2026 FrankHB.
 
 	This file is part of the YSLib project, and may only be used, modified,
 	and distributed under the terms of the YSLib project license.
@@ -394,8 +394,19 @@
 			"link",
 			"more"
 		]
+	},
+	*/
+	"MD059": false,
+
+	// MD060/table-column-style : Table column style : https://github.com/DavidAnson/markdownlint/blob/main/doc/md060.md
+	/*
+	"MD060": {
+		// Table column style
+		"style": "any",
+		// Aligned delimiter columns
+		"aligned_delimiter": false
 	}
 	*/
-	"MD059": false
+	"MD060": false
 }
 
